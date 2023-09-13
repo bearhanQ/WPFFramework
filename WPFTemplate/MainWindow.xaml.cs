@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -27,7 +28,16 @@ namespace WPFTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(cb1.HoverBackground.ToString());
+            //this.ctc.CornerRadius = new CornerRadius(Convert.ToDouble(textbox1.Text));
+            this.ctc.Items.Add(new TabItem
+            {
+                Header = "123"
+            });
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("1");
         }
     }
 }

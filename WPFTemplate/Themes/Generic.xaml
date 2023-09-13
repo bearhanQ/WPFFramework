@@ -2,6 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
     xmlns:local="clr-namespace:WPFTemplate">
 
     <local:NoBackgroundToBlack x:Key="NoBackgroundToBlack"/>
@@ -135,7 +136,7 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-     <!--#endregion--> 
+     <!--#endregion-->
 
     <!--#region CornerTextBox-->
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
@@ -144,7 +145,7 @@
     <local:TextBoxIconToPathData x:Key="TextBoxIconToPathData"/>
     <local:TextLengthToBool x:Key="TextLengthToBool"/>
 
-    <Style TargetType="{x:Type local:CornerTextBox}">
+    <Style TargetType="{x:Type local:CornerTextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -242,7 +243,7 @@
     <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
     <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
     <SolidColorBrush x:Key="IndeterminateMark.BorderBrush" Color="LightGray"/>
-    <Style TargetType="{x:Type local:CornerCheckBox}">
+    <Style TargetType="{x:Type local:CornerCheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
@@ -360,7 +361,7 @@
     <SolidColorBrush x:Key="RadioButton.Disabled.Background" Color="#FFE6E6E6"/>
     <SolidColorBrush x:Key="RadioButton.Disabled.Border" Color="#FFBCBCBC"/>
     <SolidColorBrush x:Key="RadioButton.Disabled.Glyph" Color="#FF707070"/>
-    <Style TargetType="{x:Type local:CornerRadioButton}">
+    <Style TargetType="{x:Type local:CornerRadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource RadioButton.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Static.Border}"/>
@@ -648,8 +649,8 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1"/>
-                                    <local:CornerCheckBox x:Name="matchCaseCheckBox" Content="case" Grid.Column="1" Margin="1" 
-                                                          HorizontalContentAlignment="Center" CheckBoxType="Switch" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=SearchingMatchCase}"/>
+                                    <!--<local:CornerCheckBox x:Name="matchCaseCheckBox" Content="case" Grid.Column="1" Margin="1" 
+                                                          HorizontalContentAlignment="Center" CheckBoxType="Switch" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=SearchingMatchCase}"/>-->
                                 </Grid>
                                 <Canvas x:Name="canvas" Grid.Row="1" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
                                     <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
@@ -726,8 +727,8 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1"/>
-                                    <local:CornerCheckBox x:Name="matchCaseCheckBox" Content="case" Grid.Column="1" Margin="1" 
-                                                          HorizontalContentAlignment="Center" CheckBoxType="Switch" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=SearchingMatchCase}"/>
+                                    <!--<local:CornerCheckBox x:Name="matchCaseCheckBox" Content="case" Grid.Column="1" Margin="1" 
+                                                          HorizontalContentAlignment="Center" CheckBoxType="Switch" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=SearchingMatchCase}"/>-->
                                 </Grid>
                                 <Canvas x:Name="canvas" Grid.Row="1" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
                                     <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
@@ -796,39 +797,264 @@
     <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
     <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
     <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
-    <Style TargetType="{x:Type local:CornerProgressBar}">
+    <local:ProgressBarValueToPercentage x:Key="ProgressBarValueToPercentage"/>
+    <Style TargetType="{x:Type local:CornerProgressBar}" BasedOn="{StaticResource {x:Type ProgressBar}}">
         <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
         <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ProgressBar.Border}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CornerProgressBar}">
-                    <Grid x:Name="TemplateRoot">
-                        <Border Background="{StaticResource ProgressBar.Background}" BorderThickness="{TemplateBinding BorderThickness}" 
+        <Style.Triggers>
+            
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ProgressBarType}" Value="Normal">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:CornerProgressBar}">
+                            <Grid x:Name="TemplateRoot">
+                                <Border Background="{StaticResource ProgressBar.Background}" BorderThickness="{TemplateBinding BorderThickness}" 
                                 BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}"/>
-                        <Border x:Name="PART_Track" Width="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=Width}" 
-                                Height="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=Height}" 
+                                <Border x:Name="PART_Track" Width="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=ActualWidth}" 
+                                Height="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=ActualHeight}" 
                                 Background="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=Background}"
                                 BorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=BorderThickness}" 
                                 CornerRadius="{TemplateBinding CornerRadius}">
-                        </Border>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="Orientation" Value="Vertical">
-                            <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                </Border>
+                                <TextBlock x:Name="tbPercentage" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{TemplateBinding Foreground}" Visibility="Hidden">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource ResourceKey=ProgressBarValueToPercentage}">
+                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Maximum"/>
+                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Value"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <!--<Trigger Property="Orientation" Value="Vertical">
+                                    <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>-->
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsIndeterminate" Value="false"/>
+                                        <Condition Property="Value" Value="0"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Hidden" TargetName="PART_Track"/>
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsIndeterminate" Value="false"/>
+                                        <Condition Property="ShowPercentage" Value="True"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="tbPercentage" Property="Visibility" Value="Visible"/>
+                                </MultiTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ProgressBarType}" Value="Cycle">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:CornerProgressBar}">
+                            <Grid x:Name="TemplateRoot">
+                                <Ellipse Stroke="{StaticResource ProgressBar.Background}" StrokeThickness="10"
+                                         Height="{TemplateBinding Width}" Width="{TemplateBinding Width}"/>
+                                <ed:Arc x:Name="PART_Track" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}"
+                                        StartAngle="0" EndAngle="0" Fill="{TemplateBinding Background}" Panel.ZIndex="1"
+                                        ArcThickness="10"
+                                        Stretch="None" StrokeEndLineCap="Round" StrokeStartLineCap="Round" ArcThicknessUnit="Pixel" RenderTransformOrigin="0.5,0.5">
+                                    <ed:Arc.RenderTransform>
+                                        <TransformGroup>
+                                            <RotateTransform/>
+                                        </TransformGroup>
+                                    </ed:Arc.RenderTransform>
+                                </ed:Arc>
+                                <TextBlock x:Name="tbPercentage" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource ResourceKey=ProgressBarValueToPercentage}">
+                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Maximum"/>
+                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Value"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <!--<Trigger Property="Orientation" Value="Vertical">
+                                    <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>-->
+                                <Trigger Property="IsIndeterminate" Value="True">
+                                    <Setter Property="EndAngle" TargetName="PART_Track" Value="90"/>
+                                    <Setter Property="Visibility" TargetName="tbPercentage" Value="Hidden"/>
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard RepeatBehavior="Forever">
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
+                                                    <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                                    <EasingDoubleKeyFrame KeyTime="00:00:01" Value="360"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsIndeterminate" Value="false"/>
+                                        <Condition Property="Value" Value="0"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Hidden" TargetName="PART_Track"/>
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsIndeterminate" Value="false"/>
+                                        <Condition Property="ShowPercentage" Value="True"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="tbPercentage" Property="Visibility" Value="Visible"/>
+                                </MultiTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+
+        </Style.Triggers>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region CornerTabControl-->
+    <local:NormalTabControlCornerRadiusConverter x:Key="NormalTabControlCornerRadiusConverter"/>
+    <Style TargetType="{x:Type local:CornerTabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=TabControlType}" Value="Normal">
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="MinHeight" Value="50"/>
+                            <Setter Property="MinWidth" Value="80"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Template">
                                 <Setter.Value>
-                                    <RotateTransform Angle="-90"/>
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <!--<Border.CornerRadius>
+                                                <MultiBinding Converter="{StaticResource NormalTabControlCornerRadiusConverter}">
+                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="CornerRadius"/>
+                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="Items"/>
+                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=TabItem}" Path="."/>
+                                                </MultiBinding>
+                                            </Border.CornerRadius>-->
+                                            <Grid x:Name="gridmain" Background="Transparent">
+                                                <Border x:Name="bordermain" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}" 
+                                                        Visibility="Hidden">
+                                                    <!--<Border.CornerRadius>
+                                                        <MultiBinding Converter="{StaticResource NormalTabControlCornerRadiusConverter}">
+                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="CornerRadius"/>
+                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="Items"/>
+                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=TabItem}" Path="."/>
+                                                        </MultiBinding>
+                                                    </Border.CornerRadius>-->
+                                                </Border>
+                                                <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                       Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
+                                                <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Foreground" Value="Red"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="bordermain" Property="Visibility" Value="Visible"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=ItemRemovable}" Value="True">
+                                                <Setter TargetName="deleteItem" Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="false"/>
+                                                    <Condition Property="IsMouseOver" Value="true"/>
+                                                </MultiTrigger.Conditions>
+                                                <MultiTrigger.Setters>
+                                                    <Setter TargetName="bordermain" Property="Visibility" Value="Visible"/>
+                                                    <Setter TargetName="bordermain" Property="Opacity" Value="0.3"/>
+                                                </MultiTrigger.Setters>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
-                        </Trigger>
-                        <Trigger Property="Value" Value="0">
-                            <Setter Property="Visibility" Value="Hidden" TargetName="PART_Track"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=TabControlType}" Value="Underline">
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="MinHeight" Value="50"/>
+                            <Setter Property="MinWidth" Value="80"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Grid x:Name="gridmain" Background="Transparent">
+                                            <Border x:Name="bordermain" BorderThickness="0,0,0,2" 
+                                                    BorderBrush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}" Visibility="Hidden"/>
+                                            <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
+                                            <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Foreground" Value="Red"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="bordermain" Property="Visibility" Value="Visible"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=ItemRemovable}" Value="True">
+                                                <Setter TargetName="deleteItem" Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="false"/>
+                                                    <Condition Property="IsMouseOver" Value="True"/>
+                                                </MultiTrigger.Conditions>
+                                                <MultiTrigger.Setters>
+                                                    <Setter TargetName="bordermain" Property="Visibility" Value="Visible"/>
+                                                    <Setter TargetName="bordermain" Property="Opacity" Value="0.3"/>
+                                                </MultiTrigger.Setters>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
     <!--#endregion-->
     

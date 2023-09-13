@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.Expression.Shapes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -45,8 +47,10 @@ namespace WPFTemplate
     ///     <MyNamespace:CornerProgressBar/>
     ///
     /// </summary>
-    public class CornerProgressBar : ProgressBar
+    public class CornerProgressBar : RangeBase
     {
+        private FrameworkElement _track;
+
         static CornerProgressBar()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerProgressBar), new FrameworkPropertyMetadata(typeof(CornerProgressBar)));
@@ -54,7 +58,12 @@ namespace WPFTemplate
 
         public CornerProgressBar()
         {
-            this.ValueChanged += CornerProgressBar_ValueChanged;
+            this.Loaded += CornerProgressBar_Loaded;
+        }
+
+        private void CornerProgressBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            OnIsIndeterminateChanged(this, new DependencyPropertyChangedEventArgs());
         }
 
         public CornerRadius CornerRadius
@@ -67,84 +76,155 @@ namespace WPFTemplate
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerProgressBar));
 
-        public new bool IsIndeterminate
+        public bool ShowPercentage
+        {
+            get { return (bool)GetValue(ShowPercentageProperty); }
+            set { SetValue(ShowPercentageProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowPercentage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowPercentageProperty =
+            DependencyProperty.Register("ShowPercentage", typeof(bool), typeof(CornerProgressBar), new PropertyMetadata(true));
+
+        public bool IsIndeterminate
         {
             get { return (bool)GetValue(IsIndeterminateProperty); }
             set { SetValue(IsIndeterminateProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for IsIndeterminate.  This enables animation, styling, binding, etc...
-        public static new readonly DependencyProperty IsIndeterminateProperty =
+        public static readonly DependencyProperty IsIndeterminateProperty =
             DependencyProperty.Register("IsIndeterminate", typeof(bool), typeof(CornerProgressBar),new FrameworkPropertyMetadata(false, OnIsIndeterminateChanged));
+
+        public ProgressBarType ProgressBarType
+        {
+            get { return (ProgressBarType)GetValue(ProgressBarTypeProperty); }
+            set { SetValue(ProgressBarTypeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ProgressBarType.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ProgressBarTypeProperty =
+            DependencyProperty.Register("ProgressBarType", typeof(ProgressBarType), typeof(CornerProgressBar), new PropertyMetadata(ProgressBarType.Normal));
 
         private static void OnIsIndeterminateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var progressBar = d as CornerProgressBar;
             if (progressBar != null)
             {
-                if(progressBar.Template != null)
+                if (progressBar.Template != null)
                 {
                     if (progressBar.IsIndeterminate)
                     {
-                        var partTrackBorder = progressBar.Template.FindName("PART_Track", progressBar);
-                        if (partTrackBorder != null)
+                        if (progressBar.ProgressBarType == ProgressBarType.Normal)
                         {
-                            var border = partTrackBorder as Border;
-                            border.Clip = new RectangleGeometry
+                            var partTrackBorder = progressBar.Template.FindName("PART_Track", progressBar);
+                            if (partTrackBorder != null)
                             {
-                                Rect = new Rect { X = 0, Y = 0, Width = border.Width / 2, Height = border.Height },
-                                Transform = new TranslateTransform { X = 0 }
-                            };
-                            Storyboard storyboard = new Storyboard();
-                            storyboard.RepeatBehavior = RepeatBehavior.Forever;
-                            DoubleAnimation animation = new DoubleAnimation
-                            {
-                                From = -border.Width,
-                                To = border.Width,
-                                Duration = TimeSpan.FromSeconds(2)
-                            };
-                            Storyboard.SetTarget(animation, border);
-                            Storyboard.SetTargetProperty(animation, new PropertyPath("(Border.Clip).(RectangleGeometry.Transform).(TranslateTransform.X)"));
-                            storyboard.Children.Add(animation);
-                            storyboard.Begin();
+                                var border = partTrackBorder as Border;
+                                border.Clip = new RectangleGeometry
+                                {
+                                    Rect = new Rect { X = 0, Y = 0, Width = border.Width / 2, Height = border.Height },
+                                    Transform = new TranslateTransform { X = 0 }
+                                };
+                                Storyboard storyboard = new Storyboard();
+                                storyboard.RepeatBehavior = RepeatBehavior.Forever;
+                                DoubleAnimation animation = new DoubleAnimation
+                                {
+                                    From = -border.Width,
+                                    To = border.Width,
+                                    Duration = TimeSpan.FromSeconds(2)
+                                };
+                                Storyboard.SetTarget(animation, border);
+                                Storyboard.SetTargetProperty(animation, new PropertyPath("(Border.Clip).(RectangleGeometry.Transform).(TranslateTransform.X)"));
+                                storyboard.Children.Add(animation);
+                                storyboard.Begin();
+                            }
                         }
                     }
                     else
                     {
-                        var partTrackBorder = progressBar.Template.FindName("PART_Track", progressBar);
-                        if (partTrackBorder != null)
+                        if (progressBar.ProgressBarType == ProgressBarType.Normal)
                         {
-                            var border = partTrackBorder as Border;
-                            border.Clip = null;
+                            var partTrackBorder = progressBar.Template.FindName("PART_Track", progressBar);
+                            if (partTrackBorder != null)
+                            {
+                                var border = partTrackBorder as Border;
+                                border.Clip = null;
+                            }
                         }
                     }
                 }
             }
         }
 
-        private void CornerProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        protected override void OnValueChanged(double oldValue, double newValue)
         {
-            var progressBar = sender as CornerProgressBar;
-            if (progressBar != null)
+            base.OnValueChanged(oldValue, newValue);
+
+            if (!this.IsIndeterminate)
             {
-                if (!progressBar.IsIndeterminate)
+                SetPartTrackValue();
+            }
+        }
+
+        protected override void OnMaximumChanged(double oldMaximum, double newMaximum)
+        {
+            base.OnMaximumChanged(oldMaximum, newMaximum);
+            if (!this.IsIndeterminate)
+            {
+                SetPartTrackValue();
+            }
+        }
+
+        protected override void OnMinimumChanged(double oldMinimum, double newMinimum)
+        {
+            base.OnMinimumChanged(oldMinimum, newMinimum);
+            if (!this.IsIndeterminate)
+            {
+                SetPartTrackValue();
+            }
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            this._track = this.Template.FindName("PART_Track", this) as FrameworkElement;
+        }
+
+        private void SetPartTrackValue()
+        {
+            if (this.ProgressBarType == ProgressBarType.Normal)
+            {
+                double minimum = this.Minimum;
+                double maximum = this.Maximum;
+                double value = this.Value;
+                double num = (IsIndeterminate || maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
+
+                var indicatorWidth = num * this.ActualWidth;
+
+                if (_track != null)
                 {
-                    double minimum = progressBar.Minimum;
-                    double maximum = progressBar.Maximum;
-                    double value = progressBar.Value;
-                    double num = (IsIndeterminate || maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
-
-                    var indicatorWidth = num * progressBar.ActualWidth;
-
-                    var partTrackBorder = progressBar.Template.FindName("PART_Track", progressBar);
-                    if (partTrackBorder != null)
+                    var border = _track as Border;
+                    border.Clip = new RectangleGeometry
                     {
-                        var border = partTrackBorder as Border;
-                        border.Clip = new RectangleGeometry
-                        {
-                            Rect = new Rect { X = 0, Y = 0, Width = indicatorWidth, Height = border.Height }
-                        };
-                    }
+                        Rect = new Rect { X = 0, Y = 0, Width = indicatorWidth, Height = border.Height }
+                    };
+                }
+            }
+
+            if (this.ProgressBarType == ProgressBarType.Cycle)
+            {
+                double minimum = this.Minimum;
+                double maximum = this.Maximum;
+                double value = this.Value;
+                double num = (maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
+
+                var EndAngle = num * 360;
+
+                if (_track != null)
+                {
+                    var arc = _track as Arc;
+                    arc.EndAngle = EndAngle;
                 }
             }
         }

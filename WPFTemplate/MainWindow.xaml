@@ -7,15 +7,69 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <x:Array x:Key="liststr" Type="{x:Type sys:String}">
-            <sys:String>Tom</sys:String>
-            <sys:String>Jack</sys:String>
-            <sys:String>Brain</sys:String>
-        </x:Array>
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="MinHeight" Value="50"/>
+                        <Setter Property="MinWidth" Value="80"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                    <Grid x:Name="gridmain" Background="Transparent">
+                                        <Border x:Name="bordermain" BorderThickness="1,1,1,1" Background="Transparent"
+                                                    BorderBrush="Gray" Visibility="Visible"/>
+                                        <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
+                                        <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Foreground" Value="Red"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="bordermain" Property="Background" Value="#FF206BC4"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="bordermain" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="bordermain" Property="Opacity" Value="0.3"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <StackPanel>
-        <local:CornerProgressBar x:Name="cpb" Width="200" Height="30" Margin="10" Background="Blue" BorderBrush="Black" BorderThickness="2"/>
-        <ProgressBar Width="100" Height="30" Margin="20" BorderThickness="3" x:Name="cpb2"/>
-        <Slider Width="100" Minimum="-100" Maximum="100" Value="{Binding ElementName=cpb, Path=Value}" Margin="10"/>
+        <TabControl HorizontalAlignment="Center" Margin="10">
+            <TabItem Header="first"/>
+            <TabItem Header="second"/>
+            <TabItem Header="third"/>
+        </TabControl>
+        <local:CornerTabControl HorizontalAlignment="Center" Margin="10" TabControlType="Underline" ItemRemovable="True">
+            <TabItem Header="first"/>
+            <TabItem Header="second"/>
+            <TabItem Header="third"/>
+        </local:CornerTabControl>
+        <local:CornerTabControl x:Name="ctc" HorizontalAlignment="Center" Margin="10" TabControlType="Normal" ItemRemovable="True">
+            <TabItem Header="first"/>
+            <TabItem Header="second"/>
+            <TabItem Header="third"/>
+            <TabItem Header="fourth"/>
+        </local:CornerTabControl>
+        <Button Width="100" Content="ss" Click="Button_Click"/>
+        <TextBox Width="100" Margin="10" x:Name="textbox1"/>
     </StackPanel>
 </Window>

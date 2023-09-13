@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -128,6 +129,60 @@ namespace WPFTemplate
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ProgressBarValueToPercentage : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var maximum = System.Convert.ToDouble(values[0]);
+            var value = System.Convert.ToDouble(values[1]);
+
+            if (maximum == 0)
+            {
+                return "0" + "%";
+            }
+
+            double progressValue = value / maximum * 100;
+            return (Math.Round(progressValue)).ToString() + "%";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class NormalTabControlCornerRadiusConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var radius = (CornerRadius)values[0];
+            var items = values[1] as ItemCollection;
+            var item = values[2] as TabItem;
+            var index = items.IndexOf(item);
+            if (items.Count == 1)
+            {
+                return radius;
+            }
+
+            if (index == 0)
+            {
+                return new CornerRadius(radius.TopLeft, 0, 0, radius.BottomLeft);
+            }
+
+            if (index == items.Count - 1)
+            {
+                return new CornerRadius(0, radius.TopRight, radius.BottomRight, 0);
+            }
+
+            return new CornerRadius(0, 0, 0, 0);
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

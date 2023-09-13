@@ -114,14 +114,14 @@ namespace WPFTemplate
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
 
 
-        public bool SearchingMatchCase
-        {
-            get { return (bool)GetValue(SearchingMatchCaseProperty); }
-            set { SetValue(SearchingMatchCaseProperty, value); }
-        }
+        //public bool SearchingMatchCase
+        //{
+        //    get { return (bool)GetValue(SearchingMatchCaseProperty); }
+        //    set { SetValue(SearchingMatchCaseProperty, value); }
+        //}
 
-        // Using a DependencyProperty as the backing store for SearchingMatchCase.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SearchingMatchCaseProperty =
-            DependencyProperty.Register("SearchingMatchCase", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
+        //// Using a DependencyProperty as the backing store for SearchingMatchCase.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty SearchingMatchCaseProperty =
+        //    DependencyProperty.Register("SearchingMatchCase", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
     }
 }
