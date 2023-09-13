@@ -64,10 +64,18 @@
             <TabItem Header="third"/>
         </local:CornerTabControl>
         <local:CornerTabControl x:Name="ctc" HorizontalAlignment="Center" Margin="10" TabControlType="Normal" ItemRemovable="True">
-            <TabItem Header="first"/>
-            <TabItem Header="second"/>
-            <TabItem Header="third"/>
-            <TabItem Header="fourth"/>
+            <TabItem Header="first">
+                <Grid Background="Green" Height="30"/>
+            </TabItem>
+            <TabItem Header="second">
+                <Grid Background="Yellow" Height="30"/>
+            </TabItem>
+            <TabItem Header="third">
+                <Grid Background="Blue" Height="30"/>
+            </TabItem>
+            <TabItem Header="fourth">
+                <Grid Background="Black" Height="30"/>
+            </TabItem>
         </local:CornerTabControl>
         <Button Width="100" Content="ss" Click="Button_Click"/>
         <TextBox Width="100" Margin="10" x:Name="textbox1"/>
