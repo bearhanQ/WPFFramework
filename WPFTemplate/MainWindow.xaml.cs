@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,19 +26,35 @@ namespace WPFTemplate
         {
             InitializeComponent();
         }
+    }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+    public class Node:INotifyPropertyChanged
+    {
+        public Node()
         {
-            //this.ctc.CornerRadius = new CornerRadius(Convert.ToDouble(textbox1.Text));
-            this.ctc.Items.Add(new TabItem
-            {
-                Header = "123"
-            });
+            this.ChildNode = new List<Node>();
+        }
+        public string Name { get; set; }
+
+        public int Age { get; set; }
+
+        private bool _check;
+
+        public bool Check
+        {
+            get { return _check; }
+            set 
+            { 
+                _check = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Check"));
+                }
+            }
         }
 
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("1");
-        }
+        public List<Node> ChildNode { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

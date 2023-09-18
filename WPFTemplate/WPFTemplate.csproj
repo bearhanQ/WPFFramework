@@ -66,11 +66,13 @@
     <Compile Include="Controls\CornerRadioButton.cs" />
     <Compile Include="Controls\CornerTabControl.cs" />
     <Compile Include="Controls\CornerTextBox.cs" />
+    <Compile Include="Controls\CornerTreeView.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
     <Compile Include="Enums\TabControlEnum.cs" />
     <Compile Include="Enums\TextBoxEnum.cs" />
+    <Compile Include="Enums\TreeViewEnum.cs" />
     <Compile Include="SvgResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

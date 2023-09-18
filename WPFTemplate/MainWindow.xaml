@@ -7,77 +7,62 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style TargetType="{x:Type TabControl}">
-            <Setter Property="ItemContainerStyle">
-                <Setter.Value>
-                    <Style TargetType="{x:Type TabItem}">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="MinHeight" Value="50"/>
-                        <Setter Property="MinWidth" Value="80"/>
-                        <Setter Property="BorderThickness" Value="1"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type TabItem}">
-                                    <Grid x:Name="gridmain" Background="Transparent">
-                                        <Border x:Name="bordermain" BorderThickness="1,1,1,1" Background="Transparent"
-                                                    BorderBrush="Gray" Visibility="Visible"/>
-                                        <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
-                                        <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Foreground" Value="Red"/>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="bordermain" Property="Background" Value="#FF206BC4"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="bordermain" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="bordermain" Property="Opacity" Value="0.3"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-        </Style>
+
+        <x:Array Type="{x:Type local:Node}" x:Key="nodes">
+            <local:Node Name="first" Age="1">
+                <local:Node.ChildNode>
+                    <local:Node Name="firstchild1" Age="2">
+                        <local:Node.ChildNode>
+                            <local:Node Name="grandchild1" Age="100"/>
+                            <local:Node Name="grandchild2" Age="101"/>
+                            <local:Node Name="grandchild3" Age="102"/>
+                        </local:Node.ChildNode>
+                    </local:Node>
+                    <local:Node Name="firstchild2" Age="3"/>
+                    <local:Node Name="firstchild3" Age="4"/>
+                </local:Node.ChildNode>
+            </local:Node>
+            <local:Node Name="second" Age="5">
+                <local:Node.ChildNode>
+                    <local:Node Name="secondchild1" Age="6"/>
+                    <local:Node Name="secondchild2" Age="7"/>
+                    <local:Node Name="secondchild3" Age="8"/>
+                </local:Node.ChildNode>
+            </local:Node>
+        </x:Array>
+
     </Window.Resources>
     <StackPanel>
-        <TabControl HorizontalAlignment="Center" Margin="10">
-            <TabItem Header="first"/>
-            <TabItem Header="second"/>
-            <TabItem Header="third"/>
-        </TabControl>
-        <local:CornerTabControl HorizontalAlignment="Center" Margin="10" TabControlType="Underline" ItemRemovable="True">
-            <TabItem Header="first"/>
-            <TabItem Header="second"/>
-            <TabItem Header="third"/>
-        </local:CornerTabControl>
-        <local:CornerTabControl x:Name="ctc" HorizontalAlignment="Center" Margin="10" TabControlType="Normal" ItemRemovable="True">
-            <TabItem Header="first">
-                <Grid Background="Green" Height="30"/>
-            </TabItem>
-            <TabItem Header="second">
-                <Grid Background="Yellow" Height="30"/>
-            </TabItem>
-            <TabItem Header="third">
-                <Grid Background="Blue" Height="30"/>
-            </TabItem>
-            <TabItem Header="fourth">
-                <Grid Background="Black" Height="30"/>
-            </TabItem>
-        </local:CornerTabControl>
-        <Button Width="100" Content="ss" Click="Button_Click"/>
-        <TextBox Width="100" Margin="10" x:Name="textbox1"/>
+        <local:CornerTreeView ItemsSource="{StaticResource nodes}" x:Name="treeview" SelectedValuePath="Name" TreeViewType="Normal" Width="200">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:Node}" ItemsSource="{Binding ChildNode}">
+                    <StackPanel Orientation="Horizontal" Margin="3,5">
+                        <CheckBox IsChecked="{Binding Check, Mode=TwoWay}"/>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </local:CornerTreeView>
+
+        <local:CornerTreeView ItemsSource="{StaticResource nodes}" SelectedValuePath="Name" TreeViewType="Original" Width="200" Margin="10">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:Node}" ItemsSource="{Binding ChildNode}">
+                    <StackPanel Orientation="Horizontal" Margin="3,5">
+                        <CheckBox IsChecked="{Binding Check, Mode=TwoWay}"/>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </local:CornerTreeView>
+
+        <TreeView Margin="10">
+            <TreeViewItem Header="1">
+                <TreeViewItem Header="11">
+                    <TreeViewItem Header="111"/>
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem Header="2"/>
+            <TreeViewItem Header="3"/>
+        </TreeView>
     </StackPanel>
 </Window>
