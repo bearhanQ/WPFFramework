@@ -9,6 +9,7 @@ namespace WPFTemplate
     public enum TreeViewType
     {
         Original,
-        Normal
+        Normal,
+        Line
     }
 }

@@ -54,6 +54,29 @@ namespace WPFTemplate
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.UncheckedEvent, new RoutedEventHandler(ItemCheckBoxUnchecked));
         }
 
+        public CornerTreeView()
+        {
+            this.Loaded += CornerTreeView_Loaded;
+        }
+
+        private void CornerTreeView_Loaded(object sender, RoutedEventArgs e)
+        {
+            ApplyItemContainerStyle(this);
+        }
+
+        private void ApplyItemContainerStyle(ItemsControl itemsControl)
+        {
+            foreach (var item in itemsControl.Items)
+            {
+                if (item is TreeViewItem)
+                {
+                    var treeViewItem = (TreeViewItem)item;
+                    treeViewItem.Style = ItemContainerStyle;
+                    ApplyItemContainerStyle(treeViewItem);
+                }
+            }
+        }
+
         private static void ItemCheckBoxChecked(object sender, RoutedEventArgs e)
         {
             var element = e.OriginalSource as CheckBox;
@@ -73,7 +96,6 @@ namespace WPFTemplate
                         propertyInfo.SetValue(node, true);
                     }
                 }
-
             }
         }
 
@@ -96,7 +118,6 @@ namespace WPFTemplate
                         propertyInfo.SetValue(node, false);
                     }
                 }
-
             }
         }
 

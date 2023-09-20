@@ -13,7 +13,13 @@
                 <local:Node.ChildNode>
                     <local:Node Name="firstchild1" Age="2">
                         <local:Node.ChildNode>
-                            <local:Node Name="grandchild1" Age="100"/>
+                            <local:Node Name="grandchild1" Age="100">
+                                <local:Node.ChildNode>
+                                    <local:Node Name="100-1"/>
+                                    <local:Node Name="100-2"/>
+                                    <local:Node Name="100-3"/>
+                                </local:Node.ChildNode>
+                            </local:Node>
                             <local:Node Name="grandchild2" Age="101"/>
                             <local:Node Name="grandchild3" Age="102"/>
                         </local:Node.ChildNode>
@@ -44,6 +50,17 @@
             </TreeView.ItemTemplate>
         </local:CornerTreeView>
 
+        <local:CornerTreeView ItemsSource="{StaticResource nodes}" SelectedValuePath="Name" TreeViewType="Line" Width="200" Margin="10">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:Node}" ItemsSource="{Binding ChildNode}">
+                    <StackPanel Orientation="Horizontal" Margin="3,5">
+                        <CheckBox IsChecked="{Binding Check, Mode=TwoWay}"/>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </local:CornerTreeView>
+
         <local:CornerTreeView ItemsSource="{StaticResource nodes}" SelectedValuePath="Name" TreeViewType="Original" Width="200" Margin="10">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type local:Node}" ItemsSource="{Binding ChildNode}">
@@ -55,7 +72,24 @@
             </TreeView.ItemTemplate>
         </local:CornerTreeView>
 
-        <TreeView Margin="10">
+        <local:CornerTreeView Width="200" Margin="10" TreeViewType="Original">
+            <TreeViewItem Header="first">
+                <TreeViewItem Header="first-1">
+                    <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+                    <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+                    <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+                </TreeViewItem>
+                <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+                <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+            </TreeViewItem>
+            <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}">
+                <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+                <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+                <TreeViewItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" />
+            </TreeViewItem>
+        </local:CornerTreeView>
+        
+        <TreeView Margin="10" Width="200">
             <TreeViewItem Header="1">
                 <TreeViewItem Header="11">
                     <TreeViewItem Header="111"/>

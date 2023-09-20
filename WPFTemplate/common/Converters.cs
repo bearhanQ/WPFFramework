@@ -187,4 +187,82 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    public class TreeViewHorizontalLineConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var treeviewitem = values[0] as TreeViewItem;
+            var path = values[1] as UIElement;
+
+            int x = 19;
+            var left = -x / 2;
+
+            var level = GetTreeViewItemLevel(treeviewitem);
+
+            if (level == 0)
+            {
+                path.Visibility = Visibility.Collapsed;
+            }
+
+            return new Thickness
+            {
+                Left = left
+            };
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        private int GetTreeViewItemLevel(TreeViewItem treeViewItem)
+        {
+            int level = 0;
+
+            DependencyObject parent = VisualTreeHelper.GetParent(treeViewItem);
+            while (parent != null && !(parent is TreeView))
+            {
+                if (parent is TreeViewItem)
+                {
+                    level++;
+                }
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return level;
+        }
+    }
+
+    public class TreeViewVerticalLineConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var itemheight = System.Convert.ToDouble(values[0]);
+            var bdheight = System.Convert.ToDouble(values[1]);
+            var item = values[2] as TreeViewItem;
+            var offset = 0d;
+            if (item.HasItems)
+            {
+                offset = bdheight / 2;
+            }
+            double height = (itemheight - bdheight - offset);
+
+            //if (!item.HasItems)
+            //{
+            //    return new Thickness(0);
+            //}
+
+            return new Thickness
+            {
+                Bottom = -height,
+                Top = 10
+            };
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
