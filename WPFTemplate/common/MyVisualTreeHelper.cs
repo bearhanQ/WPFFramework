@@ -40,5 +40,22 @@ namespace WPFTemplate
                 item.Visibility = visibility;
             }
         }
+
+        public static int GetTreeViewItemLevel(TreeViewItem treeViewItem)
+        {
+            int level = 0;
+
+            DependencyObject parent = VisualTreeHelper.GetParent(treeViewItem);
+            while (parent != null && !(parent is TreeView))
+            {
+                if (parent is TreeViewItem)
+                {
+                    level++;
+                }
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return level;
+        }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,6 +27,17 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var source = FindResource("gridNodes1");
+            DG1.DataContext = source;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("1");
         }
     }
 
@@ -57,4 +70,45 @@ namespace WPFTemplate
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
+
+    //Defines the customer object
+    public class Customer : NotifyPropertyChangedBase
+    {
+        private string _firstName;
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                _firstName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _lastName;
+
+        public string LastName
+        {
+            get { return _lastName; }
+            set { _lastName = value; RaisePropertyChanged(); }
+        }
+
+        private bool _isMemeber;
+
+        public bool IsMember
+        {
+            get { return _isMemeber; }
+            set { _isMemeber = value; RaisePropertyChanged(); }
+        }
+
+        private OrderStatus _status;
+
+        public OrderStatus Status
+        {
+            get { return _status; }
+            set { _status = value; RaisePropertyChanged(); }
+        }
+    }
+
+    public enum OrderStatus { None, New, Processing, Shipped, Received };
 }

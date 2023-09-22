@@ -38,9 +38,15 @@
     <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Unnoficial.Microsoft.Expression.Drawing.1.0.0\lib\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,15 +65,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommandBase.cs" />
     <Compile Include="common\MyVisualTreeHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
+    <Compile Include="Controls\CornerDataGrid.cs" />
     <Compile Include="Controls\CornerProgressBar.cs" />
     <Compile Include="Controls\CornerRadioButton.cs" />
     <Compile Include="Controls\CornerTabControl.cs" />
     <Compile Include="Controls\CornerTextBox.cs" />
     <Compile Include="Controls\CornerTreeView.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
+    <Compile Include="Enums\DataGridEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
     <Compile Include="Enums\TabControlEnum.cs" />

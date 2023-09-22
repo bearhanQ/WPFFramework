@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -198,7 +201,7 @@ namespace WPFTemplate
             int x = 19;
             var left = -x / 2;
 
-            var level = GetTreeViewItemLevel(treeviewitem);
+            var level = MyVisualTreeHelper.GetTreeViewItemLevel(treeviewitem);
 
             if (level == 0)
             {
@@ -214,23 +217,6 @@ namespace WPFTemplate
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
-        }
-
-        private int GetTreeViewItemLevel(TreeViewItem treeViewItem)
-        {
-            int level = 0;
-
-            DependencyObject parent = VisualTreeHelper.GetParent(treeViewItem);
-            while (parent != null && !(parent is TreeView))
-            {
-                if (parent is TreeViewItem)
-                {
-                    level++;
-                }
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
-            return level;
         }
     }
 
@@ -258,6 +244,56 @@ namespace WPFTemplate
                 Bottom = -height,
                 Top = 10
             };
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class DataGridSourceToCbFilterSource : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var datasource = values[0] as IList;
+
+            var header = values[1] as DataGridColumn;
+
+            if (header != null && datasource != null)
+            {
+                var content = header.SortMemberPath;
+                List<string> itemsource = new List<string>();
+                foreach (var item in datasource)
+                {
+                    var a = item.GetType().GetProperty(content).GetValue(item).ToString();
+                    itemsource.Add(a);
+                }
+                return itemsource;
+            }
+
+            return "1";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ComboBoxItemToCommandParameter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] != null && values[1] != null)
+            {
+                var selectitem = values[0].ToString();
+                var header = values[1] as DataGridColumn;
+                var content = header.SortMemberPath;
+                return selectitem + "&" + content;
+            }
+
+            return "";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
