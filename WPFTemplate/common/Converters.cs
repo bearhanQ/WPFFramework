@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -256,23 +257,46 @@ namespace WPFTemplate
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var datasource = values[0] as IList;
-
+            var dataSource = values[0] as IList;
+            var dt = values[0] as DataTable;
             var header = values[1] as DataGridColumn;
 
-            if (header != null && datasource != null)
+            var itemSource = GetDistinctItems(header, dataSource ?? (IEnumerable)dt);
+            return itemSource.Distinct();
+        }
+
+        private IEnumerable<string> GetDistinctItems<T>(DataGridColumn header, T dataSource) where T : class, IEnumerable
+        {
+            if (header == null || dataSource == null)
             {
-                var content = header.SortMemberPath;
-                List<string> itemsource = new List<string>();
-                foreach (var item in datasource)
-                {
-                    var a = item.GetType().GetProperty(content).GetValue(item).ToString();
-                    itemsource.Add(a);
-                }
-                return itemsource;
+                yield break;
             }
 
-            return "1";
+            var content = header.SortMemberPath;
+
+            foreach (var item in dataSource)
+            {
+                var itemType = item.GetType();
+
+                if (itemType == typeof(DataRowView))
+                {
+                    yield return (item as DataRowView)[content].ToString();
+                }
+                else
+                {
+                    var property = itemType.GetProperty(content);
+
+                    if (property != null)
+                    {
+                        var value = property.GetValue(item);
+
+                        if (value != null)
+                        {
+                            yield return value.ToString();
+                        }
+                    }
+                }
+            }
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -285,12 +309,43 @@ namespace WPFTemplate
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] != null && values[1] != null)
+            //DataGrid
+            if (values[2].ToString() == "CbFilter")
             {
-                var selectitem = values[0].ToString();
-                var header = values[1] as DataGridColumn;
-                var content = header.SortMemberPath;
-                return selectitem + "&" + content;
+                if (values[0] != null)
+                {
+                    var header = values[0] as DataGridColumn;
+                    var key = header.SortMemberPath;
+                    if (values[1] == null)
+                    {
+                        return key + "&" + "-";
+                    }
+                    var value = values[1].ToString();
+                    return key + "&" + value;
+                }
+            }
+
+            //ComboBox
+            if (values[2].ToString() == "searchTextBox")
+            {
+                var key = values[0].ToString();
+                var value = values[1].ToString();
+                //source from datatable or list
+                if (!string.IsNullOrWhiteSpace(key))
+                {
+                    if (string.IsNullOrWhiteSpace(value))
+                    {
+                        value = "-";
+                    }
+                    return key + "&" + value;
+                }
+                //source is string list
+                else
+                {
+                    key = "stringlistmark";
+                    value = values[1].ToString();
+                    return key + "&" + value;
+                }
             }
 
             return "";

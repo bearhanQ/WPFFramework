@@ -66,6 +66,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CommandBase.cs" />
+    <Compile Include="common\DefaultViewFilterHelper.cs" />
+    <Compile Include="common\ModelConvertHelper.cs" />
     <Compile Include="common\MyVisualTreeHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />

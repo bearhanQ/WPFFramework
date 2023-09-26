@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,12 +54,18 @@ namespace WPFTemplate
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCombobox), new FrameworkPropertyMetadata(typeof(CornerCombobox)));
         }
 
+        private DefaultViewFilterHelper DefaultViewFilter;
+
         public CornerCombobox()
         {
+            DefaultViewFilter = new DefaultViewFilterHelper();
+            DefaultViewFilter.MatchWholeWord = false;
             this.Loaded += CornerCombobox_Loaded;
         }
 
         private TextBox SearchBox;
+
+        public CommandBase FilterCommand => new CommandBase(DefaultViewFilter.ExecuteFilter, DefaultViewFilter.CanExecuteFilter);
 
         private void CornerCombobox_Loaded(object sender, RoutedEventArgs e)
         {
@@ -65,20 +73,6 @@ namespace WPFTemplate
             if (searchbox != null)
             {
                 this.SearchBox = searchbox;
-            }
-        }
-
-        public event TextChangedEventHandler SearchTextChanged
-        {
-            add
-            {
-                //AddHandler(TextChangedEvent, value);
-                SearchBox.TextChanged += value;
-            }
-            remove
-            {
-                //RemoveHandler(TextChangedEvent, value);
-                SearchBox.TextChanged -= value;
             }
         }
 
@@ -113,7 +107,23 @@ namespace WPFTemplate
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
 
-
+        protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
+        {
+            if (newValue != null)
+            {
+                DefaultViewFilter.ClearDefaultView();
+                if (newValue is DataView view)
+                {
+                    DefaultViewFilter.SetView(view);
+                }
+                else
+                {
+                    var dv = CollectionViewSource.GetDefaultView(newValue);
+                    DefaultViewFilter.SetView(dv);
+                }
+            }
+            base.OnItemsSourceChanged(oldValue, newValue);
+        }
         //public bool SearchingMatchCase
         //{
         //    get { return (bool)GetValue(SearchingMatchCaseProperty); }

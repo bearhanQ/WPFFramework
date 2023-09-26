@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,8 +32,58 @@ namespace WPFTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var source = FindResource("gridNodes1");
-            DG1.DataContext = source;
+            List<Customer> customers = new List<Customer>
+            {
+                new Customer
+                {
+                    FirstName="1",
+                    LastName="2",
+                    Status=OrderStatus.None,
+                    IsMember=true,
+                },
+                new Customer
+                {
+                    FirstName="3",
+                    LastName="4",
+                    Status=OrderStatus.New,
+                    IsMember=false,
+                },
+                new Customer
+                {
+                    FirstName="5",
+                    LastName="6",
+                    Status=OrderStatus.Received,
+                    IsMember=false,
+                }
+            };
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    customers.Add(new Customer
+                    {
+                        FirstName = i.ToString(),
+                        LastName = "2",
+                        Status = OrderStatus.Received,
+                        IsMember = true,
+                    });
+                }
+                else
+                {
+                    customers.Add(new Customer
+                    {
+                        FirstName = i.ToString(),
+                        LastName = "2",
+                        Status = OrderStatus.New,
+                        IsMember = true,
+                    });
+                }
+            }
+
+            var db = ModelConvertHelper.ListToDataTable(customers);
+            cb.ItemsSource = db.DefaultView;
+            cb.DisplayMemberPath = "FirstName";
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

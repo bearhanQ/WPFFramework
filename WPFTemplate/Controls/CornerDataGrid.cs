@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,61 +54,43 @@ namespace WPFTemplate
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerDataGrid), new FrameworkPropertyMetadata(typeof(CornerDataGrid)));
         }
-        private ICollectionView _collectionView;
+
+        DefaultViewFilterHelper defaultViewFilter;
 
         public CornerDataGrid()
         {
-            this.Loaded += CornerDataGrid_Loaded;
+            defaultViewFilter = new DefaultViewFilterHelper();
         }
 
-        private void CornerDataGrid_Loaded(object sender, RoutedEventArgs e)
+        public CommandBase FilterCommand => new CommandBase(defaultViewFilter.ExecuteFilter, defaultViewFilter.CanExecuteFilter);
+
+        //public DataGridType DataGridType
+        //{
+        //    get { return (DataGridType)GetValue(DataGridTypeProperty); }
+        //    set { SetValue(DataGridTypeProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for DataGridType.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty DataGridTypeProperty =
+        //    DependencyProperty.Register("DataGridType", typeof(DataGridType), typeof(CornerDataGrid), new PropertyMetadata(DataGridType.Original));
+
+
+        protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
         {
-            if (this.DataContext != null)
+            if (newValue != null)
             {
-                _collectionView = CollectionViewSource.GetDefaultView(this.DataContext);
-                this.ItemsSource = _collectionView;
+                defaultViewFilter.ClearDefaultView();
+                if (newValue is DataView view)
+                {
+                    defaultViewFilter.SetView(view);
+                }
+                else
+                {
+                    var dv = CollectionViewSource.GetDefaultView(newValue);
+                    defaultViewFilter.SetView(dv);
+                }
             }
+            base.OnItemsSourceChanged(oldValue, newValue);
         }
-
-        public CommandBase FilterCommand => new CommandBase(ExecuteFilter, CanExecuteFilter);
-
-        private void ExecuteFilter(object parameter)
-        {
-            var mixparameter = parameter.ToString().Split('&');
-            var filterstr = mixparameter[0];
-            var content = mixparameter[1];
-            Predicate<object> filter = item =>
-            {
-                var dataItem = item.GetType().GetProperty(content).GetValue(item).ToString();
-                return dataItem.Equals(filterstr);
-            };
-            _collectionView.Filter = filter;
-        }
-
-        private bool CanExecuteFilter(object parameter)
-        {
-            if (parameter == null)
-            {
-                return false;
-            }
-
-            var mixparameter = parameter.ToString().Split('&');
-            if (mixparameter.Length < 1)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public DataGridType DataGridType
-        {
-            get { return (DataGridType)GetValue(DataGridTypeProperty); }
-            set { SetValue(DataGridTypeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for DataGridType.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty DataGridTypeProperty =
-            DependencyProperty.Register("DataGridType", typeof(DataGridType), typeof(CornerDataGrid), new PropertyMetadata(DataGridType.Original));
     }
 }

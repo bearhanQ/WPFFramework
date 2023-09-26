@@ -10,6 +10,13 @@
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
 
+        <x:Array Type="{x:Type sys:String}" x:Key="strs">
+            <sys:String>1001</sys:String>
+            <sys:String>2002</sys:String>
+            <sys:String>2003</sys:String>
+            <sys:String>3456</sys:String>
+        </x:Array>
+        
         <x:Array Type="{x:Type local:Node}" x:Key="nodes">
             <local:Node Name="first" Age="1">
                 <local:Node.ChildNode>
@@ -41,6 +48,22 @@
         
         <x:Array Type="{x:Type local:Customer}" x:Key="gridNodes">
             <local:Customer FirstName="qin" LastName="han" IsMember="True" Status="New"/>
+            <local:Customer FirstName="zhao" LastName="han" IsMember="True" Status="New"/>
+            <local:Customer FirstName="qian" LastName="han" IsMember="True" Status="New"/>
+            <local:Customer FirstName="zhou" LastName="han" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
+            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
             <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
             <local:Customer FirstName="di" LastName="di" IsMember="True" Status="New"/>
             <local:Customer FirstName="zhou" LastName="shen" IsMember="True" Status="New"/>
@@ -61,16 +84,16 @@
 
     </Window.Resources>
     <StackPanel>
-        <local:CornerDataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" DataContext="{StaticResource gridNodes}" 
-                              Width="600" HorizontalAlignment="Center" DataGridType="Normal">
+        <!--<local:CornerDataGrid x:Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" DataContext="{StaticResource gridNodes}" 
+                              Width="600" HorizontalAlignment="Center" Height="400" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}" Width="100"/>
                 <DataGridTextColumn Header="Second" Binding="{Binding LastName}" Width="100"/>
                 <DataGridCheckBoxColumn Header="IsMember" Binding="{Binding IsMember}" Width="100"/>
                 <DataGridComboBoxColumn Header="Order Status"  SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource myEnum}}"  Width="*"/>
             </DataGrid.Columns>
-        </local:CornerDataGrid>
-        <StackPanel Orientation="Horizontal">
+        </local:CornerDataGrid>-->
+        <StackPanel Orientation="Horizontal" Margin="50">
             <TextBox Text="{Binding ElementName=DG1, Path=SelectedItem.FirstName}" Width="100" Margin="10"/>
             <TextBox Text="{Binding ElementName=DG1, Path=SelectedItem.LastName}" Width="100" Margin="10"/>
             <TextBox Text="{Binding ElementName=DG1, Path=SelectedItem.IsMember}" Width="100" Margin="10"/>
@@ -114,12 +137,15 @@
                     </Setter>
                 </Style>
             </ComboBox.Style>
-            --><!-- 这里可以添加ComboBox的选项 -->
+            -->
+            <!-- 这里可以添加ComboBox的选项 -->
             <ComboBoxItem>Option 1</ComboBoxItem>
             <ComboBoxItem>Option 2</ComboBoxItem>
             <ComboBoxItem>Option 3</ComboBoxItem>
         </ComboBox>
 
-        <Button Content="show" Click="Button_Click"/>
+        <local:CornerCombobox x:Name="ccb" ItemsSource="{StaticResource gridNodes}"  DisplayMemberPath="FirstName" Searchable="True" Width="300"/>
+        <ComboBox x:Name="cb"  Width="300" Margin="30"/>
+        <Button Content="show" Click="Button_Click" Width="300"/>
     </StackPanel>
 </Window>
