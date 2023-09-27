@@ -52,11 +52,8 @@ namespace WPFTemplate
         static CornerTextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerTextBox), new FrameworkPropertyMetadata(typeof(CornerTextBox)));
-            if (!DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                EventManager.RegisterClassHandler(typeof(CornerTextBox), TextBox.GotFocusEvent, new RoutedEventHandler(OnGotFocuseEvent));
-                EventManager.RegisterClassHandler(typeof(CornerTextBox), TextBox.LostFocusEvent, new RoutedEventHandler(OnLostFocuseEvent));
-            }
+            EventManager.RegisterClassHandler(typeof(CornerTextBox), TextBox.GotFocusEvent, new RoutedEventHandler(OnGotFocuseEvent));
+            EventManager.RegisterClassHandler(typeof(CornerTextBox), TextBox.LostFocusEvent, new RoutedEventHandler(OnLostFocuseEvent));
         }
 
         private static void OnGotFocuseEvent(object sender, RoutedEventArgs e)
@@ -153,5 +150,15 @@ namespace WPFTemplate
             DependencyProperty.Register("Watermark", typeof(string), typeof(CornerTextBox), new PropertyMetadata("Watermark"));
 
 
+
+        public bool ShowWatermark
+        {
+            get { return (bool)GetValue(ShowWatermarkProperty); }
+            set { SetValue(ShowWatermarkProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowWatermark.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowWatermarkProperty =
+            DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
     }
 }

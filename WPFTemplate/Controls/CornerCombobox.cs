@@ -60,21 +60,10 @@ namespace WPFTemplate
         {
             DefaultViewFilter = new DefaultViewFilterHelper();
             DefaultViewFilter.MatchWholeWord = false;
-            this.Loaded += CornerCombobox_Loaded;
         }
 
-        private TextBox SearchBox;
 
         public CommandBase FilterCommand => new CommandBase(DefaultViewFilter.ExecuteFilter, DefaultViewFilter.CanExecuteFilter);
-
-        private void CornerCombobox_Loaded(object sender, RoutedEventArgs e)
-        {
-            var searchbox = this.Template.FindName("searchTextBox", this) as TextBox;
-            if (searchbox != null)
-            {
-                this.SearchBox = searchbox;
-            }
-        }
 
         public string WaterText
         {

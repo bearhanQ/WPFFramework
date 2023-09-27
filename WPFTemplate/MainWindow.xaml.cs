@@ -28,68 +28,63 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = TestPassword.Instance;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<Customer> customers = new List<Customer>
-            {
-                new Customer
-                {
-                    FirstName="1",
-                    LastName="2",
-                    Status=OrderStatus.None,
-                    IsMember=true,
-                },
-                new Customer
-                {
-                    FirstName="3",
-                    LastName="4",
-                    Status=OrderStatus.New,
-                    IsMember=false,
-                },
-                new Customer
-                {
-                    FirstName="5",
-                    LastName="6",
-                    Status=OrderStatus.Received,
-                    IsMember=false,
-                }
-            };
-
-            for (int i = 0; i < 100; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    customers.Add(new Customer
-                    {
-                        FirstName = i.ToString(),
-                        LastName = "2",
-                        Status = OrderStatus.Received,
-                        IsMember = true,
-                    });
-                }
-                else
-                {
-                    customers.Add(new Customer
-                    {
-                        FirstName = i.ToString(),
-                        LastName = "2",
-                        Status = OrderStatus.New,
-                        IsMember = true,
-                    });
-                }
-            }
-
-            var db = ModelConvertHelper.ListToDataTable(customers);
-            cb.ItemsSource = db.DefaultView;
-            cb.DisplayMemberPath = "FirstName";
+            MessageBox.Show(cpb.Password);
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("1");
+            MessageBox.Show(TestPassword.Instance.Password);
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            TestPassword.Instance.Password = "567890123";
+            //pb1.Password = "567890123";
+        }
+    }
+
+    public class TestPassword : INotifyPropertyChanged
+    {
+        private static TestPassword _testPassword;
+
+        public static TestPassword Instance
+        {
+            get
+            {
+                if (_testPassword == null)
+                {
+                    _testPassword = new TestPassword();
+                }
+                return _testPassword;
+            }
+        }
+
+        private TestPassword()
+        {
+
+        }
+
+        private string _password;
+
+        public string Password
+        {
+            get 
+            { 
+                return _password; 
+            }
+            set
+            {
+                _password = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Password"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     public class Node:INotifyPropertyChanged

@@ -138,7 +138,7 @@
         </Style.Triggers>
     </Style>
      <!--#endregion-->
-
+    
     <!--#region CornerTextBox-->
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
@@ -161,7 +161,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CornerTextBox}">
-                    <Grid>
+                    <Grid Height="{TemplateBinding Height}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20"/>
                             <ColumnDefinition Width="*"/>
@@ -196,6 +196,9 @@
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text, Converter={StaticResource TextLengthToBool}}" Value="false">
                             <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWatermark}" Value="false">
+                            <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -211,7 +214,7 @@
         </Style.Triggers>
     </Style>
     <!--#endregion-->
-
+    
     <!--#region CornerCheckBox-->
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -348,7 +351,7 @@
         </Style.Triggers>
     </Style>
     <!--#endregion-->
-
+    
     <!--#region CornerRadioButton-->
     <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="RadioButton.Static.Border" Color="#FF707070"/>
@@ -465,7 +468,7 @@
         </Style.Triggers>
     </Style>
     <!--#endregion-->
-
+    
     <!--#region CornerComboBox-->
     <SolidColorBrush x:Key="TextBox.Static.Background" Color="#FFFFFFFF"/>
     <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
@@ -1425,7 +1428,7 @@
         </Style.Triggers>
     </Style>
     <!--#endregion-->
-
+    
     <!--#region CornerDataGrid-->
     <SolidColorBrush x:Key="DataGrid.Header.BorderBrush" Color="#FFC8BFBF"/>
     <SolidColorBrush x:Key="DataGrid.VerticalGridLinesBrush" Color="#FFC8BFBF"/>

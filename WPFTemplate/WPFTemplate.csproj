@@ -72,6 +72,9 @@
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerDataGrid.cs" />
+    <Compile Include="Controls\CornerPasswordBox.xaml.cs">
+      <DependentUpon>CornerPasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CornerProgressBar.cs" />
     <Compile Include="Controls\CornerRadioButton.cs" />
     <Compile Include="Controls\CornerTabControl.cs" />
@@ -92,6 +95,10 @@
     <Compile Include="test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\CornerPasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
