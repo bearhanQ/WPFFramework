@@ -144,7 +144,7 @@
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
     <local:TextBoxIconToPathData x:Key="TextBoxIconToPathData"/>
-    <local:TextLengthToBool x:Key="TextLengthToBool"/>
+    <local:TextLengthIsNullOrEmptyToTrue x:Key="TextLengthIsNullOrEmptyToTrue"/>
 
     <Style TargetType="{x:Type local:CornerTextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
@@ -193,7 +193,7 @@
                             <Setter TargetName="tbgrid" Property="{x:Static Grid.ColumnProperty}" Value="0"/>
                             <Setter TargetName="tbgrid" Property="{x:Static Grid.ColumnSpanProperty}" Value="2"/>
                         </Trigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text, Converter={StaticResource TextLengthToBool}}" Value="false">
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text, Converter={StaticResource TextLengthIsNullOrEmptyToTrue}}" Value="false">
                             <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWatermark}" Value="false">

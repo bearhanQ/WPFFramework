@@ -86,9 +86,9 @@
 
     </Window.Resources>
     <StackPanel Orientation="Horizontal" Height="50">
-        <local:CornerPasswordBox Width="100" Margin="10,10" x:Name="cpb" VerticalContentAlignment="Center"
+        <local:CornerPasswordBox Width="200" Margin="10,10" x:Name="cpb" VerticalContentAlignment="Center"
                                  Password="{Binding Password}"/>
-        <local:CornerTextBox Width="100" Margin="0,10" HorizontalContentAlignment="Center"/>
+        <local:CornerTextBox Width="100" Margin="0,10" HorizontalContentAlignment="Center" ShowWatermark="False" Text="{Binding ElementName=cpb, Path=ShowWatermark}"/>
         <PasswordBox Width="100" Margin="10,10" x:Name="pb1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Width="100" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <local:CornerTextBox Width="100" Margin="10" BorderBrush="Black"/>

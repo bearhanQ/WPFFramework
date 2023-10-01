@@ -108,10 +108,14 @@ namespace WPFTemplate
         }
     }
 
-    public class TextLengthToBool : IValueConverter
+    public class TextLengthIsNullOrEmptyToTrue : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+            {
+                return true;
+            }
             return string.IsNullOrEmpty(value.ToString());
         }
 

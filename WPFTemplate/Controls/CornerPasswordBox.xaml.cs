@@ -68,6 +68,39 @@ namespace WPFTemplate
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.Register("Watermark", typeof(string), typeof(CornerPasswordBox), new PropertyMetadata("Password"));
 
+
+        public bool ShowWatermark
+        {
+            get { return (bool)GetValue(ShowWatermarkProperty); }
+            set { SetValue(ShowWatermarkProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowWatermark.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowWatermarkProperty =
+            DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
+
+
+        public bool ShowIcon
+        {
+            get { return (bool)GetValue(ShowIconProperty); }
+            set { SetValue(ShowIconProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowIcon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowIconProperty =
+            DependencyProperty.Register("ShowIcon", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
+
+        public bool ShowVisibleButton
+        {
+            get { return (bool)GetValue(ShowVisibleButtonProperty); }
+            set { SetValue(ShowVisibleButtonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowVisibleButton.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowVisibleButtonProperty =
+            DependencyProperty.Register("ShowVisibleButton", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
+
+
         public CornerPasswordBox()
         {
             InitializeComponent();
