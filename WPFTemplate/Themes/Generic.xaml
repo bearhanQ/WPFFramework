@@ -4,7 +4,7 @@
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
     xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
     xmlns:local="clr-namespace:WPFTemplate" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
-
+    
     <local:NoBackgroundToBlack x:Key="NoBackgroundToBlack"/>
     <local:ComboBoxItemToCommandParameter x:Key="ComboBoxItemToCommandParameter"/>
     
@@ -192,6 +192,9 @@
                             <Setter TargetName="viewbox" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="tbgrid" Property="{x:Static Grid.ColumnProperty}" Value="0"/>
                             <Setter TargetName="tbgrid" Property="{x:Static Grid.ColumnSpanProperty}" Value="2"/>
+                        </Trigger>
+                        <Trigger Property="FocusedHighLight" Value="False">
+                            <Setter TargetName="border" Property="Effect" Value="{x:Null}"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text, Converter={StaticResource TextLengthIsNullOrEmptyToTrue}}" Value="false">
                             <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
@@ -644,17 +647,29 @@
                         <ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Grid x:Name="searchRootGrid" Grid.Row="0" Margin="1">
+                                <Grid x:Name="searchRootGrid" Grid.Row="0" Margin="1" Panel.ZIndex="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1"/>
-                                    <!--<local:CornerCheckBox x:Name="matchCaseCheckBox" Content="case" Grid.Column="1" Margin="1" 
-                                                          HorizontalContentAlignment="Center" CheckBoxType="Switch" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=SearchingMatchCase}"/>-->
+                                    <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=FilterCommand}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource ComboBoxItemToCommandParameter}">
+                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}" Path="DisplayMemberPath"/>
+                                                            <Binding ElementName="searchTextBox" Path="Text"/>
+                                                            <Binding ElementName="searchTextBox" Path="Name"/>
+                                                        </MultiBinding>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </local:CornerTextBox>
                                 </Grid>
                                 <Canvas x:Name="canvas" Grid.Row="1" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
                                     <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
@@ -668,7 +683,7 @@
             <ToggleButton x:Name="toggleButton" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
             <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" Margin="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                 <Grid>
-                    <TextBlock x:Name="waterTextBlock" Text="{TemplateBinding WaterText}" Opacity="0" Margin="{TemplateBinding Padding}"/>
+                    <TextBlock x:Name="waterTextBlock" Text="{TemplateBinding WaterText}" Opacity="0" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" IsHitTestVisible="False"/>
                     <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
             </Border>
@@ -693,9 +708,13 @@
             <Trigger Property="HasItems" Value="false">
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
             </Trigger>
-            <DataTrigger Binding="{Binding ElementName=PART_EditableTextBox, Path=Text.Length}" Value="0">
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWatermark}" Value="true"/>
+                    <Condition Binding="{Binding ElementName=PART_EditableTextBox, Path=Text.Length}" Value="0"/>
+                </MultiDataTrigger.Conditions>
                 <Setter Property="Opacity" Value="0.3" TargetName="waterTextBlock"/>
-            </DataTrigger>
+            </MultiDataTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsGrouping" Value="true"/>
@@ -1722,6 +1741,34 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Carousel-->
+    <local:CarouselItemsPresenterWidthConverter x:Key="CarouselItemsPresenterWidthConverter"/>
+    <Style TargetType="{x:Type local:Carousel}">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Carousel}">
+                    <StackPanel x:Name="SpMain" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <ItemsPresenter x:Name="itemsPresenter" Height="{TemplateBinding Height}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Carousel},Converter={StaticResource CarouselItemsPresenterWidthConverter}}"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>

@@ -96,6 +96,17 @@ namespace WPFTemplate
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
 
+
+        public bool ShowWatermark
+        {
+            get { return (bool)GetValue(ShowWatermarkProperty); }
+            set { SetValue(ShowWatermarkProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowWatermark.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowWatermarkProperty =
+            DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(true));
+
         protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
         {
             if (newValue != null)
@@ -113,14 +124,5 @@ namespace WPFTemplate
             }
             base.OnItemsSourceChanged(oldValue, newValue);
         }
-        //public bool SearchingMatchCase
-        //{
-        //    get { return (bool)GetValue(SearchingMatchCaseProperty); }
-        //    set { SetValue(SearchingMatchCaseProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for SearchingMatchCase.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty SearchingMatchCaseProperty =
-        //    DependencyProperty.Register("SearchingMatchCase", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
     }
 }

@@ -59,50 +59,56 @@ namespace WPFTemplate
         private static void OnGotFocuseEvent(object sender, RoutedEventArgs e)
         {
             var tb = sender as CornerTextBox;
-            var border = tb.Template.FindName("border", tb) as Border;
-            if (tb != null)
+            if (tb.FocusedHighLight)
             {
-                Storyboard storyboard = new Storyboard();
-
-                ColorAnimationUsingKeyFrames frames = new ColorAnimationUsingKeyFrames
+                var border = tb.Template.FindName("border", tb) as Border;
+                if (tb != null)
                 {
-                    KeyFrames = new ColorKeyFrameCollection
+                    Storyboard storyboard = new Storyboard();
+
+                    ColorAnimationUsingKeyFrames frames = new ColorAnimationUsingKeyFrames
+                    {
+                        KeyFrames = new ColorKeyFrameCollection
                     {
                         new EasingColorKeyFrame(Colors.Transparent, KeyTime.FromTimeSpan(TimeSpan.Zero)),
                         new EasingColorKeyFrame(((SolidColorBrush)tb.ShadowColor).Color, KeyTime.Paced)
                     },
-                    Duration = TimeSpan.FromSeconds(0.5)
-                };
-                Storyboard.SetTarget(frames, border);
-                Storyboard.SetTargetProperty(frames, new PropertyPath("(Border.Effect).(DropShadowEffect.Color)"));
-                storyboard.Children.Add(frames);
+                        Duration = TimeSpan.FromSeconds(0.5)
+                    };
+                    Storyboard.SetTarget(frames, border);
+                    Storyboard.SetTargetProperty(frames, new PropertyPath("(Border.Effect).(DropShadowEffect.Color)"));
+                    storyboard.Children.Add(frames);
 
-                storyboard.Begin();
+                    storyboard.Begin();
+                }
             }
         }
 
         private static void OnLostFocuseEvent(object sender, RoutedEventArgs e)
         {
             var tb = sender as CornerTextBox;
-            var border = tb.Template.FindName("border", tb) as Border;
-            if (tb != null)
+            if (tb.FocusedHighLight)
             {
-                Storyboard storyboard = new Storyboard();
-
-                ColorAnimationUsingKeyFrames frames = new ColorAnimationUsingKeyFrames
+                var border = tb.Template.FindName("border", tb) as Border;
+                if (tb != null)
                 {
-                    KeyFrames = new ColorKeyFrameCollection
+                    Storyboard storyboard = new Storyboard();
+
+                    ColorAnimationUsingKeyFrames frames = new ColorAnimationUsingKeyFrames
+                    {
+                        KeyFrames = new ColorKeyFrameCollection
                     {
                         new EasingColorKeyFrame(((SolidColorBrush)tb.ShadowColor).Color, KeyTime.FromTimeSpan(TimeSpan.Zero)),
                         new EasingColorKeyFrame(Colors.Transparent, KeyTime.Paced)
                     },
-                    Duration = TimeSpan.FromSeconds(0.5)
-                };
+                        Duration = TimeSpan.FromSeconds(0.5)
+                    };
 
-                Storyboard.SetTarget(frames, border);
-                Storyboard.SetTargetProperty(frames, new PropertyPath("(Border.Effect).(DropShadowEffect.Color)"));
-                storyboard.Children.Add(frames);
-                storyboard.Begin();
+                    Storyboard.SetTarget(frames, border);
+                    Storyboard.SetTargetProperty(frames, new PropertyPath("(Border.Effect).(DropShadowEffect.Color)"));
+                    storyboard.Children.Add(frames);
+                    storyboard.Begin();
+                }
             }
         }
 
@@ -149,8 +155,6 @@ namespace WPFTemplate
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.Register("Watermark", typeof(string), typeof(CornerTextBox), new PropertyMetadata("Watermark"));
 
-
-
         public bool ShowWatermark
         {
             get { return (bool)GetValue(ShowWatermarkProperty); }
@@ -160,5 +164,17 @@ namespace WPFTemplate
         // Using a DependencyProperty as the backing store for ShowWatermark.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowWatermarkProperty =
             DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
+
+
+
+        public bool FocusedHighLight
+        {
+            get { return (bool)GetValue(FocusedHighLightProperty); }
+            set { SetValue(FocusedHighLightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FocusedHighLight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FocusedHighLightProperty =
+            DependencyProperty.Register("FocusedHighLight", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
     }
 }
