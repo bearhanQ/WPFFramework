@@ -112,7 +112,7 @@ namespace WPFTemplate
             };
 
             OffSetChildItemsSize();
-            //InitialAnimation();
+            RepeatAnimation();
         }
 
         private void OffSetChildItemsSize()
@@ -133,11 +133,11 @@ namespace WPFTemplate
 
         private static void OnIsAutoSwitchChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            var carousel = sender as Carousel;
-            if (carousel != null)
-            {
-                carousel.RepeatAnimation();
-            }
+            //var carousel = sender as Carousel;
+            //if (carousel != null)
+            //{
+            //    carousel.RepeatAnimation();
+            //}
         }
 
         private static void OnIndexChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
@@ -147,14 +147,7 @@ namespace WPFTemplate
             var carousel = sender as Carousel;
             if (carousel != null)
             {
-                if (newValue >= carousel.Items.Count)
-                {
-                    carousel.SelectedIndex = 0;
-                }
-                else
-                {
-                    carousel.BeginAnimation(oldValue, newValue);
-                }
+                carousel.BeginAnimation(oldValue, newValue);
             }
         }
 
@@ -193,12 +186,19 @@ namespace WPFTemplate
                 {
                     if (PauseOnMouseEnter)
                     {
-                        this.SelectedIndex++;
+                        if (this.SelectedIndex == this.Items.Count - 1)
+                        {
+                            this.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            this.SelectedIndex++;
+                        }
                         await Task.Delay(Interval);
                     }
                     else
                     {
-                        await Task.Delay(100);
+                        await Task.Delay(500);
                     }
                 }
             }));

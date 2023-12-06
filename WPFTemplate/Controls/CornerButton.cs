@@ -63,7 +63,7 @@ namespace WPFTemplate
             var button = sender as CornerButton;
             var border = VisualTreeHelper.GetChild(button, 0);
             var buttonStyle = (ButtonStyle)button.GetValue(ButtonStyleProperty);
-            
+
             if (buttonStyle == ButtonStyle.BorderOnly)
             {
                 var background = (SolidColorBrush)button.Background;
@@ -71,7 +71,7 @@ namespace WPFTemplate
                 if (background != null)
                 {
                     var storyboard = new Storyboard();
-                    
+
                     //background animation
                     ColorAnimationUsingKeyFrames animation = new ColorAnimationUsingKeyFrames
                     {
@@ -124,7 +124,7 @@ namespace WPFTemplate
                 if (background != null)
                 {
                     var storyboard = new Storyboard();
-                    
+
                     //background animation
                     ColorAnimationUsingKeyFrames animation = new ColorAnimationUsingKeyFrames
                     {
@@ -203,7 +203,7 @@ namespace WPFTemplate
 
         // Using a DependencyProperty as the backing store for HoverBackground.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HoverBackgroundProperty =
-            DependencyProperty.Register("HoverBackground", typeof(Brush), typeof(CornerButton));
+            DependencyProperty.Register("HoverBackground", typeof(Brush), typeof(CornerButton), new PropertyMetadata(Brushes.LightBlue));
 
     }
 }

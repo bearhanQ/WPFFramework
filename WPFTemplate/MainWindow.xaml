@@ -108,12 +108,12 @@
         </Style>
         
     </Window.Resources>
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <local:Carousel Width="200" Height="200" x:Name="carousel1" Interval="0,0,2" ShowBottomPage="True" IsAutoSwitch="True">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <!--<local:Carousel Width="100" Height="100" x:Name="carousel1" Interval="0,0,1" ShowBottomPage="True" IsAutoSwitch="True" BorderBrush="Black" BorderThickness="3">
             <Grid Background="Red"/>
             <Grid Background="Green"/>
             <Grid Background="Yellow"/>
             <Grid Background="blue"/>
-        </local:Carousel>
+        </local:Carousel>-->
     </StackPanel>
 </Window>
