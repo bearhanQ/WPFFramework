@@ -1757,10 +1757,53 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Carousel}">
-                    <StackPanel x:Name="SpMain" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                    <Grid x:Name="gridMain" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <ItemsPresenter x:Name="itemsPresenter" Height="{TemplateBinding Height}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                         Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Carousel},Converter={StaticResource CarouselItemsPresenterWidthConverter}}"/>
-                    </StackPanel>
+                        <ListBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Carousel}, Path=Items}" 
+                                 Background="Transparent" BorderThickness="0" VerticalAlignment="Bottom" Margin="0,0,0,5"
+                                 Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Carousel},Path=ShowBottomPage,Converter={StaticResource bool2VisibilityConverter}}"
+                                 SelectedIndex="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Carousel}, Path=SelectedIndex, Mode=TwoWay}">
+                            <ListBox.Style>
+                                <Style TargetType="{x:Type ListBox}">
+                                    <Setter Property="ItemsPanel">
+                                        <Setter.Value>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                                            </ItemsPanelTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="ItemContainerStyle">
+                                        <Setter.Value>
+                                            <Style TargetType="{x:Type ListBoxItem}">
+                                                <Setter Property="Margin" Value="3"/>
+                                                <Setter Property="Background" Value="LightGray"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate>
+                                                            <StackPanel x:Name="itemTag"  Width="15" Height="4"
+                                                                        Background="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Background}"/>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" SourceName="itemTag" Value="True">
+                                                                    <Setter Property="Background" Value="Blue"/>
+                                                                    <Setter Property="Cursor" TargetName="itemTag" Value="Hand"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter Property="Background" Value="Blue"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.Style>
+                        </ListBox>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

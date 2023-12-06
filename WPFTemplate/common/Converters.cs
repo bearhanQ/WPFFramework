@@ -380,4 +380,30 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    public class TimeSpanConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        {
+            return sourceType == typeof(string);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            string strValue = value as string;
+            if (strValue != null)
+            {
+                string[] parts = strValue.Split(',');
+                if (parts.Length == 3)
+                {
+                    int hours = 0, minutes = 0, seconds = 0;
+                    int.TryParse(parts[0], out hours);
+                    int.TryParse(parts[1], out minutes);
+                    int.TryParse(parts[2], out seconds);
+                    return new TimeSpan(hours, minutes, seconds);
+                }
+            }
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
 }

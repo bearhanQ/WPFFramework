@@ -31,10 +31,10 @@ namespace WPFTemplate
             InitializeComponent();
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            //carousel1.SelectedIndex++;
+            carousel1.IsAutoSwitch = !carousel1.IsAutoSwitch;
         }
     }
 }
