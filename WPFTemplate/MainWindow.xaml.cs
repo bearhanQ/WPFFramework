@@ -33,8 +33,9 @@ namespace WPFTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //carousel1.SelectedIndex++;
-            //carousel1.IsAutoSwitch = !carousel1.IsAutoSwitch;
+            var a = multicombobox1.SelectedItems;
+            var b = multicombobox1.SelectedItem;
+            MessageBox.Show(a.Count.ToString());
         }
     }
 }

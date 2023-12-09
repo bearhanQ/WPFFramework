@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:WPFTemplate" 
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
         <x:Array Type="{x:Type sys:String}" x:Key="strs">
@@ -81,39 +80,13 @@
                 <x:Type Type="local:OrderStatus"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-
-        <Style TargetType="{x:Type ListBox}">
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="ItemContainerStyle">
-                <Setter.Value>
-                    <Style TargetType="{x:Type ListBoxItem}">
-                        <Setter Property="Background" Value="Green"/>
-                        <Setter Property="Margin" Value="5"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Grid Background="LightGray" Width="7" Height="2"/>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-        </Style>
         
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <!--<local:Carousel Width="100" Height="100" x:Name="carousel1" Interval="0,0,1" ShowBottomPage="True" IsAutoSwitch="True" BorderBrush="Black" BorderThickness="3">
-            <Grid Background="Red"/>
-            <Grid Background="Green"/>
-            <Grid Background="Yellow"/>
-            <Grid Background="blue"/>
-        </local:Carousel>-->
+        <local:CornerMultiComboBox x:Name="multicombobox1" Width="100">
+            <ComboBoxItem Content="first"/>
+            <ComboBoxItem Content="second"/>
+        </local:CornerMultiComboBox>
+        <Button Content="show" Margin="0,80" Click="Button_Click"/>
     </StackPanel>
 </Window>
