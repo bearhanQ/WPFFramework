@@ -83,10 +83,14 @@
         
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <local:CornerMultiComboBox x:Name="multicombobox1" Width="100">
-            <ComboBoxItem Content="first"/>
-            <ComboBoxItem Content="second"/>
+        <local:CornerMultiComboBox x:Name="multicombobox1" Width="100" IsDropDownOpen="False">
+            <local:CornerMultiComboBoxItem Content="first"/>
+            <local:CornerMultiComboBoxItem Content="second"/>
+            <local:CornerMultiComboBoxItem Content="third"/>
+            <local:CornerMultiComboBoxItem Content="fourth"/>
+            <local:CornerMultiComboBoxItem Content="fifth"/>
         </local:CornerMultiComboBox>
-        <Button Content="show" Margin="0,80" Click="Button_Click"/>
+        <CheckBox Content="全选" Margin="0,60" VerticalContentAlignment="Center"/>
+        <Button Content="show" Margin="0,20" Click="Button_Click"/>
     </StackPanel>
 </Window>

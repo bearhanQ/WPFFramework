@@ -29,10 +29,11 @@
                     <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" 
                             BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox VerticalAlignment="Center" IsChecked="{TemplateBinding IsSelected}"/>
+                            <CheckBox VerticalAlignment="Center" IsChecked="{TemplateBinding IsSelected}" IsHitTestVisible="False"/>
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="3,0,0,0"
                                               IsHitTestVisible="False"/>
                         </StackPanel>
                     </Border>

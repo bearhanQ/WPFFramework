@@ -17,15 +17,22 @@ namespace WPFTemplate
 {
     public class CornerMultiComboBoxItem : ListBoxItem
     {
+        private CornerMultiComboBox parentComboBox => ItemsControl.ItemsControlFromItemContainer(this) as CornerMultiComboBox;
+
         static CornerMultiComboBoxItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerMultiComboBoxItem), new FrameworkPropertyMetadata(typeof(CornerMultiComboBoxItem)));
         }
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
+            base.OnPreviewMouseLeftButtonDown(e);
+            e.Handled = true;
             this.IsSelected = !this.IsSelected;
-            base.OnMouseLeftButtonDown(e);
+            if (parentComboBox != null)
+            {
+                parentComboBox.UpdateText();
+            }
         }
     }
 }

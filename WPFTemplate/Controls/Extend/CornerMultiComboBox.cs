@@ -18,10 +18,24 @@ namespace WPFTemplate
 {
     public class CornerMultiComboBox : MultiSelector
     {
+        private TextBox EditableTextBoxSite;
+
+        private bool updatingText;
+
         static CornerMultiComboBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerMultiComboBox), new FrameworkPropertyMetadata(typeof(CornerMultiComboBox)));
         }
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata(string.Empty));
 
         public CornerRadius CornerRadius
         {
@@ -75,37 +89,34 @@ namespace WPFTemplate
         public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(CornerMultiComboBox), new PropertyMetadata(false));
 
-        public DataTemplate SelectionBoxItemTemplate
+        public bool IsSelectAll
         {
-            get { return (DataTemplate)GetValue(SelectionBoxItemTemplateProperty); }
-            set { SetValue(SelectionBoxItemTemplateProperty, value); }
+            get { return (bool)GetValue(IsSelectedAllProperty); }
+            set { SetValue(IsSelectedAllProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for SelectionBoxItemTemplate.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectionBoxItemTemplateProperty =
-            DependencyProperty.Register("SelectionBoxItemTemplate", typeof(DataTemplate), typeof(CornerMultiComboBox), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for IsSelectAll.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsSelectedAllProperty =
+            DependencyProperty.Register("IsSelectAll", typeof(bool), typeof(CornerMultiComboBox),
+                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(OnIsSelectAllChange), null, false, UpdateSourceTrigger.PropertyChanged));
 
-
-        public object SelectionBoxItem
+        private static void OnIsSelectAllChange(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            get { return (object)GetValue(SelectionBoxItemProperty); }
-            set { SetValue(SelectionBoxItemProperty, value); }
+            var combobox = sender as CornerMultiComboBox;
+            if (combobox != null)
+            {
+                if (combobox.IsSelectAll)
+                {
+                    combobox.SelectAll();
+                }
+                else
+                {
+                    combobox.UnselectAll();
+                }
+                combobox.UpdateText();
+            }
         }
-
-        // Using a DependencyProperty as the backing store for SelectionBoxItem.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectionBoxItemProperty =
-            DependencyProperty.Register("SelectionBoxItem", typeof(object), typeof(CornerMultiComboBox), new PropertyMetadata(string.Empty));
-
-        public string SelectionBoxItemStringFormat
-        {
-            get { return (string)GetValue(SelectionBoxItemStringFormatProperty); }
-            set { SetValue(SelectionBoxItemStringFormatProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for SelectionBoxItemStringFormat.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectionBoxItemStringFormatProperty =
-            DependencyProperty.Register("SelectionBoxItemStringFormat", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata(string.Empty));
-
 
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
@@ -115,6 +126,53 @@ namespace WPFTemplate
         protected override DependencyObject GetContainerForItemOverride()
         {
             return new CornerMultiComboBoxItem();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            EditableTextBoxSite = GetTemplateChild("PART_EditableTextBox") as TextBox;
+            UpdateText();
+        }
+
+        internal void UpdateText()
+        {
+            if (updatingText)
+            {
+                return;
+            }
+            try
+            {
+                updatingText = true;
+                var selectedItem = this.SelectedItem;
+                if (selectedItem != null)
+                {
+                    var property = selectedItem is CornerMultiComboBoxItem ? "Content" : this.DisplayMemberPath;
+                    if (!string.IsNullOrWhiteSpace(property))
+                    {
+                        var Names = new List<string>();
+                        foreach (var item in this.SelectedItems)
+                        {
+                            var name = item.GetType().GetProperty(property).GetValue(item, null).ToString();
+                            Names.Add(name);
+                        }
+                        Text = String.Join(",", Names);
+                    }
+                }
+                else
+                {
+                    Text = String.Empty;
+                }
+
+                if (EditableTextBoxSite != null)
+                {
+                    EditableTextBoxSite.Text = Text;
+                }
+            }
+            finally
+            {
+                updatingText = false;
+            }
         }
 
         //private void Close()
