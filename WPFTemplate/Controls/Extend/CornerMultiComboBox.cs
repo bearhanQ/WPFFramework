@@ -30,7 +30,7 @@ namespace WPFTemplate
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            private set { SetValue(TextProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
@@ -87,7 +87,9 @@ namespace WPFTemplate
 
         // Using a DependencyProperty as the backing store for IsDropDownOpen.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsDropDownOpenProperty =
-            DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(CornerMultiComboBox), new PropertyMetadata(false));
+            DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(CornerMultiComboBox),
+                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
+                    OnIsDropDownOpenChanged, null, false, UpdateSourceTrigger.PropertyChanged));
 
         public bool IsSelectAll
         {
@@ -118,6 +120,15 @@ namespace WPFTemplate
             }
         }
 
+        private static void OnIsDropDownOpenChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            var combobox=sender as CornerMultiComboBox;
+            if (combobox != null)
+            {
+                combobox.Focus();
+            }
+        }
+
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             return item is CornerMultiComboBoxItem;
@@ -132,7 +143,33 @@ namespace WPFTemplate
         {
             base.OnApplyTemplate();
             EditableTextBoxSite = GetTemplateChild("PART_EditableTextBox") as TextBox;
+
+            var parentWindow = Window.GetWindow(this);
+            parentWindow.PreviewMouseDown -= ParentWindow_PreviewMouseDown;
+            parentWindow.PreviewMouseDown += ParentWindow_PreviewMouseDown;
+
             UpdateText();
+        }
+
+        private void ParentWindow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (IsDropDownOpen && !base.IsMouseOver)
+            {
+                Close();
+            }
+        }
+
+        protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnIsKeyboardFocusWithinChanged(e);
+            if (IsDropDownOpen && !base.IsKeyboardFocusWithin)
+            {
+                DependencyObject dependencyObject = Keyboard.FocusedElement as DependencyObject;
+                if (dependencyObject == null || (ItemsControl.ItemsControlFromItemContainer(dependencyObject) != this))
+                {
+                    Close();
+                }
+            }
         }
 
         internal void UpdateText()
@@ -175,12 +212,12 @@ namespace WPFTemplate
             }
         }
 
-        //private void Close()
-        //{
-        //    if (IsDropDownOpen)
-        //    {
-        //        SetValue(IsDropDownOpenProperty, false);
-        //    }
-        //}
+        private void Close()
+        {
+            if (IsDropDownOpen)
+            {
+                SetValue(IsDropDownOpenProperty, false);
+            }
+        }
     }
 }

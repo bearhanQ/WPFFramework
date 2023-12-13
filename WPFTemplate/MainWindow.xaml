@@ -80,17 +80,18 @@
                 <x:Type Type="local:OrderStatus"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        
+
     </Window.Resources>
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <local:CornerMultiComboBox x:Name="multicombobox1" Width="100" IsDropDownOpen="False">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+        <local:CornerMultiComboBox x:Name="multicombobox1" Width="100" IsDropDownOpen="False" Height="20" IsEnabled="True">
             <local:CornerMultiComboBoxItem Content="first"/>
             <local:CornerMultiComboBoxItem Content="second"/>
             <local:CornerMultiComboBoxItem Content="third"/>
             <local:CornerMultiComboBoxItem Content="fourth"/>
             <local:CornerMultiComboBoxItem Content="fifth"/>
         </local:CornerMultiComboBox>
-        <CheckBox Content="全选" Margin="0,60" VerticalContentAlignment="Center"/>
-        <Button Content="show" Margin="0,20" Click="Button_Click"/>
+        <Button Content="show" Margin="10" Click="Button_Click" LostFocus="Button_LostFocus"/>
+        <ComboBox ItemsSource="{StaticResource gridNodes1}" DisplayMemberPath="FirstName" Height="20" Width="100" IsEditable="True" StaysOpenOnEdit="True"/>
+        <local:CornerCombobox ItemsSource="{StaticResource gridNodes1}" DisplayMemberPath="FirstName" Height="20" Width="100" IsEditable="True" StaysOpenOnEdit="True"/>
     </StackPanel>
 </Window>

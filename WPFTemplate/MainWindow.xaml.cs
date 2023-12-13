@@ -33,9 +33,19 @@ namespace WPFTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var a = multicombobox1.SelectedItems;
-            var b = multicombobox1.SelectedItem;
-            MessageBox.Show(a.Count.ToString());
+            //var a = multicombobox1.SelectedItems;
+            //var b = multicombobox1.SelectedItem;
+            //MessageBox.Show(a.Count.ToString());
+        }
+
+        private void Button_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void Button_LostFocus(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("1");
         }
     }
 }
