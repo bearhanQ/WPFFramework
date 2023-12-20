@@ -3,95 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFTemplate" 
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
-        <x:Array Type="{x:Type sys:String}" x:Key="strs">
-            <sys:String>1001</sys:String>
-            <sys:String>2002</sys:String>
-            <sys:String>2003</sys:String>
-            <sys:String>3456</sys:String>
-        </x:Array>
-
-        <x:Array Type="{x:Type local:Node}" x:Key="nodes">
-            <local:Node Name="first" Age="1">
-                <local:Node.ChildNode>
-                    <local:Node Name="firstchild1" Age="2">
-                        <local:Node.ChildNode>
-                            <local:Node Name="grandchild1" Age="100">
-                                <local:Node.ChildNode>
-                                    <local:Node Name="100-1"/>
-                                    <local:Node Name="100-2"/>
-                                    <local:Node Name="100-3"/>
-                                </local:Node.ChildNode>
-                            </local:Node>
-                            <local:Node Name="grandchild2" Age="101"/>
-                            <local:Node Name="grandchild3" Age="102"/>
-                        </local:Node.ChildNode>
-                    </local:Node>
-                    <local:Node Name="firstchild2" Age="3"/>
-                    <local:Node Name="firstchild3" Age="4"/>
-                </local:Node.ChildNode>
-            </local:Node>
-            <local:Node Name="second" Age="5">
-                <local:Node.ChildNode>
-                    <local:Node Name="secondchild1" Age="6"/>
-                    <local:Node Name="secondchild2" Age="7"/>
-                    <local:Node Name="secondchild3" Age="8"/>
-                </local:Node.ChildNode>
-            </local:Node>
-        </x:Array>
-
-        <x:Array Type="{x:Type local:Customer}" x:Key="gridNodes">
-            <local:Customer FirstName="qin" LastName="han" IsMember="True" Status="New"/>
-            <local:Customer FirstName="zhao" LastName="han" IsMember="True" Status="New"/>
-            <local:Customer FirstName="qian" LastName="han" IsMember="True" Status="New"/>
-            <local:Customer FirstName="zhou" LastName="han" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="di" LastName="di" IsMember="True" Status="New"/>
-            <local:Customer FirstName="zhou" LastName="shen" IsMember="True" Status="New"/>
-        </x:Array>
-
-        <x:Array Type="{x:Type local:Customer}" x:Key="gridNodes1">
-            <local:Customer FirstName="qin" LastName="han" IsMember="False" Status="New"/>
-            <local:Customer FirstName="long" LastName="pang" IsMember="True" Status="New"/>
-            <local:Customer FirstName="di" LastName="di" IsMember="False" Status="New"/>
-            <local:Customer FirstName="lao" LastName="liu" IsMember="True" Status="New"/>
-        </x:Array>
-
-        <ObjectDataProvider x:Key="myEnum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type Type="local:OrderStatus"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-
     </Window.Resources>
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-        <local:CornerMultiComboBox x:Name="multicombobox1" Width="100" IsDropDownOpen="False" Height="20" IsEnabled="True">
-            <local:CornerMultiComboBoxItem Content="first"/>
-            <local:CornerMultiComboBoxItem Content="second"/>
-            <local:CornerMultiComboBoxItem Content="third"/>
-            <local:CornerMultiComboBoxItem Content="fourth"/>
-            <local:CornerMultiComboBoxItem Content="fifth"/>
-        </local:CornerMultiComboBox>
-        <Button Content="show" Margin="10" Click="Button_Click" LostFocus="Button_LostFocus"/>
-        <ComboBox ItemsSource="{StaticResource gridNodes1}" DisplayMemberPath="FirstName" Height="20" Width="100" IsEditable="True" StaysOpenOnEdit="True"/>
-        <local:CornerCombobox ItemsSource="{StaticResource gridNodes1}" DisplayMemberPath="FirstName" Height="20" Width="100" IsEditable="True" StaysOpenOnEdit="True"/>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <local:ReminderCalendar/>
     </StackPanel>
 </Window>

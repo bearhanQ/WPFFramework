@@ -46,3 +46,8 @@ VisualTree是控件之间的视觉关系，描述了控件之间的布局关系�
 ItemTemplate用于定义如何呈现数据项的外观和布局，它是一个DataTemplate对象，用于指定数据项的呈现方式。通过ItemTemplate，可以定义数据项的各个部分如何排列，如何使用绑定将数据项的属性值与控件的属性值关联起来，从而实现动态呈现数据项的功能。
 
 ItemContainerStyle用于定义ItemsControl中每个子元素（即容器）的样式和行为，它是一个Style对象，用于指定容器元素的外观和行为。通过ItemContainerStyle，可以定义容器元素的样式、选择行为、焦点行为等。
+
+DependencyProperty可以创建可读写的依赖属性；DependencyPropertyKey可以创建只读的依赖属性
+
+
+VisualStateManager.GoToState(myControl, "Selected", true);

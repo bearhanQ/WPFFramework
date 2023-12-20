@@ -44,6 +44,8 @@
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -66,6 +68,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CommandBase.cs" />
+    <Compile Include="common\CalendarKeyboardHelper.cs" />
+    <Compile Include="common\DateTimeHelper.cs" />
     <Compile Include="common\DefaultViewFilterHelper.cs" />
     <Compile Include="common\ModelConvertHelper.cs" />
     <Compile Include="common\MyVisualTreeHelper.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="Controls\CornerTreeView.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
+    <Compile Include="Controls\Extend\ReminderCalendar.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\DataGridEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
@@ -173,6 +178,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ReminderCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

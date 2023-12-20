@@ -145,8 +145,11 @@ namespace WPFTemplate
             EditableTextBoxSite = GetTemplateChild("PART_EditableTextBox") as TextBox;
 
             var parentWindow = Window.GetWindow(this);
-            parentWindow.PreviewMouseDown -= ParentWindow_PreviewMouseDown;
-            parentWindow.PreviewMouseDown += ParentWindow_PreviewMouseDown;
+            if(parentWindow != null)
+            {
+                parentWindow.PreviewMouseDown -= ParentWindow_PreviewMouseDown;
+                parentWindow.PreviewMouseDown += ParentWindow_PreviewMouseDown;
+            }
 
             UpdateText();
         }
