@@ -14,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Xml;
+using WPFTemplate.Properties;
 
 namespace WPFTemplate
 {
@@ -52,31 +53,31 @@ namespace WPFTemplate
             switch (str)
             {
                 case "Add":
-                    return SvgResource.Add;
+                    return Resources.Add;
                 case "Update":
-                    return SvgResource.Update;
+                    return Resources.Update;
                 case "Delete":
-                    return SvgResource.Delete;
+                    return Resources.Delete;
                 case "Save":
-                    return SvgResource.Save;
+                    return Resources.Save;
                 case "Cancel":
-                    return SvgResource.Cancel;
+                    return Resources.Cancel;
                 case "Import":
-                    return SvgResource.Import;
+                    return Resources.Import;
                 case "Export":
-                    return SvgResource.Export;
+                    return Resources.Export;
                 case "Print":
-                    return SvgResource.Print;
+                    return Resources.Print;
                 case "Set":
-                    return SvgResource.Set;
+                    return Resources.Set;
                 case "Query":
-                    return SvgResource.Query;
+                    return Resources.Query;
                 case "Copy":
-                    return SvgResource.Copy;
+                    return Resources.Copy;
                 case "Refresh":
-                    return SvgResource.Refresh;
+                    return Resources.Refresh;
                 case "Default":
-                    return SvgResource.Default;
+                    return Resources.Default;
             }
             return "";
         }
@@ -95,9 +96,9 @@ namespace WPFTemplate
             switch (str)
             {
                 case "User":
-                    return SvgResource.User;
+                    return Resources.User;
                 case "KeyBoard":
-                    return SvgResource.KeyBoard;
+                    return Resources.KeyBoard;
             }
             return "";
         }
@@ -404,6 +405,23 @@ namespace WPFTemplate
                 }
             }
             return base.ConvertFrom(context, culture, value);
+        }
+    }
+
+    public class StringToGeometryConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value != null)
+            {
+                return Geometry.Parse(value.ToString());
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

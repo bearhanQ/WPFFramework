@@ -1,5 +1,7 @@
 <ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:WPFTemplate">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Carousel.xaml"/>
@@ -15,5 +17,7 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBox.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBoxItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderCalendar.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderDatePicker.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
 </ResourceDictionary>

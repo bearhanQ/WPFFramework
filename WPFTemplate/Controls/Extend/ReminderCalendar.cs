@@ -61,6 +61,5 @@ namespace WPFTemplate
         // Using a DependencyProperty as the backing store for HighLightColor.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HighLightColorProperty =
             DependencyProperty.Register("HighLightColor", typeof(Brush), typeof(ReminderCalendar), new PropertyMetadata(Brushes.Red));
-
     }
 }

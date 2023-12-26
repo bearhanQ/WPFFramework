@@ -30,5 +30,42 @@ namespace WPFTemplate
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+    }
+
+    public class People
+    {
+        public People()
+        {
+            Childs = new List<People>();
+        }
+
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+            }
+        }
+
+
+        private List<People> childs;
+
+
+        public List<People> Childs
+        {
+            get { return childs; }
+            set 
+            { 
+                childs = value;
+            }
+        }
     }
 }

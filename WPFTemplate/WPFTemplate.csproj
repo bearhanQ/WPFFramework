@@ -68,9 +68,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CommandBase.cs" />
-    <Compile Include="common\CalendarKeyboardHelper.cs" />
-    <Compile Include="common\DateTimeHelper.cs" />
     <Compile Include="common\DefaultViewFilterHelper.cs" />
+    <Compile Include="common\ReminderCalendarHelper.cs" />
     <Compile Include="common\ModelConvertHelper.cs" />
     <Compile Include="common\MyVisualTreeHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
     <Compile Include="Controls\Extend\ReminderCalendar.cs" />
+    <Compile Include="Controls\Extend\ReminderDatePicker.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\DataGridEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
@@ -95,11 +95,6 @@
     <Compile Include="Enums\TabControlEnum.cs" />
     <Compile Include="Enums\TextBoxEnum.cs" />
     <Compile Include="Enums\TreeViewEnum.cs" />
-    <Compile Include="SvgResource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SvgResource.resx</DependentUpon>
-    </Compile>
     <Compile Include="test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>
@@ -183,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\ReminderDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NotifyPropertyChangedBase.cs" />
@@ -200,13 +199,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvgResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SvgResource.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
