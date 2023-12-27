@@ -424,4 +424,25 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    public class ButtonClickOutLineBorderMargin : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values.Length > 0)
+            {
+                var outmargin = (Thickness)values[0];
+                var inmaring = (Thickness)values[1];
+
+                return new Thickness(0 - (outmargin.Left + inmaring.Left));
+            }
+            return new Thickness(1);
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

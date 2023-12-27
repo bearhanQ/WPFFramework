@@ -9,7 +9,8 @@ namespace WPFTemplate
     public enum ButtonStyle
     {
         Normal,
-        BorderOnly
+        OutLine,
+        Link
     }
 
     public enum ButtonType

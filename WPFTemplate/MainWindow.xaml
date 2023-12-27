@@ -7,43 +7,6 @@
         xmlns:svg="clr-namespace:WPFTemplate.Properties"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <x:Array Type="{x:Type local:People}" x:Key="peoplearray">
-            <local:People Name="Tom">
-                <local:People.Childs>
-                    <local:People Name="TomSon1"/>
-                    <local:People Name="TomSon2"/>
-                </local:People.Childs>
-            </local:People>
-            <local:People Name="Jerry"/>
-        </x:Array>
-    </Window.Resources>
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <DataGrid ItemsSource="{StaticResource peoplearray}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Path = Name}"/>
-                <DataGridTemplateColumn Header="Childs">
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Childs}" DisplayMemberPath="Name"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <ListView ItemsSource="{StaticResource peoplearray}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Childs">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Childs}" DisplayMemberPath="Name"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+    <StackPanel>
     </StackPanel>
 </Window>
