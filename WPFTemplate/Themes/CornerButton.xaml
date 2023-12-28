@@ -15,7 +15,7 @@
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
     <SolidColorBrush x:Key="Button.Hover.ShadowBorderColor" Color="Black"/>
     <local:ButtonTypeToSvg x:Key="ButtonTypeToSvg"/>
-    <local:ButtonClickOutLineBorderMargin x:Key="ButtonClickOutLineBorderMargin"/>
+    <local:ButtonOutlineCornerRadiusOffsetConverter x:Key="ButtonOutlineCornerRadiusOffsetConverter"/>
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -29,40 +29,35 @@
 
     <Style TargetType="{x:Type local:CornerButton}" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Cursor" Value="Hand"/>
-
         <Style.Triggers>
 
             <Trigger Property="ButtonStyle" Value="Normal">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">
-                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border x:Name="PART_ShadowBorder" Background="{StaticResource ResourceKey = Button.Hover.ShadowBorderColor}" Opacity="0" Grid.ColumnSpan="2" CornerRadius="{TemplateBinding CornerRadius}" Margin="0"/>
-                                    <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding Background}" Grid.ColumnSpan="2"
-                                            Opacity="0" CornerRadius="{TemplateBinding CornerRadius}">
-                                        <Border.Margin>
-                                            <MultiBinding Converter="{StaticResource ButtonClickOutLineBorderMargin}">
-                                                <MultiBinding.Bindings>
-                                                    <Binding ElementName="border" Path="BorderThickness"/>
-                                                    <Binding ElementName="PART_ClickOutlineBorder" Path="BorderThickness"/>
-                                                </MultiBinding.Bindings>
-                                            </MultiBinding>
-                                        </Border.Margin>
-                                    </Border>
-                                    <Viewbox x:Name="viewbox" Stretch="Fill" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="10,0,0,0"
+                            <Grid>
+                                <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding Background}" Grid.ColumnSpan="2" Opacity="0" 
+                                        CornerRadius="{Binding ElementName=border,Converter={StaticResource ButtonOutlineCornerRadiusOffsetConverter}}">
+                                </Border>
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Margin="2"
+                                        CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border x:Name="PART_ShadowBorder" Background="{StaticResource ResourceKey = Button.Hover.ShadowBorderColor}" Opacity="0" Grid.ColumnSpan="2" CornerRadius="{TemplateBinding CornerRadius}"/>
+                                        <Viewbox x:Name="viewbox" Stretch="Fill" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="10,0,0,0"
                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Grid.Column="0" Width="15" Height="15">
-                                        <Path Stroke="{Binding ElementName=contentPresenter, Path=(TextElement.Foreground),Mode=TwoWay}" StrokeThickness="40"
+                                            <Path Stroke="{Binding ElementName=contentPresenter, Path=(TextElement.Foreground),Mode=TwoWay}" StrokeThickness="40"
                                               Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerButton}, Path=ButtonType, Mode=OneWay, Converter={StaticResource ButtonTypeToSvg}}"/>
-                                    </Viewbox>
-                                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="1"
+                                        </Viewbox>
+                                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="1"
                                                       Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                </Grid>
-                            </Border>
+                                    </Grid>
+                                </Border>
+
+                            </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsDefaulted" Value="true">
                                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
@@ -92,33 +87,27 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">
-                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2"
-                                            Opacity="0" CornerRadius="{TemplateBinding CornerRadius}">
-                                        <Border.Margin>
-                                            <MultiBinding Converter="{StaticResource ButtonClickOutLineBorderMargin}">
-                                                <MultiBinding.Bindings>
-                                                    <Binding ElementName="border" Path="BorderThickness"/>
-                                                    <Binding ElementName="PART_ClickOutlineBorder" Path="BorderThickness"/>
-                                                </MultiBinding.Bindings>
-                                            </MultiBinding>
-                                        </Border.Margin>
-                                    </Border>
-                                    <Viewbox x:Name="viewbox" Stretch="Fill" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="10,0,0,0"
+                            <Grid>
+                                <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" Opacity="0" 
+                                        CornerRadius="{Binding ElementName=border,Converter={StaticResource ButtonOutlineCornerRadiusOffsetConverter}}">
+                                </Border>
+                                <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" Margin="2">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Viewbox x:Name="viewbox" Stretch="Fill" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="10,0,0,0"
                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Grid.Column="0" Width="15" Height="15">
-                                        <Path x:Name="PART_PATH" Stroke="{Binding ElementName=contentPresenter, Path=(TextElement.Foreground),Mode=TwoWay}" StrokeThickness="40"
+                                            <Path x:Name="PART_PATH" Stroke="{Binding ElementName=contentPresenter, Path=(TextElement.Foreground),Mode=TwoWay}" StrokeThickness="40"
                                               Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerButton}, Path=ButtonType, Mode=OneWay, Converter={StaticResource ButtonTypeToSvg}}"/>
-                                    </Viewbox>
-                                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="1"
+                                        </Viewbox>
+                                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Grid.Column="1"
                                                       Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                </Grid>
-                            </Border>
-                            <ControlTemplate.Triggers>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsDefaulted" Value="true">
                                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                 </Trigger>

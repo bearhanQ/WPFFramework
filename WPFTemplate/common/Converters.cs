@@ -425,24 +425,33 @@ namespace WPFTemplate
         }
     }
 
-    public class ButtonClickOutLineBorderMargin : IMultiValueConverter
+    public class ButtonOutlineCornerRadiusOffsetConverter : IValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values.Length > 0)
-            {
-                var outmargin = (Thickness)values[0];
-                var inmaring = (Thickness)values[1];
+            var bd = (Border)value;
 
-                return new Thickness(0 - (outmargin.Left + inmaring.Left));
-            }
-            return new Thickness(1);
+            var TopLeft = bd.CornerRadius.TopLeft;
+            var TopRight = bd.CornerRadius.TopRight;
+            var BottomLeft = bd.CornerRadius.BottomLeft;
+            var BottomRight = bd.CornerRadius.BottomRight;
+
+            var left = bd.BorderThickness.Left;
+            var right = bd.BorderThickness.Right;
+            var bottom = bd.BorderThickness.Bottom;
+            var top = bd.BorderThickness.Top;
+
+            TopLeft = TopLeft == 0 ? 0 : TopLeft + left;
+            TopRight = TopRight == 0 ? 0 : TopRight + right;
+            BottomLeft = BottomLeft == 0 ? 0 : BottomLeft + bottom;
+            BottomRight = BottomRight == 0 ? 0 : BottomRight + bottom;
+
+            return new CornerRadius(TopLeft, TopRight, BottomRight, BottomLeft);
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
     }
-
 }

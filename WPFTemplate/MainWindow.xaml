@@ -8,5 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <StackPanel>
+        <local:CornerButton Content="MyButton" Width="100" Height="30" ButtonType="Update" ButtonStyle="Normal" Margin="10" Background="#FF4D83FF" BorderThickness="0"/>
+        <local:CornerButton Content="MyButton" Width="100" Height="30" ButtonType="Update" ButtonStyle="OutLine" Margin="10" BorderThickness="1" BorderBrush="#FF4D83FF" CornerRadius="5"/>
+        <local:CornerButton Content="MyButton" Width="100" ButtonStyle="Link"/>
+        <local:CornerButton Content="MyButton" Width="100" Margin="10" CornerRadius="4"/>
     </StackPanel>
 </Window>
