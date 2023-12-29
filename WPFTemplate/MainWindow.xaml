@@ -7,10 +7,9 @@
         xmlns:svg="clr-namespace:WPFTemplate.Properties"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <StackPanel>
-        <local:CornerButton Content="MyButton" Width="100" Height="30" ButtonType="Update" ButtonStyle="Normal" Margin="10" Background="#FF4D83FF" BorderThickness="0"/>
-        <local:CornerButton Content="MyButton" Width="100" Height="30" ButtonType="Update" ButtonStyle="OutLine" Margin="10" BorderThickness="1" BorderBrush="#FF4D83FF" CornerRadius="5"/>
-        <local:CornerButton Content="MyButton" Width="100" ButtonStyle="Link"/>
-        <local:CornerButton Content="MyButton" Width="100" Margin="10" CornerRadius="4"/>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <local:CornerCheckBox Content="MyCheckBox" CheckBoxType="Normal" CornerRadius="10"/>
+        <local:CornerCheckBox Content="MyCheckBox" Margin="0,10" CheckBoxType="Switch"/>
+        <CheckBox Content="MicCheckBox" Margin="0,10" Background="Red"/>
     </StackPanel>
 </Window>

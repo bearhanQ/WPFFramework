@@ -35,6 +35,38 @@
     <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
     <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
     <SolidColorBrush x:Key="IndeterminateMark.BorderBrush" Color="LightGray"/>
+
+    <Storyboard x:Key="SwitchChecked">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.Width)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="10"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:00.2500000" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="10"/>
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+            <DiscreteObjectKeyFrame KeyTime="00:00:00.2500000" Value="{x:Static HorizontalAlignment.Right}"/>
+            <DiscreteObjectKeyFrame KeyTime="00:00:00.5000000" Value="{x:Static HorizontalAlignment.Right}"/>
+        </ObjectAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Storyboard x:Key="SwitchUnchecked">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.Width)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="10"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:00.2500000" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="10"/>
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+            <DiscreteObjectKeyFrame KeyTime="00:00:00.2500000" Value="{x:Static HorizontalAlignment.Left}"/>
+            <DiscreteObjectKeyFrame KeyTime="00:00:00.5000000" Value="{x:Static HorizontalAlignment.Left}"/>
+        </ObjectAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Storyboard x:Key="NormalChecked">
+        <RectAnimationUsingKeyFrames Storyboard.TargetName="indeterminateMark" Storyboard.TargetProperty="(UIElement.Clip).(RectangleGeometry.Rect)">
+            <EasingRectKeyFrame KeyTime="00:00:00" Value="0,0,12,12"/>
+            <EasingRectKeyFrame KeyTime="00:00:00.5" Value="12,0,12,12"/>
+        </RectAnimationUsingKeyFrames>
+    </Storyboard>
+
     <Style TargetType="{x:Type local:CornerCheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
@@ -42,6 +74,7 @@
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Style.Triggers>
+            
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=CheckBoxType}" Value="Normal">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -56,18 +89,21 @@
                                         Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" CornerRadius="{TemplateBinding CornerRadius}">
                                     <Grid x:Name="markGrid">
                                         <Path x:Name="optionMark" Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z " Fill="{StaticResource OptionMark.Static.Glyph}" 
-                                      Margin="1" Opacity="0" Stretch="None"/>
-                                        <Rectangle x:Name="indeterminateMark" Fill="{TemplateBinding Background}" Margin="1" Opacity="1" RenderTransformOrigin="0.5,0.5">
-                                            <Rectangle.RenderTransform>
-                                                <TransformGroup>
-                                                    <ScaleTransform/>
-                                                    <TranslateTransform/>
-                                                </TransformGroup>
-                                            </Rectangle.RenderTransform>
-                                        </Rectangle>
+                                              Margin="1" Opacity="0" Stretch="None"/>
+                                        <Border x:Name="indeterminateMark" Background="{TemplateBinding Background}" Width="12" Opacity="1" 
+                                                HorizontalAlignment="Right" CornerRadius="{TemplateBinding CornerRadius}">
+                                            <Border.Clip>
+                                                <RectangleGeometry x:Name="rectangleGeometry">
+                                                    <RectangleGeometry.Rect>
+                                                        <Rect X="0" Y="0" Width="12" Height="12"/>
+                                                    </RectangleGeometry.Rect>
+                                                </RectangleGeometry>
+                                            </Border.Clip>
+                                        </Border>
                                     </Grid>
                                 </Border>
-                                <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="HasContent" Value="true">
@@ -78,16 +114,22 @@
                                     <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Background}"/>
                                     <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Border}"/>
                                     <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
-                                    <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
+                                    <Setter Property="Background" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
                                 </Trigger>
                                 <Trigger Property="IsChecked" Value="true">
                                     <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
-                                    <!--<Setter Property="Opacity" TargetName="indeterminateMark" Value="0"/>-->
                                 </Trigger>
                                 <Trigger Property="IsChecked" Value="{x:Null}">
                                     <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
                                     <Setter Property="Opacity" TargetName="indeterminateMark" Value="1"/>
                                 </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.MouseOver.Background}"/>
+                                    <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.MouseOver.Border}"/>
+                                </Trigger>
+                                <EventTrigger RoutedEvent="{x:Static CheckBox.CheckedEvent}">
+                                    <BeginStoryboard Storyboard="{StaticResource NormalChecked}"/>
+                                </EventTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -95,30 +137,17 @@
             </DataTrigger>
 
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=CheckBoxType}" Value="Switch">
+                <Setter Property="Background" Value="Blue"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerCheckBox}">
                             <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" MinWidth="20"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="25"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Border x:Name="checkBoxBorder" Background="{TemplateBinding Background, Converter={StaticResource NoBackgroundToBlack}}" BorderBrush="LightGray"
-                                        BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" Margin="1">
-                                    <Grid x:Name="mainStackPanel">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Border x:Name="switchSquare" BorderBrush="LightGray" Background="White" Margin="-1" BorderThickness="1" 
-                                                CornerRadius="{TemplateBinding CornerRadius}" Width="10" Panel.ZIndex="1">
-                                            <Border.RenderTransform>
-                                                <TranslateTransform/>
-                                            </Border.RenderTransform>
-                                        </Border>
-                                        <Border x:Name="assistBorder" Margin="-1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" BorderBrush="LightGray" BorderThickness="1"
-                                                CornerRadius="{TemplateBinding CornerRadius}"/>
-                                    </Grid>
+                                <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}" Background="White" BorderThickness="1" Height="14" Width="25" CornerRadius="{TemplateBinding CornerRadius}">
+                                    <Border x:Name="SwitchBorder" BorderThickness="1" BorderBrush="Gray" Background="White" Width="10" Margin="1" CornerRadius="5" HorizontalAlignment="Left"/>
                                 </Border>
                                 <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
@@ -128,14 +157,24 @@
                                     <Setter Property="Padding" Value="4,-1,0,0"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="false">
-                                    <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Background}"/>
-                                    <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Border}"/>
+                                    <Setter Property="Background" TargetName="PART_Border" Value="{StaticResource OptionMark.Disabled.Background}"/>
+                                    <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource OptionMark.Disabled.Border}"/>
                                 </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource OptionMark.MouseOver.Border}"/>
+                                </Trigger>
+                                <EventTrigger RoutedEvent="{x:Static CheckBox.CheckedEvent}">
+                                    <BeginStoryboard Storyboard="{StaticResource SwitchChecked}"/>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="{x:Static CheckBox.UncheckedEvent}">
+                                    <BeginStoryboard Storyboard="{StaticResource SwitchUnchecked}"/>
+                                </EventTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
+            
         </Style.Triggers>
     </Style>
     <!--#endregion-->
