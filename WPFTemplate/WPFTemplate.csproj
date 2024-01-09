@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CommandBase.cs" />
+    <Compile Include="common\ComboBoxViewFilterHelper.cs" />
     <Compile Include="common\DefaultViewFilterHelper.cs" />
     <Compile Include="common\ReminderCalendarHelper.cs" />
     <Compile Include="common\ModelConvertHelper.cs" />
@@ -212,7 +213,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\Search.svg" />
     <Resource Include="Images\test.png" />

@@ -89,7 +89,8 @@
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">
                             <Grid>
                                 <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" Opacity="0" 
-                                        CornerRadius="{Binding ElementName=border,Converter={StaticResource ButtonOutlineCornerRadiusOffsetConverter}}">
+                                        CornerRadius="{Binding ElementName=border,Path=CornerRadius,Converter={StaticResource ButtonOutlineCornerRadiusOffsetConverter},
+                                        ConverterParameter={TemplateBinding BorderThickness}}">
                                 </Border>
                                 <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" Margin="2">
                                     <Grid>

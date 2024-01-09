@@ -4,12 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
-        xmlns:svg="clr-namespace:WPFTemplate.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <Window.Resources>
+        
+        <x:Array x:Key="strs" Type="{x:Type sys:String}">
+            <sys:String>Alerts</sys:String>
+            <sys:String>Badges</sys:String>
+            <sys:String>Buttons</sys:String>
+            <sys:String>Cards</sys:String>
+            <sys:String>Forms</sys:String>
+            <sys:String>Modals</sys:String>
+        </x:Array>
+        
+        <x:Array x:Key="peoples" Type="{x:Type local:People}">
+            <local:People Name="Alerts" Age="1"/>
+            <local:People Name="Badges" Age="2"/>
+            <local:People Name="Buttons" Age="3"/>
+            <local:People Name="Cards" Age="4"/>
+            <local:People Name="Forms" Age="5"/>
+            <local:People Name="Modals" Age="6"/>
+        </x:Array>
+        
+    </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <local:CornerCheckBox Content="MyCheckBox" CheckBoxType="Normal" CornerRadius="10"/>
-        <local:CornerCheckBox Content="MyCheckBox" Margin="0,10" CheckBoxType="Switch"/>
-        <CheckBox Content="MicCheckBox" Margin="0,10" Background="Red"/>
+        <local:CornerCombobox IsEditable="True" Width="300" Height="40" VerticalContentAlignment="Center" FontSize="15" BorderThickness="2" CornerRadius="3" Searchable="True"
+                              MaxDropDownHeight="500">
+            <ComboBoxItem Content="Alerts"/>
+            <ComboBoxItem Content="Badges"/>
+            <ComboBoxItem Content="Buttons"/>
+            <ComboBoxItem Content="Cards"/>
+            <ComboBoxItem Content="Forms"/>
+            <ComboBoxItem Content="Modals"/>
+        </local:CornerCombobox>
+        <local:CornerCombobox Margin="10" ItemsSource="{StaticResource strs}" Searchable="True" />
+        <local:CornerCombobox Margin="10" Searchable="True" DisplayMemberPath="Name" x:Name="cb1"/>
+        <Button Content="ChangeResource" Click="Button_Click"/>
     </StackPanel>
 </Window>

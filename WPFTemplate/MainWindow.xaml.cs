@@ -29,6 +29,33 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
+            cb1.ItemsSource = dt.DefaultView;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private DataTable dt
+        {
+            get
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Name", typeof(string));
+                dt.Columns.Add("Age", typeof(int));
+
+                dt.Rows.Add("王五", 12);
+                dt.Rows.Add("麻六", 13);
+
+                return dt;
+            }
+        }
+    }
+
+    public class People
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
     }
 }

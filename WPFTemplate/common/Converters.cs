@@ -314,46 +314,16 @@ namespace WPFTemplate
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            //DataGrid
-            if (values[2].ToString() == "CbFilter")
+            var key = values[0].ToString();
+            var value = values[1].ToString();
+            if (!string.IsNullOrWhiteSpace(key))
             {
-                if (values[0] != null)
-                {
-                    var header = values[0] as DataGridColumn;
-                    var key = header.SortMemberPath;
-                    if (values[1] == null)
-                    {
-                        return key + "&" + "-";
-                    }
-                    var value = values[1].ToString();
-                    return key + "&" + value;
-                }
+                return key + "&" + value;
             }
-
-            //ComboBox
-            if (values[2].ToString() == "searchTextBox")
+            else
             {
-                var key = values[0].ToString();
-                var value = values[1].ToString();
-                //source from datatable or list
-                if (!string.IsNullOrWhiteSpace(key))
-                {
-                    if (string.IsNullOrWhiteSpace(value))
-                    {
-                        value = "-";
-                    }
-                    return key + "&" + value;
-                }
-                //source is string list
-                else
-                {
-                    key = "stringlistmark";
-                    value = values[1].ToString();
-                    return key + "&" + value;
-                }
+                return "Content" + "&" + value;
             }
-
-            return "";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -429,7 +399,7 @@ namespace WPFTemplate
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var bd = (Border)value;
+            var bd = (Border)value as Border;
 
             var TopLeft = bd.CornerRadius.TopLeft;
             var TopRight = bd.CornerRadius.TopRight;
