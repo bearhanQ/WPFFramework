@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
 
-    <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
-    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
     <!--#region Carousel-->
-    <local:CarouselItemsPresenterWidthConverter x:Key="CarouselItemsPresenterWidthConverter"/>
+   
     <Style TargetType="{x:Type local:Carousel}">
         <Setter Property="Padding" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>

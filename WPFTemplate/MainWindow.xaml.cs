@@ -29,7 +29,6 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
-            cb1.ItemsSource = dt.DefaultView;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -2,12 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
     <!--#region CornerTextBox-->
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-    <local:TextBoxIconToPathData x:Key="TextBoxIconToPathData"/>
-    <local:TextLengthIsNullOrEmptyToTrue x:Key="TextLengthIsNullOrEmptyToTrue"/>
+
 
     <Style TargetType="{x:Type local:CornerTextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>

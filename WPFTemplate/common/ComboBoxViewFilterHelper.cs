@@ -53,11 +53,6 @@ namespace WPFTemplate
                         {
                             bo = item.ToString().Contains(value);
                         }
-                        else if(item is DataRow)
-                        {
-                            var dataItem = item as DataRow;
-                            bo = dataItem[key].ToString().Contains(value);
-                        }
                         else
                         {
                             var dataItem = item.GetType().GetProperty(key).GetValue(item).ToString();

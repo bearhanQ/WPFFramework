@@ -3,9 +3,10 @@
                     xmlns:local="clr-namespace:WPFTemplate"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
-    <local:ComboBoxItemToCommandParameter x:Key="ComboBoxItemToCommandParameter"/>
-    <local:ButtonOutlineCornerRadiusOffsetConverter x:Key="ButtonOutlineCornerRadiusOffsetConverter"/>
     
     <PathGeometry x:Key="ComboBoxToggleButton.Arrow.Static.Data" Figures="M 0,0 L 3,6 L 6,0 Z"/>
     <PathGeometry x:Key="ComboBoxToggleButton.Arrow.Click.Data" Figures="M 0,6 L 3,0 L 6,6 Z"/>

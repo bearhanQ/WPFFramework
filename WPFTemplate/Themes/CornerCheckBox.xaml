@@ -2,7 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate">
 
-    <local:NoBackgroundToBlack x:Key="NoBackgroundToBlack"/>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
     <!--#region CornerCheckBox-->
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">

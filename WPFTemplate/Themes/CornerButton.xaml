@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
     <!--#region CornerButton-->
     <SolidColorBrush x:Key="Button.Static.Background" Color="#6CBCEA"/>
@@ -14,8 +17,6 @@
     <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
     <SolidColorBrush x:Key="Button.Hover.ShadowBorderColor" Color="Black"/>
-    <local:ButtonTypeToSvg x:Key="ButtonTypeToSvg"/>
-    <local:ButtonOutlineCornerRadiusOffsetConverter x:Key="ButtonOutlineCornerRadiusOffsetConverter"/>
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">

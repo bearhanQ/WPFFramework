@@ -2,7 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate"
                     xmlns:svg="clr-namespace:WPFTemplate.Properties">
-
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
     <!--region calendarstyle-->
     <SolidColorBrush x:Key="CalendarButton.HighlightColor" Color="#FF77E6F6"/>
     <Style x:Key="CalendarCalendarButtonStyle1" TargetType="{x:Type CalendarButton}">
@@ -429,9 +433,6 @@
 
     <!--endregion-->
     
-    
-    <local:StringToGeometryConverter x:Key="StringToGeometryConverter"/>
-
     <Style TargetType="{x:Type local:ReminderDatePicker}">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>

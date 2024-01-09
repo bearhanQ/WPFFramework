@@ -29,17 +29,6 @@
         
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <local:CornerCombobox IsEditable="True" Width="300" Height="40" VerticalContentAlignment="Center" FontSize="15" BorderThickness="2" CornerRadius="3" Searchable="True"
-                              MaxDropDownHeight="500">
-            <ComboBoxItem Content="Alerts"/>
-            <ComboBoxItem Content="Badges"/>
-            <ComboBoxItem Content="Buttons"/>
-            <ComboBoxItem Content="Cards"/>
-            <ComboBoxItem Content="Forms"/>
-            <ComboBoxItem Content="Modals"/>
-        </local:CornerCombobox>
-        <local:CornerCombobox Margin="10" ItemsSource="{StaticResource strs}" Searchable="True" />
-        <local:CornerCombobox Margin="10" Searchable="True" DisplayMemberPath="Name" x:Name="cb1"/>
-        <Button Content="ChangeResource" Click="Button_Click"/>
+        <local:CornerButton/>
     </StackPanel>
 </Window>

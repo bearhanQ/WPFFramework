@@ -3,7 +3,9 @@
                     xmlns:local="clr-namespace:WPFTemplate"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
-
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
     <!--#region CornerDataGrid-->
     <SolidColorBrush x:Key="DataGrid.Header.BorderBrush" Color="#FFC8BFBF"/>
@@ -143,9 +145,6 @@
         </Setter>
 
     </Style>
-
-    <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
-    <local:DataGridSourceToCbFilterSource x:Key="DataGridSourceToCbFilterSource"/>
 
     <Style x:Key="RowHeaderGripperStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Height" Value="8"/>

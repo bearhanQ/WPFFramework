@@ -3,12 +3,14 @@
                     xmlns:local="clr-namespace:WPFTemplate"
                     xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
     <!--#region CornerProgressBar-->
     <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
     <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
     <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
-    <local:ProgressBarValueToPercentage x:Key="ProgressBarValueToPercentage"/>
     <Style TargetType="{x:Type local:CornerProgressBar}" BasedOn="{StaticResource {x:Type ProgressBar}}">
         <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
         <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
