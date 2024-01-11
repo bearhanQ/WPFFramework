@@ -37,11 +37,10 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">
                             <Grid>
-                                <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding Background}" Grid.ColumnSpan="2" Opacity="0" 
-                                        CornerRadius="{Binding ElementName=border,Converter={StaticResource ButtonOutlineCornerRadiusOffsetConverter}}">
-                                </Border>
+                                <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" Opacity="0" 
+                                        CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding BorderBrush}"/>
                                 <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Margin="2"
-                                        CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}">
+                                        CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" Panel.ZIndex="1">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -57,7 +56,6 @@
                                                       Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                     </Grid>
                                 </Border>
-
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsDefaulted" Value="true">
@@ -85,13 +83,13 @@
             </Trigger>
             
             <Trigger Property="ButtonStyle" Value="OutLine">
+                <Setter Property="Background" Value="White"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">
                             <Grid>
                                 <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" Opacity="0" 
-                                        CornerRadius="{Binding ElementName=border,Path=CornerRadius,Converter={StaticResource ButtonOutlineCornerRadiusOffsetConverter},
-                                        ConverterParameter={TemplateBinding BorderThickness}}">
+                                        CornerRadius="{TemplateBinding CornerRadius}">
                                 </Border>
                                 <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" Margin="2">
                                     <Grid>

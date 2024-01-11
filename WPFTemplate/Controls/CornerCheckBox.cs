@@ -22,8 +22,8 @@ namespace WPFTemplate
         static CornerCheckBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCheckBox), new FrameworkPropertyMetadata(typeof(CornerCheckBox)));
-            EventManager.RegisterClassHandler(typeof(CornerCheckBox), CheckBox.CheckedEvent, new RoutedEventHandler(OnCheckedEventHandler));
-            EventManager.RegisterClassHandler(typeof(CornerCheckBox), CheckBox.UncheckedEvent, new RoutedEventHandler(OnUnCheckedEventHandler));
+            //EventManager.RegisterClassHandler(typeof(CornerCheckBox), CheckBox.CheckedEvent, new RoutedEventHandler(OnCheckedEventHandler));
+            //EventManager.RegisterClassHandler(typeof(CornerCheckBox), CheckBox.UncheckedEvent, new RoutedEventHandler(OnUnCheckedEventHandler));
         }
 
         private static void OnCheckedEventHandler(object sender, RoutedEventArgs args)

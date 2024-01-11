@@ -2,14 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate">
     
-    <local:ButtonOutlineCornerRadiusOffsetConverter x:Key="ButtonOutlineCornerRadiusOffsetConverter"/>
+    <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
+
     <local:ButtonTypeToSvg x:Key="ButtonTypeToSvg"/>
-    <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
     <local:CarouselItemsPresenterWidthConverter x:Key="CarouselItemsPresenterWidthConverter"/>
-    <local:NoBackgroundToBlack x:Key="NoBackgroundToBlack"/>
     <local:ComboBoxItemToCommandParameter x:Key="ComboBoxItemToCommandParameter"/>
-    <local:ButtonOutlineCornerRadiusOffsetConverter x:Key="ButtonOutlineCornerRadiusOffsetConverter"/>
-    <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
     <local:DataGridSourceToCbFilterSource x:Key="DataGridSourceToCbFilterSource"/>
     <local:ProgressBarValueToPercentage x:Key="ProgressBarValueToPercentage"/>
     <local:NormalTabControlCornerRadiusConverter x:Key="NormalTabControlCornerRadiusConverter"/>
@@ -18,5 +15,6 @@
     <local:TreeViewHorizontalLineConverter x:Key="TreeViewHorizontalLineConverter"/>
     <local:TreeViewVerticalLineConverter x:Key="TreeViewVerticalLineConverter"/>
     <local:StringToGeometryConverter x:Key="StringToGeometryConverter"/>
-    
+    <local:ProgressBarSizeToClipConverter x:Key="ProgressBarSizeToClipConverter"/>
+
 </ResourceDictionary>

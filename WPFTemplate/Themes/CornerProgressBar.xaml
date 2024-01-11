@@ -11,7 +11,7 @@
     <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
     <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
     <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
-    <Style TargetType="{x:Type local:CornerProgressBar}" BasedOn="{StaticResource {x:Type ProgressBar}}">
+    <Style TargetType="{x:Type local:CornerProgressBar}">
         <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
         <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ProgressBar.Border}"/>
@@ -24,14 +24,11 @@
                         <ControlTemplate TargetType="{x:Type local:CornerProgressBar}">
                             <Grid x:Name="TemplateRoot">
                                 <Border Background="{StaticResource ProgressBar.Background}" BorderThickness="{TemplateBinding BorderThickness}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}"/>
-                                <Border x:Name="PART_Track" Width="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=ActualWidth}" 
-                                Height="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=ActualHeight}" 
-                                Background="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=Background}"
-                                BorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:CornerProgressBar}, Path=BorderThickness}" 
-                                CornerRadius="{TemplateBinding CornerRadius}">
+                                        BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}"/>
+                                <Border x:Name="PART_Track" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  Background="{TemplateBinding Foreground}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
                                 </Border>
-                                <TextBlock x:Name="tbPercentage" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{TemplateBinding Foreground}" Visibility="Hidden">
+                                <TextBlock x:Name="tbPercentage" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{TemplateBinding BorderBrush}" Visibility="Hidden">
                                     <TextBlock.Text>
                                         <MultiBinding Converter="{StaticResource ResourceKey=ProgressBarValueToPercentage}">
                                             <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Maximum"/>

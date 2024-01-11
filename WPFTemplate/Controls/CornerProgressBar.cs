@@ -112,18 +112,6 @@ namespace WPFTemplate
                             }
                         }
                     }
-                    else
-                    {
-                        if (progressBar.ProgressBarType == ProgressBarType.Normal)
-                        {
-                            var partTrackBorder = progressBar.Template.FindName("PART_Track", progressBar);
-                            if (partTrackBorder != null)
-                            {
-                                var border = partTrackBorder as Border;
-                                border.Clip = null;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -131,71 +119,67 @@ namespace WPFTemplate
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
-
-            if (!this.IsIndeterminate)
-            {
-                SetPartTrackValue();
-            }
+            SetPartTrackValue();
         }
 
         protected override void OnMaximumChanged(double oldMaximum, double newMaximum)
         {
             base.OnMaximumChanged(oldMaximum, newMaximum);
-            if (!this.IsIndeterminate)
-            {
-                SetPartTrackValue();
-            }
+            SetPartTrackValue();
         }
 
         protected override void OnMinimumChanged(double oldMinimum, double newMinimum)
         {
             base.OnMinimumChanged(oldMinimum, newMinimum);
-            if (!this.IsIndeterminate)
-            {
-                SetPartTrackValue();
-            }
+            SetPartTrackValue();
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             this._track = this.Template.FindName("PART_Track", this) as FrameworkElement;
+            SetPartTrackValue();
         }
 
         private void SetPartTrackValue()
         {
-            if (this.ProgressBarType == ProgressBarType.Normal)
+            if (!this.IsIndeterminate)
             {
-                double minimum = this.Minimum;
-                double maximum = this.Maximum;
-                double value = this.Value;
-                double num = (IsIndeterminate || maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
-
-                var indicatorWidth = num * this.ActualWidth;
-
-                if (_track != null)
+                if (this.ProgressBarType == ProgressBarType.Normal)
                 {
-                    var border = _track as Border;
-                    border.Clip = new RectangleGeometry
+                    double minimum = this.Minimum;
+                    double maximum = this.Maximum;
+                    double value = this.Value;
+                    double num = (IsIndeterminate || maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
+                    
+                    var indicatorWidth = num * this.Width;
+                    var indicatorHegith = this.Height;
+
+                    if (_track != null)
                     {
-                        Rect = new Rect { X = 0, Y = 0, Width = indicatorWidth, Height = border.Height }
-                    };
+                        var border = _track as Border;
+                        
+                        border.Clip = new RectangleGeometry
+                        {
+                            Rect = new Rect { X = 0, Y = 0, Width = indicatorWidth, Height = indicatorHegith }
+                        };
+                    }
                 }
-            }
 
-            if (this.ProgressBarType == ProgressBarType.Cycle)
-            {
-                double minimum = this.Minimum;
-                double maximum = this.Maximum;
-                double value = this.Value;
-                double num = (maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
-
-                var EndAngle = num * 360;
-
-                if (_track != null)
+                if (this.ProgressBarType == ProgressBarType.Cycle)
                 {
-                    var arc = _track as Arc;
-                    arc.EndAngle = EndAngle;
+                    double minimum = this.Minimum;
+                    double maximum = this.Maximum;
+                    double value = this.Value;
+                    double num = (maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
+
+                    var EndAngle = num * 360;
+
+                    if (_track != null)
+                    {
+                        var arc = _track as Arc;
+                        arc.EndAngle = EndAngle;
+                    }
                 }
             }
         }

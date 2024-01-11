@@ -140,7 +140,7 @@
             </DataTrigger>
 
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=CheckBoxType}" Value="Switch">
-                <Setter Property="Background" Value="Blue"/>
+                <Setter Property="Background" Value="#FF288CFF"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerCheckBox}">
@@ -149,7 +149,7 @@
                                     <ColumnDefinition Width="Auto" MinWidth="25"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}" Background="White" BorderThickness="1" Height="14" Width="25" CornerRadius="{TemplateBinding CornerRadius}">
+                                <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1" Height="14" Width="25" CornerRadius="{TemplateBinding CornerRadius}">
                                     <Border x:Name="SwitchBorder" BorderThickness="1" BorderBrush="Gray" Background="White" Width="10" Margin="1" CornerRadius="5" HorizontalAlignment="Left"/>
                                 </Border>
                                 <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -162,6 +162,9 @@
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Background" TargetName="PART_Border" Value="{StaticResource OptionMark.Disabled.Background}"/>
                                     <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource OptionMark.Disabled.Border}"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="Background" Value="White" TargetName="PART_Border"/>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource OptionMark.MouseOver.Border}"/>
