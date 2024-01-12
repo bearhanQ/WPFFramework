@@ -18,76 +18,6 @@ using WPFTemplate.Properties;
 
 namespace WPFTemplate
 {
-    public class SvgParser : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            Path path = new Path();
-
-            // 加载SVG文件
-            XmlDocument svgDoc = new XmlDocument();
-            svgDoc.Load(@"C:\Qh\Learning\MyWPF\WPFTemplate\Icons\搜索.svg");
-
-            // 提取SVG路径数据
-            XmlNodeList pathNodes = svgDoc.GetElementsByTagName("path");
-            if (pathNodes.Count > 0)
-            {
-                string pathData = pathNodes[0].Attributes["d"].Value;
-                path.Data = Geometry.Parse(pathData);
-            }
-
-            return path.Data;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class ButtonTypeToSvg : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var str = value.ToString();
-            switch (str)
-            {
-                case "Add":
-                    return Resources.Add;
-                case "Update":
-                    return Resources.Update;
-                case "Delete":
-                    return Resources.Delete;
-                case "Save":
-                    return Resources.Save;
-                case "Cancel":
-                    return Resources.Cancel;
-                case "Import":
-                    return Resources.Import;
-                case "Export":
-                    return Resources.Export;
-                case "Print":
-                    return Resources.Print;
-                case "Set":
-                    return Resources.Set;
-                case "Query":
-                    return Resources.Query;
-                case "Copy":
-                    return Resources.Copy;
-                case "Refresh":
-                    return Resources.Refresh;
-                case "Default":
-                    return Resources.Default;
-            }
-            return "";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class TextBoxIconToPathData : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -96,9 +26,9 @@ namespace WPFTemplate
             switch (str)
             {
                 case "User":
-                    return Resources.User;
+                    return "&#xe741;";
                 case "KeyBoard":
-                    return Resources.KeyBoard;
+                    return "&#xea47;";
             }
             return "";
         }

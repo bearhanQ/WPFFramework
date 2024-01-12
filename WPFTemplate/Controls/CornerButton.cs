@@ -42,16 +42,16 @@ namespace WPFTemplate
         public static readonly DependencyProperty ButtonStyleProperty =
             DependencyProperty.Register("ButtonStyle", typeof(ButtonStyle), typeof(CornerButton));
 
-
-        public ButtonType ButtonType
+        public string Icon
         {
-            get { return (ButtonType)GetValue(ButtonTypeProperty); }
-            set { SetValue(ButtonTypeProperty, value); }
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ButtonType.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ButtonTypeProperty =
-            DependencyProperty.Register("ButtonType", typeof(ButtonType), typeof(CornerButton), new PropertyMetadata(ButtonType.None));
+        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(string), typeof(CornerButton), new PropertyMetadata(string.Empty));
+
 
         public Brush MouseOverForeground
         {

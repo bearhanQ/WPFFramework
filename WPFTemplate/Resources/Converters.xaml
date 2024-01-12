@@ -4,7 +4,6 @@
     
     <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
 
-    <local:ButtonTypeToSvg x:Key="ButtonTypeToSvg"/>
     <local:CarouselItemsPresenterWidthConverter x:Key="CarouselItemsPresenterWidthConverter"/>
     <local:ComboBoxItemToCommandParameter x:Key="ComboBoxItemToCommandParameter"/>
     <local:DataGridSourceToCbFilterSource x:Key="DataGridSourceToCbFilterSource"/>

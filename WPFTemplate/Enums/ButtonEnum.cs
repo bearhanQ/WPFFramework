@@ -13,7 +13,7 @@ namespace WPFTemplate
         Link
     }
 
-    public enum ButtonType
+    public enum ButtonIcon
     {
         None,
         Default,

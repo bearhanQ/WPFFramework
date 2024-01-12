@@ -23,12 +23,11 @@ namespace WPFTemplate
     {
         private bool isPasswordChanged = false;
         private PasswordBox BasePasswordBox;
-        private Border ShadowBorder;
 
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
+            set { SetValue(CornerRadiusProperty, value);}
         }
 
         // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
@@ -46,17 +45,6 @@ namespace WPFTemplate
             DependencyProperty.Register("Password", typeof(string), typeof(CornerPasswordBox),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     new PropertyChangedCallback(OnPasswordChanged), null, false, UpdateSourceTrigger.PropertyChanged));
-
-        public Brush ShadowColor
-        {
-            get { return (Brush)GetValue(ShadowColorProperty); }
-            set { SetValue(ShadowColorProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ShadowColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShadowColorProperty =
-            DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(CornerPasswordBox), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
-
 
         public string Watermark
         {
@@ -79,75 +67,29 @@ namespace WPFTemplate
         public static readonly DependencyProperty ShowWatermarkProperty =
             DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
 
-
-        public bool ShowIcon
+        public string Icon
         {
-            get { return (bool)GetValue(ShowIconProperty); }
-            set { SetValue(ShowIconProperty, value); }
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ShowIcon.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShowIconProperty =
-            DependencyProperty.Register("ShowIcon", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
+        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(string), typeof(CornerPasswordBox), new PropertyMetadata(null));
 
-        public bool ShowVisibleButton
+        public bool ShowEye
         {
-            get { return (bool)GetValue(ShowVisibleButtonProperty); }
-            set { SetValue(ShowVisibleButtonProperty, value); }
+            get { return (bool)GetValue(ShowEyeProperty); }
+            set { SetValue(ShowEyeProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ShowVisibleButton.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShowVisibleButtonProperty =
-            DependencyProperty.Register("ShowVisibleButton", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
-
+        // Using a DependencyProperty as the backing store for ShowEye.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowEyeProperty =
+            DependencyProperty.Register("ShowEye", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
 
         public CornerPasswordBox()
         {
             InitializeComponent();
-            this.GotFocus += CornerPasswordBox_GotFocus;
-            this.LostFocus += CornerPasswordBox_LostFocus;
-        }
-
-        private void CornerPasswordBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (this.ShadowBorder != null)
-            {
-                Storyboard storyboard = new Storyboard();
-                ColorAnimationUsingKeyFrames frames = new ColorAnimationUsingKeyFrames
-                {
-                    KeyFrames = new ColorKeyFrameCollection
-                    {
-                        new EasingColorKeyFrame(((SolidColorBrush)this.ShadowColor).Color, KeyTime.FromTimeSpan(TimeSpan.Zero)),
-                        new EasingColorKeyFrame(Colors.Transparent, KeyTime.Paced)
-                    },
-                    Duration = TimeSpan.FromSeconds(0.5)
-                };
-                Storyboard.SetTarget(frames, ShadowBorder);
-                Storyboard.SetTargetProperty(frames, new PropertyPath("(Border.Effect).(DropShadowEffect.Color)"));
-                storyboard.Children.Add(frames);
-                storyboard.Begin();
-            }
-        }
-
-        private void CornerPasswordBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (ShadowBorder != null)
-            {
-                Storyboard storyboard = new Storyboard();
-                ColorAnimationUsingKeyFrames frames = new ColorAnimationUsingKeyFrames
-                {
-                    KeyFrames = new ColorKeyFrameCollection
-                    {
-                        new EasingColorKeyFrame(Colors.Transparent, KeyTime.FromTimeSpan(TimeSpan.Zero)),
-                        new EasingColorKeyFrame(((SolidColorBrush)this.ShadowColor).Color, KeyTime.Paced)
-                    },
-                    Duration = TimeSpan.FromSeconds(0.5)
-                };
-                Storyboard.SetTarget(frames, ShadowBorder);
-                Storyboard.SetTargetProperty(frames, new PropertyPath("(Border.Effect).(DropShadowEffect.Color)"));
-                storyboard.Children.Add(frames);
-                storyboard.Begin();
-            }
         }
 
         private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -179,12 +121,6 @@ namespace WPFTemplate
             if (passwordbox != null)
             {
                 BasePasswordBox = passwordbox as PasswordBox;
-            }
-
-            var border = this.Template.FindName("PART_Border", this);
-            if (border != null)
-            {
-                ShadowBorder = border as Border;
             }
 
             base.OnApplyTemplate();

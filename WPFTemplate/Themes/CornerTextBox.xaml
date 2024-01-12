@@ -7,6 +7,7 @@
     </ResourceDictionary.MergedDictionaries>
     
     <!--#region CornerTextBox-->
+    <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
@@ -29,38 +30,28 @@
                 <ControlTemplate TargetType="{x:Type local:CornerTextBox}">
                     <Grid Height="{TemplateBinding Height}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        <Border x:Name="PART_BorderOutline" Background="{TemplateBinding BorderBrush}" Margin="-2" Panel.ZIndex="-1" Grid.ColumnSpan="2" CornerRadius="{TemplateBinding CornerRadius}" Opacity="0.7" Visibility="Hidden"/>
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" 
-                                CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="4" Color="Transparent" ShadowDepth="0" RenderingBias="Performance"/>
-                            </Border.Effect>
-                        </Border>
-                        <Viewbox x:Name="viewbox" Height="10">
-                            <Viewbox.RenderTransform>
-                                <TranslateTransform X="0" Y="-1"/>
-                            </Viewbox.RenderTransform>
-                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="25" 
-                                  Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTextBox}, Path=Icon, Mode=OneWay, Converter={StaticResource TextBoxIconToPathData}}"/>
-                        </Viewbox>
+                                CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True"/>
+                        <TextBlock x:Name="tbicon" Text="{TemplateBinding Icon}" FontFamily="{StaticResource FatSheep}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" Margin="2,0,0,0"/>
                         <Grid Grid.Column="1" x:Name="tbgrid">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            <TextBlock x:Name="tbWatermark" Text="{TemplateBinding Watermark}" Margin="3,0,0,0" VerticalAlignment="Center" Opacity="0.4" IsHitTestVisible="False"/>
+                            <TextBlock x:Name="tbWatermark" Text="{TemplateBinding Watermark}" Margin="3,0,0,0" VerticalAlignment="Center" Opacity="0.4" IsHitTestVisible="False"
+                                       FontSize="{TemplateBinding FontSize}"/>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
-                        <Trigger Property="Icon" Value="None">
-                            <Setter TargetName="viewbox" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="tbgrid" Property="{x:Static Grid.ColumnProperty}" Value="0"/>
-                            <Setter TargetName="tbgrid" Property="{x:Static Grid.ColumnSpanProperty}" Value="2"/>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="PART_BorderOutline" Property="Visibility" Value="Visible"/>
                         </Trigger>
-                        <Trigger Property="FocusedHighLight" Value="False">
-                            <Setter TargetName="border" Property="Effect" Value="{x:Null}"/>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text, Converter={StaticResource TextLengthIsNullOrEmptyToTrue}}" Value="false">
                             <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
@@ -68,6 +59,9 @@
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWatermark}" Value="false">
                             <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
                         </DataTrigger>
+                        <Trigger Property="Icon" Value="{x:Null}">
+                            <Setter TargetName="tbicon" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
