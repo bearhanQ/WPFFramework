@@ -15,5 +15,6 @@
     <local:StringToGeometryConverter x:Key="StringToGeometryConverter"/>
     <local:ProgressBarSizeToClipConverter x:Key="ProgressBarSizeToClipConverter"/>
     <local:MenuItemContenAndArrowConverter x:Key="MenuItemContenAndArrowConverter"/>
-
+    <local:MenuItemHeaderTypeIsFrameworkElementConverter x:Key="MenuItemHeaderTypeIsFrameworkElementConverter"/>
+    
 </ResourceDictionary>

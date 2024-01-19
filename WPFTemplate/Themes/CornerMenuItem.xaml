@@ -196,7 +196,7 @@
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="templateRoot" Property="Background" Value="{StaticResource MenuItem.Highlight.Background}"/>
             </Trigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header,Converter={StaticResource MenuItemHeaderTypeIsStringConverter}}" Value="False">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header,Converter={StaticResource MenuItemHeaderTypeIsFrameworkElementConverter}}" Value="True">
                 <Setter TargetName="templateRoot" Property="Background" Value="{StaticResource Menu.Static.Background}"/>
             </DataTrigger>
             <MultiTrigger>

@@ -29,46 +29,33 @@
 
         <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
 
+        <Style x:Key="MenuItemButtonStyle1" TargetType="{x:Type local:CornerButton}" BasedOn="{StaticResource {x:Type local:CornerButton}}">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="ButtonStyle" Value="Normal"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+        <Style x:Key="MenuItemStyle1" TargetType="{x:Type local:CornerMenuItem}" BasedOn="{StaticResource {x:Type local:CornerMenuItem}}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Menu BorderThickness="0,1,0,1" BorderBrush="Gray">
-            <local:CornerMenuItem Header="Home" Icon="&#xe7c6;" IsCheckable="True"/>
-
-            <local:CornerMenuItem Header="Interface" VerticalAlignment="Center" Height="40" Icon="&#xe690;">
-                <local:CornerMenuItem>
-                    <local:CornerMenuItem.Header>
-                        <WrapPanel Width="200">
-                            <local:CornerButton Content="Empty page" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                            <local:CornerButton Content="Navigation" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                            <local:CornerButton Content="Accordion" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                            <local:CornerButton Content="Charts" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                            <local:CornerButton Content="Empty page" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                            <local:CornerButton Content="Navigation" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                            <local:CornerButton Content="Accordion" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                            <local:CornerButton Content="Charts" Width="100" ButtonStyle="Normal" Background="White" BorderBrush="White" Height="40"/>
-                        </WrapPanel>
-                    </local:CornerMenuItem.Header>
-                </local:CornerMenuItem>
-            </local:CornerMenuItem>
-
-            <local:CornerMenuItem Header="From elements" VerticalAlignment="Center" Height="40" Icon="&#xe66f;"/>
-
-            <local:CornerMenuItem Header="Extra" VerticalAlignment="Center" Height="40" Icon="&#xe7df;" CornerRadius="5">
-                <local:CornerMenuItem Header="Activity" Height="40"  Width="150"/>
-                <local:CornerMenuItem Header="Gallery" Height="40"  Width="150"/>
-                <local:CornerMenuItem Header="Invoice" Height="40"  Width="150"/>
-                <local:CornerMenuItem Header="Search results" Height="40" Width="150"/>
-                <local:CornerMenuItem Header="Pricing cards" Height="40" Width="150"/>
-                <local:CornerMenuItem Header="Users" Height="40" Width="150"/>
-                <local:CornerMenuItem Header="License" Height="40" Width="150"/>
-                <local:CornerMenuItem Header="Music" Height="40" Width="150"/>
-                <local:CornerMenuItem Header="Widgets" Height="40" Width="150"/>
-                <local:CornerMenuItem Header="Wizard" Height="40" Width="150" CornerRadius="5">
-                    <local:CornerMenuItem Header="Child" Height="40" Width="150"/>
-                    <local:CornerMenuItem Header="Child" Height="40" Width="150"/>
-                    <local:CornerMenuItem Header="Child" Height="40" Width="150"/>
-                </local:CornerMenuItem>
-            </local:CornerMenuItem>
-        </Menu>
+        <TextBlock Text="ContextMenu">
+            <TextBlock.ContextMenu>
+                <local:CornerContextMenu>
+                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
+                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
+                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
+                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
+                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
+                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
+                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
+                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
+                </local:CornerContextMenu>
+            </TextBlock.ContextMenu>
+        </TextBlock>
     </StackPanel>
 </Window>

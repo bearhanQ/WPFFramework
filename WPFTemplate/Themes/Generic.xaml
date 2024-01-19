@@ -18,5 +18,8 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderCalendar.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderDatePicker.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMenuItem.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerContextMenu.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+    
 </ResourceDictionary>
