@@ -169,6 +169,7 @@
                 <Setter Property="ItemContainerStyle">
                     <Setter.Value>
                         <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="Cursor" Value="Hand"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -182,9 +183,10 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
-                                            <Border x:Name="BdSelected" Grid.ColumnSpan="3" Margin="-500,0,-500,0"/>
+                                            <Border x:Name="BdSelected" Grid.ColumnSpan="3" Margin="-500,0,-500,0" Background="White"/>
                                             <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource OriginalExpandCollapseToggleStyle}"/>
-                                            <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="1" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                            <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="1" 
+                                                    Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}" SnapsToDevicePixels="true">
                                                 <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                             </Border>
                                             <ItemsPresenter x:Name="ItemsHost" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
@@ -225,6 +227,7 @@
                 <Setter Property="ItemContainerStyle">
                     <Setter.Value>
                         <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="Cursor" Value="Hand"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -239,10 +242,12 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
-                                            <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0"/>
+                                            <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0" Background="White"/>
                                             <ToggleButton x:Name="Expander" Grid.Column="3" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource NormalExpandCollapseToggleStyle}"/>
-                                            <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-                                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                                    Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}" SnapsToDevicePixels="true">
+                                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                  />
                                             </Border>
                                             <ItemsPresenter x:Name="ItemsHost" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"/>
                                         </Grid>
@@ -316,7 +321,8 @@
                                                 </Path.Margin>
                                             </Path>
                                             <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource LineExpandCollapseToggleStyle}"/>
-                                            <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.Column="1" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                            <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.Column="1" 
+                                                    Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}" SnapsToDevicePixels="true">
                                                 <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                             </Border>
                                             <ItemsPresenter x:Name="ItemsHost" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"/>

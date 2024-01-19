@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFTemplate", "WPFTemplate\WPFTemplate.csproj", "{9CE3053E-547F-47F4-A087-0224A3953218}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfBootstrap", "WpfBootstrap\WpfBootstrap.csproj", "{C83A8E57-F415-47B7-A041-6BC8590BC1AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9CE3053E-547F-47F4-A087-0224A3953218}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CE3053E-547F-47F4-A087-0224A3953218}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CE3053E-547F-47F4-A087-0224A3953218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C83A8E57-F415-47B7-A041-6BC8590BC1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C83A8E57-F415-47B7-A041-6BC8590BC1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C83A8E57-F415-47B7-A041-6BC8590BC1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C83A8E57-F415-47B7-A041-6BC8590BC1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

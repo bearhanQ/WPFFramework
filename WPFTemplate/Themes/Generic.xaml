@@ -13,11 +13,10 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerProgressBar.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTabControl.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTreeView.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerDataGrid.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBox.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBoxItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderCalendar.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderDatePicker.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMenuItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>

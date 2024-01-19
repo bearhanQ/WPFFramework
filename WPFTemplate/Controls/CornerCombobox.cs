@@ -25,14 +25,6 @@ namespace WPFTemplate
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCombobox), new FrameworkPropertyMetadata(typeof(CornerCombobox)));
         }
 
-        private DefaultViewFilterHelper DefaultViewFilter;
-
-        public CornerCombobox()
-        {
-            DefaultViewFilter = new DefaultViewFilterHelper();
-            DefaultViewFilter.MatchWholeWord = false;
-        }
-
         public ComboBoxViewFilterHelper FilterCommand
         {
             get

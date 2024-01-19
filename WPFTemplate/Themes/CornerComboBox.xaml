@@ -113,7 +113,7 @@
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" 
                    Placement="Bottom"  PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                 <Border x:Name="dropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="White" BorderThickness="1" 
-                        MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}" Margin="3,0,3,3"
+                        MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}" Margin="13,0,13,13"
                         CornerRadius="2">
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="0" Opacity="0.7"/>

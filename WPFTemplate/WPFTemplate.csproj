@@ -69,13 +69,11 @@
     </ApplicationDefinition>
     <Compile Include="CommandBase.cs" />
     <Compile Include="common\ComboBoxViewFilterHelper.cs" />
-    <Compile Include="common\DefaultViewFilterHelper.cs" />
-    <Compile Include="common\ReminderCalendarHelper.cs" />
     <Compile Include="common\ModelConvertHelper.cs" />
     <Compile Include="common\MyVisualTreeHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
-    <Compile Include="Controls\CornerDataGrid.cs" />
+    <Compile Include="Controls\CornerMenuItem.cs" />
     <Compile Include="Controls\Extend\Carousel.cs" />
     <Compile Include="Controls\CornerPasswordBox.xaml.cs">
       <DependentUpon>CornerPasswordBox.xaml</DependentUpon>
@@ -90,7 +88,6 @@
     <Compile Include="Controls\Extend\ReminderCalendar.cs" />
     <Compile Include="Controls\Extend\ReminderDatePicker.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
-    <Compile Include="Enums\DataGridEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
     <Compile Include="Enums\TabControlEnum.cs" />
@@ -143,7 +140,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerDataGrid.xaml">
+    <Page Include="Themes\CornerMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,64 @@
+﻿<Window x:Class="WpfBootstrap.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBootstrap"
+        mc:Ignorable="d"
+        xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="MenuItemButtonStyle1" TargetType="{x:Type cc:CornerButton}" BasedOn="{StaticResource {x:Type cc:CornerButton}}">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="ButtonStyle" Value="Normal"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+        <Style x:Key="MenuItemStyle1" TargetType="{x:Type cc:CornerMenuItem}" BasedOn="{StaticResource {x:Type cc:CornerMenuItem}}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Menu BorderThickness="0,1,0,1" BorderBrush="Gray">
+            <cc:CornerMenuItem Header="Home" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"/>
+
+            <cc:CornerMenuItem Header="Interface" VerticalAlignment="Center" Height="40" Icon="&#xe690;">
+                <cc:CornerMenuItem CornerRadius="3">
+                    <cc:CornerMenuItem.Header>
+                        <WrapPanel Width="310">
+                            <cc:CornerButton Content="Empty page" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            <cc:CornerButton Content="Empty page" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
+                        </WrapPanel>
+                    </cc:CornerMenuItem.Header>
+                </cc:CornerMenuItem>
+            </cc:CornerMenuItem>
+
+            <cc:CornerMenuItem Header="From elements" VerticalAlignment="Center" Height="40" Icon="&#xe66f;"/>
+
+            <cc:CornerMenuItem Header="Extra" VerticalAlignment="Center" Height="40" Icon="&#xe7df;" CornerRadius="3">
+                <cc:CornerMenuItem Header="Activity" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Gallery" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Invoice" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Search results" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Pricing cards" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Users" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="License" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Music" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Widgets" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Wizard" Style="{StaticResource MenuItemStyle1}">
+                    <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
+                </cc:CornerMenuItem>
+            </cc:CornerMenuItem>
+        </Menu>
+    </Grid>
+</Window>

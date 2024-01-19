@@ -6,7 +6,6 @@
 
     <local:CarouselItemsPresenterWidthConverter x:Key="CarouselItemsPresenterWidthConverter"/>
     <local:ComboBoxItemToCommandParameter x:Key="ComboBoxItemToCommandParameter"/>
-    <local:DataGridSourceToCbFilterSource x:Key="DataGridSourceToCbFilterSource"/>
     <local:ProgressBarValueToPercentage x:Key="ProgressBarValueToPercentage"/>
     <local:NormalTabControlCornerRadiusConverter x:Key="NormalTabControlCornerRadiusConverter"/>
     <local:TextBoxIconToPathData x:Key="TextBoxIconToPathData"/>
@@ -15,5 +14,6 @@
     <local:TreeViewVerticalLineConverter x:Key="TreeViewVerticalLineConverter"/>
     <local:StringToGeometryConverter x:Key="StringToGeometryConverter"/>
     <local:ProgressBarSizeToClipConverter x:Key="ProgressBarSizeToClipConverter"/>
+    <local:MenuItemContenAndArrowConverter x:Key="MenuItemContenAndArrowConverter"/>
 
 </ResourceDictionary>

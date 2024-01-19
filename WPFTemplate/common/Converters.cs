@@ -171,58 +171,6 @@ namespace WPFTemplate
         }
     }
 
-    public class DataGridSourceToCbFilterSource : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            var dataSource = values[0] as IList;
-            var dt = values[0] as DataTable;
-            var header = values[1] as DataGridColumn;
-
-            var itemSource = GetDistinctItems(header, dataSource ?? (IEnumerable)dt);
-            return itemSource.Distinct();
-        }
-
-        private IEnumerable<string> GetDistinctItems<T>(DataGridColumn header, T dataSource) where T : class, IEnumerable
-        {
-            if (header == null || dataSource == null)
-            {
-                yield break;
-            }
-
-            var content = header.SortMemberPath;
-
-            foreach (var item in dataSource)
-            {
-                var itemType = item.GetType();
-
-                if (itemType == typeof(DataRowView))
-                {
-                    yield return (item as DataRowView)[content].ToString();
-                }
-                else
-                {
-                    var property = itemType.GetProperty(content);
-
-                    if (property != null)
-                    {
-                        var value = property.GetValue(item);
-
-                        if (value != null)
-                        {
-                            yield return value.ToString();
-                        }
-                    }
-                }
-            }
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class ComboBoxItemToCommandParameter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -323,6 +271,24 @@ namespace WPFTemplate
                 clip.RadiusY = cornerRadius;
             }
             return clip;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class MenuItemContenAndArrowConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var margin = (Thickness)value;
+            var left = margin.Left;
+            var top = margin.Top;
+            var right = 0;
+            var bottom = margin.Bottom;
+            return new Thickness(left, top, right, bottom);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

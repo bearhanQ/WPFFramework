@@ -200,7 +200,7 @@
                 <Grid>
                     <TextBlock x:Name="waterTextBlock" Text="{TemplateBinding WaterText}" Opacity="0" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" IsHitTestVisible="False"/>
                     <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                             IsReadOnly="True" Margin="{TemplateBinding Padding}" 
+                             IsReadOnly="True" Margin="{TemplateBinding Padding}"
                              Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
             </Border>

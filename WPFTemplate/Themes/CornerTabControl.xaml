@@ -5,7 +5,9 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
+
+    <SolidColorBrush x:Key="TabItem.IsMouseHover.Foreground" Color="#FF206BC4"/>
+    <SolidColorBrush x:Key="TabItem.MouseDrag.HighlightBorder.BorderBrush" Color="#FF42F1EE"/>
     <!--#region CornerTabControl-->
     <Style TargetType="{x:Type local:CornerTabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
         <Setter Property="AllowDrop" Value="True"/>
@@ -22,39 +24,15 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type TabItem}">
                                         <Border x:Name="outsideborder" BorderBrush="LightGray" BorderThickness="1">
-                                            <!--<Border.CornerRadius>
-                                                <MultiBinding Converter="{StaticResource NormalTabControlCornerRadiusConverter}">
-                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="CornerRadius"/>
-                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="Items"/>
-                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=TabItem}" Path="."/>
-                                                </MultiBinding>
-                                            </Border.CornerRadius>-->
                                             <Grid x:Name="gridmain" Background="Transparent">
                                                 <Border x:Name="bordermain" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}" 
                                                         Visibility="Hidden">
-                                                    <!--<Border.CornerRadius>
-                                                        <MultiBinding Converter="{StaticResource NormalTabControlCornerRadiusConverter}">
-                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="CornerRadius"/>
-                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}" Path="Items"/>
-                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=TabItem}" Path="."/>
-                                                        </MultiBinding>
-                                                    </Border.CornerRadius>-->
                                                 </Border>
-                                                <Border x:Name="lefthighlightborder" BorderThickness="4,0,0,0" BorderBrush="#FF42F1EE" Margin="-2" Visibility="Collapsed"/>
-                                                <Border x:Name="righthighlightborder" BorderThickness="0,0,4,0" BorderBrush="#FF42F1EE" Margin="-2" Visibility="Collapsed"/>
+                                                <Border x:Name="lefthighlightborder" BorderThickness="4,0,0,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-2" Visibility="Collapsed"/>
+                                                <Border x:Name="righthighlightborder" BorderThickness="0,0,4,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-2" Visibility="Collapsed"/>
                                                 <TextBlock x:Name="textblockheader" Text="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                                        Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
-                                                <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                            <Style.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter Property="Foreground" Value="Red"/>
-                                                                </Trigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
+                                                <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden"/>
                                             </Grid>
                                         </Border>
                                         <ControlTemplate.Triggers>
@@ -64,6 +42,9 @@
                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=ItemRemovable}" Value="True">
                                                 <Setter TargetName="deleteItem" Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
+                                            <Trigger SourceName="deleteItem" Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="deleteItem" Property="Foreground" Value="Red"/>
+                                            </Trigger>
                                             <MultiTrigger>
                                                 <MultiTrigger.Conditions>
                                                     <Condition Property="IsSelected" Value="false"/>
@@ -96,21 +77,11 @@
                                         <Grid x:Name="gridmain" Background="Transparent">
                                             <Border x:Name="bordermain" BorderThickness="0,0,0,2" 
                                                     BorderBrush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}" Visibility="Hidden"/>
-                                            <Border x:Name="lefthighlightborder" BorderThickness="4,0,0,0" BorderBrush="#FF42F1EE" Margin="-1" Visibility="Collapsed"/>
-                                            <Border x:Name="righthighlightborder" BorderThickness="0,0,4,0" BorderBrush="#FF42F1EE" Margin="-1" Visibility="Collapsed"/>
+                                            <Border x:Name="lefthighlightborder" BorderThickness="4,0,0,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-1" Visibility="Collapsed"/>
+                                            <Border x:Name="righthighlightborder" BorderThickness="0,0,4,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-1" Visibility="Collapsed"/>
                                             <TextBlock x:Name="textblockheader" Text="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                                    Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
-                                            <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden">
-                                                <TextBlock.Style>
-                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Foreground" Value="Red"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
+                                            <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden"/>
                                         </Grid>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsSelected" Value="True">
@@ -119,6 +90,9 @@
                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=ItemRemovable}" Value="True">
                                                 <Setter TargetName="deleteItem" Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
+                                            <Trigger SourceName="deleteItem" Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="deleteItem" Property="Foreground" Value="Red"/>
+                                            </Trigger>
                                             <MultiTrigger>
                                                 <MultiTrigger.Conditions>
                                                     <Condition Property="IsSelected" Value="false"/>
