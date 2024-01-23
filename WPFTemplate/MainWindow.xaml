@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
         xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Window.Resources>
-        
+
         <x:Array x:Key="strs" Type="{x:Type sys:String}">
             <sys:String>Alerts</sys:String>
             <sys:String>Badges</sys:String>
@@ -27,35 +27,61 @@
             <local:People Name="Modals" Age="6"/>
         </x:Array>
 
-        <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
-
-        <Style x:Key="MenuItemButtonStyle1" TargetType="{x:Type local:CornerButton}" BasedOn="{StaticResource {x:Type local:CornerButton}}">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="ButtonStyle" Value="Normal"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="Height" Value="40"/>
+        <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border x:Name="PART_Border">
+                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="PART_Border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                    
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        <Style x:Key="MenuItemStyle1" TargetType="{x:Type local:CornerMenuItem}" BasedOn="{StaticResource {x:Type local:CornerMenuItem}}">
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="150"/>
+        <Style x:Key="slider1" TargetType="{x:Type Slider}">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Slider}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition MaxWidth="10"/>
+                            </Grid.ColumnDefinitions>
+                            <local:CornerTextBox x:Name="PART_TextBox" Text="{Binding RelativeSource={RelativeSource AncestorType=Slider}, Path=Value}" 
+                                                 VerticalContentAlignment="Center" Grid.ColumnSpan="2" CornerRadius="4"
+                                                 BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Content="+" Style="{StaticResource RepeatButtonTransparent}"/>
+                                <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Content="-"  Style="{StaticResource RepeatButtonTransparent}"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+        
     </Window.Resources>
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="ContextMenu">
-            <TextBlock.ContextMenu>
-                <local:CornerContextMenu>
-                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
-                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
-                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
-                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
-                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
-                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
-                    <local:CornerMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Role}" 
-                                          VerticalAlignment="Center" Height="40" Icon="&#xe690;"/>
-                </local:CornerContextMenu>
-            </TextBlock.ContextMenu>
-        </TextBlock>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <local:CornerSlider x:Name="slider1" Width="100" VerticalAlignment="Center" 
+                            Maximum="100" Minimum="-100" TickFrequency="0.1"
+                            Value="0" IsSnapToTickEnabled="True" BorderBrush="Red" BorderThickness="1"/>
+        <TextBox Text="{Binding ElementName=slider1, Path=Value, Mode=TwoWay}" Width="100"/>
+        <local:CornerTextBox Width="100" Margin="0,10"/>
+        <Slider LargeChange="0.1" BorderBrush="Green" Style="{StaticResource slider1}"/>
+        <local:CornerSlider Width="100" Margin="0,10" SliderType="Box" CornerRadius="5" BorderBrush="LightBlue"/>
     </StackPanel>
 </Window>

@@ -75,6 +75,7 @@
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />
     <Compile Include="Controls\CornerMenuItem.cs" />
+    <Compile Include="Controls\CornerSlider.cs" />
     <Compile Include="Controls\Extend\Carousel.cs" />
     <Compile Include="Controls\CornerPasswordBox.xaml.cs">
       <DependentUpon>CornerPasswordBox.xaml</DependentUpon>
@@ -91,6 +92,7 @@
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
+    <Compile Include="Enums\SliderEnum.cs" />
     <Compile Include="Enums\TabControlEnum.cs" />
     <Compile Include="Enums\TextBoxEnum.cs" />
     <Compile Include="Enums\TreeViewEnum.cs" />
@@ -162,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CornerRadioButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CornerSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

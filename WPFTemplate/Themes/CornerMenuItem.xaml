@@ -163,7 +163,6 @@
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Background}"/>
-                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Border}"/>
             </Trigger>
             <Trigger Property="ScrollViewer.CanContentScroll" SourceName="SubMenuScrollViewer" Value="false">
                 <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
@@ -174,16 +173,16 @@
 
     <ControlTemplate x:Key="{ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type local:CornerMenuItem}}" TargetType="{x:Type local:CornerMenuItem}">
         <Border x:Name="templateRoot" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true" MinHeight="22">
-            <Grid Margin="-1" VerticalAlignment="Center">
+            <Grid Margin="-1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
+                <Border x:Name="BorderUnderline" Grid.ColumnSpan="4" BorderThickness="0,0,0,2" BorderBrush="Blue" Visibility="Hidden" VerticalAlignment="Bottom"/>
                 <TextBlock x:Name="TbIcon" Text="{TemplateBinding Icon}" Grid.Column="1" FontFamily="{StaticResource FatSheep}" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" HorizontalAlignment="Center"/>
-                <ContentPresenter ContentSource="Header" Grid.Column="2" Margin="{TemplateBinding Padding, Converter={StaticResource MenuItemContenAndArrowConverter}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                <ContentPresenter ContentSource="Header" Grid.Column="2" Margin="{TemplateBinding Padding, Converter={StaticResource MenuItemContenAndArrowConverter}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -192,6 +191,9 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{StaticResource Menu.Disabled.Foreground}"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="BorderUnderline" Property="Visibility" Value="Visible"/>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="templateRoot" Property="Background" Value="{StaticResource MenuItem.Highlight.Background}"/>
@@ -227,8 +229,13 @@
                         <RotateTransform Angle="-90"/>
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-2" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-3">
-                    <Border x:Name="SubMenuBorder" Background="{StaticResource Menu.Static.Background}" BorderThickness="1" BorderBrush="{StaticResource Menu.Static.Border}" Padding="2" CornerRadius="{TemplateBinding CornerRadius}">
+                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-2" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" 
+                       Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-3" 
+                       PlacementTarget="{Binding ElementName=templateRoot}">
+                    <Border x:Name="SubMenuBorder" Background="{StaticResource Menu.Static.Background}" BorderThickness="1" BorderBrush="{StaticResource Menu.Static.Background}" Padding="2" CornerRadius="{TemplateBinding CornerRadius}" Margin="13,13,13,13">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="0" Opacity="0.7"/>
+                        </Border.Effect>
                         <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -263,6 +270,7 @@
     <Style TargetType="{x:Type local:CornerMenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
         <Setter Property="Background" Value="{StaticResource Menu.Static.Background}"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Padding" Value="6,0"/>
         <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type local:CornerMenuItem}}}"/>
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">
