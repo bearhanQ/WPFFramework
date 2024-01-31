@@ -20,9 +20,8 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMenuItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerContextMenu.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerSlider.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerPagination.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     
-
-
 </ResourceDictionary>

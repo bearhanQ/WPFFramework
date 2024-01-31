@@ -16,5 +16,8 @@
     <local:ProgressBarSizeToClipConverter x:Key="ProgressBarSizeToClipConverter"/>
     <local:MenuItemContenAndArrowConverter x:Key="MenuItemContenAndArrowConverter"/>
     <local:MenuItemHeaderTypeIsFrameworkElementConverter x:Key="MenuItemHeaderTypeIsFrameworkElementConverter"/>
-    
+    <local:PageCountConverter x:Key="PageCountConverter"/>
+    <local:PaginationPageNumClickConverter x:Key="PaginationPageNumClickConverter"/>
+    <local:PaginationNumEqualCurrentIndexConverter x:Key="PaginationNumEqualCurrentIndexConverter"/>
+
 </ResourceDictionary>

@@ -309,4 +309,78 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    public class PageCountConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var index = int.Parse(value.ToString());
+            switch (index)
+            {
+                case 10: return 0;
+                case 20: return 1;
+                case 50: return 2;
+                case 100: return 3;
+            }
+            return 0;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var index = int.Parse(value.ToString());
+            switch (index)
+            {
+                case 0: return 10;
+                case 1: return 20;
+                case 2: return 50;
+                case 3: return 100;
+            }
+            return 10;
+        }
+    }
+
+    public class PaginationPageNumClickConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            Dictionary<string, DependencyObject> result = new Dictionary<string, DependencyObject>();
+            var button = values[0] as ListBoxItem;
+            
+            if (button != null)
+            {
+                var content = button.Content.ToString();
+                var pagination = values[1] as CornerPagination;
+                result.Add(content, pagination);
+            }
+
+            return result;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PaginationNumEqualCurrentIndexConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var pagination = values[0] as CornerPagination;
+            var btn = values[1] as ListBoxItem;
+            if (btn != null && pagination != null)
+            {
+                if (int.TryParse(btn.Content.ToString(), out int result))
+                {
+                    return pagination.CurrentPageIndex == result;
+                }
+            }
+            return false;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -87,6 +87,7 @@
     <Compile Include="Controls\CornerTreeView.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
+    <Compile Include="Controls\Extend\CornerPagination.cs" />
     <Compile Include="Controls\Extend\ReminderCalendar.cs" />
     <Compile Include="Controls\Extend\ReminderDatePicker.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
@@ -156,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CornerMultiComboBoxItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CornerPagination.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
