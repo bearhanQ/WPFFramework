@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WpfBootstrap"
         mc:Ignorable="d"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
-        Title="MainWindow" Height="600" Width="1200">
+        Title="MainWindow" Height="600" Width="1200" WindowStartupLocation="CenterScreen"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <Window.Resources>
         <CornerRadius x:Key="cornerRadius" TopLeft="3" TopRight="3" BottomRight="3" BottomLeft="3"/>
         <Style x:Key="MenuItemButtonStyle1" TargetType="{x:Type cc:CornerButton}" BasedOn="{StaticResource {x:Type cc:CornerButton}}">
@@ -15,6 +16,8 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Height" Value="40"/>
+            <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ButtonCommand}"/>
+            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}"/>
         </Style>
         <Style x:Key="MenuItemStyle1" TargetType="{x:Type cc:CornerMenuItem}" BasedOn="{StaticResource {x:Type cc:CornerMenuItem}}">
             <Setter Property="Height" Value="40"/>
@@ -68,9 +71,9 @@
                     <cc:CornerMenuItem CornerRadius="3">
                         <cc:CornerMenuItem.Header>
                             <WrapPanel Width="310">
-                                <cc:CornerButton Content="Button" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerButton" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerCheckBox" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerComboBox" Style="{StaticResource MenuItemButtonStyle1}"/>
                                 <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
                                 <cc:CornerButton Content="Empty page" Style="{StaticResource MenuItemButtonStyle1}"/>
                                 <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>

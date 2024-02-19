@@ -35,7 +35,8 @@ namespace WPFTemplate
 
         static ColorSlider()
         {
-            SelectedColorProperty = DependencyProperty.Register("SelectedColor", typeof(Brush), typeof(ColorSlider));
+            SelectedColorProperty = DependencyProperty.Register("SelectedColor", typeof(Brush), typeof(ColorSlider)
+                ,new PropertyMetadata(new SolidColorBrush(Color.FromRgb(255, 0, 0))));
         }
 
         private void CornerSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

@@ -70,10 +70,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\CommandBase.cs" />
     <Compile Include="Model\UnicodeModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\UnicodeViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\ConerComboBoxView.xaml.cs">
+      <DependentUpon>ConerComboBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerButtonView.xaml.cs">
+      <DependentUpon>CornerButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerCheckBoxView.xaml.cs">
+      <DependentUpon>CornerCheckBoxView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UnicodeView.xaml.cs">
       <DependentUpon>UnicodeView.xaml</DependentUpon>
     </Compile>
@@ -89,6 +99,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ConerComboBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerCheckBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UnicodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

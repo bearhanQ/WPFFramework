@@ -46,6 +46,7 @@
             <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="10"/>
         </DoubleAnimationUsingKeyFrames>
         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static HorizontalAlignment.Left}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.2500000" Value="{x:Static HorizontalAlignment.Right}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.5000000" Value="{x:Static HorizontalAlignment.Right}"/>
         </ObjectAnimationUsingKeyFrames>
@@ -58,6 +59,7 @@
             <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="10"/>
         </DoubleAnimationUsingKeyFrames>
         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static HorizontalAlignment.Right}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.2500000" Value="{x:Static HorizontalAlignment.Left}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.5000000" Value="{x:Static HorizontalAlignment.Left}"/>
         </ObjectAnimationUsingKeyFrames>

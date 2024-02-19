@@ -1,0 +1,77 @@
+﻿<Window x:Class="WpfBootstrap.View.CornerButtonView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBootstrap.View"
+        mc:Ignorable="d"
+        xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        WindowStartupLocation="CenterScreen"
+        Title="CornerButtonView" Height="450" Width="800">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="buttonType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="cc:ButtonStyle"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <cc:CornerButton Content="Hello" Width="200" Height="30" FontSize="15"
+                             Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                             ButtonStyle="{Binding ElementName=cbButtonType, Path=SelectedItem}" 
+                             BorderBrush="{Binding ElementName=colorSlider1, Path=SelectedColor}"
+                             Background="{Binding ElementName=colorSlider2, Path=SelectedColor}"
+                             Icon="{Binding ElementName=cbIcon, Path=SelectedValue}"
+                             CornerRadius="{Binding ElementName=cornerSlider1, Path=Value}"/>
+            <TextBlock Text="Style:" VerticalAlignment="Center"
+                       Grid.Column="0" Grid.Row="2"/>
+            <cc:CornerCombobox x:Name="cbButtonType"  Width="100" 
+                               Grid.Column="1" Grid.Row="2"
+                               WaterText="ButtonStyle"
+                               SelectedIndex="1"
+                               ItemsSource="{Binding Source={StaticResource buttonType}}"/>
+            <TextBlock Text="BorderBrush:" VerticalAlignment="Center"
+                       Grid.Column="0" Grid.Row="4"/>
+            <cc:ColorSlider x:Name="colorSlider1" VerticalAlignment="Center"
+                            Grid.Column="1" Grid.Row="4"/>
+            <TextBlock Text="Background:" 
+                       Grid.Column="0" Grid.Row="6"/>
+            <cc:ColorSlider x:Name="colorSlider2" VerticalAlignment="Center"
+                            Grid.Column="1" Grid.Row="6"/>
+            <TextBlock Text="Icon:" 
+                       Grid.Column="0" Grid.Row="8"/>
+            <cc:CornerCombobox x:Name="cbIcon" Height="20" 
+                               Grid.Column="1" Grid.Row="8"
+                               ItemsSource="{Binding Source={StaticResource Locator}, Path=Unicode.Unicodes}"
+                               DisplayMemberPath="Name"
+                               WaterText="Icon"
+                               SelectedValuePath="Icon"/>
+            <TextBlock Text="CornerRadius:" 
+                       Grid.Column="0" Grid.Row="10"/>
+            <cc:CornerSlider x:Name="cornerSlider1" Minimum="0" Maximum="5" 
+                             SmallChange="1" LargeChange="1" VerticalAlignment="Center"
+                             Grid.Column="1" Grid.Row="10"/>
+        </Grid>
+    </Grid>
+</Window>
