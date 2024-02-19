@@ -17,29 +17,26 @@ namespace WPFTemplate
 {
     public class CornerMenuItem : MenuItem
     {
-        static CornerMenuItem()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerMenuItem), new FrameworkPropertyMetadata(typeof(CornerMenuItem)));
-        }
+        public static new readonly DependencyProperty IconProperty;
+
+        public static readonly DependencyProperty CornerRadiusProperty;
 
         public new string Icon
         {
             get { return (string)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
-        public static new readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(string), typeof(CornerMenuItem), new PropertyMetadata(null));
-
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerMenuItem), new PropertyMetadata(new CornerRadius(0)));
+        static CornerMenuItem()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerMenuItem), new FrameworkPropertyMetadata(typeof(CornerMenuItem)));
+            IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerMenuItem), new PropertyMetadata(null));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerMenuItem), new PropertyMetadata(new CornerRadius(0)));
+        }
     }
 }

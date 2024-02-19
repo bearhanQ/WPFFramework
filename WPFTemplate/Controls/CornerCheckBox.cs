@@ -19,9 +19,26 @@ namespace WPFTemplate
 {
     public class CornerCheckBox : CheckBox
     {
+        public static readonly DependencyProperty CornerRadiusProperty;
+
+        public static readonly DependencyProperty CheckBoxTypeProperty;
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+        public CheckBoxType CheckBoxType
+        {
+            get { return (CheckBoxType)GetValue(CheckBoxTypeProperty); }
+            set { SetValue(CheckBoxTypeProperty, value); }
+        }
+
         static CornerCheckBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCheckBox), new FrameworkPropertyMetadata(typeof(CornerCheckBox)));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCheckBox));
+            CheckBoxTypeProperty = DependencyProperty.Register("CheckBoxType", typeof(CheckBoxType), typeof(CornerCheckBox), new PropertyMetadata(CheckBoxType.Normal));
             //EventManager.RegisterClassHandler(typeof(CornerCheckBox), CheckBox.CheckedEvent, new RoutedEventHandler(OnCheckedEventHandler));
             //EventManager.RegisterClassHandler(typeof(CornerCheckBox), CheckBox.UncheckedEvent, new RoutedEventHandler(OnUnCheckedEventHandler));
         }
@@ -92,25 +109,5 @@ namespace WPFTemplate
             }
         }
 
-        public CornerRadius CornerRadius
-        {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCheckBox));
-
-
-        public CheckBoxType CheckBoxType
-        {
-            get { return (CheckBoxType)GetValue(CheckBoxTypeProperty); }
-            set { SetValue(CheckBoxTypeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CheckBoxType.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CheckBoxTypeProperty =
-            DependencyProperty.Register("CheckBoxType", typeof(CheckBoxType), typeof(CornerCheckBox), new PropertyMetadata(CheckBoxType.Normal));
     }
 }

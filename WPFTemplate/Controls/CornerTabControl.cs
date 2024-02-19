@@ -19,9 +19,37 @@ namespace WPFTemplate
 {
     public class CornerTabControl : TabControl
     {
+        public static readonly DependencyProperty TabControlTypeProperty;
+
+        public static readonly DependencyProperty SelectedColorProperty;
+
+        public static readonly DependencyProperty ItemRemovableProperty;
+
+        public TabControlType TabControlType
+        {
+            get { return (TabControlType)GetValue(TabControlTypeProperty); }
+            set { SetValue(TabControlTypeProperty, value); }
+        }
+        public Brush SelectedColor
+        {
+            get { return (Brush)GetValue(SelectedColorProperty); }
+            set { SetValue(SelectedColorProperty, value); }
+        }
+        public bool ItemRemovable
+        {
+            get { return (bool)GetValue(ItemRemovableProperty); }
+            set { SetValue(ItemRemovableProperty, value); }
+        }
+
         static CornerTabControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerTabControl), new FrameworkPropertyMetadata(typeof(CornerTabControl)));
+
+            TabControlTypeProperty = DependencyProperty.Register("TabControlType", typeof(TabControlType), typeof(CornerTabControl), new PropertyMetadata(TabControlType.Normal));
+            SelectedColorProperty = DependencyProperty.Register("SelectedColor", typeof(Brush), typeof(CornerTabControl)
+                , new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF206BC4"))));
+            ItemRemovableProperty = DependencyProperty.Register("ItemRemovable", typeof(bool), typeof(CornerTabControl), new PropertyMetadata(false));
+
             EventManager.RegisterClassHandler(typeof(CornerTabControl), TabItem.PreviewMouseDownEvent, new RoutedEventHandler(DeleteAndDragEvent));
             EventManager.RegisterClassHandler(typeof(CornerTabControl), TabItem.DropEvent, new DragEventHandler(DropItem));
             EventManager.RegisterClassHandler(typeof(CornerTabControl),TabItem.DragEnterEvent, new DragEventHandler(ItemDragEnter));
@@ -47,8 +75,6 @@ namespace WPFTemplate
                 DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.Move);
             }
         }
-
-
         private static void DropItem(object sender, DragEventArgs e)
         {
             TabItem targetTabItem = e.Source as TabItem;
@@ -76,7 +102,6 @@ namespace WPFTemplate
                 }
             }
         }
-
         private static void ItemDragEnter(object sender, DragEventArgs e)
         {
             var targetitem = e.Source as TabItem;
@@ -101,7 +126,6 @@ namespace WPFTemplate
                 }
             }
         }
-
         private static void ItemDragLeave(object sender, DragEventArgs e)
         {
             var targetitem = e.Source as TabItem;
@@ -111,38 +135,5 @@ namespace WPFTemplate
                 MyVisualTreeHelper.SetTemplateItemVisibility(targetitem, "righthighlightborder", Visibility.Collapsed);
             }
         }
-
-
-        public TabControlType TabControlType
-        {
-            get { return (TabControlType)GetValue(TabControlTypeProperty); }
-            set { SetValue(TabControlTypeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for TabControlType.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TabControlTypeProperty =
-            DependencyProperty.Register("TabControlType", typeof(TabControlType), typeof(CornerTabControl), new PropertyMetadata(TabControlType.Normal));
-
-        public Brush SelectedColor
-        {
-            get { return (Brush)GetValue(SelectedColorProperty); }
-            set { SetValue(SelectedColorProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for SelectedColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedColorProperty =
-            DependencyProperty.Register("SelectedColor", typeof(Brush), typeof(CornerTabControl)
-                , new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF206BC4"))));
-
-
-        public bool ItemRemovable
-        {
-            get { return (bool)GetValue(ItemRemovableProperty); }
-            set { SetValue(ItemRemovableProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ItemRemovable.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ItemRemovableProperty =
-            DependencyProperty.Register("ItemRemovable", typeof(bool), typeof(CornerTabControl), new PropertyMetadata(false));
     }
 }

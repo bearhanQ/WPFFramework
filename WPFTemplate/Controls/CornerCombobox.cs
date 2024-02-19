@@ -20,10 +20,13 @@ namespace WPFTemplate
 {
     public class CornerCombobox : ComboBox
     {
-        static CornerCombobox()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCombobox), new FrameworkPropertyMetadata(typeof(CornerCombobox)));
-        }
+        public static readonly DependencyProperty WaterTextProperty;
+
+        public static readonly DependencyProperty SearchableProperty;
+
+        public static readonly DependencyProperty CornerRadiusProperty;
+
+        public static readonly DependencyProperty ShowWatermarkProperty;
 
         public ComboBoxViewFilterHelper FilterCommand
         {
@@ -39,47 +42,34 @@ namespace WPFTemplate
                 }
             }
         }
-
         public string WaterText
         {
             get { return (string)GetValue(WaterTextProperty); }
             set { SetValue(WaterTextProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for WaterText.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty WaterTextProperty =
-            DependencyProperty.Register("WaterText", typeof(string), typeof(CornerCombobox), new PropertyMetadata("Water"));
-
-
         public bool Searchable
         {
             get { return (bool)GetValue(SearchableProperty); }
             set { SetValue(SearchableProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for Searchable.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SearchableProperty =
-            DependencyProperty.Register("Searchable", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
-
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
-
-
         public bool ShowWatermark
         {
             get { return (bool)GetValue(ShowWatermarkProperty); }
             set { SetValue(ShowWatermarkProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ShowWatermark.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShowWatermarkProperty =
-            DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(true));
+        static CornerCombobox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCombobox), new FrameworkPropertyMetadata(typeof(CornerCombobox)));
+            WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerCombobox), new PropertyMetadata("Water"));
+            SearchableProperty = DependencyProperty.Register("Searchable", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
+            ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(true));
+        }
     }
 }

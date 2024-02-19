@@ -117,7 +117,8 @@
                 </Grid.RowDefinitions>
                 <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
                 <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
-                <Border x:Name="TrackBackground" Background="{StaticResource SliderThumb.Track.Background}" BorderBrush="{StaticResource SliderThumb.Track.Border}" BorderThickness="1" Height="{TemplateBinding TrackThickness}" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
+                <Border x:Name="TrackBackground" Background="{TemplateBinding TrackBackground}" BorderBrush="{TemplateBinding TrackBackground}" BorderThickness="1" 
+                        Height="{TemplateBinding TrackThickness}" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
                     <Canvas Margin="-6,-1">
                         <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="{TemplateBinding TrackThickness}" Visibility="Hidden"/>
                     </Canvas>
@@ -226,7 +227,7 @@
                 </Grid.ColumnDefinitions>
                 <TickBar x:Name="TopTick" Grid.Column="0" Fill="{TemplateBinding Foreground}" Margin="0,0,2,0" Placement="Left" Visibility="Collapsed" Width="4"/>
                 <TickBar x:Name="BottomTick" Grid.Column="2" Fill="{TemplateBinding Foreground}" Margin="2,0,0,0" Placement="Right" Visibility="Collapsed" Width="4"/>
-                <Border x:Name="TrackBackground" Background="{StaticResource SliderThumb.Track.Background}" BorderBrush="{StaticResource SliderThumb.Track.Border}" BorderThickness="1" Grid.Column="1" HorizontalAlignment="center" Margin="0,5" Width="{TemplateBinding TrackThickness}">
+                <Border x:Name="TrackBackground" Background="{TemplateBinding TrackBackground}" BorderBrush="{TemplateBinding TrackBackground}" BorderThickness="1" Grid.Column="1" HorizontalAlignment="center" Margin="0,5" Width="{TemplateBinding TrackThickness}">
                     <Canvas Margin="-1,-6">
                         <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Visibility="Hidden" Width="{TemplateBinding TrackThickness}"/>
                     </Canvas>

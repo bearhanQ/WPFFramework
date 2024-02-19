@@ -85,6 +85,9 @@
     <Compile Include="Controls\CornerTabControl.cs" />
     <Compile Include="Controls\CornerTextBox.cs" />
     <Compile Include="Controls\CornerTreeView.cs" />
+    <Compile Include="Controls\Extend\ColorSlider.xaml.cs">
+      <DependentUpon>ColorSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
     <Compile Include="Controls\Extend\CornerPagination.cs" />
@@ -102,6 +105,10 @@
     </Compile>
     <Compile Include="Test\Models.cs" />
     <Page Include="Controls\CornerPasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Extend\ColorSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

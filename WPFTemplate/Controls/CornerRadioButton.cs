@@ -18,30 +18,26 @@ namespace WPFTemplate
 {
     public class CornerRadioButton : RadioButton
     {
-        static CornerRadioButton()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerRadioButton), new FrameworkPropertyMetadata(typeof(CornerRadioButton)));
-        }
+        public static readonly DependencyProperty RadioButtonTypeProperty;
+
+        public static readonly DependencyProperty CornerRadiusProperty;
 
         public RadioButtonType RadioButtonType
         {
             get { return (RadioButtonType)GetValue(RadioButtonTypeProperty); }
             set { SetValue(RadioButtonTypeProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for RadioButtonType.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RadioButtonTypeProperty =
-            DependencyProperty.Register("RadioButtonType", typeof(RadioButtonType), typeof(CornerRadioButton), new PropertyMetadata(RadioButtonType.Normal));
-
-
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerRadioButton));
+        
+        static CornerRadioButton()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerRadioButton), new FrameworkPropertyMetadata(typeof(CornerRadioButton)));
+            RadioButtonTypeProperty = DependencyProperty.Register("RadioButtonType", typeof(RadioButtonType), typeof(CornerRadioButton), new PropertyMetadata(RadioButtonType.Normal));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerRadioButton));
+        }
     }
 }

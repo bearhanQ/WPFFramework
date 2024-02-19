@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:WpfBootstrap"
         mc:Ignorable="d"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1200">
     <Window.Resources>
+        <CornerRadius x:Key="cornerRadius" TopLeft="3" TopRight="3" BottomRight="3" BottomLeft="3"/>
         <Style x:Key="MenuItemButtonStyle1" TargetType="{x:Type cc:CornerButton}" BasedOn="{StaticResource {x:Type cc:CornerButton}}">
             <Setter Property="Width" Value="150"/>
             <Setter Property="ButtonStyle" Value="Normal"/>
@@ -20,45 +21,103 @@
             <Setter Property="Width" Value="150"/>
         </Style>
     </Window.Resources>
-    <Grid>
-        <Menu BorderThickness="0,1,0,1" BorderBrush="Gray">
-            <cc:CornerMenuItem Header="Home" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"/>
+    <Grid Background="#FFF4F6FA">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0,1,0,0" BorderBrush="Gray" Grid.ColumnSpan="3" Background="White"/>
+        <Border BorderThickness="0,1,0,1" BorderBrush="Gray" Grid.Row="1" Grid.ColumnSpan="3" Background="White"/>
 
-            <cc:CornerMenuItem Header="Interface" VerticalAlignment="Center" Height="40" Icon="&#xe690;">
-                <cc:CornerMenuItem CornerRadius="3">
-                    <cc:CornerMenuItem.Header>
-                        <WrapPanel Width="310">
-                            <cc:CornerButton Content="Empty page" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            <cc:CornerButton Content="Empty page" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
-                        </WrapPanel>
-                    </cc:CornerMenuItem.Header>
+        <Grid Grid.Column="1" Margin="0,1">
+            <cc:CornerButton ButtonStyle="Link" Content="Han" Icon="&#xe7df;" LinkShowUnderLine="False"
+                             VerticalAlignment="Center" HorizontalAlignment="Left" >
+            </cc:CornerButton>
+            <cc:CornerButton ButtonStyle="OutLine" Content="Sponsor" Icon="&#xe60a;"
+                             Height="30" Width="100" Margin="120,0"
+                             CornerRadius="{StaticResource cornerRadius}"
+                             VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <cc:CornerButton ButtonStyle="OutLine" Content="Source code" Icon="&#xe6ea;"
+                             Height="30" Width="100" Margin="10,0"
+                             CornerRadius="{StaticResource cornerRadius}"
+                             VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        </Grid>
+        
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Menu Background="White">
+                <cc:CornerMenuItem Header="Home" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"/>
+
+                <cc:CornerMenuItem Header="Interface" VerticalAlignment="Center" Height="40" Icon="&#xe690;">
+                    <cc:CornerMenuItem CornerRadius="3">
+                        <cc:CornerMenuItem.Header>
+                            <WrapPanel Width="310">
+                                <cc:CornerButton Content="Button" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="Empty page" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
+                            </WrapPanel>
+                        </cc:CornerMenuItem.Header>
+                    </cc:CornerMenuItem>
                 </cc:CornerMenuItem>
-            </cc:CornerMenuItem>
 
-            <cc:CornerMenuItem Header="From elements" VerticalAlignment="Center" Height="40" Icon="&#xe66f;"/>
+                <cc:CornerMenuItem Header="From elements" VerticalAlignment="Center" Height="40" Icon="&#xe66f;"/>
 
-            <cc:CornerMenuItem Header="Extra" VerticalAlignment="Center" Height="40" Icon="&#xe7df;" CornerRadius="3">
-                <cc:CornerMenuItem Header="Activity" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Gallery" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Invoice" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Search results" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Pricing cards" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Users" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="License" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Music" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Widgets" Style="{StaticResource MenuItemStyle1}"/>
-                <cc:CornerMenuItem Header="Wizard" Style="{StaticResource MenuItemStyle1}">
-                    <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
+                <cc:CornerMenuItem Header="Extra" VerticalAlignment="Center" Height="40" Icon="&#xe7df;" CornerRadius="3">
+                    <cc:CornerMenuItem Header="Activity" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Gallery" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Invoice" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Search results" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Pricing cards" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Users" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="License" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Music" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Widgets" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="Wizard" Style="{StaticResource MenuItemStyle1}">
+                        <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
+                        <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
+                        <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
+                    </cc:CornerMenuItem>
                 </cc:CornerMenuItem>
-            </cc:CornerMenuItem>
-        </Menu>
+
+                <cc:CornerMenuItem Header="Layout" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"/>
+
+                <cc:CornerMenuItem Header="Documentation" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"/>
+            </Menu>
+            <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150" CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
+        </Grid>
+
+        <Canvas Grid.Column="1" Grid.Row="2" Background="#FFF4F6FA">
+            <StackPanel Canvas.Top="10">
+                <TextBlock Text="OVERVIEW" FontSize="9" Margin="0,3"/>
+                <TextBlock Text="Dashboard" FontFamily="Bahnschrift"/>
+            </StackPanel>
+            <cc:CornerButton Content="New View" Height="30" Width="100" ButtonStyle="OutLine" 
+                             CornerRadius="{StaticResource cornerRadius}" Canvas.Top="15" Canvas.Right="170"/>
+            <cc:CornerButton Content="Create new report" Icon="&#xe6e0;" Height="30" Width="150" 
+                             CornerRadius="{StaticResource cornerRadius}" Background="#FF1F68BF" Foreground="White"
+                             Canvas.Top="15" Canvas.Right="10"/>
+        </Canvas>
+        
     </Grid>
 </Window>

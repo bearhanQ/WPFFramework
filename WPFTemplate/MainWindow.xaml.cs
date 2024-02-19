@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace WPFTemplate
 {
@@ -13,13 +14,6 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
-
-            for (int i = 1; i <= 500; i++)
-            {
-                Human.Childs.Rows.Add(i.ToString());
-            }
-            pg1.ItemSource = Human.Childs;
-            pg1.TargetDataGrid = gd1;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,7 +44,6 @@ namespace WPFTemplate
             Human.Childs.Rows.Add("23");
             Human.Childs.Rows.Add("24");
 
-            pg1.ItemSource = Human.Childs;
         }
     }
 

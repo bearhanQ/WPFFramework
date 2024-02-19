@@ -17,10 +17,7 @@ namespace WPFTemplate
 {
     public class CornerContextMenu : ContextMenu
     {
-        static CornerContextMenu()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerContextMenu), new FrameworkPropertyMetadata(typeof(CornerContextMenu)));
-        }
+        public static readonly DependencyProperty CornerRadiusProperty;
 
         public CornerRadius CornerRadius
         {
@@ -28,8 +25,10 @@ namespace WPFTemplate
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerContextMenu), new PropertyMetadata(new CornerRadius(0)));
+        static CornerContextMenu()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerContextMenu), new FrameworkPropertyMetadata(typeof(CornerContextMenu)));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerContextMenu), new PropertyMetadata(new CornerRadius(0)));
+        }
     }
 }

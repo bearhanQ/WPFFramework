@@ -18,9 +18,20 @@ namespace WPFTemplate
 {
     public class CornerTreeView : TreeView
     {
+        public static readonly DependencyProperty TreeViewTypeProperty;
+
+        public TreeViewType TreeViewType
+        {
+            get { return (TreeViewType)GetValue(TreeViewTypeProperty); }
+            set { SetValue(TreeViewTypeProperty, value); }
+        }
+
         static CornerTreeView()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerTreeView), new FrameworkPropertyMetadata(typeof(CornerTreeView)));
+
+            TreeViewTypeProperty = DependencyProperty.Register("TreeViewType", typeof(TreeViewType), typeof(CornerTreeView), new PropertyMetadata(TreeViewType.Original));
+
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.CheckedEvent, new RoutedEventHandler(ItemCheckBoxChecked));
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.UncheckedEvent, new RoutedEventHandler(ItemCheckBoxUnchecked));
         }
@@ -34,7 +45,6 @@ namespace WPFTemplate
         {
             ApplyItemContainerStyle(this);
         }
-
         private void ApplyItemContainerStyle(ItemsControl itemsControl)
         {
             foreach (var item in itemsControl.Items)
@@ -47,7 +57,6 @@ namespace WPFTemplate
                 }
             }
         }
-
         private static void ItemCheckBoxChecked(object sender, RoutedEventArgs e)
         {
             var element = e.OriginalSource as CheckBox;
@@ -69,7 +78,6 @@ namespace WPFTemplate
                 }
             }
         }
-
         private static void ItemCheckBoxUnchecked(object sender, RoutedEventArgs e)
         {
             var element = e.OriginalSource as CheckBox;
@@ -92,14 +100,5 @@ namespace WPFTemplate
             }
         }
 
-        public TreeViewType TreeViewType
-        {
-            get { return (TreeViewType)GetValue(TreeViewTypeProperty); }
-            set { SetValue(TreeViewTypeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for TreeViewType.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TreeViewTypeProperty =
-            DependencyProperty.Register("TreeViewType", typeof(TreeViewType), typeof(CornerTreeView), new PropertyMetadata(TreeViewType.Original));
     }
 }

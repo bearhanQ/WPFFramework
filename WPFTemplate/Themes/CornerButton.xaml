@@ -38,9 +38,9 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">
                             <Grid>
-                                <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Margin="-2" Opacity="0" 
+                                <Border x:Name="PART_ClickOutlineBorder" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Margin="-4" Opacity="0" 
                                         CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding BorderBrush}"/>
-                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Margin="2"
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
                                         CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" Panel.ZIndex="1">
                                     <Grid>
                                         <Border x:Name="PART_ShadowBorder" Background="{StaticResource ResourceKey = Button.Hover.ShadowBorderColor}" Opacity="0" CornerRadius="{TemplateBinding CornerRadius}"/>
@@ -131,21 +131,25 @@
                                                               Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 </StackPanel>
-                                <Border x:Name="border" BorderBrush="{TemplateBinding Foreground}" BorderThickness="0,0,0,2" 
+                                <Border x:Name="BorderUnderline" BorderBrush="{TemplateBinding Foreground}" BorderThickness="0,0,0,2" 
                                         Width="{Binding ElementName=stackPanel, Path=ActualWidth}" Visibility="Hidden"/>
                             </StackPanel>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsDefaulted" Value="true">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                    <Setter Property="BorderBrush" TargetName="BorderUnderline" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="false">
-                                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                    <Setter Property="Background" TargetName="BorderUnderline" Value="{StaticResource Button.Disabled.Background}"/>
+                                    <Setter Property="BorderBrush" TargetName="BorderUnderline" Value="{StaticResource Button.Disabled.Border}"/>
                                     <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
                                 </Trigger>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Visibility" Value="Visible" TargetName="border"/>
-                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="LinkShowUnderLine" Value="True"/>
+                                        <Condition Property="IsMouseOver" Value="True"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Visible" TargetName="BorderUnderline"/>
+                                </MultiTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
