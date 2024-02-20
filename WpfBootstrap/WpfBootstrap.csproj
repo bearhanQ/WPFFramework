@@ -75,14 +75,29 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\UnicodeViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\ConerComboBoxView.xaml.cs">
-      <DependentUpon>ConerComboBoxView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\CornerButtonView.xaml.cs">
       <DependentUpon>CornerButtonView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CornerCheckBoxView.xaml.cs">
       <DependentUpon>CornerCheckBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerComboBoxView.xaml.cs">
+      <DependentUpon>CornerComboBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerContextMenuView.xaml.cs">
+      <DependentUpon>CornerContextMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerPasswordBoxView.xaml.cs">
+      <DependentUpon>CornerPasswordBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerProgressBarView.xaml.cs">
+      <DependentUpon>CornerProgressBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerRadioButtonView.xaml.cs">
+      <DependentUpon>CornerRadioButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerTabControlView.xaml.cs">
+      <DependentUpon>CornerTabControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UnicodeView.xaml.cs">
       <DependentUpon>UnicodeView.xaml</DependentUpon>
@@ -99,15 +114,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ConerComboBoxView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\CornerButtonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerCheckBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerComboBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerContextMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerPasswordBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerProgressBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerRadioButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerTabControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

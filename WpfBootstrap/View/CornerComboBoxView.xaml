@@ -1,0 +1,49 @@
+﻿<Window x:Class="WpfBootstrap.View.CornerComboBoxView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBootstrap.View"
+        xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+        mc:Ignorable="d"
+        Title="CornerComboBoxView" Height="450" Width="800">
+
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <cc:CornerCombobox Grid.ColumnSpan="2" 
+                               WaterText="{Binding ElementName=tbWater, Path=Text}"
+                               Searchable="{Binding ElementName=cbSearchable, Path=IsChecked}"
+                               CornerRadius="{Binding ElementName=slider1, Path=Value}"
+                               ShowWatermark="{Binding ElementName=cbShowWatermark, Path=IsChecked}">
+                <ComboBoxItem Content="First"/>
+                <ComboBoxItem Content="Second"/>
+                <ComboBoxItem Content="Third"/>
+                <ComboBoxItem Content="Fourth"/>
+            </cc:CornerCombobox>
+            <TextBlock Text="Watermark:" Grid.Row="2"/>
+            <cc:CornerTextBox x:Name="tbWater" Grid.Row="2" Grid.Column="1" Text="Hello World"/>
+            <TextBlock Text="Searchable:" Grid.Row="4"/>
+            <cc:CornerCheckBox x:Name="cbSearchable" CheckBoxType="Switch" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" CornerRadius="5"/>
+            <TextBlock Text="CornerRadius:" Grid.Row="6"/>
+            <cc:CornerSlider x:Name="slider1" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="10"/>
+            <TextBlock Text="ShowWatermark:" Grid.Row="8"/>
+            <cc:CornerCheckBox x:Name="cbShowWatermark" CheckBoxType="Switch" IsChecked="True" CornerRadius="5"
+                               Grid.Row="8" Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>

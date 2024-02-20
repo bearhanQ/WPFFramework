@@ -30,7 +30,7 @@ namespace WpfBootstrap.ViewModel
 
         public void ItemButtonExecute(object parameter)
         {
-            CornerCheckBoxView view = new CornerCheckBoxView();
+            CornerTabControlView view = new CornerTabControlView();
             view.Show();
         }
     }

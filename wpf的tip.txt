@@ -52,4 +52,6 @@ DependencyProperty可以创建可读写的依赖属性；DependencyPropertyKey�
 
 VisualStateManager.GoToState(myControl, "Selected", true);
 
-属性未指向路径“(0).(1)”中的 DependencyObject。”-> 绑定的属性必有有原值，比如绑定到border的background，那border之前要先设置一个background
+属性未指向路径“(0).(1)”中的 DependencyObject。”-> 绑定的属性必有有原值，比如绑定到border的background，那border之前要先设置一个background；
+
+ActualWidth是在控件布局完成之后才会被计算出来的；

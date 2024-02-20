@@ -1,0 +1,66 @@
+﻿<Window x:Class="WpfBootstrap.View.CornerProgressBarView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBootstrap.View"
+        xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+        mc:Ignorable="d"
+        Title="CornerProgressBarView" Height="450" Width="800">
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <cc:CornerProgressBar Grid.ColumnSpan="2" Minimum="0" Maximum="100"
+                                  Foreground="{Binding ElementName=colorSlider1, Path=SelectedColor}"
+                                  CornerRadius="{Binding ElementName=cornerRadiusSlider1, Path=Value}"
+                                  ShowPercentage="{Binding ElementName=cbShowPercentage, Path=IsChecked}"
+                                  IsIndeterminate="{Binding ElementName=cbIsIndeterminate, Path=IsChecked}"
+                                  ProgressBarType="{Binding ElementName=cbType, Path=Text}"
+                                  Value="{Binding ElementName=valueSlider1, Path=Value}">
+                <cc:CornerProgressBar.Style>
+                    <Style TargetType="{x:Type cc:CornerProgressBar}" BasedOn="{StaticResource {x:Type cc:CornerProgressBar}}">
+                        <Style.Triggers>
+                            <Trigger Property="ProgressBarType" Value="Cycle">
+                                <Setter Property="Height" Value="50"/>
+                                <Setter Property="Width" Value="50"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </cc:CornerProgressBar.Style>
+            </cc:CornerProgressBar>
+            <TextBlock Text="Foreground:" Grid.Row="2"/>
+            <cc:ColorSlider x:Name="colorSlider1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBlock Text="CornerRadius:" Grid.Row="4"/>
+            <cc:CornerSlider x:Name="cornerRadiusSlider1" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="10"/>
+            <TextBlock Text="ShowPercentage:" Grid.Row="6"/>
+            <cc:CornerCheckBox x:Name="cbShowPercentage" Grid.Row="6" Grid.Column="1" CheckBoxType="Switch"/>
+            <TextBlock Text="IsIndeterminate:" Grid.Row="8"/>
+            <cc:CornerCheckBox x:Name="cbIsIndeterminate" Grid.Row="8" Grid.Column="1" CheckBoxType="Switch"/>
+            <TextBlock Text="Type:" Grid.Row="10"/>
+            <cc:CornerCombobox x:Name="cbType" Grid.Row="10" Grid.Column="1" WaterText="Type" SelectedIndex="0">
+                <ComboBoxItem Content="Normal"/>
+                <ComboBoxItem Content="Cycle"/>
+            </cc:CornerCombobox>
+            <TextBlock Text="value:" Grid.Row="12"/>
+            <cc:CornerSlider x:Name="valueSlider1" Grid.Row="12" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="100" SmallChange="1"/>
+        </Grid>
+    </Grid>
+</Window>

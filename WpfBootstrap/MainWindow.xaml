@@ -74,11 +74,11 @@
                                 <cc:CornerButton Content="CornerButton" Style="{StaticResource MenuItemButtonStyle1}"/>
                                 <cc:CornerButton Content="CornerCheckBox" Style="{StaticResource MenuItemButtonStyle1}"/>
                                 <cc:CornerButton Content="CornerComboBox" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="Empty page" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="Navigation" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="Accordion" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="Charts" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerContextMenu" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerPasswordBox" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerProgressBar" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerRadioButton" Style="{StaticResource MenuItemButtonStyle1}"/>
+                                <cc:CornerButton Content="CornerTabControl" Style="{StaticResource MenuItemButtonStyle1}"/>
                             </WrapPanel>
                         </cc:CornerMenuItem.Header>
                     </cc:CornerMenuItem>

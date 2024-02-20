@@ -117,8 +117,8 @@ namespace WPFTemplate
                     double value = this.Value;
                     double num = (IsIndeterminate || maximum <= minimum) ? 1.0 : ((value - minimum) / (maximum - minimum));
 
-                    var indicatorWidth = num * this.Width;
-                    var indicatorHegith = this.Height;
+                    var indicatorWidth = num * this.ActualWidth;
+                    var indicatorHegith = this.ActualHeight;
 
                     if (_track != null)
                     {
@@ -148,6 +148,10 @@ namespace WPFTemplate
                 }
             }
         }
+        private void OnTrackSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SetPartTrackValue();
+        }
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
@@ -161,6 +165,11 @@ namespace WPFTemplate
         protected override void OnMinimumChanged(double oldMinimum, double newMinimum)
         {
             base.OnMinimumChanged(oldMinimum, newMinimum);
+            SetPartTrackValue();
+        }
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
             SetPartTrackValue();
         }
         public override void OnApplyTemplate()

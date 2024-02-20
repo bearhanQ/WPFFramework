@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WpfBootstrap.View
 {
     /// <summary>
-    /// ConerComboBoxView.xaml 的交互逻辑
+    /// CornerPasswordBoxView.xaml 的交互逻辑
     /// </summary>
-    public partial class ConerComboBoxView : Window
+    public partial class CornerPasswordBoxView : Window
     {
-        public ConerComboBoxView()
+        public CornerPasswordBoxView()
         {
             InitializeComponent();
         }

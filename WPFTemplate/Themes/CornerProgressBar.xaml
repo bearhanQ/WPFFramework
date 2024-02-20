@@ -73,7 +73,7 @@
                                 <Ellipse Stroke="{StaticResource ProgressBar.Background}" StrokeThickness="10"
                                          Height="{TemplateBinding Width}" Width="{TemplateBinding Width}"/>
                                 <ed:Arc x:Name="PART_Track" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}"
-                                        StartAngle="0" EndAngle="0" Fill="{TemplateBinding Background}" Panel.ZIndex="1"
+                                        StartAngle="0" EndAngle="0" Fill="{TemplateBinding Foreground}" Panel.ZIndex="1"
                                         ArcThickness="10"
                                         Stretch="None" StrokeEndLineCap="Round" StrokeStartLineCap="Round" ArcThicknessUnit="Pixel" RenderTransformOrigin="0.5,0.5">
                                     <ed:Arc.RenderTransform>

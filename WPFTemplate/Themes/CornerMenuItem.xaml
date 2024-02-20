@@ -229,8 +229,8 @@
                         <RotateTransform Angle="-90"/>
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-2" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" 
-                       Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-3" 
+                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" 
+                       Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                        PlacementTarget="{Binding ElementName=templateRoot}">
                     <Border x:Name="SubMenuBorder" Background="{StaticResource Menu.Static.Background}" BorderThickness="1" BorderBrush="{StaticResource Menu.Static.Background}" Padding="2" CornerRadius="{TemplateBinding CornerRadius}" Margin="13,13,13,13">
                         <Border.Effect>
