@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using WpfBootstrap.Command;
@@ -9,28 +10,24 @@ namespace WpfBootstrap.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public ICommand ButtonCommand => new CommandBase(ItemButtonCanExecute, ItemButtonExecute);
+        public ICommand ItemCommand => new CommandBase(ItemCanExecute, ItemExecute);
 
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+
         }
 
-        public bool ItemButtonCanExecute(object parameter)
+        public bool ItemCanExecute(object parameter)
         {
             return true;
         }
 
-        public void ItemButtonExecute(object parameter)
+        public void ItemExecute(object parameter)
         {
-            CornerTabControlView view = new CornerTabControlView();
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            Type windowType = assembly.GetType("WpfBootstrap.View." + parameter.ToString() + "View");
+            object viewInstance = Activator.CreateInstance(windowType);
+            var view = viewInstance as Window;
             view.Show();
         }
     }

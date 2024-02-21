@@ -22,9 +22,55 @@ namespace WPFTemplate
     //[TemplatePart(Name = "PART_NextSelectedContentHost", Type = typeof(ContentPresenter))]
     public class Carousel : ItemsControl
     {
+        public static readonly DependencyProperty SelectedIndexProperty;
+
+        public static readonly DependencyProperty IsAutoSwitchProperty;
+
+        public static readonly DependencyProperty IntervalProperty;
+
+        public static readonly DependencyProperty ShowBottomPageProperty;
+
+        private bool PauseOnMouseEnter = true;
+
+        internal FrameworkElement ItemsPresenter => GetTemplateChild("itemsPresenter") as FrameworkElement;
+
+        public int SelectedIndex
+        {
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
+        }
+
+        public bool IsAutoSwitch
+        {
+            get { return (bool)GetValue(IsAutoSwitchProperty); }
+            set { SetValue(IsAutoSwitchProperty, value); }
+        }
+
+        [TypeConverter(typeof(TimeSpanConverter))]
+        public TimeSpan Interval
+        {
+            get { return (TimeSpan)GetValue(IntervalProperty); }
+            set { SetValue(IntervalProperty, value); }
+        }
+
+        public bool ShowBottomPage
+        {
+            get { return (bool)GetValue(ShowBottomPageProperty); }
+            set { SetValue(ShowBottomPageProperty, value); }
+        }
+
         static Carousel()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Carousel), new FrameworkPropertyMetadata(typeof(Carousel)));
+            SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Carousel),
+                new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                new PropertyChangedCallback(OnIndexChanged), null, false, UpdateSourceTrigger.PropertyChanged));
+            IsAutoSwitchProperty = DependencyProperty.Register("IsAutoSwitch", typeof(bool), typeof(Carousel),
+                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(OnIsAutoSwitchChanged), null, false, UpdateSourceTrigger.PropertyChanged));
+            IntervalProperty = DependencyProperty.Register("Interval", typeof(TimeSpan), typeof(Carousel), new PropertyMetadata(new TimeSpan(0, 0, 1)));
+            ShowBottomPageProperty = DependencyProperty.Register("ShowBottomPage", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
+
             EventManager.RegisterClassHandler(typeof(Carousel), UIElement.MouseEnterEvent, new RoutedEventHandler(MouseEnterHandler));
             EventManager.RegisterClassHandler(typeof(Carousel), UIElement.MouseLeaveEvent, new RoutedEventHandler(MouseLeaveHandler));
         }
@@ -47,74 +93,6 @@ namespace WPFTemplate
             }
         }
 
-        private bool PauseOnMouseEnter = true;
-
-        internal FrameworkElement ItemsPresenter => GetTemplateChild("itemsPresenter") as FrameworkElement;
-        
-        public int SelectedIndex
-        {
-            get { return (int)GetValue(SelectedIndexProperty); }
-            set { SetValue(SelectedIndexProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for SelectedIndex.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedIndexProperty =
-            DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Carousel),
-                new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                    new PropertyChangedCallback(OnIndexChanged), null, false, UpdateSourceTrigger.PropertyChanged));
-
-        public bool IsAutoSwitch
-        {
-            get { return (bool)GetValue(IsAutoSwitchProperty); }
-            set { SetValue(IsAutoSwitchProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for IsAutoSwitch.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsAutoSwitchProperty =
-            DependencyProperty.Register("IsAutoSwitch", typeof(bool), typeof(Carousel),
-                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                    new PropertyChangedCallback(OnIsAutoSwitchChanged), null, false, UpdateSourceTrigger.PropertyChanged));
-
-        [TypeConverter(typeof(TimeSpanConverter))]
-        public TimeSpan Interval
-        {
-            get { return (TimeSpan)GetValue(IntervalProperty); }
-            set { SetValue(IntervalProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Interval.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IntervalProperty =
-            DependencyProperty.Register("Interval", typeof(TimeSpan), typeof(Carousel), new PropertyMetadata(new TimeSpan(0,0,1)));
-
-        public bool ShowBottomPage
-        {
-            get { return (bool)GetValue(ShowBottomPageProperty); }
-            set { SetValue(ShowBottomPageProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ShowBottomPage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShowBottomPageProperty =
-            DependencyProperty.Register("ShowBottomPage", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-            var gridMain = this.Template.FindName("gridMain", this) as Grid;
-            gridMain.Clip = new RectangleGeometry
-            {
-                Rect = new Rect
-                {
-                    X = 0,
-                    Y = 0,
-                    Width = this.Width,
-                    Height = this.Height,
-                }
-            };
-
-            OffSetChildItemsSize();
-            RepeatAnimation();
-        }
-
         private void OffSetChildItemsSize()
         {
             if (this.HasItems)
@@ -133,11 +111,11 @@ namespace WPFTemplate
 
         private static void OnIsAutoSwitchChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            //var carousel = sender as Carousel;
-            //if (carousel != null)
-            //{
-            //    carousel.RepeatAnimation();
-            //}
+            var carousel = sender as Carousel;
+            if (carousel != null)
+            {
+                carousel.RepeatAnimation();
+            }
         }
 
         private static void OnIndexChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
@@ -202,6 +180,25 @@ namespace WPFTemplate
                     }
                 }
             }));
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            var gridMain = this.Template.FindName("gridMain", this) as Grid;
+            gridMain.Clip = new RectangleGeometry
+            {
+                Rect = new Rect
+                {
+                    X = 0,
+                    Y = 0,
+                    Width = this.Width,
+                    Height = this.Height,
+                }
+            };
+
+            OffSetChildItemsSize();
+            RepeatAnimation();
         }
     }
 }

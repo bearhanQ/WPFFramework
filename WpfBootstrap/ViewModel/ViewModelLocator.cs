@@ -44,6 +44,8 @@ namespace WpfBootstrap.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<UnicodeViewModel>();
+            SimpleIoc.Default.Register<TreeViewViewModel>();
+            SimpleIoc.Default.Register<CornerPaginationViewModel>();
         }
 
         public MainViewModel Main
@@ -59,6 +61,22 @@ namespace WpfBootstrap.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<UnicodeViewModel>();
+            }
+        }
+
+        public TreeViewViewModel TreeView
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TreeViewViewModel>();
+            }
+        }
+
+        public CornerPaginationViewModel Pagination
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CornerPaginationViewModel>();
             }
         }
 

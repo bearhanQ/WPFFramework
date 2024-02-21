@@ -10,18 +10,11 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <Window.Resources>
         <CornerRadius x:Key="cornerRadius" TopLeft="3" TopRight="3" BottomRight="3" BottomLeft="3"/>
-        <Style x:Key="MenuItemButtonStyle1" TargetType="{x:Type cc:CornerButton}" BasedOn="{StaticResource {x:Type cc:CornerButton}}">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="ButtonStyle" Value="Normal"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ButtonCommand}"/>
-            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}"/>
-        </Style>
         <Style x:Key="MenuItemStyle1" TargetType="{x:Type cc:CornerMenuItem}" BasedOn="{StaticResource {x:Type cc:CornerMenuItem}}">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="150"/>
+            <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"/>
+            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header}"/>
         </Style>
     </Window.Resources>
     <Grid Background="#FFF4F6FA">
@@ -67,40 +60,25 @@
             <Menu Background="White">
                 <cc:CornerMenuItem Header="Home" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"/>
 
-                <cc:CornerMenuItem Header="Interface" VerticalAlignment="Center" Height="40" Icon="&#xe690;">
-                    <cc:CornerMenuItem CornerRadius="3">
-                        <cc:CornerMenuItem.Header>
-                            <WrapPanel Width="310">
-                                <cc:CornerButton Content="CornerButton" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="CornerCheckBox" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="CornerComboBox" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="CornerContextMenu" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="CornerPasswordBox" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="CornerProgressBar" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="CornerRadioButton" Style="{StaticResource MenuItemButtonStyle1}"/>
-                                <cc:CornerButton Content="CornerTabControl" Style="{StaticResource MenuItemButtonStyle1}"/>
-                            </WrapPanel>
-                        </cc:CornerMenuItem.Header>
-                    </cc:CornerMenuItem>
+                <cc:CornerMenuItem Header="Original" VerticalAlignment="Center" Height="40" Icon="&#xe690;">
+                    <cc:CornerMenuItem Header="CornerButton" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerCheckBox" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerComboBox" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerContextMenu" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerPasswordBox" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerProgressBar" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerRadioButton" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerTabControl" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerTreeView" Style="{StaticResource MenuItemStyle1}"/>
                 </cc:CornerMenuItem>
 
-                <cc:CornerMenuItem Header="From elements" VerticalAlignment="Center" Height="40" Icon="&#xe66f;"/>
-
                 <cc:CornerMenuItem Header="Extra" VerticalAlignment="Center" Height="40" Icon="&#xe7df;" CornerRadius="3">
-                    <cc:CornerMenuItem Header="Activity" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Gallery" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Invoice" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Search results" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Pricing cards" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Users" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="License" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Music" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Widgets" Style="{StaticResource MenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Wizard" Style="{StaticResource MenuItemStyle1}">
-                        <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
-                        <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
-                        <cc:CornerMenuItem Header="Child" Style="{StaticResource MenuItemStyle1}"/>
-                    </cc:CornerMenuItem>
+                    <cc:CornerMenuItem Header="Carousel" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="ColorSlider" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerMultiComboBox" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="CornerPagination" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="ReminderCalendar" Style="{StaticResource MenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="ReminderDatePicker" Style="{StaticResource MenuItemStyle1}"/>
                 </cc:CornerMenuItem>
 
                 <cc:CornerMenuItem Header="Layout" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"/>

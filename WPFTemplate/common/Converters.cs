@@ -143,20 +143,21 @@ namespace WPFTemplate
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var itemheight = System.Convert.ToDouble(values[0]);
             var bdheight = System.Convert.ToDouble(values[1]);
             var item = values[2] as TreeViewItem;
-            var offset = 0d;
+
+            double height = 0;
             if (item.HasItems)
             {
-                offset = bdheight / 2;
+                for (int i = 0; i < item.Items.Count - 1; i++)
+                {
+                    var element = item.Items[i] as FrameworkElement;
+                    height += element.ActualHeight;
+                }
             }
-            double height = (itemheight - bdheight - offset);
 
-            //if (!item.HasItems)
-            //{
-            //    return new Thickness(0);
-            //}
+            height += bdheight;
+            height -= bdheight / 2;
 
             return new Thickness
             {

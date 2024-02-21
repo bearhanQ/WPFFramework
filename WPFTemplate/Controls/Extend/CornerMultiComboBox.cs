@@ -18,14 +18,19 @@ namespace WPFTemplate
 {
     public class CornerMultiComboBox : MultiSelector
     {
-        private TextBox EditableTextBoxSite;
+        public static readonly DependencyProperty TextProperty;
 
-        private bool updatingText;
+        public static readonly DependencyProperty CornerRadiusProperty;
 
-        static CornerMultiComboBox()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerMultiComboBox), new FrameworkPropertyMetadata(typeof(CornerMultiComboBox)));
-        }
+        public static readonly DependencyProperty WaterTextProperty;
+
+        public static readonly DependencyProperty ShowWatermarkProperty;
+
+        public static readonly DependencyProperty MaxDropDownHeightProperty;
+
+        public static readonly DependencyProperty IsDropDownOpenProperty;
+
+        public static readonly DependencyProperty IsSelectedAllProperty;
 
         public string Text
         {
@@ -33,20 +38,11 @@ namespace WPFTemplate
             private set { SetValue(TextProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata(string.Empty));
-
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerMultiComboBox), new PropertyMetadata(new CornerRadius(0)));
-
 
         public string WaterText
         {
@@ -54,20 +50,11 @@ namespace WPFTemplate
             set { SetValue(WaterTextProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for WaterText.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty WaterTextProperty =
-            DependencyProperty.Register("WaterText", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata("MultiComboBox"));
-
         public bool ShowWatermark
         {
             get { return (bool)GetValue(ShowWatermarkProperty); }
             set { SetValue(ShowWatermarkProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for ShowWatermark.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShowWatermarkProperty =
-            DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerMultiComboBox), new PropertyMetadata(true));
-
 
         public double MaxDropDownHeight
         {
@@ -75,21 +62,11 @@ namespace WPFTemplate
             set { SetValue(MaxDropDownHeightProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for MaxDropDownHeight.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MaxDropDownHeightProperty =
-            DependencyProperty.Register("MaxDropDownHeight", typeof(double), typeof(CornerMultiComboBox), new PropertyMetadata(SystemParameters.PrimaryScreenHeight / 3.0));
-
         public bool IsDropDownOpen
         {
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for IsDropDownOpen.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsDropDownOpenProperty =
-            DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(CornerMultiComboBox),
-                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
-                    OnIsDropDownOpenChanged, null, false, UpdateSourceTrigger.PropertyChanged));
 
         public bool IsSelectAll
         {
@@ -97,11 +74,27 @@ namespace WPFTemplate
             set { SetValue(IsSelectedAllProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for IsSelectAll.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsSelectedAllProperty =
-            DependencyProperty.Register("IsSelectAll", typeof(bool), typeof(CornerMultiComboBox),
+        private TextBox EditableTextBoxSite;
+
+        private bool updatingText;
+
+        static CornerMultiComboBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerMultiComboBox), new FrameworkPropertyMetadata(typeof(CornerMultiComboBox)));
+            TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata(string.Empty));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerMultiComboBox), new PropertyMetadata(new CornerRadius(0)));
+            WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata("MultiComboBox"));
+            ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerMultiComboBox), new PropertyMetadata(true));
+            MaxDropDownHeightProperty = DependencyProperty.Register("MaxDropDownHeight", typeof(double), typeof(CornerMultiComboBox),
+                new PropertyMetadata(SystemParameters.PrimaryScreenHeight / 3.0));
+            IsDropDownOpenProperty = DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(CornerMultiComboBox),
+                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    OnIsDropDownOpenChanged, null, false, UpdateSourceTrigger.PropertyChanged));
+            IsSelectedAllProperty = DependencyProperty.Register("IsSelectAll", typeof(bool), typeof(CornerMultiComboBox),
                 new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     new PropertyChangedCallback(OnIsSelectAllChange), null, false, UpdateSourceTrigger.PropertyChanged));
+
+        }
 
         private static void OnIsSelectAllChange(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
@@ -129,49 +122,11 @@ namespace WPFTemplate
             }
         }
 
-        protected override bool IsItemItsOwnContainerOverride(object item)
-        {
-            return item is CornerMultiComboBoxItem;
-        }
-
-        protected override DependencyObject GetContainerForItemOverride()
-        {
-            return new CornerMultiComboBoxItem();
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-            EditableTextBoxSite = GetTemplateChild("PART_EditableTextBox") as TextBox;
-
-            var parentWindow = Window.GetWindow(this);
-            if(parentWindow != null)
-            {
-                parentWindow.PreviewMouseDown -= ParentWindow_PreviewMouseDown;
-                parentWindow.PreviewMouseDown += ParentWindow_PreviewMouseDown;
-            }
-
-            UpdateText();
-        }
-
         private void ParentWindow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (IsDropDownOpen && !base.IsMouseOver)
             {
                 Close();
-            }
-        }
-
-        protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs e)
-        {
-            base.OnIsKeyboardFocusWithinChanged(e);
-            if (IsDropDownOpen && !base.IsKeyboardFocusWithin)
-            {
-                DependencyObject dependencyObject = Keyboard.FocusedElement as DependencyObject;
-                if (dependencyObject == null || (ItemsControl.ItemsControlFromItemContainer(dependencyObject) != this))
-                {
-                    Close();
-                }
             }
         }
 
@@ -221,6 +176,44 @@ namespace WPFTemplate
             {
                 SetValue(IsDropDownOpenProperty, false);
             }
+        }
+
+        protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnIsKeyboardFocusWithinChanged(e);
+            if (IsDropDownOpen && !base.IsKeyboardFocusWithin)
+            {
+                DependencyObject dependencyObject = Keyboard.FocusedElement as DependencyObject;
+                if (dependencyObject == null || (ItemsControl.ItemsControlFromItemContainer(dependencyObject) != this))
+                {
+                    Close();
+                }
+            }
+        }
+
+        protected override bool IsItemItsOwnContainerOverride(object item)
+        {
+            return item is CornerMultiComboBoxItem;
+        }
+
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new CornerMultiComboBoxItem();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            EditableTextBoxSite = GetTemplateChild("PART_EditableTextBox") as TextBox;
+
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow != null)
+            {
+                parentWindow.PreviewMouseDown -= ParentWindow_PreviewMouseDown;
+                parentWindow.PreviewMouseDown += ParentWindow_PreviewMouseDown;
+            }
+
+            UpdateText();
         }
     }
 }

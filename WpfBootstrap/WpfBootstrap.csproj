@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -71,10 +72,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\CommandBase.cs" />
+    <Compile Include="Model\CornerPaginationModel.cs" />
+    <Compile Include="Model\TreeViewModel.cs" />
     <Compile Include="Model\UnicodeModel.cs" />
+    <Compile Include="ViewModel\CornerPaginationViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\TreeViewViewModel.cs" />
     <Compile Include="ViewModel\UnicodeViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\CarouselView.xaml.cs">
+      <DependentUpon>CarouselView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ColorSliderView.xaml.cs">
+      <DependentUpon>ColorSliderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CornerButtonView.xaml.cs">
       <DependentUpon>CornerButtonView.xaml</DependentUpon>
     </Compile>
@@ -87,6 +98,12 @@
     <Compile Include="View\CornerContextMenuView.xaml.cs">
       <DependentUpon>CornerContextMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CornerMultiComboBoxView.xaml.cs">
+      <DependentUpon>CornerMultiComboBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerPaginationView.xaml.cs">
+      <DependentUpon>CornerPaginationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CornerPasswordBoxView.xaml.cs">
       <DependentUpon>CornerPasswordBoxView.xaml</DependentUpon>
     </Compile>
@@ -98,6 +115,9 @@
     </Compile>
     <Compile Include="View\CornerTabControlView.xaml.cs">
       <DependentUpon>CornerTabControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerTreeViewView.xaml.cs">
+      <DependentUpon>CornerTreeViewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UnicodeView.xaml.cs">
       <DependentUpon>UnicodeView.xaml</DependentUpon>
@@ -114,6 +134,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CarouselView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ColorSliderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CornerButtonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +158,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CornerMultiComboBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerPaginationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CornerPasswordBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerTabControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerTreeViewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,6 +226,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ice.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\island.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Mountain.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Orange.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
