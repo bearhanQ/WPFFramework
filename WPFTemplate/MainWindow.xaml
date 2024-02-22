@@ -28,10 +28,4 @@
         </x:Array>
 
     </Window.Resources>
-    
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <local:ColorSlider Width="100" x:Name="sd1"/>
-        <Border BorderThickness="4" BorderBrush="{Binding ElementName=sd1,Path=SelectedColor}" Margin="10" Width="100"/>
-    </StackPanel>
-    
 </Window>

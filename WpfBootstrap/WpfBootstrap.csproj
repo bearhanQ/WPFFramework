@@ -72,9 +72,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\CommandBase.cs" />
+    <Compile Include="Model\Revenue.cs" />
     <Compile Include="Model\CornerPaginationModel.cs" />
     <Compile Include="Model\TreeViewModel.cs" />
     <Compile Include="Model\UnicodeModel.cs" />
+    <Compile Include="Model\WorkScream.cs" />
     <Compile Include="ViewModel\CornerPaginationViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\TreeViewViewModel.cs" />
@@ -238,6 +240,39 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Orange.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile11.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

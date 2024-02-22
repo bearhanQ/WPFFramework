@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:WpfBootstrap"
         mc:Ignorable="d"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
-        Title="MainWindow" Height="600" Width="1200" WindowStartupLocation="CenterScreen"
+        xmlns:mm="clr-namespace:WpfBootstrap.Model"
+        xmlns:vv="clr-namespace:WpfBootstrap.ViewModel"
+        Title="MainWindow" Height="1000" Width="1200" WindowStartupLocation="CenterScreen"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <Window.Resources>
         <CornerRadius x:Key="cornerRadius" TopLeft="3" TopRight="3" BottomRight="3" BottomLeft="3"/>
@@ -16,24 +18,98 @@
             <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"/>
             <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header}"/>
         </Style>
+        <Style x:Key="CustomToolTipStyle" TargetType="ToolTip">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <Border CornerRadius="4" Margin="4" Height="50">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="LightGray" CornerRadius="5,5,0,0" BorderThickness="1,1,1,0" BorderBrush="LightGray">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Day}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Month}" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Background="White" Grid.Row="1" CornerRadius="0,0,5,5" BorderThickness="1,0,1,1" BorderBrush="LightGray">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Profits}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Value}" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="revenue1" DataType="{x:Type mm:Revenue}">
+            <Border Height="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=ActualHeight}" Margin="6,0">
+                <Rectangle Fill="#FF1F68BF" Width="5" Height="{Binding Value}" VerticalAlignment="Bottom">
+                    <Rectangle.ToolTip>
+                        <ToolTip Style="{StaticResource CustomToolTipStyle}"/>
+                    </Rectangle.ToolTip>
+                </Rectangle>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="workstream1" DataType="{x:Type mm:WorkScream}">
+            <Grid Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Grid.ColumnSpan="2"/>
+                <Image Source="{Binding Img}" Stretch="Fill" Width="30" Height="30"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Content}"/>
+                    <TextBlock Text="{Binding Time}" Foreground="LightGray"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <ObjectDataProvider x:Key="myEnum" MethodName="GetValues" ObjectType="{x:Type vv:Action}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="{x:Type vv:Action}"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <Style TargetType="{x:Type DataGridCell}" x:Key="dgcStyle1">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <StackPanel Orientation="Horizontal" x:Name="sp1" Background="White">
+                            <ContentPresenter x:Name="textblock1" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" TargetName="sp1" Value="lightgray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid Background="#FFF4F6FA">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Border BorderThickness="0,1,0,0" BorderBrush="Gray" Grid.ColumnSpan="3" Background="White"/>
         <Border BorderThickness="0,1,0,1" BorderBrush="Gray" Grid.Row="1" Grid.ColumnSpan="3" Background="White"/>
@@ -99,6 +175,269 @@
                              CornerRadius="{StaticResource cornerRadius}" Background="#FF1F68BF" Foreground="White"
                              Canvas.Top="15" Canvas.Right="10"/>
         </Canvas>
+
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+            <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White">
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="SALES"/>
+                        <TextBlock Text="75%" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
+                    </StackPanel>
+                    <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <ComboBoxItem Content="Last 7 days"/>
+                        <ComboBoxItem Content="Last 30 days"/>
+                        <ComboBoxItem Content="Last 3 months"/>
+                    </cc:CornerCombobox>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                        <TextBlock Text="Conversion rate"/>
+                        <TextBlock Text="7%" HorizontalAlignment="Right" Margin="15,0" Foreground="LightGreen"/>
+                        <TextBlock Text="&#xe7f3;" HorizontalAlignment="Right" FontFamily="{StaticResource FatSheep}" Foreground="LightGreen"/>
+                    </Grid>
+                    <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
+                                          Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White" Margin="10,0">
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="REVENUE"/>
+                        <TextBlock Text="$4,300" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
+                    </StackPanel>
+                    <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <ComboBoxItem Content="Last 7 days"/>
+                        <ComboBoxItem Content="Last 30 days"/>
+                        <ComboBoxItem Content="Last 3 months"/>
+                    </cc:CornerCombobox>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                        <TextBlock Text="Conversion rate"/>
+                        <TextBlock Text="7%" HorizontalAlignment="Right" Margin="15,0" Foreground="LightGreen"/>
+                        <TextBlock Text="&#xe7f3;" HorizontalAlignment="Right" FontFamily="{StaticResource FatSheep}" Foreground="LightGreen"/>
+                    </Grid>
+                    <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
+                                          Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White">
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="NEW CLIENTS"/>
+                        <TextBlock Text="6,782" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
+                    </StackPanel>
+                    <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <ComboBoxItem Content="Last 7 days"/>
+                        <ComboBoxItem Content="Last 30 days"/>
+                        <ComboBoxItem Content="Last 3 months"/>
+                    </cc:CornerCombobox>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                        <TextBlock Text="Conversion rate"/>
+                        <TextBlock Text="7%" HorizontalAlignment="Right" Margin="15,0" Foreground="LightGreen"/>
+                        <TextBlock Text="&#xe7f3;" HorizontalAlignment="Right" FontFamily="{StaticResource FatSheep}" Foreground="LightGreen"/>
+                    </Grid>
+                    <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
+                                          Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White" Margin="10,0,0,0">
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="ACTIVE USERS"/>
+                        <TextBlock Text="2,986" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
+                    </StackPanel>
+                    <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <ComboBoxItem Content="Last 7 days"/>
+                        <ComboBoxItem Content="Last 30 days"/>
+                        <ComboBoxItem Content="Last 3 months"/>
+                    </cc:CornerCombobox>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                        <TextBlock Text="4%" HorizontalAlignment="Right" Margin="15,0" Foreground="Red"/>
+                        <TextBlock Text="&#xe7f2;" HorizontalAlignment="Right" FontFamily="{StaticResource FatSheep}" Foreground="Red"/>
+                    </Grid>
+                    <ItemsControl Grid.Row="3" Grid.ColumnSpan="2" BorderThickness="0"
+                             ItemTemplate="{StaticResource ResourceKey=revenue1}" ItemsSource="{Binding RevenueList}"
+                             ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Grid>
+            </Border>
+        </StackPanel>
         
+        <Grid Grid.Column="1" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ItemsControl BorderThickness="0" ItemTemplate="{StaticResource ResourceKey=workstream1}" 
+                          ItemsSource="{Binding WorkScreamList}" Height="400" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            </ScrollViewer>
+            <StackPanel Grid.Column="2">
+                <Grid Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                    <Border Width="30" Height="30" Background="#FF206BC4" CornerRadius="5">
+                        <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe82f;" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="132 Sales"/>
+                        <TextBlock Text="12 waiting payments" Foreground="LightGray"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Height="50" Margin="0,12.5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                    <Border Width="30" Height="30" Background="#FF2FB344" CornerRadius="5">
+                        <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe602;" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="78 Orders"/>
+                        <TextBlock Text="32 shipped" Foreground="LightGray"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                    <Border Width="30" Height="30" Background="#FFF59F00" CornerRadius="5">
+                        <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe741;" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="1352 Members"/>
+                        <TextBlock Text="163 registered today" Foreground="LightGray"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Height="50" Margin="0,12.5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                    <Border Width="30" Height="30" Background="#FF1DA1F2" CornerRadius="5">
+                        <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe736;" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="623 Shares"/>
+                        <TextBlock Text="16 today" Foreground="LightGray"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                    <Border Width="30" Height="30" Background="#FF3B5998" CornerRadius="5">
+                        <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe8e7;" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="132 Likes"/>
+                        <TextBlock Text="21 today" Foreground="LightGray"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="8" Width="950">
+            <DataGrid x:Name="dg1" CanUserAddRows="False" ColumnHeaderHeight="30" AutoGenerateColumns="False"
+                      MinRowHeight="40" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="LightGray">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="No." Width="*">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <StackPanel Orientation="Horizontal" x:Name="sp1" Background="White">
+                                                <cc:CornerCheckBox Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                                <TextBlock x:Name="textblock1" Text="{Binding No}" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Background" TargetName="sp1" Value="lightgray"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="INVOICE SUBJECT" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding INVOICE}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="CLIENT" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding CLIENT}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="VAT NO." Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding VAT}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="CREATED" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding CREATED}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="STATUS" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding STATUS}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="PRICE" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding PRICE}" IsReadOnly="True"/>
+                    <DataGridComboBoxColumn Header="ACTIONS" Width="*">
+                        <DataGridComboBoxColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <cc:CornerCombobox WaterText="Actions" ItemsSource="{Binding Source={StaticResource myEnum}}" VerticalContentAlignment="Center"/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGridComboBoxColumn.CellStyle>
+                    </DataGridComboBoxColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <cc:CornerPagination Grid.Column="1" Grid.Row="11" HorizontalAlignment="Right" Height="50"
+                             ItemSource="{Binding DataTableSource}" TargetDataGrid="{Binding ElementName=dg1}"/>
     </Grid>
 </Window>
