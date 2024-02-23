@@ -120,7 +120,7 @@ namespace WPFTemplate
             int x = 19;
             var left = -x / 2;
 
-            var level = MyVisualTreeHelper.GetTreeViewItemLevel(treeviewitem);
+            var level = LocalVisualTreeHelper.GetTreeViewItemLevel(treeviewitem);
 
             if (level == 0)
             {
@@ -237,23 +237,6 @@ namespace WPFTemplate
                 }
             }
             return base.ConvertFrom(context, culture, value);
-        }
-    }
-
-    public class StringToGeometryConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value != null)
-            {
-                return Geometry.Parse(value.ToString());
-            }
-            return null;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
         }
     }
 

@@ -69,7 +69,7 @@
     </ApplicationDefinition>
     <Compile Include="common\ComboBoxViewFilterHelper.cs" />
     <Compile Include="common\ModelConvertHelper.cs" />
-    <Compile Include="common\MyVisualTreeHelper.cs" />
+    <Compile Include="common\LocalVisualTreeHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />

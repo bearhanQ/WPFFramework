@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CornerProgressBarView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerProgressBarView : Window
+    public partial class CornerProgressBarView : UserControl
     {
         public CornerProgressBarView()
         {

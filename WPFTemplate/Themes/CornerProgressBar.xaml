@@ -38,13 +38,6 @@
                                 </TextBlock>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <!--<Trigger Property="Orientation" Value="Vertical">
-                                    <Setter Property="LayoutTransform" TargetName="TemplateRoot">
-                                        <Setter.Value>
-                                            <RotateTransform Angle="-90"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>-->
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
                                         <Condition Property="IsIndeterminate" Value="false"/>
@@ -82,6 +75,16 @@
                                         </TransformGroup>
                                     </ed:Arc.RenderTransform>
                                 </ed:Arc>
+                                <ed:Arc x:Name="PART_Track_Repeat" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}"
+                                        StartAngle="0" EndAngle="90" Fill="{TemplateBinding Foreground}" Panel.ZIndex="1"
+                                        ArcThickness="10" Visibility="Collapsed"
+                                        Stretch="None" StrokeEndLineCap="Round" StrokeStartLineCap="Round" ArcThicknessUnit="Pixel" RenderTransformOrigin="0.5,0.5">
+                                    <ed:Arc.RenderTransform>
+                                        <TransformGroup>
+                                            <RotateTransform/>
+                                        </TransformGroup>
+                                    </ed:Arc.RenderTransform>
+                                </ed:Arc>
                                 <TextBlock x:Name="tbPercentage" VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <TextBlock.Text>
                                         <MultiBinding Converter="{StaticResource ResourceKey=ProgressBarValueToPercentage}">
@@ -92,20 +95,14 @@
                                 </TextBlock>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <!--<Trigger Property="Orientation" Value="Vertical">
-                                    <Setter Property="LayoutTransform" TargetName="TemplateRoot">
-                                        <Setter.Value>
-                                            <RotateTransform Angle="-90"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>-->
                                 <Trigger Property="IsIndeterminate" Value="True">
-                                    <Setter Property="EndAngle" TargetName="PART_Track" Value="90"/>
+                                    <Setter Property="Visibility" TargetName="PART_Track" Value="Hidden"/>
+                                    <Setter Property="Visibility" TargetName="PART_Track_Repeat" Value="Visible"/>
                                     <Setter Property="Visibility" TargetName="tbPercentage" Value="Hidden"/>
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard RepeatBehavior="Forever">
-                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_Track_Repeat" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)">
                                                     <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
                                                     <EasingDoubleKeyFrame KeyTime="00:00:01" Value="360"/>
                                                 </DoubleAnimationUsingKeyFrames>
@@ -123,9 +120,9 @@
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
                                         <Condition Property="IsIndeterminate" Value="false"/>
-                                        <Condition Property="ShowPercentage" Value="True"/>
+                                        <Condition Property="ShowPercentage" Value="false"/>
                                     </MultiTrigger.Conditions>
-                                    <Setter TargetName="tbPercentage" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="tbPercentage" Property="Visibility" Value="Hidden"/>
                                 </MultiTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

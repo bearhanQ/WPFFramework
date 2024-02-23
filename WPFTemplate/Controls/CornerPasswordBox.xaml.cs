@@ -94,7 +94,10 @@ namespace WPFTemplate
         {
             if (!this.isPasswordChanged)
             {
-                BasePasswordBox.Password = Password;
+                if (BasePasswordBox != null)
+                {
+                    BasePasswordBox.Password = Password;
+                }
             }
         }
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

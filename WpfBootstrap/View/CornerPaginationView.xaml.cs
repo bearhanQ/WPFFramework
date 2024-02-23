@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CornerPaginationView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerPaginationView : Window
+    public partial class CornerPaginationView : UserControl
     {
         public CornerPaginationView()
         {

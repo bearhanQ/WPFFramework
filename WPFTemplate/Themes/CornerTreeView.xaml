@@ -243,11 +243,12 @@
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
                                             <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0" Background="White"/>
-                                            <ToggleButton x:Name="Expander" Grid.Column="3" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource NormalExpandCollapseToggleStyle}"/>
+                                            <ToggleButton x:Name="Expander" Grid.Column="3" ClickMode="Press" Style="{StaticResource NormalExpandCollapseToggleStyle}"
+                                                          IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent},Mode=OneWay}"/>
                                             <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
                                                     Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}" SnapsToDevicePixels="true">
-                                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                  />
+                                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                             </Border>
                                             <ItemsPresenter x:Name="ItemsHost" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"/>
                                         </Grid>

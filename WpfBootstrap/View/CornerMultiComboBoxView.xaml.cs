@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CornerMultiComboBoxView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerMultiComboBoxView : Window
+    public partial class CornerMultiComboBoxView : UserControl
     {
         public CornerMultiComboBoxView()
         {

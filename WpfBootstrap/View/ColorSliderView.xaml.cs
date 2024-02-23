@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// ColorSliderView.xaml 的交互逻辑
     /// </summary>
-    public partial class ColorSliderView : Window
+    public partial class ColorSliderView : UserControl
     {
         public ColorSliderView()
         {

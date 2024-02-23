@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CarouselView.xaml 的交互逻辑
     /// </summary>
-    public partial class CarouselView : Window
+    public partial class CarouselView : UserControl
     {
         public CarouselView()
         {

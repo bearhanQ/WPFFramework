@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CornerRadioButtonView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerRadioButtonView : Window
+    public partial class CornerRadioButtonView : UserControl
     {
         public CornerRadioButtonView()
         {

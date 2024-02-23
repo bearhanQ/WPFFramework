@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// UnicodeView.xaml 的交互逻辑
     /// </summary>
-    public partial class UnicodeView : Window
+    public partial class UnicodeView : UserControl
     {
         public UnicodeView()
         {

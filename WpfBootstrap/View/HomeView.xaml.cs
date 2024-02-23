@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +13,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfBootstrap.Model;
 
 namespace WpfBootstrap.View
 {
     /// <summary>
-    /// CornerPasswordBoxView.xaml 的交互逻辑
+    /// HomeView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerPasswordBoxView : UserControl
+    public partial class HomeView : UserControl
     {
-        public CornerPasswordBoxView()
+        public HomeView()
         {
             InitializeComponent();
         }

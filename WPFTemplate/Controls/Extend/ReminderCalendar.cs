@@ -47,10 +47,7 @@ namespace WPFTemplate
     /// </summary>
     public class ReminderCalendar : Calendar
     {
-        static ReminderCalendar()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ReminderCalendar), new FrameworkPropertyMetadata(typeof(ReminderCalendar)));
-        }
+        public static readonly DependencyProperty HighLightColorProperty;
 
         public Brush HighLightColor
         {
@@ -58,8 +55,10 @@ namespace WPFTemplate
             set { SetValue(HighLightColorProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for HighLightColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HighLightColorProperty =
-            DependencyProperty.Register("HighLightColor", typeof(Brush), typeof(ReminderCalendar), new PropertyMetadata(Brushes.Red));
+        static ReminderCalendar()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ReminderCalendar), new FrameworkPropertyMetadata(typeof(ReminderCalendar)));
+            HighLightColorProperty = DependencyProperty.Register("HighLightColor", typeof(Brush), typeof(ReminderCalendar), new PropertyMetadata(Brushes.Red));
+        }
     }
 }

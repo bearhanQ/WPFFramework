@@ -62,8 +62,8 @@ namespace WPFTemplate
             var element = e.OriginalSource as FrameworkElement;
             if (element.Name == "deleteItem")
             {
-                var tabItem = (TabItem)MyVisualTreeHelper.GetParent(element, typeof(TabItem));
-                var tabControl = (CornerTabControl)MyVisualTreeHelper.GetParent(element, typeof(CornerTabControl));
+                var tabItem = (TabItem)LocalVisualTreeHelper.GetParent(element, typeof(TabItem));
+                var tabControl = (CornerTabControl)LocalVisualTreeHelper.GetParent(element, typeof(CornerTabControl));
                 tabControl.Items.Remove(tabItem);
                 e.Handled = true;
             }
@@ -71,7 +71,7 @@ namespace WPFTemplate
             //dragdrop item
             if (element.Name == "textblockheader" || element.Name == "bordermain" || element.Name == "gridmain")
             {
-                var tabItem = (TabItem)MyVisualTreeHelper.GetParent(element, typeof(TabItem));
+                var tabItem = (TabItem)LocalVisualTreeHelper.GetParent(element, typeof(TabItem));
                 DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.Move);
             }
         }
@@ -93,8 +93,8 @@ namespace WPFTemplate
 
                 if (targetIndex >= 0 && draggedIndex >= 0 && targetIndex != draggedIndex)
                 {
-                    MyVisualTreeHelper.SetTemplateItemVisibility(targetTabItem, "lefthighlightborder", Visibility.Collapsed);
-                    MyVisualTreeHelper.SetTemplateItemVisibility(targetTabItem, "righthighlightborder", Visibility.Collapsed);
+                    LocalVisualTreeHelper.SetTemplateItemVisibility(targetTabItem, "lefthighlightborder", Visibility.Collapsed);
+                    LocalVisualTreeHelper.SetTemplateItemVisibility(targetTabItem, "righthighlightborder", Visibility.Collapsed);
 
                     tabControl.Items.RemoveAt(draggedIndex);
                     tabControl.Items.Insert(targetIndex, draggedTabItem);
@@ -114,15 +114,15 @@ namespace WPFTemplate
 
             if (targetitem != null && draggeditem != null)
             {
-                var tabControl = (CornerTabControl)MyVisualTreeHelper.GetParent(targetitem, typeof(CornerTabControl));
+                var tabControl = (CornerTabControl)LocalVisualTreeHelper.GetParent(targetitem, typeof(CornerTabControl));
 
                 if (tabControl.Items.IndexOf(targetitem) < tabControl.Items.IndexOf(draggeditem))
                 {
-                    MyVisualTreeHelper.SetTemplateItemVisibility(targetitem, "lefthighlightborder", Visibility.Visible);
+                    LocalVisualTreeHelper.SetTemplateItemVisibility(targetitem, "lefthighlightborder", Visibility.Visible);
                 }
                 else
                 {
-                    MyVisualTreeHelper.SetTemplateItemVisibility(targetitem, "righthighlightborder", Visibility.Visible);
+                    LocalVisualTreeHelper.SetTemplateItemVisibility(targetitem, "righthighlightborder", Visibility.Visible);
                 }
             }
         }
@@ -131,8 +131,8 @@ namespace WPFTemplate
             var targetitem = e.Source as TabItem;
             if (targetitem != null)
             {
-                MyVisualTreeHelper.SetTemplateItemVisibility(targetitem, "lefthighlightborder", Visibility.Collapsed);
-                MyVisualTreeHelper.SetTemplateItemVisibility(targetitem, "righthighlightborder", Visibility.Collapsed);
+                LocalVisualTreeHelper.SetTemplateItemVisibility(targetitem, "lefthighlightborder", Visibility.Collapsed);
+                LocalVisualTreeHelper.SetTemplateItemVisibility(targetitem, "righthighlightborder", Visibility.Collapsed);
             }
         }
     }

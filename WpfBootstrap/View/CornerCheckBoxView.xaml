@@ -1,20 +1,18 @@
-﻿<Window x:Class="WpfBootstrap.View.CornerCheckBoxView"
+﻿<UserControl x:Class="WpfBootstrap.View.CornerCheckBoxView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfBootstrap.View"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        mc:Ignorable="d"
-        Title="CornerCheckBoxView" Height="450" Width="800">
-    <Window.Resources>
+        xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <UserControl.Resources>
         <ObjectDataProvider x:Key="CheckBoxType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="cc:CheckBoxType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-    </Window.Resources>
+    </UserControl.Resources>
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -52,4 +50,4 @@
             </Grid>
         </Grid>
     </Grid>
-</Window>
+</UserControl>

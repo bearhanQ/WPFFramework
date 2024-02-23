@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CornerCheckBoxView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerCheckBoxView : Window
+    public partial class CornerCheckBoxView : UserControl
     {
         public CornerCheckBoxView()
         {

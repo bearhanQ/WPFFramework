@@ -46,6 +46,7 @@ namespace WpfBootstrap.ViewModel
             SimpleIoc.Default.Register<UnicodeViewModel>();
             SimpleIoc.Default.Register<TreeViewViewModel>();
             SimpleIoc.Default.Register<CornerPaginationViewModel>();
+            SimpleIoc.Default.Register<HomeViewModel>();
         }
 
         public MainViewModel Main
@@ -79,6 +80,15 @@ namespace WpfBootstrap.ViewModel
                 return ServiceLocator.Current.GetInstance<CornerPaginationViewModel>();
             }
         }
+
+        public HomeViewModel Home
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomeViewModel>();
+            }
+        }
+
 
         public static void Cleanup()
         {

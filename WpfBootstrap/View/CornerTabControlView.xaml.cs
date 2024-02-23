@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CornerTabControlView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerTabControlView : Window
+    public partial class CornerTabControlView : UserControl
     {
         public CornerTabControlView()
         {

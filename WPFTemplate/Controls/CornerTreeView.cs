@@ -34,6 +34,7 @@ namespace WPFTemplate
 
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.CheckedEvent, new RoutedEventHandler(ItemCheckBoxChecked));
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.UncheckedEvent, new RoutedEventHandler(ItemCheckBoxUnchecked));
+            EventManager.RegisterClassHandler(typeof(CornerTreeView), CornerTreeView.PreviewMouseDownEvent, new RoutedEventHandler(CornerTreeViewSelectedItemChanged));
         }
 
         public CornerTreeView()
@@ -67,7 +68,7 @@ namespace WPFTemplate
                 if (expression != null)
                 {
                     var propertyName = expression.ResolvedSourcePropertyName;
-                    var treeviewitem = MyVisualTreeHelper.GetParent(element, typeof(TreeViewItem)) as TreeViewItem;
+                    var treeviewitem = LocalVisualTreeHelper.GetParent(element, typeof(TreeViewItem)) as TreeViewItem;
                     var nodes = treeviewitem.Items;
                     foreach (var node in nodes)
                     {
@@ -88,7 +89,7 @@ namespace WPFTemplate
                 if (expression != null)
                 {
                     var propertyName = expression.ResolvedSourcePropertyName;
-                    var treeviewitem = MyVisualTreeHelper.GetParent(element, typeof(TreeViewItem)) as TreeViewItem;
+                    var treeviewitem = LocalVisualTreeHelper.GetParent(element, typeof(TreeViewItem)) as TreeViewItem;
                     var nodes = treeviewitem.Items;
                     foreach (var node in nodes)
                     {
@@ -99,6 +100,21 @@ namespace WPFTemplate
                 }
             }
         }
-
+        private static void CornerTreeViewSelectedItemChanged(object sender, RoutedEventArgs e)
+        {
+            var treeview = sender as CornerTreeView;
+            if (treeview != null && treeview.TreeViewType == TreeViewType.Normal)
+            {
+                var element = e.OriginalSource as UIElement;
+                var SelectedItem = LocalVisualTreeHelper.GetParent(element, typeof(TreeViewItem)) as TreeViewItem;
+                if (SelectedItem != null)
+                {
+                    if (SelectedItem.HasItems)
+                    {
+                        SelectedItem.IsExpanded = !SelectedItem.IsExpanded;
+                    }
+                }
+            }
+        }
     }
 }

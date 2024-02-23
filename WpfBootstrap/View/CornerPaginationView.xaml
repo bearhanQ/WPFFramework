@@ -1,4 +1,4 @@
-﻿<Window x:Class="WpfBootstrap.View.CornerPaginationView"
+﻿<UserControl x:Class="WpfBootstrap.View.CornerPaginationView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:WpfBootstrap.View"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
         mc:Ignorable="d"
-        Title="CornerPaginationView" Height="450" Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=Pagination}">
     <Grid>
         <StackPanel HorizontalAlignment="Center">
@@ -19,4 +18,4 @@
             <cc:CornerPagination ItemSource="{Binding Human}" TargetDataGrid="{Binding ElementName=datagrid1}"/>
         </StackPanel>
     </Grid>
-</Window>
+</UserControl>

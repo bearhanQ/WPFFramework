@@ -17,7 +17,7 @@ namespace WpfBootstrap.View
     /// <summary>
     /// CornerButtonView.xaml 的交互逻辑
     /// </summary>
-    public partial class CornerButtonView : Window
+    public partial class CornerButtonView : UserControl
     {
         public CornerButtonView()
         {

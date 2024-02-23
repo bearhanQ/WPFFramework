@@ -78,6 +78,7 @@
     <Compile Include="Model\UnicodeModel.cs" />
     <Compile Include="Model\WorkScream.cs" />
     <Compile Include="ViewModel\CornerPaginationViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\TreeViewViewModel.cs" />
     <Compile Include="ViewModel\UnicodeViewModel.cs" />
@@ -120,6 +121,15 @@
     </Compile>
     <Compile Include="View\CornerTreeViewView.xaml.cs">
       <DependentUpon>CornerTreeViewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReminderCalendarView.xaml.cs">
+      <DependentUpon>ReminderCalendarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReminderDatePickerView.xaml.cs">
+      <DependentUpon>ReminderDatePickerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UnicodeView.xaml.cs">
       <DependentUpon>UnicodeView.xaml</DependentUpon>
@@ -185,6 +195,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerTreeViewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReminderCalendarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReminderDatePickerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

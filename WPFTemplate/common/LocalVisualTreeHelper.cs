@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace WPFTemplate
 {
-    internal class MyVisualTreeHelper
+    public class LocalVisualTreeHelper
     {
         public static DependencyObject GetParent(DependencyObject dependency, Type type)
         {

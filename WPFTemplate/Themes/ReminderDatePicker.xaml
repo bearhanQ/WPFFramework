@@ -6,7 +6,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
+    <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
     <!--region calendarstyle-->
     <SolidColorBrush x:Key="CalendarButton.HighlightColor" Color="#FF77E6F6"/>
     <Style x:Key="CalendarCalendarButtonStyle1" TargetType="{x:Type CalendarButton}">
@@ -471,9 +471,7 @@
                                 <SolidColorBrush x:Key="DisabledBrush" Color="#A5FFFFFF"/>
                                 <ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
                                     <Grid Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#A5FFFFFF">
-                                        <Viewbox>
-                                            <Path Stroke="Black" StrokeThickness="16" Data="{Binding Path=(svg:Resources.DatePicker),Converter={StaticResource StringToGeometryConverter}}" Stretch="Fill"/>
-                                        </Viewbox>
+                                        <TextBlock Text="&#xe6ba;" FontFamily="{StaticResource ResourceKey=FatSheep}"/>
                                     </Grid>
                                 </ControlTemplate>
                             </Grid.Resources>
