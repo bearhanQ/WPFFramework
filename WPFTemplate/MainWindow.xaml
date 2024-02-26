@@ -29,17 +29,8 @@
 
     </Window.Resources>
     <StackPanel>
-        <local:CornerTreeView TreeViewType="Normal">
-            <TreeViewItem Header="123">
-                <TreeViewItem Header="321"/>
-                <TreeViewItem Header="321"/>
-                <TreeViewItem Header="321"/>
-            </TreeViewItem>
-            <TreeViewItem Header="123">
-                <TreeViewItem Header="321"/>
-                <TreeViewItem Header="321"/>
-                <TreeViewItem Header="321"/>
-            </TreeViewItem>
-        </local:CornerTreeView>
+        <Grid Width="80">
+            <DatePicker/>
+        </Grid>
     </StackPanel>
 </Window>

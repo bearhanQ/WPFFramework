@@ -27,6 +27,17 @@ namespace WpfBootstrap.ViewModel
             }
         }
 
+        private Layout _layout;
+        public Layout Layout
+        {
+            get { return _layout; }
+            set 
+            { 
+                _layout = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public MainViewModel()
         {
             HomeView view = new HomeView();
@@ -40,11 +51,33 @@ namespace WpfBootstrap.ViewModel
 
         public void ItemExecute(object parameter)
         {
+            string viewname = parameter.ToString();
+            var treeViewItem = parameter as TreeViewItem;
+            if (treeViewItem != null)
+            {
+                var header = treeViewItem.Header;
+                if (header is FrameworkElement)
+                {
+                    return;
+                }
+                viewname = header.ToString();
+            }
+            if (Enum.TryParse<Layout>(viewname, out Layout layout))
+            {
+                Layout = layout;
+                return;
+            }
             Assembly assembly = Assembly.GetExecutingAssembly();
-            Type windowType = assembly.GetType("WpfBootstrap.View." + parameter.ToString() + "View");
+            Type windowType = assembly.GetType("WpfBootstrap.View." + viewname + "View");
             object viewInstance = Activator.CreateInstance(windowType);
             var view = viewInstance as UserControl;
             Content = view;
         }
+    }
+
+    public enum Layout
+    {
+        Horizontal,
+        Vertical
     }
 }

@@ -27,7 +27,7 @@ namespace WPFTemplate
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseLeftButtonDown(e);
-            e.Handled = true;
+            //e.Handled = true;
             this.IsSelected = !this.IsSelected;
             if (parentComboBox != null)
             {

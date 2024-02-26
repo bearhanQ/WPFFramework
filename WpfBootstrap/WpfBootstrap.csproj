@@ -249,6 +249,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Common\" />
     <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>

@@ -235,7 +235,7 @@
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,1,0"/>
                         <Border Width="30" Height="30" Background="#FF206BC4" CornerRadius="5">
                             <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe82f;" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
@@ -250,7 +250,7 @@
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"  Margin="0,0,1,0"/>
                         <Border Width="30" Height="30" Background="#FF2FB344" CornerRadius="5">
                             <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe602;" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
@@ -265,7 +265,7 @@
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"  Margin="0,0,1,0"/>
                         <Border Width="30" Height="30" Background="#FFF59F00" CornerRadius="5">
                             <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe741;" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
@@ -280,7 +280,7 @@
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"  Margin="0,0,1,0"/>
                         <Border Width="30" Height="30" Background="#FF1DA1F2" CornerRadius="5">
                             <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe736;" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
@@ -295,7 +295,7 @@
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.ColumnSpan="2"  Margin="0,0,1,0"/>
                         <Border Width="30" Height="30" Background="#FF3B5998" CornerRadius="5">
                             <TextBlock FontFamily="{StaticResource FatSheep}" Text="&#xe8e7;" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>

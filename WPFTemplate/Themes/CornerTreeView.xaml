@@ -245,9 +245,12 @@
                                             <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0" Background="White"/>
                                             <ToggleButton x:Name="Expander" Grid.Column="3" ClickMode="Press" Style="{StaticResource NormalExpandCollapseToggleStyle}"
                                                           IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent},Mode=OneWay}"/>
-                                            <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                            <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" 
+                                                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Height="{TemplateBinding Height}"
                                                     Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}" SnapsToDevicePixels="true">
-                                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                             </Border>
                                             <ItemsPresenter x:Name="ItemsHost" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"/>
