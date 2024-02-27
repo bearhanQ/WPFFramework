@@ -9,28 +9,10 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Window.Resources>
 
-        <x:Array x:Key="strs" Type="{x:Type sys:String}">
-            <sys:String>Alerts</sys:String>
-            <sys:String>Badges</sys:String>
-            <sys:String>Buttons</sys:String>
-            <sys:String>Cards</sys:String>
-            <sys:String>Forms</sys:String>
-            <sys:String>Modals</sys:String>
-        </x:Array>
-
-        <x:Array x:Key="peoples" Type="{x:Type local:People}">
-            <local:People Name="Alerts" Age="1"/>
-            <local:People Name="Badges" Age="2"/>
-            <local:People Name="Buttons" Age="3"/>
-            <local:People Name="Cards" Age="4"/>
-            <local:People Name="Forms" Age="5"/>
-            <local:People Name="Modals" Age="6"/>
-        </x:Array>
-
+        
     </Window.Resources>
     <StackPanel>
-        <Grid Width="80">
-            <DatePicker/>
-        </Grid>
+        <local:ReminderDatePicker Width="200"/>
+        <local:ReminderCalendar/>
     </StackPanel>
 </Window>

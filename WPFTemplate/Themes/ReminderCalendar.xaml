@@ -257,7 +257,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1">
+                        <Border Background="White" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1">
                             <Border BorderBrush="#FFFFFFFF" BorderThickness="2" CornerRadius="1">
                                 <Grid>
                                     <Grid.Resources>
@@ -344,7 +344,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="3,0,3,5">
+                                    <Grid Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="3,0,3,5" Background="#FF26A0DA">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
