@@ -240,7 +240,8 @@
                         <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource RepeatButtonTransparent}"/>
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
-                        <Thumb x:Name="Thumb" Focusable="False" Height="11" OverridesDefaultStyle="True" Template="{StaticResource SliderThumbVerticalDefault}" VerticalAlignment="Top" Width="18"/>
+                        <Thumb x:Name="Thumb" Focusable="False" Height="11" OverridesDefaultStyle="True" 
+                               Template="{StaticResource SliderThumbVerticalDefault}" VerticalAlignment="Top" Width="18"/>
                     </Track.Thumb>
                 </Track>
             </Grid>

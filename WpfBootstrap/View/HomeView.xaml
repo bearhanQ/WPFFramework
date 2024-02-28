@@ -225,10 +225,10 @@
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <cc:CornerScrollViewer VerticalScrollBarVisibility="Visible">
                     <ItemsControl BorderThickness="0" ItemTemplate="{StaticResource ResourceKey=workstream1}" 
-                          ItemsSource="{Binding WorkScreamList}" Height="400" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
-                </ScrollViewer>
+                                  ItemsSource="{Binding WorkScreamList}"/>
+                </cc:CornerScrollViewer>
                 <StackPanel Grid.Column="2">
                     <Grid Height="50">
                         <Grid.ColumnDefinitions>

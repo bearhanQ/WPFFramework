@@ -7,12 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
         xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <Window.Resources>
-
-        
-    </Window.Resources>
-    <StackPanel>
-        <local:ReminderDatePicker Width="200"/>
-        <local:ReminderCalendar/>
-    </StackPanel>
+    <Grid Background="LightBlue">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <local:CornerScrollViewer Height="100">
+                <ListBox Width="200" Background="LightBlue">
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="321"/>
+                </ListBox>
+            </local:CornerScrollViewer>
+            <ScrollViewer Height="100" Width="100">
+                <ListBox Width="200" Background="LightBlue">
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="123"/>
+                    <ListBoxItem Content="321"/>
+                </ListBox>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
 </Window>

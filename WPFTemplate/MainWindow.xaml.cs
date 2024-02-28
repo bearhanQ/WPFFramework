@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Shapes;
 
 namespace WPFTemplate
 {
@@ -43,7 +44,6 @@ namespace WPFTemplate
             Human.Childs.Rows.Add("22");
             Human.Childs.Rows.Add("23");
             Human.Childs.Rows.Add("24");
-
         }
     }
 
