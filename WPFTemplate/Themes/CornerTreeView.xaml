@@ -16,6 +16,7 @@
     <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Checked.Stroke" Color="#FF1CC4F7"/>
     <SolidColorBrush x:Key="TreeViewItem.TreeArrow.MouseOver.Checked.Fill" Color="#FF82DFFB"/>
     <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
+    <FontFamily x:Key="FatSheep">pack:application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
 
 
     <Style x:Key="OriginalExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
@@ -247,11 +248,19 @@
                                                           IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent},Mode=OneWay}"/>
                                             <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" 
                                                     BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                                                    Height="{TemplateBinding Height}"
+                                                    Height="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=(local:TreeViewItemHelper.HeaderHeight)}"
                                                     Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}" SnapsToDevicePixels="true">
-                                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                            Orientation="Horizontal">
+                                                    <TextBlock FontFamily="{StaticResource FatSheep}"
+                                                               VerticalAlignment="Center"
+                                                               Margin="0,0,5,0"
+                                                               Text="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=(local:TreeViewItemHelper.Icon)}"/>
+                                                    <ContentPresenter x:Name="PART_Header" ContentSource="Header"
+                                                                      VerticalAlignment="Center"
+                                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                </StackPanel>
                                             </Border>
                                             <ItemsPresenter x:Name="ItemsHost" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"/>
                                         </Grid>
