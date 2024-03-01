@@ -84,7 +84,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.RowSpan="8">
+    <cc:CornerScrollViewer VerticalScrollBarVisibility="Auto" Grid.RowSpan="8">
         <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="140"/>
@@ -340,5 +340,5 @@
             <cc:CornerPagination Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right"
                                  ItemSource="{Binding DataTableSource}" TargetDataGrid="{Binding ElementName=dg1}"/>
         </Grid>
-    </ScrollViewer>
+    </cc:CornerScrollViewer>
 </UserControl>

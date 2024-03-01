@@ -25,10 +25,5 @@ namespace WpfBootstrap
         {
             InitializeComponent();
         }
-
-        private void TreeViewItem_Expanded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

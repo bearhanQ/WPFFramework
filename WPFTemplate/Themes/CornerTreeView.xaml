@@ -240,7 +240,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" MinHeight="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=(local:TreeViewItemHelper.HeaderHeight)}"/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
                                             <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0" Background="White"/>
@@ -248,8 +248,8 @@
                                                           IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent},Mode=OneWay}"/>
                                             <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" 
                                                     BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                                                    Height="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=(local:TreeViewItemHelper.HeaderHeight)}"
-                                                    Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}" SnapsToDevicePixels="true">
+                                                    Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}"
+                                                    SnapsToDevicePixels="true">
                                                 <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                             Orientation="Horizontal">
@@ -257,7 +257,8 @@
                                                                VerticalAlignment="Center"
                                                                Margin="0,0,5,0"
                                                                Text="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=(local:TreeViewItemHelper.Icon)}"/>
-                                                    <ContentPresenter x:Name="PART_Header" ContentSource="Header"
+                                                    <ContentPresenter x:Name="PART_Header"
+                                                                      ContentSource="Header"
                                                                       VerticalAlignment="Center"
                                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                                 </StackPanel>

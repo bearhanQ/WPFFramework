@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfBootstrap"
         mc:Ignorable="d"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+        xmlns:vm="clr-namespace:WpfBootstrap.Model"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="MainWindow" Height="800" Width="1400" WindowStartupLocation="CenterScreen"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
@@ -102,39 +103,23 @@
             <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150" CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
         </Grid>
 
-        <cc:CornerTreeView TreeViewType="Normal" Grid.Row="3" Style="{StaticResource treeViewStyle1}">
+        <cc:CornerTreeView Grid.Row="3" TreeViewType="Normal" 
+                           Style="{StaticResource treeViewStyle1}"
+                           IconDisplayMemberPath="Icon"
+                           ItemsSource="{Binding VerticalMenuCollection}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction Command="{Binding ItemCommand}"
                                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TreeView}, Path=SelectedItem.Header}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <TreeViewItem Header="Home" cc:TreeViewItemHelper.Icon="&#xe7c6;" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-            <TreeViewItem Header="Original" cc:TreeViewItemHelper.Icon="&#xe690;" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center">
-                <TreeViewItem Header="CornerButton" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerCheckBox" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerComboBox" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerContextMenu" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerPasswordBox" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerProgressBar" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerRadioButton" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerTabControl" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerTreeView" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Extra" cc:TreeViewItemHelper.Icon="&#xe7df;" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center">
-                <TreeViewItem Header="Carousel" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="ColorSlider" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerMultiComboBox" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="CornerPagination" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="ReminderCalendar" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-                <TreeViewItem Header="ReminderDatePicker" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Layout" cc:TreeViewItemHelper.Icon="&#xe7c6;" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center">
-                <TreeViewItem Header="Horizontal" VerticalContentAlignment="Center" cc:TreeViewItemHelper.HeaderHeight="40"/>
-                <TreeViewItem Header="Vertical" VerticalContentAlignment="Center" cc:TreeViewItemHelper.HeaderHeight="40"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Unicode" cc:TreeViewItemHelper.Icon="&#xe7c6;" cc:TreeViewItemHelper.HeaderHeight="40" VerticalContentAlignment="Center"/>
-
+            <cc:CornerTreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Childs}">
+                    <Grid Height="40">
+                        <TextBlock Text="{Binding Header}" VerticalAlignment="Center"/>
+                    </Grid>
+                </HierarchicalDataTemplate>
+            </cc:CornerTreeView.ItemTemplate>
         </cc:CornerTreeView>
 
         <Canvas Grid.Column="1" Grid.Row="2" Background="#FFF4F6FA">

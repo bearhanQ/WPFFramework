@@ -9,6 +9,16 @@ namespace WPFTemplate
 {
     public class TreeViewItemHelper
     {
+        public static readonly DependencyProperty HeaderHeightProperty;
+
+        public static readonly DependencyProperty IconProperty;
+
+        static TreeViewItemHelper()
+        {
+            HeaderHeightProperty = DependencyProperty.RegisterAttached("HeaderHeight", typeof(double), typeof(TreeViewItemHelper), new PropertyMetadata((double)20));
+            IconProperty = DependencyProperty.RegisterAttached("Icon", typeof(string), typeof(TreeViewItemHelper));
+        }
+
         public static string GetIcon(DependencyObject obj)
         {
             return (string)obj.GetValue(IconProperty);
@@ -17,9 +27,6 @@ namespace WPFTemplate
         {
             obj.SetValue(IconProperty, value);
         }
-        public static readonly DependencyProperty IconProperty =
-            DependencyProperty.RegisterAttached("Icon", typeof(string), typeof(TreeViewItemHelper));
-
 
         public static double GetHeaderHeight(DependencyObject obj)
         {
@@ -29,10 +36,5 @@ namespace WPFTemplate
         {
             obj.SetValue(HeaderHeightProperty, value);
         }
-
-        public static readonly DependencyProperty HeaderHeightProperty =
-            DependencyProperty.RegisterAttached("HeaderHeight", typeof(double), typeof(TreeViewItemHelper), new PropertyMetadata((double)20));
-
-
     }
 }

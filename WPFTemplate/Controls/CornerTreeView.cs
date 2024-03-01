@@ -20,10 +20,18 @@ namespace WPFTemplate
     {
         public static readonly DependencyProperty TreeViewTypeProperty;
 
+        public static readonly DependencyProperty IconDisplayMemberPathProperty;
+
         public TreeViewType TreeViewType
         {
             get { return (TreeViewType)GetValue(TreeViewTypeProperty); }
             set { SetValue(TreeViewTypeProperty, value); }
+        }
+
+        public string IconDisplayMemberPath
+        {
+            get { return (string)GetValue(IconDisplayMemberPathProperty); }
+            set { SetValue(IconDisplayMemberPathProperty, value); }
         }
 
         static CornerTreeView()
@@ -31,6 +39,8 @@ namespace WPFTemplate
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerTreeView), new FrameworkPropertyMetadata(typeof(CornerTreeView)));
 
             TreeViewTypeProperty = DependencyProperty.Register("TreeViewType", typeof(TreeViewType), typeof(CornerTreeView), new PropertyMetadata(TreeViewType.Original));
+            IconDisplayMemberPathProperty = DependencyProperty.Register("IconDisplayMemberPath", typeof(string), typeof(CornerTreeView), 
+                new FrameworkPropertyMetadata(string.Empty,FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(IconDisplayMemberPathPropertyChanded)));
 
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.CheckedEvent, new RoutedEventHandler(ItemCheckBoxChecked));
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.UncheckedEvent, new RoutedEventHandler(ItemCheckBoxUnchecked));
@@ -50,11 +60,24 @@ namespace WPFTemplate
         {
             foreach (var item in itemsControl.Items)
             {
-                if (item is TreeViewItem)
+                var treeViewItem = item as TreeViewItem;
+                if (treeViewItem != null)
                 {
-                    var treeViewItem = (TreeViewItem)item;
                     treeViewItem.Style = ItemContainerStyle;
                     ApplyItemContainerStyle(treeViewItem);
+                }
+                else
+                {
+                    var obj = ItemContainerGenerator.ContainerFromItem(item);
+                    treeViewItem = obj as TreeViewItem;
+                    if (treeViewItem != null)
+                    {
+                        if (IconDisplayMemberPath != string.Empty)
+                        {
+                            var icon = item.GetType().GetProperty(IconDisplayMemberPath)?.GetValue(item);
+                            treeViewItem.SetValue(TreeViewItemHelper.IconProperty, icon);
+                        }
+                    }
                 }
             }
         }
@@ -114,6 +137,14 @@ namespace WPFTemplate
                         SelectedItem.IsExpanded = !SelectedItem.IsExpanded;
                     }
                 }
+            }
+        }
+        private static void IconDisplayMemberPathPropertyChanded(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var treeview = d as CornerTreeView;
+            if (treeview != null)
+            {
+                treeview.ApplyItemContainerStyle(treeview);
             }
         }
     }

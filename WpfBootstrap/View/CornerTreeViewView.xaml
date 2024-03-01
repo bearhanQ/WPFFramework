@@ -17,7 +17,7 @@
             <cc:CornerTreeView ItemsSource="{Binding TreeViewModels}" TreeViewType="{Binding ElementName=cbType, Path=Text}">
                 <cc:CornerTreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Childs}">
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Header}"/>
                     </HierarchicalDataTemplate>
                 </cc:CornerTreeView.ItemTemplate>
             </cc:CornerTreeView>

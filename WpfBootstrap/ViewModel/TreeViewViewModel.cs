@@ -19,17 +19,17 @@ namespace WpfBootstrap.ViewModel
             {
                 new TreeViewModel
                 {
-                    Name ="First",
+                    Header ="First",
                     Childs = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel
                         {
-                            Name = "First-Child",
+                            Header = "First-Child",
                             Childs= new ObservableCollection<TreeViewModel>
                             {
                                 new TreeViewModel
                                 {
-                                    Name= "First-Grandchild"
+                                    Header= "First-Grandchild"
                                 }
                             }
                         }
@@ -37,17 +37,17 @@ namespace WpfBootstrap.ViewModel
                 },
                 new TreeViewModel
                 {
-                    Name ="Second",
+                    Header ="Second",
                     Childs = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel
                         {
-                            Name = "Second-Child",
+                            Header = "Second-Child",
                             Childs = new ObservableCollection<TreeViewModel>
                             {
                                 new TreeViewModel
                                 {
-                                    Name= "Second-Grandchild"
+                                    Header= "Second-Grandchild"
                                 }
                             }
                         }
@@ -55,17 +55,17 @@ namespace WpfBootstrap.ViewModel
                 },
                 new TreeViewModel
                 {
-                    Name ="Third",
+                    Header ="Third",
                     Childs = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel
                         {
-                            Name = "Third-Child",
+                            Header = "Third-Child",
                             Childs = new ObservableCollection<TreeViewModel>
                             {
                                 new TreeViewModel
                                 {
-                                    Name= "Third-Grandchild"
+                                    Header= "Third-Grandchild"
                                 }
                             }
                         }

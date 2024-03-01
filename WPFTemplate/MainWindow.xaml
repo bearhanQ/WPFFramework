@@ -8,8 +8,8 @@
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
         xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Grid Background="LightBlue">
-        <local:CornerTreeView TreeViewType="Normal">
-            <TreeViewItem Header="123" local:TreeViewItemHelper.Icon="&#xe744;"/>
-        </local:CornerTreeView>
+        <Grid Height="40" VerticalAlignment="Center" Background="Blue">
+            <TextBlock Text="123" VerticalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Window>

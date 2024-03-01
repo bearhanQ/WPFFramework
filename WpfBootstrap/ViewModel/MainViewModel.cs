@@ -16,6 +16,8 @@ namespace WpfBootstrap.ViewModel
     {
         public ICommand ItemCommand => new CommandBase(ItemCanExecute, ItemExecute);
 
+        public ObservableCollection<TreeViewModel> VerticalMenuCollection { get; set; }
+
         private object _content;
         public object Content
         {
@@ -42,6 +44,61 @@ namespace WpfBootstrap.ViewModel
         {
             HomeView view = new HomeView();
             Content = view;
+
+            VerticalMenuCollection = new ObservableCollection<TreeViewModel>()
+            {
+                new TreeViewModel
+                {
+                    Header = "Home",
+                    Icon = "\ue7c6"
+                },
+                new TreeViewModel
+                {
+                    Header = "Original",
+                    Icon = "\ue690",
+                    Childs = new ObservableCollection<TreeViewModel>
+                    {
+                        new TreeViewModel { Header = "CornerButton"},
+                        new TreeViewModel { Header = "CornerCheckBox"},
+                        new TreeViewModel { Header = "CornerComboBox"},
+                        new TreeViewModel { Header = "CornerContextMenu"},
+                        new TreeViewModel { Header = "CornerPasswordBox"},
+                        new TreeViewModel { Header = "CornerProgressBar"},
+                        new TreeViewModel { Header = "CornerRadioButton"},
+                        new TreeViewModel { Header = "CornerTabControl"},
+                        new TreeViewModel { Header = "CornerTreeView"}
+                    }
+                },
+                new TreeViewModel
+                {
+                    Header = "Extra",
+                    Icon = "\ue7df",
+                    Childs = new ObservableCollection<TreeViewModel>
+                    {
+                        new TreeViewModel { Header = "Carousel"},
+                        new TreeViewModel { Header = "ColorSlider"},
+                        new TreeViewModel { Header = "CornerMultiComboBox"},
+                        new TreeViewModel { Header = "CornerPagination"},
+                        new TreeViewModel { Header = "ReminderCalendar"},
+                        new TreeViewModel { Header = "ReminderDatePicker"}
+                    }
+                },
+                new TreeViewModel
+                {
+                    Header = "Layout",
+                    Icon = "\ue7c6",
+                    Childs = new ObservableCollection<TreeViewModel>
+                    {
+                        new TreeViewModel { Header = "Vertical"},
+                        new TreeViewModel { Header = "Horizontal"},
+                    }
+                },
+                new TreeViewModel
+                {
+                    Header = "Unicode", 
+                    Icon = "\ue7c6" 
+                }
+            };
         }
 
         public bool ItemCanExecute(object parameter)
