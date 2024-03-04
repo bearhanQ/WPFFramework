@@ -86,6 +86,9 @@
     <Compile Include="View\CarouselView.xaml.cs">
       <DependentUpon>CarouselView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ChartsView.xaml.cs">
+      <DependentUpon>ChartsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ColorSliderView.xaml.cs">
       <DependentUpon>ColorSliderView.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\CarouselView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChartsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

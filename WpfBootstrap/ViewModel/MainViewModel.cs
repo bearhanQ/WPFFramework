@@ -97,6 +97,11 @@ namespace WpfBootstrap.ViewModel
                 {
                     Header = "Unicode", 
                     Icon = "\ue7c6" 
+                },
+                new TreeViewModel
+                {
+                    Header = "Charts",
+                    Icon = "\ue7c6"
                 }
             };
         }
