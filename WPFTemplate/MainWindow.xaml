@@ -8,6 +8,6 @@
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
         xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Grid Background="LightBlue">
-        <local:CornerCheckBox IsChecked="False" CheckBoxType="Normal" CornerRadius="5"/>
+        
     </Grid>
 </Window>
