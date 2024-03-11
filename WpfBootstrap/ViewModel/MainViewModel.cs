@@ -80,7 +80,8 @@ namespace WpfBootstrap.ViewModel
                         new TreeViewModel { Header = "CornerMultiComboBox"},
                         new TreeViewModel { Header = "CornerPagination"},
                         new TreeViewModel { Header = "ReminderCalendar"},
-                        new TreeViewModel { Header = "ReminderDatePicker"}
+                        new TreeViewModel { Header = "ReminderDatePicker"},
+                        new TreeViewModel { Header = "NotifyWindow"}
                     }
                 },
                 new TreeViewModel
@@ -124,8 +125,14 @@ namespace WpfBootstrap.ViewModel
             if (windowType != null)
             {
                 object viewInstance = Activator.CreateInstance(windowType);
-                var view = viewInstance as UserControl;
-                Content = view;
+                if (viewInstance is UserControl view)
+                {
+                    Content = view;
+                }
+                if (viewInstance is Window window)
+                {
+                    window.Show();
+                }
             }
         }
     }

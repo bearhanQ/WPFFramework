@@ -89,6 +89,9 @@
     <Compile Include="View\ChartCurveView.xaml.cs">
       <DependentUpon>ChartCurveView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ChartCylinderView.xaml.cs">
+      <DependentUpon>ChartCylinderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ChartLineView.xaml.cs">
       <DependentUpon>ChartLineView.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,9 @@
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NotifyWindowView.xaml.cs">
+      <DependentUpon>NotifyWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ReminderCalendarView.xaml.cs">
       <DependentUpon>ReminderCalendarView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChartCurveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChartCylinderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +240,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\NotifyWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ReminderCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,10 +290,7 @@
       <Name>WPFTemplate</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\ice.jpg" />
   </ItemGroup>

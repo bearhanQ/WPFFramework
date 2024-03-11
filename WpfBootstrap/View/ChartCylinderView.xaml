@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="WpfBootstrap.View.ChartCylinderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfBootstrap.View"
+             xmlns:s="clr-namespace:System;assembly=mscorlib"
+             xmlns:m="clr-namespace:WpfBootstrap.Model"
+             mc:Ignorable="d" Background="Wheat">
+    <UserControl.Resources>
+        <x:Array x:Key="revenueInfo" Type="{x:Type m:Revenue}">
+            <m:Revenue Day="20" Value="100"/>
+            <m:Revenue Day="21" Value="150"/>
+            <m:Revenue Day="22" Value="200"/>
+            <m:Revenue Day="23" Value="50"/>
+            <m:Revenue Day="24" Value="250"/>
+            <m:Revenue Day="25" Value="300"/>
+            <m:Revenue Day="26" Value="500"/>
+            <m:Revenue Day="27" Value="400"/>
+            <m:Revenue Day="28" Value="120"/>
+            <m:Revenue Day="29" Value="320"/>
+            <m:Revenue Day="30" Value="420"/>
+        </x:Array>
+        <x:Array x:Key="nums" Type="{x:Type s:String}">
+            <s:String>500</s:String>
+            <s:String>400</s:String>
+            <s:String>300</s:String>
+            <s:String>200</s:String>
+            <s:String>100</s:String>
+            <s:String>0</s:String>
+        </x:Array>
+    </UserControl.Resources>
+    <Grid>
+        <ListBox ItemsSource="{StaticResource revenueInfo}" Height="340" Width="500">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.Template>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="2"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox ItemsSource="{StaticResource nums}" Grid.ColumnSpan="3"
+                                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Grid Margin="0,0,0,40" x:Name="gd1" Height="20">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="30"/>
+                                                        <ColumnDefinition Width="2"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                    <Path Grid.Column="2" Stroke="Gray" StrokeThickness="1" VerticalAlignment="Center" StrokeDashArray="4,2">
+                                                        <Path.Data>
+                                                            <LineGeometry StartPoint="0,0" EndPoint="460,0"/>
+                                                        </Path.Data>
+                                                    </Path>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <ItemsPresenter Grid.Column="2" SnapsToDevicePixels="True" VerticalAlignment="Center" Height="{TemplateBinding Height}"/>
+                    </Grid>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Grid Margin="10,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="18"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Width="10" Height="{Binding Value}" Background="#FF206BC4"  VerticalAlignment="Bottom">
+                                        <Border.LayoutTransform>
+                                            <!--intervial between 0 and 100 is 60,so the offset need to be 0.6-->
+                                            <ScaleTransform ScaleY="0.6"/>
+                                        </Border.LayoutTransform>
+                                    </Border>
+                                    <TextBlock Text="{Binding Day}" Grid.Row="2"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+    </Grid>
+</UserControl>

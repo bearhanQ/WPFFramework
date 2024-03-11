@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfBootstrap.View.NotifyWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfBootstrap.View"
+             mc:Ignorable="d" 
+             Width="350" Height="200"
+             xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+             cc:NotifyWindow.IsNotifyWindow="True"
+             WindowStyle="None"
+             ResizeMode="NoResize">
+    <Grid Background="#FF2E2E2E" Cursor="Hand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <cc:CornerButton Content="X" Background="#FF2E2E2E" 
+                         BorderBrush="#FF2E2E2E" Width="20" 
+                         HorizontalAlignment="Right"
+                         Foreground="Gray"
+                         Click="CornerButton_Click"/>
+        <Canvas Grid.Row="1">
+            <TextBlock Text="ReadyToUpdate" FontSize="20" Foreground="White" 
+                       Canvas.Left="20" Canvas.Top="25"/>
+            <TextBlock Text="9 updates have already been prepared" FontSize="15" Foreground="Gray"
+                       Canvas.Left="22" Canvas.Top="61"/>
+            <TextBlock Text="click here to know more" FontSize="15" Foreground="Gray"
+                       Canvas.Left="22" Canvas.Top="90"/>
+            <cc:CornerButton Content="Install" Width="140" Height="30" Background="#FF595959" Foreground="White"
+                             Canvas.Left="22" Canvas.Top="131" />
+            <cc:CornerButton Content="Remind me later" Width="140" Height="30" Background="#FF595959" Foreground="White"
+                             Canvas.Left="175" Canvas.Top="131"/>
+        </Canvas>
+    </Grid>
+</Window>

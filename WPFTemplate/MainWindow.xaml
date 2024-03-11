@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <Grid Background="LightBlue">
-        
+        Width="350" Height="200"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        local:NotifyWindow.IsNotifyWindow="True">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <local:CornerButton Content="X" Background="White" BorderBrush="White" Width="20" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

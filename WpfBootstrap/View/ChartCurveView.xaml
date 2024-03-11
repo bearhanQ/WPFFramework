@@ -17,8 +17,7 @@
         </x:Array>
     </UserControl.Resources>
     <Grid>
-        <ListBox ItemsSource="{StaticResource nums}" Grid.ColumnSpan="3"
-                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <ListBox ItemsSource="{StaticResource nums}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Width="500" Height="340">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="Template">
@@ -47,13 +46,12 @@
             <Path.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="40,250">
-                        <BezierSegment Point1="50,265" Point2="60,235" Point3="70,220"/>
-                        <BezierSegment Point1="80,210" Point2="90,230" Point3="100,190"/>
-                        <BezierSegment Point1="110,160" Point2="120,230" Point3="130,280"/>
-                        <BezierSegment Point1="140,320" Point2="150,240" Point3="160,160"/>
-                        <BezierSegment Point1="170,110" Point2="180,60" Point3="190,10"/>
-                        <BezierSegment Point1="200,-20" Point2="210,30" Point3="220,70"/>
-                        <BezierSegment Point1="230,126" Point2="240,210" Point3="250,238"/>
+                        <BezierSegment Point1="60,250" Point2="80,220" Point3="100,220"/>
+                        <BezierSegment Point1="120,220" Point2="140,190" Point3="160,190"/>
+                        <BezierSegment Point1="180,190" Point2="200,280" Point3="220,280"/>
+                        <BezierSegment Point1="240,280" Point2="260,160" Point3="280,160"/>
+                        <BezierSegment Point1="300,160" Point2="320,130" Point3="340,130"/>
+                        <BezierSegment Point1="360,130" Point2="380,10" Point3="400,10"/>
                     </PathFigure>
                 </PathGeometry>
             </Path.Data>
