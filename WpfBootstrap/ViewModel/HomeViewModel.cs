@@ -58,67 +58,67 @@ namespace WpfBootstrap.ViewModel
             {
                 new WorkScream
                 {
-                    Img ="/Resources/profile1.jpg",
+                    Img ="profile1.jpg",
                     Content ="Jeffie Lewzey commented on your I'm not a witch.post.",
                     Time ="2 days ago"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile2.jpg",
+                    Img ="profile2.jpg",
                     Content ="It's Mallory Hulme's birthday. Wish him well!",
                     Time ="yesterday"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile3.jpg",
+                    Img ="profile3.jpg",
                     Content ="Dunn Slane posted Well, what do you want?.",
                     Time ="4 days ago"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile4.jpg",
+                    Img ="profile4.jpg",
                     Content ="Emmy Levet created a new project Morning alarm clock.",
                     Time ="yesterday"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile5.jpg",
+                    Img ="profile5.jpg",
                     Content ="Maryjo Lebarree liked your photo.",
                     Time ="today"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile6.jpg",
+                    Img ="profile6.jpg",
                     Content ="Egan Poetz registered new client as Trilia.",
                     Time ="yesterday"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile7.jpg",
+                    Img ="profile7.jpg",
                     Content ="Kellie Skingley closed a new deal on project Pen Pineapple Apple Pen.",
                     Time ="3 days ago"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile8.jpg",
+                    Img ="profile8.jpg",
                     Content ="Christabel Charlwood created a new project for Wikibox.",
                     Time ="2 days ago"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile9.jpg",
+                    Img ="profile9.jpg",
                     Content ="Haskel Shelper change status of Tabler Icons from open to closed.",
                     Time ="yesterday"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile10.jpg",
+                    Img ="profile10.jpg",
                     Content ="Lorry Mion liked Tabler UI Kit.",
                     Time ="yesterday"
                 },
                 new WorkScream
                 {
-                    Img ="/Resources/profile11.jpg",
+                    Img ="profile11.jpg",
                     Content ="Leesa Beaty posted new video.",
                     Time ="yesterday"
                 },

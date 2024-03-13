@@ -7,10 +7,12 @@
              xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
              xmlns:mm="clr-namespace:WpfBootstrap.Model"
              xmlns:vv="clr-namespace:WpfBootstrap.ViewModel"
+             xmlns:cm="clr-namespace:WpfBootstrap.Common"
              mc:Ignorable="d" VerticalAlignment="Top"
              Background="White"
              DataContext="{Binding Source={StaticResource Locator}, Path=Home}">
     <UserControl.Resources>
+        <cm:ImageNameToImagePathConverter x:Key="ImageNameToImagePathConverter"/>
         <Style x:Key="CustomToolTipStyle" TargetType="ToolTip">
             <Setter Property="Template">
                 <Setter.Value>
@@ -55,7 +57,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Grid.ColumnSpan="2"/>
-                <Image Source="{Binding Img}" Stretch="Fill" Width="30" Height="30"/>
+                <Image Source="{Binding Img,Converter={StaticResource ImageNameToImagePathConverter}}" Stretch="Fill" Width="30" Height="30"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <TextBlock Text="{Binding Content}"/>
                     <TextBlock Text="{Binding Time}" Foreground="LightGray"/>

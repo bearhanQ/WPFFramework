@@ -72,6 +72,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\CommandBase.cs" />
+    <Compile Include="Common\Converters.cs" />
     <Compile Include="Model\Revenue.cs" />
     <Compile Include="Model\CornerPaginationModel.cs" />
     <Compile Include="Model\TreeViewModel.cs" />

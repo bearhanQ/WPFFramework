@@ -68,10 +68,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="common\ComboBoxViewFilterHelper.cs" />
+    <Compile Include="common\LocalLogicalTreeHelper.cs" />
     <Compile Include="common\ModelConvertHelper.cs" />
     <Compile Include="common\LocalVisualTreeHelper.cs" />
     <Compile Include="common\NotifyWindow.cs" />
     <Compile Include="common\TreeViewItemHelper.cs" />
+    <Compile Include="common\WindowHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />

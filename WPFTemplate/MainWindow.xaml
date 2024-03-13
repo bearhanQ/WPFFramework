@@ -5,16 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Width="350" Height="200"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        WindowStyle="None"
-        ResizeMode="NoResize"
-        local:NotifyWindow.IsNotifyWindow="True">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <local:CornerButton Content="X" Background="White" BorderBrush="White" Width="20" HorizontalAlignment="Right"/>
+        Width="400" Height="300">
+    <Grid>
+        <StackPanel Width="150" Height="150" Background="LightBlue"
+                    Margin="30,0,0,0">
+            <TextBlock Text="木马查杀" HorizontalAlignment="Center"
+                           FontSize="30" FontWeight="Bold"/>
+        </StackPanel>
     </Grid>
 </Window>
