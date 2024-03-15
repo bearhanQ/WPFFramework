@@ -6,11 +6,51 @@
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
         Width="400" Height="300">
-    <Grid>
-        <StackPanel Width="150" Height="150" Background="LightBlue"
-                    Margin="30,0,0,0">
-            <TextBlock Text="木马查杀" HorizontalAlignment="Center"
-                           FontSize="30" FontWeight="Bold"/>
-        </StackPanel>
-    </Grid>
+    <StackPanel>
+        <Grid Width="100" Height="40">
+            <Path Stroke="Black" StrokeThickness="1">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="0,35">
+                            <LineSegment Point="45,35"/>
+                            <LineSegment Point="50,40"/>
+                            <LineSegment Point="55,35"/>
+                            <LineSegment Point="100,35"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+            <Border BorderThickness="1,1,1,0" BorderBrush="Black" Margin="0,0,0,5">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="5" Opacity="0.5"/>
+                </Border.Effect>
+            </Border>
+        </Grid>
+
+        <local:PlaceControl Width="200" Height="90" Margin="0,10" BorderBrush="#FF737373" PlaceMent="Bottom">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="性能模式" FontSize="15" FontWeight="Bold"
+                           Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+                <local:CornerCheckBox CheckBoxType="Switch" CornerRadius="5" Background="LightGreen"
+                                      Grid.Column="3" Grid.Row="1"/>
+                <TextBlock Text="运行时会调节卫士自身性能占用，释放系统内存、磁盘资源，不降低安全防护能力下拒绝电脑卡顿。" 
+                           TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"/>
+            </Grid>
+        </local:PlaceControl>
+
+    </StackPanel>
 </Window>

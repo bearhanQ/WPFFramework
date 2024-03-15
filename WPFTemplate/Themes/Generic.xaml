@@ -22,5 +22,6 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerSlider.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerPagination.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerScrollViewer.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/PlaceControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
