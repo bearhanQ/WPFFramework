@@ -13,22 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Wpf063Demo
+namespace WpfBootstrap.View
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// PlaceControlView.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PlaceControlView : UserControl
     {
-        public MainWindow()
+        public PlaceControlView()
         {
             InitializeComponent();
-        }
-
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            this.DragMove();
         }
 
         private void btn1_Click(object sender, RoutedEventArgs e)

@@ -5,30 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Width="400" Height="300">
+        Width="400" Height="300"
+        WindowStartupLocation="CenterScreen">
     <StackPanel>
-        <Grid Width="100" Height="40">
-            <Path Stroke="Black" StrokeThickness="1">
-                <Path.Data>
-                    <PathGeometry>
-                        <PathFigure StartPoint="0,35">
-                            <LineSegment Point="45,35"/>
-                            <LineSegment Point="50,40"/>
-                            <LineSegment Point="55,35"/>
-                            <LineSegment Point="100,35"/>
-                        </PathFigure>
-                    </PathGeometry>
-                </Path.Data>
-            </Path>
-            <Border BorderThickness="1,1,1,0" BorderBrush="Black" Margin="0,0,0,5">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" BlurRadius="5" Opacity="0.5"/>
-                </Border.Effect>
-            </Border>
-        </Grid>
-
-        <local:PlaceControl Width="200" Height="90" Margin="0,10" BorderBrush="#FF737373" PlaceMent="Bottom">
-            <Grid>
+        <local:CornerButton Background="#FFD8EFFF" Icon="&#xe602;"  Margin="0,20"
+                                 x:Name="btn1" BorderThickness="0"
+                                 Width="30" Height="30"
+                                 Click="Button_Click"/>
+        <local:PlaceControl BorderBrush="Red"
+                            PlaceMent="Right"
+                            PlaceMentTarget="{Binding ElementName=btn1}" 
+                            x:Name="pc1">
+            <Grid Width="200" Height="90">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
@@ -44,13 +32,15 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="性能模式" FontSize="15" FontWeight="Bold"
-                           Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+                                   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
                 <local:CornerCheckBox CheckBoxType="Switch" CornerRadius="5" Background="LightGreen"
-                                      Grid.Column="3" Grid.Row="1"/>
+                                           Grid.Column="3" Grid.Row="1"/>
                 <TextBlock Text="运行时会调节卫士自身性能占用，释放系统内存、磁盘资源，不降低安全防护能力下拒绝电脑卡顿。" 
-                           TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"/>
+                                   TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"/>
             </Grid>
         </local:PlaceControl>
-
+        <local:CornerButton Background="#FFD8EFFF" Icon="&#xe602;" 
+                                 BorderThickness="0"
+                                 Width="30" Height="30"/>
     </StackPanel>
 </Window>

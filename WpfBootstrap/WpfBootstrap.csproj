@@ -144,6 +144,9 @@
     <Compile Include="View\NotifyWindowView.xaml.cs">
       <DependentUpon>NotifyWindowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PlaceControlView.xaml.cs">
+      <DependentUpon>PlaceControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ReminderCalendarView.xaml.cs">
       <DependentUpon>ReminderCalendarView.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NotifyWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PlaceControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

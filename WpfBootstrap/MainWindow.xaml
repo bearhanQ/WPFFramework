@@ -92,6 +92,7 @@
                     <cc:CornerMenuItem Header="ReminderCalendar" Style="{StaticResource subMenuItemStyle1}"/>
                     <cc:CornerMenuItem Header="ReminderDatePicker" Style="{StaticResource subMenuItemStyle1}"/>
                     <cc:CornerMenuItem Header="NotifyWindow" Style="{StaticResource subMenuItemStyle1}"/>
+                    <cc:CornerMenuItem Header="PlaceControl" Style="{StaticResource subMenuItemStyle1}"/>
                 </cc:CornerMenuItem>
 
                 <cc:CornerMenuItem Header="Layout" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;">

@@ -81,7 +81,8 @@ namespace WpfBootstrap.ViewModel
                         new TreeViewModel { Header = "CornerPagination"},
                         new TreeViewModel { Header = "ReminderCalendar"},
                         new TreeViewModel { Header = "ReminderDatePicker"},
-                        new TreeViewModel { Header = "NotifyWindow"}
+                        new TreeViewModel { Header = "NotifyWindow"},
+                        new TreeViewModel { Header = "PlaceControl"}
                     }
                 },
                 new TreeViewModel
