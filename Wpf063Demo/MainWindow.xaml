@@ -228,6 +228,9 @@
                     </LinearGradientBrush>
                 </cc:CornerButton.Background>
             </cc:CornerButton>
+            <Viewbox Height="300" Width="400" Canvas.Left="517">
+                <Image Source="/Resources/main.png"/>
+            </Viewbox>
         </Canvas>
         <ListBox Grid.Row="2" ItemsSource="{Binding Functions}" BorderThickness="0">
             <ListBox.ItemsPanel>

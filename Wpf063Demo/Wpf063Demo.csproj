@@ -74,6 +74,9 @@
     <Compile Include="Model\MainFunction.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +89,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -147,6 +154,12 @@
     <Resource Include="Resources\smallpng\fhzx.png" />
     <Resource Include="Resources\smallpng\qsnms.png" />
     <Resource Include="Resources\smallpng\tcgl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\main.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
