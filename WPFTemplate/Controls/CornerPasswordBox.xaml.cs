@@ -33,6 +33,8 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty ShowEyeProperty;
 
+        public static readonly DependencyProperty PressShowShadowProperty;
+
         private bool isPasswordChanged = false;
         private PasswordBox BasePasswordBox;
 
@@ -66,6 +68,11 @@ namespace WPFTemplate
             get { return (bool)GetValue(ShowEyeProperty); }
             set { SetValue(ShowEyeProperty, value); }
         }
+        public bool PressShowShadow
+        {
+            get { return (bool)GetValue(PressShowShadowProperty); }
+            set { SetValue(PressShowShadowProperty, value); }
+        }
 
         static CornerPasswordBox()
         {
@@ -77,6 +84,7 @@ namespace WPFTemplate
             ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
             IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerPasswordBox), new PropertyMetadata(null));
             ShowEyeProperty = DependencyProperty.Register("ShowEye", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
+            PressShowShadowProperty = DependencyProperty.Register("PressShowShadow", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
         }
         public CornerPasswordBox()
         {

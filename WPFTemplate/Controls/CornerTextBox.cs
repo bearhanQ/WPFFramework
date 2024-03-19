@@ -28,6 +28,8 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty ShowWatermarkProperty;
 
+        public static readonly DependencyProperty PressShowShadowProperty;
+
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
@@ -48,6 +50,11 @@ namespace WPFTemplate
             get { return (bool)GetValue(ShowWatermarkProperty); }
             set { SetValue(ShowWatermarkProperty, value); }
         }
+        public bool PressShowShadow
+        {
+            get { return (bool)GetValue(PressShowShadowProperty); }
+            set { SetValue(PressShowShadowProperty, value); }
+        }
 
         static CornerTextBox()
         {
@@ -56,6 +63,7 @@ namespace WPFTemplate
             IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerTextBox), new PropertyMetadata(null));
             WatermarkProperty = DependencyProperty.Register("Watermark", typeof(string), typeof(CornerTextBox), new PropertyMetadata("Watermark"));
             ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
+            PressShowShadowProperty = DependencyProperty.Register("PressShowShadow", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
         }
     }
 }

@@ -18,5 +18,6 @@
     <local:PageCountConverter x:Key="PageCountConverter"/>
     <local:PaginationPageNumClickConverter x:Key="PaginationPageNumClickConverter"/>
     <local:PaginationNumEqualCurrentIndexConverter x:Key="PaginationNumEqualCurrentIndexConverter"/>
+    <local:NullableToBooleanConverter x:Key="NullableToBooleanConverter"/>
 
 </ResourceDictionary>

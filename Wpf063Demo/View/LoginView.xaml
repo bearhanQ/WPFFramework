@@ -55,9 +55,11 @@
                               Canvas.Left="100" Canvas.Top="38"
                               Watermark="Username"
                               Icon="&#xe741;"
+                              PressShowShadow="False"
                               BorderThickness="0,0,0,1"/>
             <cc:CornerPasswordBox Width="200" Height="30"
                                   Icon="&#xea47;"
+                                  PressShowShadow="False"
                                   VerticalContentAlignment="Center"
                                   Canvas.Left="100" Canvas.Top="84"
                                   BorderThickness="0,0,0,1"/>
