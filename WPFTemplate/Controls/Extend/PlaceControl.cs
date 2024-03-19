@@ -79,7 +79,7 @@ namespace WPFTemplate
 
         private void CreatePath()
         {
-            if (this._mainPath != null)
+            if (this._mainPath != null && _child != null)
             {
                 if (this.PlaceMent == PlaceMent.Bottom)
                 {

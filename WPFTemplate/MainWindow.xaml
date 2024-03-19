@@ -5,42 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Width="400" Height="300"
+        Width="400" Height="400"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
+    </Window.Resources>
     <StackPanel>
-        <local:CornerButton Background="#FFD8EFFF" Icon="&#xe602;"  Margin="0,20"
-                                 x:Name="btn1" BorderThickness="0"
-                                 Width="30" Height="30"
-                                 Click="Button_Click"/>
-        <local:PlaceControl BorderBrush="Red"
-                            PlaceMent="Right"
-                            PlaceMentTarget="{Binding ElementName=btn1}" 
-                            x:Name="pc1">
-            <Grid Width="200" Height="90">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="性能模式" FontSize="15" FontWeight="Bold"
-                                   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-                <local:CornerCheckBox CheckBoxType="Switch" CornerRadius="5" Background="LightGreen"
-                                           Grid.Column="3" Grid.Row="1"/>
-                <TextBlock Text="运行时会调节卫士自身性能占用，释放系统内存、磁盘资源，不降低安全防护能力下拒绝电脑卡顿。" 
-                                   TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"/>
-            </Grid>
-        </local:PlaceControl>
-        <local:CornerButton Background="#FFD8EFFF" Icon="&#xe602;" 
-                                 BorderThickness="0"
-                                 Width="30" Height="30"/>
+        <Grid  Width="200" Height="30">
+            <TextBlock Text="当前卫士版本: 1.1002" VerticalAlignment="Center"/>
+        </Grid>
     </StackPanel>
 </Window>

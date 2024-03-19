@@ -16,15 +16,5 @@ namespace WPFTemplate
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            pc1.IsOpen = true;
-        }
-
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            pc1.IsOpen = true;
-        }
     }
 }

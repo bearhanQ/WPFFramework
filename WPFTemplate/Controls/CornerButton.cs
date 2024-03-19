@@ -29,6 +29,8 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty LinkShowUnderLineProperty;
 
+        public static readonly DependencyProperty PressShowShadowProperty;
+
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
@@ -54,6 +56,11 @@ namespace WPFTemplate
             get { return (bool)GetValue(LinkShowUnderLineProperty); }
             set { SetValue(LinkShowUnderLineProperty, value); }
         }
+        public bool PressShowShadow
+        {
+            get { return (bool)GetValue(PressShowShadowProperty); }
+            set { SetValue(PressShowShadowProperty, value); }
+        }
 
         static CornerButton()
         {
@@ -63,6 +70,7 @@ namespace WPFTemplate
             IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerButton), new PropertyMetadata(string.Empty));
             MouseOverForegroundProperty = DependencyProperty.Register("MouseOverForeground", typeof(Brush), typeof(CornerButton), new PropertyMetadata(Brushes.Black));
             LinkShowUnderLineProperty = DependencyProperty.Register("LinkShowUnderLine", typeof(bool), typeof(CornerButton), new PropertyMetadata(true));
+            PressShowShadowProperty = DependencyProperty.Register("PressShowShadow", typeof(bool), typeof(CornerButton), new PropertyMetadata(true));
         }
     }
 }

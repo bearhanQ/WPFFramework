@@ -58,9 +58,13 @@
                                 <Trigger Property="IsDefaulted" Value="true">
                                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                 </Trigger>
-                                <Trigger Property="IsPressed" Value="true">
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed" Value="true"/>
+                                        <Condition Property="PressShowShadow" Value="true"/>
+                                    </MultiTrigger.Conditions>
                                     <Setter Property="Opacity" TargetName="PART_ClickOutlineBorder" Value="0.5"/>
-                                </Trigger>
+                                </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
                                     <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
@@ -100,9 +104,13 @@
                                 <Trigger Property="IsDefaulted" Value="true">
                                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                 </Trigger>
-                                <Trigger Property="IsPressed" Value="true">
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed" Value="true"/>
+                                        <Condition Property="PressShowShadow" Value="true"/>
+                                    </MultiTrigger.Conditions>
                                     <Setter Property="Opacity" TargetName="PART_ClickOutlineBorder" Value="0.5"/>
-                                </Trigger>
+                                </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
                                     <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>

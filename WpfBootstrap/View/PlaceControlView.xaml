@@ -12,9 +12,9 @@
                          Width="100" Height="40" Click="btn1_Click"/>
         <cc:PlaceControl BorderBrush="#FF737373" PlaceMent="Bottom"
                          PlaceMentTarget="{Binding ElementName=btn1}" 
-                         x:Name="pc1" Background="White"
-                         Width="100" Height="40">
-            <TextBlock Text="Hello World" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
+                         x:Name="pc1" Background="White">
+            <TextBlock Text="Hello World" FontSize="15" Width="100" Height="40"
+                       FontWeight="Bold" VerticalAlignment="Center"/>
         </cc:PlaceControl>
 
     </Grid>

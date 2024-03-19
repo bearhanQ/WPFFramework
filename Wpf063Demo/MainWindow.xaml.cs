@@ -35,5 +35,20 @@ namespace Wpf063Demo
         {
             pc1.IsOpen = true;
         }
+
+        private void btn2_Click(object sender, RoutedEventArgs e)
+        {
+            pc2.IsOpen = true;
+        }
+
+        private void btn3_Click(object sender, RoutedEventArgs e)
+        {
+            pc3.IsOpen = true;
+        }
+
+        private void btn4_MouseEnter(object sender, MouseEventArgs e)
+        {
+            pc4.IsOpen = true;
+        }
     }
 }

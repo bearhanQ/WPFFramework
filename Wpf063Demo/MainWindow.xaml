@@ -36,8 +36,18 @@
                 </Viewbox>
                 <TextBlock Text="360安全卫士急速版" VerticalAlignment="Center"/>
                 <cc:CornerButton Icon="&#xe625;" Margin="5,0,0,0" Foreground="Blue"
-                                 Background="Transparent"
-                                 BorderBrush="Transparent"/>
+                                 Width="10" Height="20"
+                                 Background="Transparent" x:Name="btn4"
+                                 BorderBrush="Transparent"
+                                 MouseEnter="btn4_MouseEnter"/>
+                <cc:PlaceControl BorderBrush="#FF737373" 
+                                 PlaceMent="Right"
+                                 PlaceMentTarget="{Binding ElementName=btn4}" 
+                                 x:Name="pc4" Background="White">
+                    <Grid  Width="200" Height="30">
+                        <TextBlock Text="当前卫士版本: 1.1002" VerticalAlignment="Center"/>
+                    </Grid>
+                </cc:PlaceControl>
             </StackPanel>
             <cc:CornerTextBox Grid.Column="1" Height="30" 
                               VerticalAlignment="Center" VerticalContentAlignment="Center"
@@ -48,11 +58,11 @@
                                  x:Name="btn1" BorderThickness="0"
                                  Width="30" Height="30" Margin="10,0,0,0"
                                  Click="btn1_Click"/>
-                <cc:PlaceControl Margin="0,10" BorderBrush="#FF737373" 
-                                 PlaceMent="Bottom" Width="200" Height="90"
+                <cc:PlaceControl BorderBrush="#FF737373" 
+                                 PlaceMent="Bottom"
                                  PlaceMentTarget="{Binding ElementName=btn1}" 
                                  x:Name="pc1" Background="White">
-                    <Grid>
+                    <Grid Width="200" Height="90">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="Auto"/>
@@ -75,16 +85,122 @@
                                    TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"/>
                     </Grid>
                 </cc:PlaceControl>
-
+                
                 <cc:CornerButton Background="#FFD8EFFF" Icon="&#xe63b;" 
                                  BorderThickness="0"
                                  Width="30" Height="30" Margin="10,0,0,0"/>
                 <cc:CornerButton Background="#FFD8EFFF" Icon="&#xe7df;" 
-                                 BorderThickness="0"
-                                 Width="30" Height="30" Margin="10,0,0,0"/>
+                                 BorderThickness="0" x:Name="btn2"
+                                 Width="30" Height="30" Margin="10,0,0,0"
+                                 Click="btn2_Click"/>
+                <cc:PlaceControl BorderBrush="#FF737373" 
+                                 PlaceMent="Bottom"
+                                 PlaceMentTarget="{Binding ElementName=btn2}" 
+                                 x:Name="pc2" Background="White">
+                    <Grid Width="230" Height="248">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Height="40" Width="40" BorderThickness="1" CornerRadius="20" Background="LightGray">
+                                    <TextBlock Text="&#xe741;" FontFamily="{StaticResource FatSheep}" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="20" Foreground="White"/>
+                                </Border>
+                                <cc:CornerButton ButtonStyle="Link" Content="点击登录" VerticalAlignment="Center" Margin="10,0"/>
+                            </StackPanel>
+                            <Separator Grid.Row="2"/>
+                            <TextBlock Grid.Row="4" Text="更多功能" Foreground="LightGray"/>
+                            <Grid Grid.Row="6">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine">
+                                    <cc:CornerButton.Content>
+                                        <StackPanel>
+                                            <Viewbox Width="50" Height="35">
+                                                <Image Source="\Resources\smallpng\fhzx.png"/>
+                                            </Viewbox>
+                                            <TextBlock Text="防护中心"/>
+                                        </StackPanel>
+                                    </cc:CornerButton.Content>
+                                </cc:CornerButton>
+                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine" Grid.Column="2">
+                                    <cc:CornerButton.Content>
+                                        <StackPanel>
+                                            <Viewbox Width="50" Height="35">
+                                                <Image Source="\Resources\smallpng\aqdn.png"/>
+                                            </Viewbox>
+                                            <TextBlock Text="安全大脑"/>
+                                        </StackPanel>
+                                    </cc:CornerButton.Content>
+                                </cc:CornerButton>
+                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine" Grid.Row="2">
+                                    <cc:CornerButton.Content>
+                                        <StackPanel>
+                                            <Viewbox Width="50" Height="35">
+                                                <Image Source="\Resources\smallpng\qsnms.png"/>
+                                            </Viewbox>
+                                            <TextBlock Text="青少年模式"/>
+                                        </StackPanel>
+                                    </cc:CornerButton.Content>
+                                </cc:CornerButton>
+                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine" Grid.Row="2" Grid.Column="2">
+                                    <cc:CornerButton.Content>
+                                        <StackPanel>
+                                            <Viewbox Width="50" Height="35">
+                                                <Image Source="\Resources\smallpng\tcgl.png"/>
+                                            </Viewbox>
+                                            <TextBlock Text="弹窗过滤"/>
+                                        </StackPanel>
+                                    </cc:CornerButton.Content>
+                                </cc:CornerButton>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </cc:PlaceControl>
+
                 <cc:CornerButton Background="#FFD8EFFF" Icon="&#xe6f3;" 
-                                 BorderThickness="0"
-                                 Width="30" Height="30" Margin="10,0,0,0"/>
+                                 BorderThickness="0" x:Name="btn3"
+                                 Width="30" Height="30" Margin="10,0,0,0"
+                                 Click="btn3_Click"/>
+                <cc:PlaceControl BorderBrush="#FF737373" 
+                                 PlaceMent="Bottom"
+                                 PlaceMentTarget="{Binding ElementName=btn3}" 
+                                 x:Name="pc3" Background="White">
+                    <StackPanel Width="100" Height="180">
+                        <cc:CornerButton ButtonStyle="OutLine" Content="系统设置" BorderThickness="0" Padding="5,0,0,0"
+                                         Height="25" PressShowShadow="False" Icon="&#xe690;"/>
+                        <cc:CornerButton ButtonStyle="OutLine" Content="帮助反馈" BorderThickness="0" Padding="5,0,0,0"
+                                         Height="25" PressShowShadow="False" Icon="&#xe613;"/>
+                        <cc:CornerButton ButtonStyle="OutLine" Content="检查更新" BorderThickness="0" Padding="5,0,0,0"
+                                         Height="25" PressShowShadow="False" Icon="&#xe625;"/>
+                        <cc:CornerButton ButtonStyle="OutLine" Content="论坛求助" BorderThickness="0" Padding="5,0,0,0"
+                                         Height="25" PressShowShadow="False" Icon="&#xe6f3;"/>
+                        <cc:CornerButton ButtonStyle="OutLine" Content="隐私保护" BorderThickness="0" Padding="5,0,0,0"
+                                         Height="25" PressShowShadow="False" Icon="&#xe663;"/>
+                        <cc:CornerButton ButtonStyle="OutLine" Content="063论坛" BorderThickness="0" Padding="5,0,0,0"
+                                         Height="25" PressShowShadow="False" Icon="&#xe62f;"/>
+                        <cc:CornerButton ButtonStyle="OutLine" Content="关于我们" BorderThickness="0" Padding="5,0,0,0"
+                                         Height="25" PressShowShadow="False" Icon="&#xe66f;"/>
+                    </StackPanel>
+                </cc:PlaceControl>
+                
+                
                 <cc:CornerButton Background="#FFD8EFFF" Content="一" 
                                  BorderThickness="0"
                                  cc:WindowHelper.IsMinimizeButton="True"
