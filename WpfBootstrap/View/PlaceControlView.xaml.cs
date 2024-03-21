@@ -24,10 +24,5 @@ namespace WpfBootstrap.View
         {
             InitializeComponent();
         }
-
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            pc1.IsOpen = true;
-        }
     }
 }

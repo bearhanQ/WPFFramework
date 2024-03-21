@@ -26,162 +26,45 @@ namespace WpfBootstrap.ViewModel
         {
             Unicodes = new List<UnicodeModel>
             {
-                new UnicodeModel
-                {
-                    Icon ='\ue713',
-                    Name="DoubleArrow_Right",
-                    Code="&#xe713;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue714',
-                    Name="DoubleArrow_Left",
-                    Code="&#xe714;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue616',
-                    Name="Arrow_Right",
-                    Code="&#xe616;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue617',
-                    Name="Arrow_Left",
-                    Code="&#xe617;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue619',
-                    Name="Arrow_Top",
-                    Code="&#xe619;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue601',
-                    Name="Arrow_Down",
-                    Code="&#xe601;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue60a',
-                    Name="Heart",
-                    Code="&#xe60a;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue6ea',
-                    Name="github",
-                    Code="&#xe6ea;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue6f3',
-                    Name="document",
-                    Code="&#xe6f3;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue7c6',
-                    Name="home",
-                    Code="&#xe7c6;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue7df',
-                    Name="star",
-                    Code="&#xe7df;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue63b',
-                    Name="list",
-                    Code="&#xe63b;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue600',
-                    Name="search",
-                    Code="&#xe600;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue66a',
-                    Name="refresh",
-                    Code="&#xe66a;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue67e',
-                    Name="delete",
-                    Code="&#xe67e;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue744',
-                    Name="copy",
-                    Code="&#xe744;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue690',
-                    Name="set",
-                    Code="&#xe690;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue60d',
-                    Name="cancel",
-                    Code="&#xe60d;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue66e',
-                    Name="update",
-                    Code="&#xe66e;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue61f',
-                    Name="save",
-                    Code="&#xe61f;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue6e0',
-                    Name="addition",
-                    Code="&#xe6e0;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue6ba',
-                    Name="datepicker",
-                    Code="&#xe6ba;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue66f',
-                    Name="export",
-                    Code="&#xe66f;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue67a',
-                    Name="print",
-                    Code="&#xe67a;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue7db',
-                    Name="download",
-                    Code="&#xe7db;"
-                },
-                new UnicodeModel
-                {
-                    Icon ='\ue741',
-                    Name="user",
-                    Code="&#xe741;"
-                },
+                new UnicodeModel{Name ="edit",Code = "&#xe613;"},
+                new UnicodeModel{Name ="computer",Code = "&#xe62f;"},
+                new UnicodeModel{Name ="protection",Code = "&#xe663;"},
+                new UnicodeModel{Name ="update",Code = "&#xe625;"},
+                new UnicodeModel{Name ="cart",Code = "&#xe602;"},
+                new UnicodeModel{Name ="twitter",Code = "&#xe736;"},
+                new UnicodeModel{Name ="facebook",Code = "&#xe8e7;"},
+                new UnicodeModel{Name ="dollar",Code = "&#xe82f;"},
+                new UnicodeModel{Name ="fall",Code = "&#xe7f2;"},
+                new UnicodeModel{Name ="rise",Code = "&#xe7f3;"},
+                new UnicodeModel{Name ="dbright",Code = "&#xe713;"},
+                new UnicodeModel{Name ="dbleft",Code = "&#xe714;"},
+                new UnicodeModel{Name ="right",Code = "&#xe616;"},
+                new UnicodeModel{Name ="left",Code = "&#xe617;"},
+                new UnicodeModel{Name ="up",Code = "&#xe619;"},
+                new UnicodeModel{Name ="down",Code = "&#xe601;"},
+                new UnicodeModel{Name ="heart",Code = "&#xe60a;"},
+                new UnicodeModel{Name ="github",Code = "&#xe6ea;"},
+                new UnicodeModel{Name ="document",Code = "&#xe6f3;"},
+                new UnicodeModel{Name ="home",Code = "&#xe7c6;"},
+                new UnicodeModel{Name ="star",Code = "&#xe7df;"},
+                new UnicodeModel{Name ="list",Code = "&#xe63b;"},
+                new UnicodeModel{Name ="search",Code = "&#xe600;"},
+                new UnicodeModel{Name ="refresh",Code = "&#xe66a;"},
+                new UnicodeModel{Name ="delete",Code = "&#xe67e;"},
+                new UnicodeModel{Name ="copy",Code = "&#xe744;"},
+                new UnicodeModel{Name ="eye",Code = "&#xe64f;"},
+                new UnicodeModel{Name ="set",Code = "&#xe690;"},
+                new UnicodeModel{Name ="cancel",Code = "&#xe60d;"},
+                new UnicodeModel{Name ="update",Code = "&#xe66e;"},
+                new UnicodeModel{Name ="save",Code = "&#xe61f;"},
+                new UnicodeModel{Name ="add",Code = "&#xe6e0;"},
+                new UnicodeModel{Name ="calendar",Code = "&#xe6ba;"},
+                new UnicodeModel{Name ="eye-close",Code = "&#xe624;"},
+                new UnicodeModel{Name ="keyboard",Code = "&#xea47;"},
+                new UnicodeModel{Name ="export",Code = "&#xe66f;"},
+                new UnicodeModel{Name ="print",Code = "&#xe67a;"},
+                new UnicodeModel{Name ="import",Code = "&#xe7db;"},
+                new UnicodeModel{Name ="user",Code = "&#xe741;"}
             };
         }
     }

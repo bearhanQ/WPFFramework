@@ -30,25 +30,5 @@ namespace Wpf063Demo
             base.OnMouseLeftButtonDown(e);
             this.DragMove();
         }
-
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            pc1.IsOpen = true;
-        }
-
-        private void btn2_Click(object sender, RoutedEventArgs e)
-        {
-            pc2.IsOpen = true;
-        }
-
-        private void btn3_Click(object sender, RoutedEventArgs e)
-        {
-            pc3.IsOpen = true;
-        }
-
-        private void btn4_MouseEnter(object sender, MouseEventArgs e)
-        {
-            pc4.IsOpen = true;
-        }
     }
 }

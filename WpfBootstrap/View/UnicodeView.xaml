@@ -9,13 +9,76 @@
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=Unicode}">
     <UserControl.Resources>
+
+        <Style TargetType="{x:Type cc:CornerButton}" x:Key="btnstyle">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="PressShowShadow" Value="False"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#FF161336"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="MouseOverForeground" Value="#FF8AECF0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <DataTemplate x:Key="unicode" DataType="{x:Type m:UnicodeModel}">
-            <StackPanel Width="150" Margin="0,10">
-                <cc:CornerButton ButtonStyle="Link" LinkShowUnderLine="False" Icon="{Binding Icon}" HorizontalAlignment="Center" FontSize="30"/>
+            <StackPanel Width="150" Margin="0,10" x:Name="sp1">
+                <cc:CornerButton ButtonStyle="Link" LinkShowUnderLine="False" Width="50" Height="50"
+                                 VerticalContentAlignment="Center" x:Name="btn1"
+                                 Icon="{Binding Icon}" HorizontalAlignment="Center" FontSize="30"/>
+                <cc:PlaceControl PlaceMentTarget="{Binding ElementName=sp1}"
+                                 PlaceMent="Center"
+                                 OpenEvent="{x:Static UIElement.MouseEnterEvent}"
+                                 CloseEvent="{x:Static UIElement.MouseLeaveEvent}">
+                    <Border Background="#FF161336" Width="100" Height="130">
+                        <Border.Clip>
+                            <RectangleGeometry Rect="0, 0, 100, 130" RadiusX="10" RadiusY="10"/>
+                        </Border.Clip>
+                        <WrapPanel>
+                            <cc:CornerButton Icon="&#xe602;" Style="{StaticResource ResourceKey=btnstyle}"/>
+                            <cc:CornerButton Icon="&#xe613;" Style="{StaticResource ResourceKey=btnstyle}"/>
+                            <cc:CornerButton Icon="&#xe67e;" Style="{StaticResource ResourceKey=btnstyle}"/>
+                            <cc:CornerButton Icon="&#xe7db;" Style="{StaticResource ResourceKey=btnstyle}"/>
+                            <cc:CornerButton Icon="&#xe744;" 
+                                    Content="复制代码" 
+                                    Width="100"
+                                    PressShowShadow="False" 
+                                    MouseOverForeground="#FF8AECF0"
+                                    BorderThickness="0" 
+                                    Background="#FF161336"
+                                    Foreground="White"
+                                    Height="20"
+                                    Cursor="Hand"/>
+                        </WrapPanel>
+                    </Border>
+                </cc:PlaceControl>
                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0,5,0,2"/>
                 <TextBlock Text="{Binding Code}" HorizontalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>
+
+        <Style TargetType="ListBox">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border>
+                                        <ContentPresenter/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </UserControl.Resources>
     <Grid>
         <ListBox ItemTemplate="{StaticResource ResourceKey=unicode}" ItemsSource="{Binding Unicodes}" HorizontalAlignment="Center">

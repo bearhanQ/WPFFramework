@@ -72,6 +72,7 @@
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="PART_ShadowBorder" Property="Opacity" Value="0.1"/>
+                                    <Setter TargetName="textblockIcon" Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
                                     <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
@@ -118,6 +119,7 @@
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="PART_ShadowBorder" Property="Opacity" Value="0.1"/>
+                                    <Setter TargetName="textblockIcon" Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
                                     <Setter TargetName="border" Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=Background}"/>
                                     <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
                                 </Trigger>
@@ -158,6 +160,9 @@
                                     </MultiTrigger.Conditions>
                                     <Setter Property="Visibility" Value="Visible" TargetName="BorderUnderline"/>
                                 </MultiTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="textblockIcon" Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
+                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>

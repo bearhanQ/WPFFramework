@@ -9,9 +9,11 @@
     <Grid>
         <cc:CornerButton x:Name="btn1" Content="show"
                          CornerRadius="10"
-                         Width="100" Height="40" Click="btn1_Click"/>
+                         Width="100" Height="40"/>
         <cc:PlaceControl BorderBrush="#FF737373" PlaceMent="Bottom"
-                         PlaceMentTarget="{Binding ElementName=btn1}" 
+                         PlaceMentTarget="{Binding ElementName=btn1}"
+                         OpenEvent="{x:Static Button.ClickEvent}"
+                         CloseEvent="{x:Static Button.MouseLeaveEvent}"
                          x:Name="pc1" Background="White">
             <TextBlock Text="Hello World" FontSize="15" Width="100" Height="40"
                        FontWeight="Bold" VerticalAlignment="Center"/>

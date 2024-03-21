@@ -38,13 +38,14 @@
                 <cc:CornerButton Icon="&#xe625;" Margin="5,0,0,0" Foreground="Blue"
                                  Width="10" Height="20"
                                  Background="Transparent" x:Name="btn4"
-                                 BorderBrush="Transparent"
-                                 MouseEnter="btn4_MouseEnter"/>
+                                 BorderBrush="Transparent"/>
                 <cc:PlaceControl BorderBrush="#FF737373" 
                                  PlaceMent="Right"
-                                 PlaceMentTarget="{Binding ElementName=btn4}" 
+                                 PlaceMentTarget="{Binding ElementName=btn4}"
+                                 OpenEvent="{x:Static Button.MouseEnterEvent}"
+                                 CloseEvent="{x:Static Button.MouseLeaveEvent}"
                                  x:Name="pc4" Background="White">
-                    <Grid  Width="200" Height="30">
+                    <Grid  Width="200" Height="30" Margin="10,0,0,0">
                         <TextBlock Text="当前卫士版本: 1.1002" VerticalAlignment="Center"/>
                     </Grid>
                 </cc:PlaceControl>
@@ -56,11 +57,12 @@
             <StackPanel Orientation="Horizontal" Grid.Column="2">
                 <cc:CornerButton Background="#FFD8EFFF" Icon="&#xe602;" 
                                  x:Name="btn1" BorderThickness="0"
-                                 Width="30" Height="30" Margin="10,0,0,0"
-                                 Click="btn1_Click"/>
+                                 Width="30" Height="30" Margin="10,0,0,0"/>
                 <cc:PlaceControl BorderBrush="#FF737373" 
                                  PlaceMent="Bottom"
-                                 PlaceMentTarget="{Binding ElementName=btn1}" 
+                                 PlaceMentTarget="{Binding ElementName=btn1}"
+                                 OpenEvent="{x:Static Button.MouseEnterEvent}"
+                                 CloseEvent="{x:Static Button.MouseLeaveEvent}"
                                  x:Name="pc1" Background="White">
                     <Grid Width="200" Height="90">
                         <Grid.RowDefinitions>
@@ -91,10 +93,11 @@
                                  Width="30" Height="30" Margin="10,0,0,0"/>
                 <cc:CornerButton Background="#FFD8EFFF" Icon="&#xe7df;" 
                                  BorderThickness="0" x:Name="btn2"
-                                 Width="30" Height="30" Margin="10,0,0,0"
-                                 Click="btn2_Click"/>
+                                 Width="30" Height="30" Margin="10,0,0,0"/>
                 <cc:PlaceControl BorderBrush="#FF737373" 
                                  PlaceMent="Bottom"
+                                 OpenEvent="{x:Static Button.MouseEnterEvent}"
+                                 CloseEvent="{x:Static Button.MouseLeaveEvent}"
                                  PlaceMentTarget="{Binding ElementName=btn2}" 
                                  x:Name="pc2" Background="White">
                     <Grid Width="230" Height="248">
@@ -176,10 +179,11 @@
 
                 <cc:CornerButton Background="#FFD8EFFF" Icon="&#xe6f3;" 
                                  BorderThickness="0" x:Name="btn3"
-                                 Width="30" Height="30" Margin="10,0,0,0"
-                                 Click="btn3_Click"/>
+                                 Width="30" Height="30" Margin="10,0,0,0"/>
                 <cc:PlaceControl BorderBrush="#FF737373" 
                                  PlaceMent="Bottom"
+                                 OpenEvent="{x:Static Button.MouseEnterEvent}"
+                                 CloseEvent="{x:Static Button.MouseLeaveEvent}"
                                  PlaceMentTarget="{Binding ElementName=btn3}" 
                                  x:Name="pc3" Background="White">
                     <StackPanel Width="100" Height="180">

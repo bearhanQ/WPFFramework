@@ -51,6 +51,20 @@ namespace WPFTemplate
             set { SetValue(IsOpenProperty, value); }
         }
 
+        private RoutedEvent _openEvent;
+        public RoutedEvent OpenEvent
+        {
+            get { return _openEvent; }
+            set { _openEvent = value; }
+        }
+
+        private RoutedEvent _closeEvent;
+        public RoutedEvent CloseEvent
+        {
+            get { return _closeEvent; }
+            set { _closeEvent = value; }
+        }
+
         static PlaceControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PlaceControl), new FrameworkPropertyMetadata(typeof(PlaceControl)));
@@ -73,8 +87,31 @@ namespace WPFTemplate
                     _child = childs.Current as FrameworkElement;
                 }
             }
+
+            if (PlaceMentTarget != null)
+            {
+                if (OpenEvent != null)
+                {
+                    PlaceMentTarget.AddHandler(OpenEvent, new RoutedEventHandler(OpenEventHandler));
+                }
+                if (CloseEvent != null)
+                {
+                    PlaceMentTarget.AddHandler(CloseEvent, new RoutedEventHandler(CloseEventHandle));
+                }
+            }
+
             CreatePath();
             CorrectPathOffset();
+        }
+
+        private void OpenEventHandler(object sender,RoutedEventArgs args)
+        {
+            IsOpen = true;
+        }
+        
+        private void CloseEventHandle(object sender,RoutedEventArgs args)
+        {
+            IsOpen = false;
         }
 
         private void CreatePath()
@@ -90,9 +127,9 @@ namespace WPFTemplate
                     pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2, 0), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2 + pathOffset, pathOffset), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, pathOffset), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(0, _child.Height), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height + pathOffset), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height + pathOffset), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(0, _child.Height + pathOffset), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(0, pathOffset), true));
                     pathGeometry.Figures.Add(pathFigure);
                     _mainPath.Data = pathGeometry;
@@ -107,8 +144,8 @@ namespace WPFTemplate
                     pathFigure.Segments.Add(new LineSegment(new Point(0, _child.Height / 2), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(pathOffset, _child.Height / 2 + pathOffset), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(pathOffset, _child.Height), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, 0), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width + pathOffset, _child.Height), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width + pathOffset, 0), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(pathOffset, 0), true));
                     pathGeometry.Figures.Add(pathFigure);
                     _mainPath.Data = pathGeometry;
@@ -118,14 +155,14 @@ namespace WPFTemplate
                 {
                     PathGeometry pathGeometry = new PathGeometry();
                     PathFigure pathFigure = new PathFigure();
-                    pathFigure.StartPoint = new Point(_child.Width - pathOffset, 0);
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width - pathOffset, _child.Height / 2 - pathOffset), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height / 2), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width - pathOffset, _child.Height / 2 + pathOffset), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width - pathOffset, _child.Height), true));
+                    pathFigure.StartPoint = new Point(_child.Width, 0);
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height / 2 - pathOffset), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width + pathOffset, _child.Height / 2), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height / 2 + pathOffset), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(0, _child.Height), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(0, 0), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width - pathOffset, 0), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, 0), true));
                     pathGeometry.Figures.Add(pathFigure);
                     _mainPath.Data = pathGeometry;
                 }
@@ -134,14 +171,14 @@ namespace WPFTemplate
                 {
                     PathGeometry pathGeometry = new PathGeometry();
                     PathFigure pathFigure = new PathFigure();
-                    pathFigure.StartPoint = new Point(0, _child.Height - pathOffset);
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2 - pathOffset, _child.Height - pathOffset), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2, _child.Height), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2 + pathOffset, _child.Height - pathOffset), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height - pathOffset), true));
+                    pathFigure.StartPoint = new Point(0, _child.Height);
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2 - pathOffset, _child.Height), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2, _child.Height + pathOffset), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width / 2 + pathOffset, _child.Height), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, _child.Height), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(_child.Width, 0), true));
                     pathFigure.Segments.Add(new LineSegment(new Point(0, 0), true));
-                    pathFigure.Segments.Add(new LineSegment(new Point(0, _child.Height - pathOffset), true));
+                    pathFigure.Segments.Add(new LineSegment(new Point(0, _child.Height), true));
                     pathGeometry.Figures.Add(pathFigure);
                     _mainPath.Data = pathGeometry;
                 }
@@ -152,7 +189,7 @@ namespace WPFTemplate
         {
             if (_child != null && PlaceMentTarget != null && _popup != null)
             {
-                if(this.PlaceMent==PlaceMent.Top || this.PlaceMent == PlaceMent.Bottom)
+                if (this.PlaceMent == PlaceMent.Top || this.PlaceMent == PlaceMent.Bottom)
                 {
                     _popup.HorizontalOffset = (PlaceMentTarget.Width - _child.Width) / 2;
                 }
@@ -169,6 +206,7 @@ namespace WPFTemplate
         Bottom,
         Top,
         Left,
-        Right
+        Right,
+        Center
     }
 }

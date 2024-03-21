@@ -8,11 +8,37 @@
         Width="400" Height="400"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        
         <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
+        
+        <Style TargetType="{x:Type local:CornerButton}" BasedOn="{StaticResource {x:Type local:CornerButton}}" x:Key="btnstyle">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="PressShowShadow" Value="False"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#FF161336"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="MouseOverForeground" Value="#FF8AECF0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
     <StackPanel>
-        <Grid  Width="200" Height="30">
-            <TextBlock Text="当前卫士版本: 1.1002" VerticalAlignment="Center"/>
-        </Grid>
+        <Border Width="100" Height="50" x:Name="btn1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" Margin="50"/>
+        <local:PlaceControl PlaceMentTarget="{Binding ElementName=btn1}" PlaceMent="Bottom" x:Name="pc1"
+                            OpenEvent="{x:Static Mouse.MouseEnterEvent}"
+                            CloseEvent="{x:Static Mouse.MouseLeaveEvent}">
+            <Border Background="#FF161336" Width="20" Height="20"/>
+        </local:PlaceControl>
+        <Border Width="100" Height="50" x:Name="btn2" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Blue"/>
+        <Popup Width="100" Height="100" Visibility="Hidden" x:Name="pc2">
+            <Border Width="100" Height="100" Background="Red"/>
+        </Popup>
+        <TextBlock Name="tb1" Text="{Binding ElementName=pc1, Path=IsMouseOver}"/>
+        <TextBlock Name="tb2" Text="{Binding ElementName=pc2, Path=IsMouseOver}"/>
     </StackPanel>
 </Window>

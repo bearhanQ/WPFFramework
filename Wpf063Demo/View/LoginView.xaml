@@ -7,8 +7,11 @@
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
         mc:Ignorable="d"
         WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True"
         Width="430" Height="330"
-        WindowStartupLocation="CenterScreen">
+        UseLayoutRounding="True"
+        WindowStartupLocation="CenterScreen"
+        Style="{DynamicResource WindowStyle1}">
     <Window.Resources>
         <Storyboard x:Key="Storyboard1" RepeatBehavior="Forever">
             <ColorAnimationUsingKeyFrames Storyboard.TargetName="grid1" Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)">
@@ -17,6 +20,24 @@
                 <EasingColorKeyFrame KeyTime="00:00:04" Value="#FF3A3CFF"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+
+        <Style x:Key="WindowStyle1" TargetType="{x:Type Window}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Grid>
+                            <Border BorderThickness="1" BorderBrush="Silver" Margin="5">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
+                                </Border.Effect>
+                                <ContentPresenter/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
     <Grid x:Name="grid1" Background="#FFC168FE">
         <Grid.Triggers>
@@ -78,7 +99,7 @@
                              Icon="&#xe617;"
                              Foreground="LightGray"
                              Canvas.Left="10" Canvas.Top="171"/>
-            <Ellipse Height="60" Width="60" 
+            <Ellipse Height="60" Width="60" StrokeThickness="1" Stroke="White"
                      Canvas.Left="170" Canvas.Top="-27">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/Resources/profile4.jpg"/>
