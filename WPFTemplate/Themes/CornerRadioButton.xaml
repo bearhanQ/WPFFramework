@@ -38,6 +38,7 @@
             <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="10"/>
         </DoubleAnimationUsingKeyFrames>
         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static HorizontalAlignment.Left}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.2500000" Value="{x:Static HorizontalAlignment.Right}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.5000000" Value="{x:Static HorizontalAlignment.Right}"/>
         </ObjectAnimationUsingKeyFrames>
@@ -50,28 +51,16 @@
             <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="10"/>
         </DoubleAnimationUsingKeyFrames>
         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static HorizontalAlignment.Right}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.2500000" Value="{x:Static HorizontalAlignment.Left}"/>
             <DiscreteObjectKeyFrame KeyTime="00:00:00.5000000" Value="{x:Static HorizontalAlignment.Left}"/>
         </ObjectAnimationUsingKeyFrames>
     </Storyboard>
 
     <Storyboard x:Key="NormalChecked">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="indeterminateMark">
-            <EasingDoubleKeyFrame KeyTime="1" Value="1"/>
-            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" Storyboard.TargetName="indeterminateMark">
-            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="5"/>
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-
-    <Storyboard x:Key="NormalUnchecked">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="indeterminateMark">
-            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" Storyboard.TargetName="indeterminateMark">
-            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="indeterminateMark" Storyboard.TargetProperty="(FrameworkElement.Width)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="12"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:00.50" Value="0"/>
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
@@ -91,23 +80,21 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Border x:Name="radioButtonBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" CornerRadius="{TemplateBinding CornerRadius}">
+                                <Border x:Name="checkBoxBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" CornerRadius="{TemplateBinding CornerRadius}">
                                     <Grid x:Name="markGrid">
-                                        <Path x:Name="optionMark" Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z " Fill="{StaticResource OptionMark.Static.Glyph}" 
-                                      Margin="1" Opacity="0" Stretch="None"/>
-                                        <Rectangle x:Name="indeterminateMark" Fill="{TemplateBinding Background}" Margin="1" Opacity="1" RenderTransformOrigin="0.5,0.5">
-                                            <Rectangle.RenderTransform>
-                                                <TransformGroup>
-                                                    <ScaleTransform/>
-                                                    <TranslateTransform/>
-                                                </TransformGroup>
-                                            </Rectangle.RenderTransform>
-                                        </Rectangle>
+                                        <Path x:Name="optionMark" 
+                                              Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z " 
+                                              Fill="{StaticResource OptionMark.Static.Glyph}" 
+                                              Margin="1" Opacity="0" Stretch="None"/>
+                                        <Border x:Name="indeterminateMark" Background="{TemplateBinding Background}" Width="0" Opacity="1" 
+                                                HorizontalAlignment="Right" CornerRadius="{TemplateBinding CornerRadius}"/>
                                     </Grid>
                                 </Border>
-                                <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="HasContent" Value="true">
@@ -115,13 +102,16 @@
                                     <Setter Property="Padding" Value="4,-1,0,0"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="false">
-                                    <Setter Property="Background" TargetName="radioButtonBorder" Value="{StaticResource OptionMark.Disabled.Background}"/>
-                                    <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource OptionMark.Disabled.Border}"/>
+                                    <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Background}"/>
+                                    <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Border}"/>
                                     <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
-                                    <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
+                                    <Setter Property="Background" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
                                 </Trigger>
                                 <Trigger Property="IsChecked" Value="true">
                                     <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="Width" TargetName="indeterminateMark" Value="12"/>
                                 </Trigger>
                                 <Trigger Property="IsChecked" Value="{x:Null}">
                                     <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
@@ -129,9 +119,6 @@
                                 </Trigger>
                                 <EventTrigger RoutedEvent="{x:Static RadioButton.CheckedEvent}">
                                     <BeginStoryboard Storyboard="{StaticResource NormalChecked}"/>
-                                </EventTrigger>
-                                <EventTrigger RoutedEvent="{x:Static RadioButton.UncheckedEvent}">
-                                    <BeginStoryboard Storyboard="{StaticResource NormalUnchecked}"/>
                                 </EventTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -150,7 +137,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1" Height="14" Width="25" CornerRadius="{TemplateBinding CornerRadius}">
-                                    <Border x:Name="SwitchBorder" BorderThickness="1" BorderBrush="Gray" Background="White" Width="10" Margin="1" CornerRadius="5" HorizontalAlignment="Left"/>
+                                    <Border x:Name="SwitchBorder" BorderThickness="1" BorderBrush="Gray" Background="White" Width="10" Margin="1" CornerRadius="5" HorizontalAlignment="Right"/>
                                 </Border>
                                 <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
@@ -165,6 +152,7 @@
                                 </Trigger>
                                 <Trigger Property="IsChecked" Value="False">
                                     <Setter Property="Background" Value="White" TargetName="PART_Border"/>
+                                    <Setter Property="HorizontalAlignment" Value="Left" TargetName="SwitchBorder"/>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource OptionMark.MouseOver.Border}"/>
