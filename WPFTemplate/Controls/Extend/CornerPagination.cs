@@ -125,13 +125,15 @@ namespace WPFTemplate
             var datatable = basevalue as DataTable;
             if (datatable != null)
             {
-                if (!datatable.Columns.Contains("RowNumber"))
-                    datatable.Columns.Add("RowNumber", typeof(int));
-                int rownum = 1;
-                foreach (DataRow row in datatable.Rows)
+                if (!datatable.Columns.Contains("ExtraRow_"))
                 {
-                    row["RowNumber"] = rownum;
-                    rownum++;
+                    datatable.Columns.Add("ExtraRow_", typeof(int));
+                    int rownum = 1;
+                    foreach (DataRow row in datatable.Rows)
+                    {
+                        row["ExtraRow_"] = rownum;
+                        rownum++;
+                    }
                 }
             }
             return datatable;
@@ -184,8 +186,36 @@ namespace WPFTemplate
             if (ItemSource != null && TargetDataGrid != null)
             {
                 DataView dataView = new DataView(ItemSource);
-                dataView.RowFilter = "RowNumber > " + ((CurrentPageIndex - 1) * PageSize) + " AND RowNumber <= " + CurrentPageIndex * PageSize;
+                dataView.RowFilter = "ExtraRow_ > " + ((CurrentPageIndex - 1) * PageSize) + " AND ExtraRow_ <= " + CurrentPageIndex * PageSize;
                 TargetDataGrid.ItemsSource = dataView;
+            }
+        }
+        private void ItemSource_RowDeleted(object sender, DataRowChangeEventArgs e)
+        {
+            Refresh();
+        }
+        private void ItemSource_RowDeleting(object sender, DataRowChangeEventArgs e)
+        {
+            if (e.Action == DataRowAction.Delete)
+            {
+                var delindex = (int)e.Row["ExtraRow_"];
+                foreach(DataRow row in ItemSource.Rows)
+                {
+                    var rowIndex = (int)row["ExtraRow_"];
+                    if (rowIndex > delindex)
+                    {
+                        row["ExtraRow_"] = rowIndex -= 1;
+                    }
+                }
+            }
+        }
+        private void ItemSource_RowChanged(object sender, DataRowChangeEventArgs e)
+        {
+            if (e.Action == DataRowAction.Add)
+            {
+                var MaxIndex = ItemSource.Rows.Count;
+                e.Row["ExtraRow_"] = MaxIndex;
+                Refresh();
             }
         }
         private void SetPageNumsCollection()
@@ -271,8 +301,10 @@ namespace WPFTemplate
         }
         public override void OnApplyTemplate()
         {
-            this.Refresh();
             base.OnApplyTemplate();
+            ItemSource.RowChanged += ItemSource_RowChanged;
+            ItemSource.RowDeleting += ItemSource_RowDeleting;
+            ItemSource.RowDeleted += ItemSource_RowDeleted;
         }
     }
 

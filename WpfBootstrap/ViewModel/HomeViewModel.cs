@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfBootstrap.Model;
+using WpfBootstrap.View;
 
 namespace WpfBootstrap.ViewModel
 {
@@ -36,6 +38,17 @@ namespace WpfBootstrap.ViewModel
                 }
                 return _dataTableSource;
             }
+        }
+
+        public RelayCommand<DataRowView> DelCommand { get; set; }
+
+        public RelayCommand EditCommand { get; set; }
+
+        private DataRowView _selectedRowView;
+        public DataRowView SelectedRowView
+        {
+            get { return _selectedRowView; }
+            set { _selectedRowView = value; RaisePropertyChanged(); }
         }
 
         public HomeViewModel()
@@ -129,6 +142,23 @@ namespace WpfBootstrap.ViewModel
             DataTableSource.Rows.Add("001404", "Landing Page", "Salesforce", "87953421", "2 Sep 2017", "Due in 2 Weeks", "$1500", Action.active);
             DataTableSource.Rows.Add("001405", "Marketing Templates", "Printic", "87956621", "29 Jan 2018", "Due in 2 Weeks", "$648", Action.active);
             DataTableSource.Rows.Add("001406", "Sales Presentation", "Tabdaq", "87956621", "4 Feb 2018", "Paid Today", "$300", Action.frozen);
+
+            DelCommand = new RelayCommand<DataRowView>(DeleteDataRow);
+            EditCommand = new RelayCommand(EditDataRow);
+        }
+
+        private void DeleteDataRow(DataRowView row)
+        {
+            if (row != null)
+            {
+                DataTableSource.Rows.Remove(row.Row);
+            }
+        }
+
+        private void EditDataRow()
+        {
+            HomeTableEditView view = new HomeTableEditView();
+            view.ShowDialog();
         }
     }
 

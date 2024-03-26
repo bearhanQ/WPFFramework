@@ -138,6 +138,9 @@
     <Compile Include="View\CornerTreeViewView.xaml.cs">
       <DependentUpon>CornerTreeViewView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\HomeTableEditView.xaml.cs">
+      <DependentUpon>HomeTableEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerTreeViewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomeTableEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
