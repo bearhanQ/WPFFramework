@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace WpfBootstrap.ViewModel
                 RaisePropertyChanged("Unicodes");
             }
         }
+
+        public RelayCommand<string> CopyCommand { get; set; }
 
         public UnicodeViewModel()
         {
@@ -66,6 +69,12 @@ namespace WpfBootstrap.ViewModel
                 new UnicodeModel{Name ="import",Code = "&#xe7db;"},
                 new UnicodeModel{Name ="user",Code = "&#xe741;"}
             };
+            CopyCommand = new RelayCommand<string>(ExecuteCopy);
+        }
+
+        private void ExecuteCopy(string code)
+        {
+            System.Windows.Clipboard.SetText(code);
         }
     }
 }

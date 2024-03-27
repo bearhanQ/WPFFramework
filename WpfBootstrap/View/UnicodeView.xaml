@@ -44,15 +44,17 @@
                             <cc:CornerButton Icon="&#xe67e;" Style="{StaticResource ResourceKey=btnstyle}"/>
                             <cc:CornerButton Icon="&#xe7db;" Style="{StaticResource ResourceKey=btnstyle}"/>
                             <cc:CornerButton Icon="&#xe744;" 
-                                    Content="复制代码" 
-                                    Width="100"
-                                    PressShowShadow="False" 
-                                    MouseOverForeground="#FF8AECF0"
-                                    BorderThickness="0" 
-                                    Background="#FF161336"
-                                    Foreground="White"
-                                    Height="20"
-                                    Cursor="Hand"/>
+                                             Content="复制代码" 
+                                             Width="100"
+                                             PressShowShadow="False" 
+                                             MouseOverForeground="#FF8AECF0"
+                                             BorderThickness="0" 
+                                             Background="#FF161336"
+                                             Foreground="White"
+                                             Height="20"
+                                             Cursor="Hand"
+                                             Command="{Binding RelativeSource={RelativeSource AncestorType=local:UnicodeView}, Path=DataContext.CopyCommand}"
+                                             CommandParameter="{Binding Code}"/>
                         </WrapPanel>
                     </Border>
                 </cc:PlaceControl>
