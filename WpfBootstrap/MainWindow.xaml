@@ -142,7 +142,7 @@
                              Canvas.Top="15" Canvas.Right="10"/>
         </Canvas>
 
-        <Grid Grid.Column="1" Grid.Row="3" Background="#FFF3EDED">
+        <Grid Grid.Column="1" Grid.Row="3" Background="White">
             <ContentControl Grid.Column="1" Grid.Row="3" Content="{Binding Content}"/>
         </Grid>
     </Grid>

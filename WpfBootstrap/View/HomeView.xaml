@@ -96,8 +96,25 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White">
+            
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Grid Height="140" Grid.Column="1">
+                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
+                        </Border.Effect>
+                    </Border>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -125,8 +142,13 @@
                         <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
-                </Border>
-                <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White" Margin="10,0">
+                </Grid>
+                <Grid Height="140" Grid.Column="3">
+                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
+                        </Border.Effect>
+                    </Border>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -154,8 +176,13 @@
                         <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
-                </Border>
-                <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White">
+                </Grid>
+                <Grid Height="140" Grid.Column="5">
+                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
+                        </Border.Effect>
+                    </Border>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -183,8 +210,13 @@
                         <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
-                </Border>
-                <Border BorderBrush="Gray" Width="230" Height="140" BorderThickness="1" Background="White" Margin="10,0,0,0">
+                </Grid>
+                <Grid Height="140" Grid.Column="7">
+                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
+                        </Border.Effect>
+                    </Border>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -218,20 +250,22 @@
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
                     </Grid>
-                </Border>
-            </StackPanel>
+                </Grid>
+            </Grid>
 
             <Grid Grid.Column="1" Grid.Row="2">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
-                <cc:CornerScrollViewer VerticalScrollBarVisibility="Visible">
+                <cc:CornerScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Visible">
                     <ItemsControl BorderThickness="0" ItemTemplate="{StaticResource ResourceKey=workstream1}" 
                                   ItemsSource="{Binding WorkScreamList}"/>
                 </cc:CornerScrollViewer>
-                <StackPanel Grid.Column="2">
+                <StackPanel Grid.Column="3">
                     <Grid Height="50">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50"/>

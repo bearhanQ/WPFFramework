@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using WpfBootstrap.Command;
 using WpfBootstrap.Model;
 using WpfBootstrap.View;

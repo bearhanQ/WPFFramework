@@ -8,9 +8,9 @@
         Width="400" Height="400"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        
+
         <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
-        
+
         <Style TargetType="{x:Type local:CornerButton}" BasedOn="{StaticResource {x:Type local:CornerButton}}" x:Key="btnstyle">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
@@ -27,18 +27,22 @@
         </Style>
 
     </Window.Resources>
-    <StackPanel>
-        <Border Width="100" Height="50" x:Name="btn1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" Margin="50"/>
-        <local:PlaceControl PlaceMentTarget="{Binding ElementName=btn1}" PlaceMent="Bottom" x:Name="pc1"
-                            OpenEvent="{x:Static Mouse.MouseEnterEvent}"
-                            CloseEvent="{x:Static Mouse.MouseLeaveEvent}">
-            <Border Background="#FF161336" Width="20" Height="20"/>
-        </local:PlaceControl>
-        <Border Width="100" Height="50" x:Name="btn2" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Blue"/>
-        <Popup Width="100" Height="100" Visibility="Hidden" x:Name="pc2">
-            <Border Width="100" Height="100" Background="Red"/>
-        </Popup>
-        <TextBlock Name="tb1" Text="{Binding ElementName=pc1, Path=IsMouseOver}"/>
-        <TextBlock Name="tb2" Text="{Binding ElementName=pc2, Path=IsMouseOver}"/>
-    </StackPanel>
+    <Grid>
+        <Grid>
+            <Grid.Background>
+                <VisualBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,100,100">
+                    <VisualBrush.Visual>
+                        <Border Width="50" Height="50">
+                            <WrapPanel>
+                                <Border Width="24" Height="24" Background="Black"/>
+                                <Border Width="24" Height="24" Background="White"/>
+                                <Border Width="24" Height="24" Background="White"/>
+                                <Border Width="24" Height="24" Background="Black"/>
+                            </WrapPanel>
+                        </Border>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Grid.Background>
+        </Grid>
+    </Grid>
 </Window>
