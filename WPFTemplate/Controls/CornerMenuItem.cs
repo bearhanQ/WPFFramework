@@ -38,5 +38,10 @@ namespace WPFTemplate
             IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerMenuItem), new PropertyMetadata(null));
             CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerMenuItem), new PropertyMetadata(new CornerRadius(0)));
         }
+
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new CornerMenuItem();
+        }
     }
 }

@@ -10,6 +10,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Shapes;
 using System.Windows.Input;
 using System.Windows.Data;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace WPFTemplate
 {
@@ -22,5 +24,19 @@ namespace WPFTemplate
         {
             InitializeComponent();
         }
+    }
+
+    public class People
+    {
+        public People()
+        {
+            Children = new List<People>();
+        }
+
+        public string Name { get; set; }
+
+        public string Icon { get; set; }
+
+        public List<People> Children { get; set; }
     }
 }

@@ -20,12 +20,12 @@ namespace WpfBootstrap.ViewModel
                 new TreeViewModel
                 {
                     Header ="First",
-                    Childs = new ObservableCollection<TreeViewModel>
+                    Children = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel
                         {
                             Header = "First-Child",
-                            Childs= new ObservableCollection<TreeViewModel>
+                            Children= new ObservableCollection<TreeViewModel>
                             {
                                 new TreeViewModel
                                 {
@@ -38,12 +38,12 @@ namespace WpfBootstrap.ViewModel
                 new TreeViewModel
                 {
                     Header ="Second",
-                    Childs = new ObservableCollection<TreeViewModel>
+                    Children = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel
                         {
                             Header = "Second-Child",
-                            Childs = new ObservableCollection<TreeViewModel>
+                            Children = new ObservableCollection<TreeViewModel>
                             {
                                 new TreeViewModel
                                 {
@@ -56,12 +56,12 @@ namespace WpfBootstrap.ViewModel
                 new TreeViewModel
                 {
                     Header ="Third",
-                    Childs = new ObservableCollection<TreeViewModel>
+                    Children = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel
                         {
                             Header = "Third-Child",
-                            Childs = new ObservableCollection<TreeViewModel>
+                            Children = new ObservableCollection<TreeViewModel>
                             {
                                 new TreeViewModel
                                 {

@@ -5,44 +5,132 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Width="400" Height="400"
+        Width="800" Height="400"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-
+        <x:Array x:Key="peoples" Type="{x:Type local:People}">
+            <local:People Name="123" Icon="&#xe613;"/>
+            <local:People Name="456" Icon="&#xe613;">
+                <local:People.Children>
+                    <local:People Name="4" Icon="&#xe613;">
+                        <local:People.Children>
+                            <local:People Name="4.1" Icon="&#xe613;"/>
+                        </local:People.Children>
+                    </local:People>
+                </local:People.Children>
+            </local:People>
+            <local:People Name="789" Icon="&#xe613;"/>
+        </x:Array>
+        
         <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
-
-        <Style TargetType="{x:Type local:CornerButton}" BasedOn="{StaticResource {x:Type local:CornerButton}}" x:Key="btnstyle">
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="PressShowShadow" Value="False"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#FF161336"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="MouseOverForeground" Value="#FF8AECF0"/>
-                </Trigger>
-            </Style.Triggers>
+        <Style x:Key="style1" TargetType="{x:Type local:CornerMenu}" BasedOn="{StaticResource {x:Type local:CornerMenu}}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type local:CornerMenuItem}" BasedOn="{StaticResource {x:Type local:CornerMenuItem}}">
+                        <Setter Property="Icon" Value="{Binding Icon}"/>
+                        <Style.Triggers>
+                            <Trigger Property="Role" Value="TopLevelHeader">
+                                <Setter Property="Width" Value="100"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="TopLevelItem">
+                                <Setter Property="Width" Value="100"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuHeader">
+                                <Setter Property="Background" Value="Yellow"/>
+                                <Setter Property="Width" Value="100"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuItem">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Width" Value="100"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
         </Style>
 
+        <Style x:Key="style2" TargetType="{x:Type Menu}" BasedOn="{StaticResource {x:Type Menu}}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type local:CornerMenuItem}" BasedOn="{StaticResource {x:Type local:CornerMenuItem}}">
+                        <Style.Triggers>
+                            <Trigger Property="Role" Value="TopLevelHeader">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="TopLevelItem">
+                                <Setter Property="Background" Value="Blue"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuHeader">
+                                <Setter Property="Background" Value="Yellow"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuItem">
+                                <Setter Property="Background" Value="Green"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="style3" TargetType="{x:Type Menu}" BasedOn="{StaticResource {x:Type Menu}}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+                        <Style.Triggers>
+                            <Trigger Property="Role" Value="TopLevelHeader">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="TopLevelItem">
+                                <Setter Property="Background" Value="Blue"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuHeader">
+                                <Setter Property="Background" Value="Yellow"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuItem">
+                                <Setter Property="Background" Value="Green"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
-        <Grid>
-            <Grid.Background>
-                <VisualBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,100,100">
-                    <VisualBrush.Visual>
-                        <Border Width="50" Height="50">
-                            <WrapPanel>
-                                <Border Width="24" Height="24" Background="Black"/>
-                                <Border Width="24" Height="24" Background="White"/>
-                                <Border Width="24" Height="24" Background="White"/>
-                                <Border Width="24" Height="24" Background="Black"/>
-                            </WrapPanel>
-                        </Border>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Grid.Background>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <local:CornerMenu HorizontalAlignment="Center" VerticalAlignment="Center"
+                          ItemsSource="{StaticResource peoples}">
+            <local:CornerMenu.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:People}" ItemsSource="{Binding Children}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </local:CornerMenu.ItemTemplate>
+        </local:CornerMenu>
+
+        <local:CornerMenu HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Column="1">
+            <local:CornerMenuItem Header="123" Icon="&#xe613;"/>
+            <local:CornerMenuItem Header="456" Icon="&#xe613;">
+                <local:CornerMenuItem Header="654" Icon="&#xe613;">
+                    <local:CornerMenuItem Header="4.1" Icon="&#xe613;" IsCheckable="True"/>
+                </local:CornerMenuItem>
+            </local:CornerMenuItem>
+            <local:CornerMenuItem Header="789"/>
+        </local:CornerMenu>
+
+        <Menu HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Column="2" ItemsSource="{StaticResource peoples}">
+            <Menu.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:People}" ItemsSource="{Binding Children}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </Menu.ItemTemplate>
+        </Menu>
     </Grid>
 </Window>

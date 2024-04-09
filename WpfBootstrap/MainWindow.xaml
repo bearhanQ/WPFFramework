@@ -25,13 +25,40 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="menuStyle1" TargetType="{x:Type Menu}" BasedOn="{StaticResource {x:Type Menu}}">
+
+        <Style x:Key="cornerMenu1" TargetType="{x:Type cc:CornerMenu}" BasedOn="{StaticResource {x:Type cc:CornerMenu}}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type cc:CornerMenuItem}" BasedOn="{StaticResource {x:Type cc:CornerMenuItem}}">
+                        <Setter Property="Icon" Value="{Binding Icon}"/>
+                        <Style.Triggers>
+                            <Trigger Property="Role" Value="TopLevelItem">
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"/>
+                                <Setter Property="CommandParameter" Value="{Binding Header}"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="TopLevelHeader">
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="Width" Value="150"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuItem">
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"/>
+                                <Setter Property="CommandParameter" Value="{Binding Header}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Layout}" Value="Vertical">
                     <Setter Property="Visibility" Value="Collapsed"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        
     </Window.Resources>
     <Grid Background="#FFF4F6FA">
         <Grid.ColumnDefinitions>
@@ -67,47 +94,19 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <Menu Background="White" Style="{StaticResource menuStyle1}">
-                <cc:CornerMenuItem Header="Home" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"
-                                   Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"
-                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header}"/>
-
-                <cc:CornerMenuItem Header="Original" VerticalAlignment="Center" Height="40" Icon="&#xe690;">
-                    <cc:CornerMenuItem Header="CornerButton" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerCheckBox" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerComboBox" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerContextMenu" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerPasswordBox" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerProgressBar" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerRadioButton" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerTabControl" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerTreeView" Style="{StaticResource subMenuItemStyle1}"/>
-                </cc:CornerMenuItem>
-
-                <cc:CornerMenuItem Header="Extra" VerticalAlignment="Center" Height="40" Icon="&#xe7df;" CornerRadius="3">
-                    <cc:CornerMenuItem Header="Carousel" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="ColorSlider" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerMultiComboBox" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="CornerPagination" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="ReminderCalendar" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="ReminderDatePicker" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="NotifyWindow" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="PlaceControl" Style="{StaticResource subMenuItemStyle1}"/>
-                </cc:CornerMenuItem>
-
-                <cc:CornerMenuItem Header="Layout" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;">
-                    <cc:CornerMenuItem Header="Horizontal" Style="{StaticResource subMenuItemStyle1}"/>
-                    <cc:CornerMenuItem Header="Vertical" Style="{StaticResource subMenuItemStyle1}"/>
-                </cc:CornerMenuItem>
-
-                <cc:CornerMenuItem Header="Unicode" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"
-                                   Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"
-                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header}"/>
-
-                <cc:CornerMenuItem Header="Charts" VerticalAlignment="Center" Height="40" Icon="&#xe7c6;" IsCheckable="True"
-                                   Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"
-                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header}"/>
-            </Menu>
+            
+            <cc:CornerMenu HorizontalAlignment="Center" VerticalAlignment="Center"
+                           ItemsSource="{Binding VerticalMenuCollection}"
+                           Style="{StaticResource cornerMenu1}">
+                <cc:CornerMenu.ItemTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Children}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Header}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </cc:CornerMenu.ItemTemplate>
+            </cc:CornerMenu>
+            
             <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150" CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
         </Grid>
 
@@ -122,7 +121,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <cc:CornerTreeView.ItemTemplate>
-                <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Childs}">
+                <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Children}">
                     <Grid Height="40">
                         <TextBlock Text="{Binding Header}" VerticalAlignment="Center"/>
                     </Grid>

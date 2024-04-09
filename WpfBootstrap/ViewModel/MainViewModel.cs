@@ -57,7 +57,7 @@ namespace WpfBootstrap.ViewModel
                 {
                     Header = "Original",
                     Icon = "\ue690",
-                    Childs = new ObservableCollection<TreeViewModel>
+                    Children = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel { Header = "CornerButton"},
                         new TreeViewModel { Header = "CornerCheckBox"},
@@ -74,7 +74,7 @@ namespace WpfBootstrap.ViewModel
                 {
                     Header = "Extra",
                     Icon = "\ue7df",
-                    Childs = new ObservableCollection<TreeViewModel>
+                    Children = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel { Header = "Carousel"},
                         new TreeViewModel { Header = "ColorSlider"},
@@ -90,7 +90,7 @@ namespace WpfBootstrap.ViewModel
                 {
                     Header = "Layout",
                     Icon = "\ue7c6",
-                    Childs = new ObservableCollection<TreeViewModel>
+                    Children = new ObservableCollection<TreeViewModel>
                     {
                         new TreeViewModel { Header = "Vertical"},
                         new TreeViewModel { Header = "Horizontal"},
@@ -141,7 +141,7 @@ namespace WpfBootstrap.ViewModel
 
     public enum Layout
     {
-        Vertical,
         Horizontal,
+        Vertical
     }
 }

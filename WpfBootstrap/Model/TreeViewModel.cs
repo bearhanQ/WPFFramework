@@ -6,6 +6,6 @@ namespace WpfBootstrap.Model
     {
         public string Header { get; set; }
         public string Icon { get; set; }
-        public ObservableCollection<TreeViewModel> Childs { get; set; }
+        public ObservableCollection<TreeViewModel> Children { get; set; }
     }
 }

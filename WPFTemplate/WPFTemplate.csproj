@@ -77,6 +77,7 @@
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />
+    <Compile Include="Controls\CornerMenu.cs" />
     <Compile Include="Controls\CornerMenuItem.cs" />
     <Compile Include="Controls\CornerScrollViewer.cs" />
     <Compile Include="Controls\CornerSlider.cs" />
@@ -157,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CornerContextMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CornerMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

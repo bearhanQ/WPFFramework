@@ -231,8 +231,11 @@
                 </TextBlock>
                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" 
                        Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
-                       PlacementTarget="{Binding ElementName=templateRoot}">
-                    <Border x:Name="SubMenuBorder" Background="{StaticResource Menu.Static.Background}" BorderThickness="1" BorderBrush="{StaticResource Menu.Static.Background}" Padding="2" CornerRadius="{TemplateBinding CornerRadius}" Margin="13,13,13,13">
+                       PlacementTarget="{Binding ElementName=templateRoot}"
+                       HorizontalOffset="1">
+                    <Border x:Name="SubMenuBorder" Background="{StaticResource Menu.Static.Background}" 
+                            BorderThickness="1" BorderBrush="{StaticResource Menu.Static.Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}" Margin="13,13,13,13">
                         <Border.Effect>
                             <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="0" Opacity="0.7"/>
                         </Border.Effect>
