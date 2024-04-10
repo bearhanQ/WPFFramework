@@ -34,13 +34,13 @@
                         <Style.Triggers>
                             <Trigger Property="Role" Value="TopLevelItem">
                                 <Setter Property="Height" Value="40"/>
-                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Width" Value="100"/>
                                 <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"/>
                                 <Setter Property="CommandParameter" Value="{Binding Header}"/>
                             </Trigger>
                             <Trigger Property="Role" Value="TopLevelHeader">
                                 <Setter Property="Height" Value="40"/>
-                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Width" Value="100"/>
                             </Trigger>
                             <Trigger Property="Role" Value="SubmenuItem">
                                 <Setter Property="Height" Value="40"/>
@@ -95,8 +95,8 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             
-            <cc:CornerMenu HorizontalAlignment="Center" VerticalAlignment="Center"
-                           ItemsSource="{Binding VerticalMenuCollection}"
+            <cc:CornerMenu HorizontalAlignment="Left" VerticalAlignment="Center"
+                           ItemsSource="{Binding MenuCollection}"
                            Style="{StaticResource cornerMenu1}">
                 <cc:CornerMenu.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Children}">
@@ -113,7 +113,7 @@
         <cc:CornerTreeView Grid.Row="3" TreeViewType="Normal" 
                            Style="{StaticResource treeViewStyle1}"
                            IconDisplayMemberPath="Icon"
-                           ItemsSource="{Binding VerticalMenuCollection}">
+                           ItemsSource="{Binding MenuCollection}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction Command="{Binding ItemCommand}"

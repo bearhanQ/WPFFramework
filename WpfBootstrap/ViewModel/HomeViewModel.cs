@@ -27,6 +27,7 @@ namespace WpfBootstrap.ViewModel
                 if (_dataTableSource == null)
                 {
                     _dataTableSource = new DataTable();
+                    _dataTableSource.Columns.Add("Check", typeof(bool));
                     _dataTableSource.Columns.Add("No", typeof(string));
                     _dataTableSource.Columns.Add("INVOICE", typeof(string));
                     _dataTableSource.Columns.Add("CLIENT", typeof(string));
@@ -136,12 +137,12 @@ namespace WpfBootstrap.ViewModel
                     Time ="yesterday"
                 },
             };
-            DataTableSource.Rows.Add("001401", "Design Works", "Carlson Limited", "87956621", "15 Dec 2017", "Paid", "$887", Action.frozen);
-            DataTableSource.Rows.Add("001402", "UX Wireframes", "Adobe", "87956421", "12 Apr 2017", "Pending", "$1200", Action.active);
-            DataTableSource.Rows.Add("001403", "New Dashboard", "Bluewolf", "87952621", "23 Oct 2017", "Pending", "$534", Action.frozen);
-            DataTableSource.Rows.Add("001404", "Landing Page", "Salesforce", "87953421", "2 Sep 2017", "Due in 2 Weeks", "$1500", Action.active);
-            DataTableSource.Rows.Add("001405", "Marketing Templates", "Printic", "87956621", "29 Jan 2018", "Due in 2 Weeks", "$648", Action.active);
-            DataTableSource.Rows.Add("001406", "Sales Presentation", "Tabdaq", "87956621", "4 Feb 2018", "Paid Today", "$300", Action.frozen);
+            DataTableSource.Rows.Add(true, "001401", "Design Works", "Carlson Limited", "87956621", "15 Dec 2017", "Paid", "$887", Action.frozen);
+            DataTableSource.Rows.Add(false, "001402", "UX Wireframes", "Adobe", "87956421", "12 Apr 2017", "Pending", "$1200", Action.active);
+            DataTableSource.Rows.Add(true, "001403", "New Dashboard", "Bluewolf", "87952621", "23 Oct 2017", "Pending", "$534", Action.frozen);
+            DataTableSource.Rows.Add(false, "001404", "Landing Page", "Salesforce", "87953421", "2 Sep 2017", "Due in 2 Weeks", "$1500", Action.active);
+            DataTableSource.Rows.Add(true, "001405", "Marketing Templates", "Printic", "87956621", "29 Jan 2018", "Due in 2 Weeks", "$648", Action.active);
+            DataTableSource.Rows.Add(true, "001406", "Sales Presentation", "Tabdaq", "87956621", "4 Feb 2018", "Paid Today", "$300", Action.frozen);
 
             DelCommand = new RelayCommand<DataRowView>(DeleteDataRow);
             EditCommand = new RelayCommand(EditDataRow);

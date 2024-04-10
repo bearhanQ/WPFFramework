@@ -17,7 +17,7 @@ namespace WpfBootstrap.ViewModel
     {
         public ICommand ItemCommand => new CommandBase(ItemCanExecute, ItemExecute);
 
-        public ObservableCollection<TreeViewModel> VerticalMenuCollection { get; set; }
+        public ObservableCollection<TreeViewModel> MenuCollection { get; set; }
 
         private object _content;
         public object Content
@@ -46,7 +46,7 @@ namespace WpfBootstrap.ViewModel
             HomeView view = new HomeView();
             Content = view;
 
-            VerticalMenuCollection = new ObservableCollection<TreeViewModel>()
+            MenuCollection = new ObservableCollection<TreeViewModel>()
             {
                 new TreeViewModel
                 {

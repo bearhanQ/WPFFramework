@@ -349,6 +349,20 @@
                           HorizontalScrollBarVisibility="Hidden" SelectedItem="{Binding SelectedRowView}"
                           MinRowHeight="40" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="LightGray">
                     <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="No." Width="0.5*" IsReadOnly="True">
+                            <DataGridCheckBoxColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <cc:CornerCheckBox HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                                   IsChecked="{Binding Check, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridCheckBoxColumn.CellStyle>
+                        </DataGridCheckBoxColumn>
                         <DataGridTextColumn Header="No." Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding No}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="INVOICE SUBJECT" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding INVOICE}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="CLIENT" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding CLIENT}" IsReadOnly="True"/>
