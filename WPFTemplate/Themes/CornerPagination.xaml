@@ -26,20 +26,18 @@
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                 <Border>
                                     <Border x:Name="border1" Width="30" Height="30" BorderThickness="1" Background="White">
-                                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}" 
-                                                   VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource FatSheep}"/>
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageNumClickCommand}">
-                                                    <i:InvokeCommandAction.CommandParameter>
-                                                        <MultiBinding Converter="{StaticResource PaginationPageNumClickConverter}">
-                                                            <Binding RelativeSource="{RelativeSource AncestorType=ListBoxItem}"/>
-                                                            <Binding RelativeSource="{RelativeSource AncestorType=local:CornerPagination}"/>
-                                                        </MultiBinding>
-                                                    </i:InvokeCommandAction.CommandParameter>
-                                                </i:InvokeCommandAction>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
+                                        <local:CornerButton Content="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"
+                                                            ButtonStyle="OutLine" Width="29" Height="29" BorderThickness="0"
+                                                            PressShowShadow="False"
+                                                            VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource FatSheep}"
+                                                            Command="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageNumClickCommand}">
+                                            <local:CornerButton.CommandParameter>
+                                                <MultiBinding Converter="{StaticResource PaginationPageNumClickConverter}">
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ListBoxItem}"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:CornerPagination}"/>
+                                                </MultiBinding>
+                                            </local:CornerButton.CommandParameter>
+                                        </local:CornerButton>
                                     </Border>
                                 </Border>
                                 <ControlTemplate.Triggers>

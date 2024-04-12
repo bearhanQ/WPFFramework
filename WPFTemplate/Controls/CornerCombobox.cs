@@ -63,6 +63,8 @@ namespace WPFTemplate
             set { SetValue(ShowWatermarkProperty, value); }
         }
 
+        private CornerTextBox textBox;
+
         static CornerCombobox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCombobox), new FrameworkPropertyMetadata(typeof(CornerCombobox)));
@@ -70,6 +72,36 @@ namespace WPFTemplate
             SearchableProperty = DependencyProperty.Register("Searchable", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
             CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
             ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(true));
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (textBox != null)
+            {
+                textBox = null;
+            }
+
+            textBox = this.Template.FindName("searchTextBox", this) as CornerTextBox;
+            if (textBox != null)
+            {
+                textBox.TextChanged += SearchTextBox_TextChanged;
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as CornerTextBox;
+
+            if (!string.IsNullOrWhiteSpace(this.DisplayMemberPath))
+            {
+                FilterCommand.Execute(DisplayMemberPath + "&" + textBox.Text);
+            }
+            else
+            {
+                FilterCommand.Execute("Content" + "&" + textBox.Text);
+            }
         }
     }
 }

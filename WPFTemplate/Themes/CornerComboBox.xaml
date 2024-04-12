@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
@@ -100,7 +99,7 @@
                         <Border x:Name="searchBd" Background="White" Grid.Row="0">
                             <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1" BorderThickness="0,0,0,1" Height="{TemplateBinding ActualHeight}" VerticalContentAlignment="Center"
                                                  FontSize="{TemplateBinding FontSize}">
-                                <i:Interaction.Triggers>
+                                <!--<i:Interaction.Triggers>
                                     <i:EventTrigger EventName="TextChanged">
                                         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=FilterCommand}">
                                             <i:InvokeCommandAction.CommandParameter>
@@ -111,7 +110,7 @@
                                             </i:InvokeCommandAction.CommandParameter>
                                         </i:InvokeCommandAction>
                                     </i:EventTrigger>
-                                </i:Interaction.Triggers>
+                                </i:Interaction.Triggers>-->
                             </local:CornerTextBox>
                         </Border>
 
@@ -198,7 +197,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid x:Name="searchRootGrid" Grid.Row="0" Margin="1" Panel.ZIndex="1">
                                     <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1">
-                                        <i:Interaction.Triggers>
+                                        <!--<i:Interaction.Triggers>
                                             <i:EventTrigger EventName="TextChanged">
                                                 <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=FilterCommand}">
                                                     <i:InvokeCommandAction.CommandParameter>
@@ -210,7 +209,7 @@
                                                     </i:InvokeCommandAction.CommandParameter>
                                                 </i:InvokeCommandAction>
                                             </i:EventTrigger>
-                                        </i:Interaction.Triggers>
+                                        </i:Interaction.Triggers>-->
                                     </local:CornerTextBox>
                                 </Grid>
                                 <Canvas x:Name="canvas" Grid.Row="1" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
