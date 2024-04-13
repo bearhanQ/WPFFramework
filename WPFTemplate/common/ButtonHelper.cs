@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace WPFTemplate
 {
-    public class WindowHelper
+    public class ButtonHelper
     {
 
         public static readonly DependencyProperty IsCloseButtonProperty;
@@ -17,13 +17,13 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty IsMaxmizeButtonProperty;
 
-        static WindowHelper()
+        static ButtonHelper()
         {
-            IsCloseButtonProperty = DependencyProperty.RegisterAttached("IsCloseButton", typeof(bool), typeof(WindowHelper),
+            IsCloseButtonProperty = DependencyProperty.RegisterAttached("IsCloseButton", typeof(bool), typeof(ButtonHelper),
                 new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(IsCloseButtonChangedCallback)));
-            IsMinimizeButtonProperty = DependencyProperty.RegisterAttached("IsMinimizeButton", typeof(bool), typeof(WindowHelper),
+            IsMinimizeButtonProperty = DependencyProperty.RegisterAttached("IsMinimizeButton", typeof(bool), typeof(ButtonHelper),
                 new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(IsMinimizeButtonChangedCallback)));
-            IsMaxmizeButtonProperty = DependencyProperty.RegisterAttached("IsMaxmizeButton", typeof(bool), typeof(WindowHelper),
+            IsMaxmizeButtonProperty = DependencyProperty.RegisterAttached("IsMaxmizeButton", typeof(bool), typeof(ButtonHelper),
                 new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(IsMaxmizeButtonChangedCallback)));
         }
 

@@ -207,11 +207,11 @@
                 
                 <cc:CornerButton Background="#FFD8EFFF" Content="一" 
                                  BorderThickness="0"
-                                 cc:WindowHelper.IsMinimizeButton="True"
+                                 cc:ButtonHelper.IsMinimizeButton="True"
                                  Width="30" Height="30" Margin="10,0,0,0"/>
                 <cc:CornerButton Background="#FFD8EFFF" Icon="X" 
                                  BorderThickness="0"
-                                 cc:WindowHelper.IsCloseButton="True"
+                                 cc:ButtonHelper.IsCloseButton="True"
                                  Width="30" Height="30" Margin="10,0,10,0"/>
             </StackPanel>
         </Grid>
