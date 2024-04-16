@@ -1,28 +1,36 @@
-﻿<Window Style="{DynamicResource WindowStyle1}" x:Class="WPFTemplate.MainWindow"
+﻿<Window x:Class="WPFTemplate.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Width="100" Height="100"
-        WindowStyle="None"
-        ResizeMode="NoResize"
-        AllowsTransparency="True"
-        UseLayoutRounding="True"
+        Width="400" Height="300"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style x:Key="WindowStyle1" TargetType="{x:Type Window}">
+        <Style x:Key="toolTip1" TargetType="ToolTip">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Window}">
+                    <ControlTemplate TargetType="ToolTip">
                         <Grid>
-                            <Border BorderThickness="1" BorderBrush="Silver" Margin="5" CornerRadius="3" Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                                <ColumnDefinition Width="5"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="*" MinHeight="30"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderThickness="1" BorderBrush="#FF565353" Background="#FFE5E0E0"
+                                    Grid.Column="1" Grid.Row="1">
                                 <Border.Effect>
-                                    <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
+                                    <DropShadowEffect BlurRadius="8" Color="#FF4D4B4B" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
                                 </Border.Effect>
-                                <ContentPresenter/>
                             </Border>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="Black"
+                                              Grid.Column="1" Grid.Row="1" x:Name="cp1"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -30,12 +38,31 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
-        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" BorderThickness="1" BorderBrush="Red" CornerRadius="5">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="5" Color="#FF020201" ShadowDepth="0" Opacity="0.6"/>
-            </Border.Effect>
-        </Border>
-        <TextBlock Text="123" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-    </Grid>
+    <StackPanel>
+        <Button Content="show" Width="100" Height="30" Margin="40">
+            <Button.ToolTip>
+                <local:CornerToolTip Content="what can i say" CornerRadius="10"/>
+            </Button.ToolTip>
+        </Button>
+        <Grid Width="100" Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="1" BorderBrush="#FF565353" Background="White"
+                                    Grid.Column="1" Grid.Row="1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="8" Color="#FF4D4B4B" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
+                </Border.Effect>
+            </Border>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="Black"
+                       Grid.Column="1" Grid.Row="1" x:Name="cp1" Text="123"/>
+        </Grid>
+    </StackPanel>
 </Window>
