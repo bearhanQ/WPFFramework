@@ -21,7 +21,7 @@
         <Style x:Key="treeViewStyle1" TargetType="{x:Type cc:CornerTreeView}" BasedOn="{StaticResource {x:Type cc:CornerTreeView}}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Layout}" Value="Horizontal">
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -34,13 +34,13 @@
                         <Style.Triggers>
                             <Trigger Property="Role" Value="TopLevelItem">
                                 <Setter Property="Height" Value="40"/>
-                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Width" Value="100"/>
                                 <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ItemCommand}"/>
                                 <Setter Property="CommandParameter" Value="{Binding Header}"/>
                             </Trigger>
                             <Trigger Property="Role" Value="TopLevelHeader">
                                 <Setter Property="Height" Value="40"/>
-                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Width" Value="100"/>
                             </Trigger>
                             <Trigger Property="Role" Value="SubmenuItem">
                                 <Setter Property="Height" Value="40"/>
@@ -63,7 +63,7 @@
     <Grid Background="#FFF4F6FA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto" MinWidth="950"/>
+            <ColumnDefinition Width="1000"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -91,12 +91,11 @@
         
         <Grid Grid.Column="1" Grid.Row="1" Margin="0,1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             
-            <cc:CornerMenu HorizontalAlignment="Center" VerticalAlignment="Center"
-                           ItemsSource="{Binding VerticalMenuCollection}"
+            <cc:CornerMenu ItemsSource="{Binding VerticalMenuCollection}"
                            Style="{StaticResource cornerMenu1}">
                 <cc:CornerMenu.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Children}">
@@ -107,10 +106,12 @@
                 </cc:CornerMenu.ItemTemplate>
             </cc:CornerMenu>
             
-            <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150" CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
+            <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150"
+                              HorizontalAlignment="Right" Margin="10,0"
+                              CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
         </Grid>
 
-        <cc:CornerTreeView Grid.Row="3" TreeViewType="Normal" 
+        <cc:CornerTreeView TreeViewType="Normal" Grid.Row="3"
                            Style="{StaticResource treeViewStyle1}"
                            IconDisplayMemberPath="Icon"
                            ItemsSource="{Binding VerticalMenuCollection}">
