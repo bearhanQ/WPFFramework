@@ -42,10 +42,10 @@ namespace WPFTemplate
     /// 步骤 2)
     /// 继续操作并在 XAML 文件中使用控件。
     ///
-    ///     <MyNamespace:ReminderCalendar/>
+    ///     <MyNamespace:CornerCalendar/>
     ///
     /// </summary>
-    public class ReminderCalendar : Calendar
+    public class CornerCalendar : Calendar
     {
         public static readonly DependencyProperty HighLightColorProperty;
 
@@ -55,10 +55,10 @@ namespace WPFTemplate
             set { SetValue(HighLightColorProperty, value); }
         }
 
-        static ReminderCalendar()
+        static CornerCalendar()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ReminderCalendar), new FrameworkPropertyMetadata(typeof(ReminderCalendar)));
-            HighLightColorProperty = DependencyProperty.Register("HighLightColor", typeof(Brush), typeof(ReminderCalendar), new PropertyMetadata(Brushes.Red));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCalendar), new FrameworkPropertyMetadata(typeof(CornerCalendar)));
+            HighLightColorProperty = DependencyProperty.Register("HighLightColor", typeof(Brush), typeof(CornerCalendar), new PropertyMetadata(Brushes.Red));
         }
     }
 }

@@ -39,30 +39,6 @@
     </Window.Resources>
 
     <StackPanel>
-        <Button Content="show" Width="100" Height="30" Margin="40">
-            <Button.ToolTip>
-                <local:CornerToolTip Content="what can i say" CornerRadius="10"/>
-            </Button.ToolTip>
-        </Button>
-        <Grid Width="100" Height="30">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5"/>
-            </Grid.RowDefinitions>
-            <Border BorderThickness="1" BorderBrush="#FF565353" Background="White"
-                                    Grid.Column="1" Grid.Row="1">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="8" Color="#FF4D4B4B" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
-                </Border.Effect>
-            </Border>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="Black"
-                       Grid.Column="1" Grid.Row="1" x:Name="cp1" Text="123"/>
-        </Grid>
+        <local:CornerCalendar/>
     </StackPanel>
 </Window>

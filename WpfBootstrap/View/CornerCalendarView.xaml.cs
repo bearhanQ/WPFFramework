@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfBootstrap.View
 {
     /// <summary>
-    /// ReminderDatePickerView.xaml 的交互逻辑
+    /// CornerCalendarView.xaml 的交互逻辑
     /// </summary>
-    public partial class ReminderDatePickerView : UserControl
+    public partial class CornerCalendarView : UserControl
     {
-        public ReminderDatePickerView()
+        public CornerCalendarView()
         {
             InitializeComponent();
         }

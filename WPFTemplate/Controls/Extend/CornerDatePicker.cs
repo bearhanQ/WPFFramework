@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 
 namespace WPFTemplate
 {
-    public class ReminderDatePicker : DatePicker
+    public class CornerDatePicker : DatePicker
     {
-        static ReminderDatePicker()
+        static CornerDatePicker()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ReminderDatePicker), new FrameworkPropertyMetadata(typeof(ReminderDatePicker)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerDatePicker), new FrameworkPropertyMetadata(typeof(CornerDatePicker)));
         }
     }
 }

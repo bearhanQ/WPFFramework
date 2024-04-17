@@ -15,8 +15,8 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTreeView.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBox.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBoxItem.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderCalendar.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/ReminderDatePicker.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerCalendar.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerDatePicker.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMenuItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerContextMenu.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerSlider.xaml"/>

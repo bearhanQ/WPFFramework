@@ -92,8 +92,8 @@
     <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
     <Compile Include="Controls\Extend\CornerPagination.cs" />
     <Compile Include="Controls\Extend\PlaceControl.cs" />
-    <Compile Include="Controls\Extend\ReminderCalendar.cs" />
-    <Compile Include="Controls\Extend\ReminderDatePicker.cs" />
+    <Compile Include="Controls\Extend\CornerCalendar.cs" />
+    <Compile Include="Controls\Extend\CornerDatePicker.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
@@ -216,11 +216,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\ReminderCalendar.xaml">
+    <Page Include="Themes\CornerCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\ReminderDatePicker.xaml">
+    <Page Include="Themes\CornerDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

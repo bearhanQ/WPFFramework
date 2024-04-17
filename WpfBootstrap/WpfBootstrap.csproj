@@ -153,11 +153,11 @@
     <Compile Include="View\PlaceControlView.xaml.cs">
       <DependentUpon>PlaceControlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReminderCalendarView.xaml.cs">
-      <DependentUpon>ReminderCalendarView.xaml</DependentUpon>
+    <Compile Include="View\CornerCalendarView.xaml.cs">
+      <DependentUpon>CornerCalendarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReminderDatePickerView.xaml.cs">
-      <DependentUpon>ReminderDatePickerView.xaml</DependentUpon>
+    <Compile Include="View\CornerDatePickerView.xaml.cs">
+      <DependentUpon>CornerDatePickerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UnicodeView.xaml.cs">
       <DependentUpon>UnicodeView.xaml</DependentUpon>
@@ -266,11 +266,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ReminderCalendarView.xaml">
+    <Page Include="View\CornerCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ReminderDatePickerView.xaml">
+    <Page Include="View\CornerDatePickerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

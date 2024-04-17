@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfBootstrap.View.ReminderCalendarView"
+﻿<UserControl x:Class="WpfBootstrap.View.CornerCalendarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,7 +17,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
-            <cc:ReminderCalendar Margin="0,10" Grid.ColumnSpan="2"
+            <cc:CornerCalendar Margin="0,10" Grid.ColumnSpan="2"
                                  HighLightColor="{Binding ElementName=colorSlider1, Path=SelectedColor}"/>
             <TextBlock Text="HighLightColor:" Grid.Row="1" VerticalAlignment="Center"/>
             <cc:ColorSlider x:Name="colorSlider1" Width="100" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>

@@ -81,8 +81,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle x:Name="SelectedBackground" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:ReminderCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="50" RadiusY="50"/>
-                        <Rectangle x:Name="Background" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:ReminderCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="50" RadiusY="50"/>
+                        <Rectangle x:Name="SelectedBackground" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:CornerCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="50" RadiusY="50"/>
+                        <Rectangle x:Name="Background" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:CornerCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="50" RadiusY="50"/>
                         <ContentPresenter x:Name="NormalText" TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,0,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         <Rectangle x:Name="CalendarButtonFocusVisual" IsHitTestVisible="false" RadiusX="50" RadiusY="50" Stroke="#FF45D6FA" Visibility="Collapsed"/>
                     </Grid>
@@ -207,9 +207,9 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Rectangle x:Name="TodayBackground" Fill="{StaticResource CalendarDayButton.IsToday.Background}" Opacity="0" RadiusX="10" RadiusY="10"/>
-                        <Rectangle x:Name="SelectedBackground" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:ReminderCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="10" RadiusY="10"/>
+                        <Rectangle x:Name="SelectedBackground" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:CornerCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="10" RadiusY="10"/>
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-                        <Rectangle x:Name="HighlightBackground" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:ReminderCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="10" RadiusY="10"/>
+                        <Rectangle x:Name="HighlightBackground" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:CornerCalendar}, Path=HighLightColor}" Opacity="0" RadiusX="10" RadiusY="10"/>
                         <TextBlock x:Name="TbToday" Text="今" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Opacity="0"/>
                         <ContentPresenter x:Name="NormalText" TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" 
@@ -240,7 +240,7 @@
                 <ControlTemplate TargetType="{x:Type CalendarItem}">
                     <ControlTemplate.Resources>
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
-                            <TextBlock Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ReminderCalendar}, Path=Foreground}" FontFamily="Verdana" FontWeight="Bold" FontSize="9.5" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCalendar}, Path=Foreground}" FontFamily="Verdana" FontWeight="Bold" FontSize="9.5" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </ControlTemplate.Resources>
                     <Grid x:Name="PART_Root">
@@ -418,7 +418,7 @@
 
     <SolidColorBrush x:Key="Calendar.Border.Brush" Color="Black"/>
     
-    <Style TargetType="{x:Type local:ReminderCalendar}" BasedOn="{StaticResource {x:Type Calendar}}">
+    <Style TargetType="{x:Type local:CornerCalendar}" BasedOn="{StaticResource {x:Type Calendar}}">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{StaticResource Calendar.Border.Brush}"/>
