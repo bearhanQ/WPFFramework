@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFTemplate.Enums
+namespace WPFTemplate
 {
     public enum SliderType
     {

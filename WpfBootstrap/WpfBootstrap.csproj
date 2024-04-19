@@ -135,6 +135,9 @@
     <Compile Include="View\CornerRadioButtonView.xaml.cs">
       <DependentUpon>CornerRadioButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CornerSliderView.xaml.cs">
+      <DependentUpon>CornerSliderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CornerTabControlView.xaml.cs">
       <DependentUpon>CornerTabControlView.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerRadioButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerSliderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

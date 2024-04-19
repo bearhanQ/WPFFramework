@@ -68,7 +68,8 @@ namespace WpfBootstrap.ViewModel
                         new TreeViewModel { Header = "CornerRadioButton"},
                         new TreeViewModel { Header = "CornerTabControl"},
                         new TreeViewModel { Header = "CornerTreeView"},
-                        new TreeViewModel { Header = "CornerExpander"}
+                        new TreeViewModel { Header = "CornerExpander"},
+                        new TreeViewModel { Header = "CornerSlider"}
                     }
                 },
                 new TreeViewModel

@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <ObjectDataProvider x:Key="buttonType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="cc:ButtonStyle"/>
+                <x:Type TypeName="cc:SliderType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
