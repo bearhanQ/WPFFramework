@@ -117,6 +117,9 @@
     <Compile Include="View\CornerContextMenuView.xaml.cs">
       <DependentUpon>CornerContextMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CornerExpanderView.xaml.cs">
+      <DependentUpon>CornerExpanderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CornerMultiComboBoxView.xaml.cs">
       <DependentUpon>CornerMultiComboBoxView.xaml</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerContextMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerExpanderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,38 +7,22 @@
         mc:Ignorable="d"
         Width="400" Height="300"
         WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Style x:Key="toolTip1" TargetType="ToolTip">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToolTip">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="*" MinWidth="100"/>
-                                <ColumnDefinition Width="5"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="5"/>
-                                <RowDefinition Height="*" MinHeight="30"/>
-                                <RowDefinition Height="5"/>
-                            </Grid.RowDefinitions>
-                            <Border BorderThickness="1" BorderBrush="#FF565353" Background="#FFE5E0E0"
-                                    Grid.Column="1" Grid.Row="1">
-                                <Border.Effect>
-                                    <DropShadowEffect BlurRadius="8" Color="#FF4D4B4B" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
-                                </Border.Effect>
-                            </Border>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="Black"
-                                              Grid.Column="1" Grid.Row="1" x:Name="cp1"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
+    <Grid>
+        <local:CornerExpander VerticalAlignment="Top" ExpandDirection="Up" CornerRadius="5" Header="123">
+            <Grid Background="Red" Height="30"/>
+        </local:CornerExpander>
 
-    <StackPanel>
-        <local:CornerCalendar/>
-    </StackPanel>
+        <local:CornerExpander VerticalAlignment="Bottom" ExpandDirection="Down" Header="123">
+            <Border Background="Red" Width="400" Height="100"/>
+        </local:CornerExpander>
+
+        <local:CornerExpander ExpandDirection="Left" HorizontalAlignment="Left" Header="123">
+            <Border Width="100" Height="300" Background="Red"/>
+        </local:CornerExpander>
+
+        <local:CornerExpander ExpandDirection="Right" HorizontalAlignment="Right" Header="123">
+            <Border Width="100" Height="300" Background="Red"/>
+        </local:CornerExpander>
+
+    </Grid>
 </Window>

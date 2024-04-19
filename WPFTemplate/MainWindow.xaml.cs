@@ -26,7 +26,7 @@ namespace WPFTemplate
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e); 
+            base.OnMouseLeftButtonDown(e);
             this.DragMove();
         }
     }

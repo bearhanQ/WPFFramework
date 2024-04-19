@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="WpfBootstrap.View.CornerExpanderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfBootstrap.View"
+             xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <cc:CornerExpander VerticalAlignment="Top" ExpandDirection="Up" Header="123" 
+                           Background="{Binding ElementName=colorSliderBg, Path=SelectedColor}" BorderBrush="{Binding ElementName=colorSliderBb, Path=SelectedColor}" 
+                           CornerRadius="{Binding ElementName=cornerSlidercd, Path=Value}">
+            <Grid Background="Red" Height="100"/>
+        </cc:CornerExpander>
+
+        <cc:CornerExpander VerticalAlignment="Bottom" ExpandDirection="Down" Header="123" 
+                           Background="{Binding ElementName=colorSliderBg, Path=SelectedColor}" BorderBrush="{Binding ElementName=colorSliderBb, Path=SelectedColor}" 
+                           CornerRadius="{Binding ElementName=cornerSlidercd, Path=Value}">
+            <Border Background="Yellow" Height="100"/>
+        </cc:CornerExpander>
+
+        <cc:CornerExpander ExpandDirection="Left" HorizontalAlignment="Left" Header="123"
+                           Background="{Binding ElementName=colorSliderBg, Path=SelectedColor}" BorderBrush="{Binding ElementName=colorSliderBb, Path=SelectedColor}" 
+                           CornerRadius="{Binding ElementName=cornerSlidercd, Path=Value}">
+            <Border Width="100" Background="Blue"/>
+        </cc:CornerExpander>
+
+        <cc:CornerExpander ExpandDirection="Right" HorizontalAlignment="Right" Header="123"
+                           Background="{Binding ElementName=colorSliderBg, Path=SelectedColor}" BorderBrush="{Binding ElementName=colorSliderBb, Path=SelectedColor}" 
+                           CornerRadius="{Binding ElementName=cornerSlidercd, Path=Value}">
+            <Border Width="100" Background="Green"/>
+        </cc:CornerExpander>
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Background:" VerticalAlignment="Center"/>
+            <cc:ColorSlider x:Name="colorSliderBg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1"/>
+            <TextBlock Text="BorderBrush:" Grid.Row="1" VerticalAlignment="Center"/>
+            <cc:ColorSlider x:Name="colorSliderBb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="1"/>
+            <TextBlock Text="CornerRadius:" Grid.Row="2" VerticalAlignment="Center"/>
+            <cc:CornerSlider x:Name="cornerSlidercd" Grid.Row="2" Grid.Column="1" Width="100" Maximum="10" Minimum="0"/>
+        </Grid>
+    </Grid>
+</UserControl>
