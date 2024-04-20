@@ -7,22 +7,45 @@
         mc:Ignorable="d"
         Width="400" Height="300"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <local:CornerExpander VerticalAlignment="Top" ExpandDirection="Up" CornerRadius="5" Header="123">
-            <Grid Background="Red" Height="30"/>
-        </local:CornerExpander>
+    <StackPanel>
 
-        <local:CornerExpander VerticalAlignment="Bottom" ExpandDirection="Down" Header="123">
-            <Border Background="Red" Width="400" Height="100"/>
-        </local:CornerExpander>
-
-        <local:CornerExpander ExpandDirection="Left" HorizontalAlignment="Left" Header="123">
-            <Border Width="100" Height="300" Background="Red"/>
-        </local:CornerExpander>
-
-        <local:CornerExpander ExpandDirection="Right" HorizontalAlignment="Right" Header="123">
-            <Border Width="100" Height="300" Background="Red"/>
-        </local:CornerExpander>
-
-    </Grid>
+        <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button.Content>
+                <Ellipse Width="10" Height="10"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Red"/>
+            </Button.Content>
+        </Button>
+        
+        <Grid Margin="10" Background="Green">
+            <Border BorderBrush="Red" BorderThickness="1" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top"
+                    x:Name="bd1">
+                <ListBox HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" x:Name="lb1">
+                    <ListBoxItem Content="First" Height="30" Width="30" BorderBrush="Green" BorderThickness="1"/>
+                    <ListBoxItem Content="First" Height="40" Width="40" BorderBrush="Black" BorderThickness="1"/>
+                    <ListBoxItem Content="First" Height="50" Width="50" BorderBrush="Red" BorderThickness="1"/>
+                </ListBox>
+            </Border>
+            <local:CornerButton Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False"
+                                Click="CornerButton_Click">
+                <Button.Content>
+                    <Ellipse Width="10" Height="10"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Red"/>
+                </Button.Content>
+            </local:CornerButton>
+            <local:CornerButton Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                                ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False">
+                <Button.Content>
+                    <Thumb x:Name="thumb" DragDelta="Thumb_DragDelta" Width="10" Height="10">
+                        <Thumb.Template>
+                            <ControlTemplate>
+                                <Ellipse Width="10" Height="10" Fill="Yellow"
+                                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ControlTemplate>
+                        </Thumb.Template>
+                    </Thumb>
+                </Button.Content>
+            </local:CornerButton>
+        </Grid>
+    </StackPanel>
 </Window>

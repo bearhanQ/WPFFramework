@@ -27,7 +27,7 @@
                                 <Border>
                                     <Border x:Name="border1" Width="30" Height="30" BorderThickness="1" Background="White">
                                         <local:CornerButton Content="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"
-                                                            ButtonStyle="OutLine" Width="29" Height="29" BorderThickness="0"
+                                                            ButtonType="OutLine" Width="29" Height="29" BorderThickness="0"
                                                             PressShowShadow="False"
                                                             VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource FatSheep}"
                                                             Command="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageNumClickCommand}">
@@ -89,7 +89,7 @@
                             <ComboBoxItem Content="50条/页"/>
                             <ComboBoxItem Content="100条/页"/>
                         </local:CornerCombobox>
-                        <local:CornerButton Content="导出" VerticalAlignment="Center" ButtonStyle="OutLine" FontFamily="{StaticResource FatSheep}" Icon="&#xe7db;" Width="80" Height="30"/>
+                        <local:CornerButton Content="导出" VerticalAlignment="Center" ButtonType="OutLine" FontFamily="{StaticResource FatSheep}" Icon="&#xe7db;" Width="80" Height="30"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

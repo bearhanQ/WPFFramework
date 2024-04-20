@@ -45,7 +45,7 @@
                    Grid.Column="0" Grid.Row="2"/>
         <cc:CornerCombobox x:Name="cbButtonType"  Width="100" 
                            Grid.Column="1" Grid.Row="2"
-                           WaterText="ButtonStyle"
+                           WaterText="ButtonType"
                            SelectedIndex="1"
                            ItemsSource="{Binding Source={StaticResource sliderType}}"/>
         <TextBlock Text="BorderBrush:" VerticalAlignment="Center"

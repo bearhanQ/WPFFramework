@@ -21,7 +21,7 @@ namespace WPFTemplate
     {
         public static readonly DependencyProperty CornerRadiusProperty;
 
-        public static readonly DependencyProperty ButtonStyleProperty;
+        public static readonly DependencyProperty ButtonTypeProperty;
 
         public static readonly DependencyProperty IconProperty;
 
@@ -36,10 +36,10 @@ namespace WPFTemplate
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        public ButtonStyle ButtonStyle
+        public ButtonType ButtonType
         {
-            get { return (ButtonStyle)GetValue(ButtonStyleProperty); }
-            set { SetValue(ButtonStyleProperty, value); }
+            get { return (ButtonType)GetValue(ButtonTypeProperty); }
+            set { SetValue(ButtonTypeProperty, value); }
         }
         public string Icon
         {
@@ -66,7 +66,7 @@ namespace WPFTemplate
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerButton), new FrameworkPropertyMetadata(typeof(CornerButton)));
             CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerButton));
-            ButtonStyleProperty = DependencyProperty.Register("ButtonStyle", typeof(ButtonStyle), typeof(CornerButton));
+            ButtonTypeProperty = DependencyProperty.Register("ButtonType", typeof(ButtonType), typeof(CornerButton));
             IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerButton), new PropertyMetadata(string.Empty));
             MouseOverForegroundProperty = DependencyProperty.Register("MouseOverForeground", typeof(Brush), typeof(CornerButton), new PropertyMetadata(Brushes.Black));
             LinkShowUnderLineProperty = DependencyProperty.Register("LinkShowUnderLine", typeof(bool), typeof(CornerButton), new PropertyMetadata(true));

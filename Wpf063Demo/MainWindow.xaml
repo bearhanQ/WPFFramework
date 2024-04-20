@@ -117,7 +117,7 @@
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    FontSize="20" Foreground="White"/>
                                 </Border>
-                                <cc:CornerButton ButtonStyle="Link" Content="点击登录" VerticalAlignment="Center" Margin="10,0"/>
+                                <cc:CornerButton ButtonType="Link" Content="点击登录" VerticalAlignment="Center" Margin="10,0"/>
                             </StackPanel>
                             <Separator Grid.Row="2"/>
                             <TextBlock Grid.Row="4" Text="更多功能" Foreground="LightGray"/>
@@ -132,7 +132,7 @@
                                     <ColumnDefinition Width="5"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine">
+                                <cc:CornerButton CornerRadius="10" ButtonType="OutLine">
                                     <cc:CornerButton.Content>
                                         <StackPanel>
                                             <Viewbox Width="50" Height="35">
@@ -142,7 +142,7 @@
                                         </StackPanel>
                                     </cc:CornerButton.Content>
                                 </cc:CornerButton>
-                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine" Grid.Column="2">
+                                <cc:CornerButton CornerRadius="10" ButtonType="OutLine" Grid.Column="2">
                                     <cc:CornerButton.Content>
                                         <StackPanel>
                                             <Viewbox Width="50" Height="35">
@@ -152,7 +152,7 @@
                                         </StackPanel>
                                     </cc:CornerButton.Content>
                                 </cc:CornerButton>
-                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine" Grid.Row="2">
+                                <cc:CornerButton CornerRadius="10" ButtonType="OutLine" Grid.Row="2">
                                     <cc:CornerButton.Content>
                                         <StackPanel>
                                             <Viewbox Width="50" Height="35">
@@ -162,7 +162,7 @@
                                         </StackPanel>
                                     </cc:CornerButton.Content>
                                 </cc:CornerButton>
-                                <cc:CornerButton CornerRadius="10" ButtonStyle="OutLine" Grid.Row="2" Grid.Column="2">
+                                <cc:CornerButton CornerRadius="10" ButtonType="OutLine" Grid.Row="2" Grid.Column="2">
                                     <cc:CornerButton.Content>
                                         <StackPanel>
                                             <Viewbox Width="50" Height="35">
@@ -187,19 +187,19 @@
                                  PlaceMentTarget="{Binding ElementName=btn3}" 
                                  x:Name="pc3" Background="White">
                     <StackPanel Width="100" Height="180">
-                        <cc:CornerButton ButtonStyle="OutLine" Content="系统设置" BorderThickness="0" Padding="5,0,0,0"
+                        <cc:CornerButton ButtonType="OutLine" Content="系统设置" BorderThickness="0" Padding="5,0,0,0"
                                          Height="25" PressShowShadow="False" Icon="&#xe690;"/>
-                        <cc:CornerButton ButtonStyle="OutLine" Content="帮助反馈" BorderThickness="0" Padding="5,0,0,0"
+                        <cc:CornerButton ButtonType="OutLine" Content="帮助反馈" BorderThickness="0" Padding="5,0,0,0"
                                          Height="25" PressShowShadow="False" Icon="&#xe613;"/>
-                        <cc:CornerButton ButtonStyle="OutLine" Content="检查更新" BorderThickness="0" Padding="5,0,0,0"
+                        <cc:CornerButton ButtonType="OutLine" Content="检查更新" BorderThickness="0" Padding="5,0,0,0"
                                          Height="25" PressShowShadow="False" Icon="&#xe625;"/>
-                        <cc:CornerButton ButtonStyle="OutLine" Content="论坛求助" BorderThickness="0" Padding="5,0,0,0"
+                        <cc:CornerButton ButtonType="OutLine" Content="论坛求助" BorderThickness="0" Padding="5,0,0,0"
                                          Height="25" PressShowShadow="False" Icon="&#xe6f3;"/>
-                        <cc:CornerButton ButtonStyle="OutLine" Content="隐私保护" BorderThickness="0" Padding="5,0,0,0"
+                        <cc:CornerButton ButtonType="OutLine" Content="隐私保护" BorderThickness="0" Padding="5,0,0,0"
                                          Height="25" PressShowShadow="False" Icon="&#xe663;"/>
-                        <cc:CornerButton ButtonStyle="OutLine" Content="063论坛" BorderThickness="0" Padding="5,0,0,0"
+                        <cc:CornerButton ButtonType="OutLine" Content="063论坛" BorderThickness="0" Padding="5,0,0,0"
                                          Height="25" PressShowShadow="False" Icon="&#xe62f;"/>
-                        <cc:CornerButton ButtonStyle="OutLine" Content="关于我们" BorderThickness="0" Padding="5,0,0,0"
+                        <cc:CornerButton ButtonType="OutLine" Content="关于我们" BorderThickness="0" Padding="5,0,0,0"
                                          Height="25" PressShowShadow="False" Icon="&#xe66f;"/>
                     </StackPanel>
                 </cc:PlaceControl>

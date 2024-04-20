@@ -52,7 +52,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
             <cc:CornerButton Content="一" 
                          BorderThickness="0"
-                         ButtonStyle="Normal"
+                         ButtonType="Normal"
                          Background="Transparent"
                          cc:ButtonHelper.IsMinimizeButton="True"
                          Width="30" Height="30"
@@ -60,7 +60,7 @@
                          HorizontalAlignment="Right"
                          PressShowShadow="False"/>
             <cc:CornerButton Icon="X" BorderThickness="0"
-                             ButtonStyle="Normal"
+                             ButtonType="Normal"
                              Background="Transparent"
                              cc:ButtonHelper.IsCloseButton="True"
                              Width="30" Height="30" 
@@ -91,10 +91,10 @@
                              Canvas.Left="115" Canvas.Top="128" Cursor="Hand" Click="CornerButton_Click"/>
             <cc:CornerButton Content="取消" Width="90" Height="35"
                              CornerRadius="5"
-                             ButtonStyle="OutLine"
+                             ButtonType="OutLine"
                              Canvas.Left="226" Canvas.Top="128"/>
             <cc:CornerButton Content="单账号登录"
-                             ButtonStyle="Link"
+                             ButtonType="Link"
                              BorderThickness="0"
                              Icon="&#xe617;"
                              Foreground="LightGray"

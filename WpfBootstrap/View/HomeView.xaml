@@ -378,10 +378,10 @@
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Border x:Name="bd" Background="White">
                                                     <Grid>
-                                                        <cc:CornerButton ButtonStyle="Link" Content="Edit"
+                                                        <cc:CornerButton ButtonType="Link" Content="Edit"
                                                                          Width="50" Height="20" HorizontalAlignment="Left"
                                                                          Command="{Binding RelativeSource={RelativeSource AncestorType=local:HomeView}, Path=DataContext.EditCommand}"/>
-                                                        <cc:CornerButton ButtonStyle="Link" Content="Delete"
+                                                        <cc:CornerButton ButtonType="Link" Content="Delete"
                                                          Width="50" Height="20" HorizontalAlignment="Right"
                                                          Command="{Binding RelativeSource={RelativeSource AncestorType=local:HomeView}, Path=DataContext.DelCommand}"
                                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=SelectedItem}"/>
