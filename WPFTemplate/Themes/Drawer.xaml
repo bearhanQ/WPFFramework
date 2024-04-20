@@ -1,0 +1,132 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFTemplate">
+
+    <ControlTemplate x:Key="HorizontalDrawerTemplate" TargetType="{x:Type local:Drawer}">
+        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <local:CornerButton BorderThickness="0" Grid.Column="0" VerticalAlignment="Center"
+                                    x:Name="btnDrag"
+                                    ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False" 
+                                    Background="{TemplateBinding Background}">
+                    <Button.Content>
+                        <Thumb x:Name="thumb1" Width="10" Height="10">
+                            <Thumb.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Vertical" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
+                                        <Ellipse Fill="Black" Width="2" Height="2"/>
+                                        <Ellipse Fill="Black" Width="2" Height="2" Margin="0,2"/>
+                                        <Ellipse Fill="Black" Width="2" Height="2"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Thumb.Template>
+                        </Thumb>
+                    </Button.Content>
+                </local:CornerButton>
+                <ItemsPresenter x:Name="itemsPresenter1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.Column="2" HorizontalAlignment="Right"/>
+                <local:CornerButton x:Name="btnExpand" BorderThickness="0" Grid.Column="4" VerticalAlignment="Center"
+                                    ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False">
+                    <local:CornerButton.Content>
+                        <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
+                            <Ellipse Fill="Black" Width="2" Height="2"/>
+                            <Ellipse Fill="Black" Width="2" Height="2" Margin="2,0"/>
+                            <Ellipse Fill="Black" Width="2" Height="2"/>
+                        </StackPanel>
+                    </local:CornerButton.Content>
+                </local:CornerButton>
+
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="HorizontalAlignment" Value="Left">
+                <Setter TargetName="btnExpand" Property="Grid.Column" Value="0"/>
+                <Setter TargetName="btnDrag" Property="Grid.Column" Value="4"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="VerticalDrawerTemplate" TargetType="{x:Type local:Drawer}">
+        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <local:CornerButton BorderThickness="0" VerticalAlignment="Center"
+                                    x:Name="btnDrag" Grid.Row="4"
+                                    ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False" 
+                                    Background="{TemplateBinding Background}">
+                    <Button.Content>
+                        <Thumb x:Name="thumb1" Width="10" Height="10">
+                            <Thumb.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Vertical" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
+                                        <Ellipse Fill="Black" Width="2" Height="2"/>
+                                        <Ellipse Fill="Black" Width="2" Height="2" Margin="0,2"/>
+                                        <Ellipse Fill="Black" Width="2" Height="2"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Thumb.Template>
+                        </Thumb>
+                    </Button.Content>
+                </local:CornerButton>
+                <ItemsPresenter x:Name="itemsPresenter1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.Row="2" HorizontalAlignment="Right"/>
+                <local:CornerButton x:Name="btnExpand" BorderThickness="0" Grid.Row="0" VerticalAlignment="Center"
+                                    ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False">
+                    <local:CornerButton.Content>
+                        <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
+                            <Ellipse Fill="Black" Width="2" Height="2"/>
+                            <Ellipse Fill="Black" Width="2" Height="2" Margin="2,0"/>
+                            <Ellipse Fill="Black" Width="2" Height="2"/>
+                        </StackPanel>
+                    </local:CornerButton.Content>
+                </local:CornerButton>
+
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="VerticalAlignment" Value="Bottom">
+                <Setter TargetName="btnExpand" Property="Grid.Row" Value="4"/>
+                <Setter TargetName="btnDrag" Property="Grid.Row" Value="0"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:Drawer}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template" Value="{StaticResource HorizontalDrawerTemplate}"/>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template" Value="{StaticResource VerticalDrawerTemplate}"/>
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

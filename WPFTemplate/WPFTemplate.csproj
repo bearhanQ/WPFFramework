@@ -92,6 +92,8 @@
     <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
     <Compile Include="Controls\Extend\CornerPagination.cs" />
+    <Compile Include="Controls\Extend\Drawer.cs" />
+    <Compile Include="Controls\Extend\DrawerItem.cs" />
     <Compile Include="Controls\Extend\PlaceControl.cs" />
     <Compile Include="Controls\Extend\CornerCalendar.cs" />
     <Compile Include="Controls\Extend\CornerDatePicker.cs" />
@@ -210,6 +212,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CornerTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Drawer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DrawerItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

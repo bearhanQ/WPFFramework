@@ -5,47 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Width="400" Height="300"
+        Width="800" Height="800"
         WindowStartupLocation="CenterScreen">
-    <StackPanel>
+    <Window.Resources>
 
-        <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button.Content>
-                <Ellipse Width="10" Height="10"
-                         HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Red"/>
-            </Button.Content>
-        </Button>
-        
-        <Grid Margin="10" Background="Green">
-            <Border BorderBrush="Red" BorderThickness="1" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top"
-                    x:Name="bd1">
-                <ListBox HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" x:Name="lb1">
-                    <ListBoxItem Content="First" Height="30" Width="30" BorderBrush="Green" BorderThickness="1"/>
-                    <ListBoxItem Content="First" Height="40" Width="40" BorderBrush="Black" BorderThickness="1"/>
-                    <ListBoxItem Content="First" Height="50" Width="50" BorderBrush="Red" BorderThickness="1"/>
-                </ListBox>
-            </Border>
-            <local:CornerButton Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" 
-                                ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False"
-                                Click="CornerButton_Click">
-                <Button.Content>
-                    <Ellipse Width="10" Height="10"
-                         HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Red"/>
-                </Button.Content>
-            </local:CornerButton>
-            <local:CornerButton Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
-                                ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False">
-                <Button.Content>
-                    <Thumb x:Name="thumb" DragDelta="Thumb_DragDelta" Width="10" Height="10">
-                        <Thumb.Template>
-                            <ControlTemplate>
-                                <Ellipse Width="10" Height="10" Fill="Yellow"
-                                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </ControlTemplate>
-                        </Thumb.Template>
-                    </Thumb>
-                </Button.Content>
-            </local:CornerButton>
-        </Grid>
-    </StackPanel>
+    </Window.Resources>
+    <Grid>
+        <local:Drawer HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="Blue" BorderThickness="1"
+                      Orientation="Vertical"
+                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PresentIndex="4">
+            <local:DrawerItem Content="1" Width="40" Height="40" BorderBrush="Red"/>
+            <local:DrawerItem Content="2" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="3" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="4" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="5" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="6" Width="40" Height="40" BorderBrush="Red" Margin="10,0"/>
+            <local:DrawerItem Content="7" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="8" Width="40" Height="40" BorderBrush="Black" Margin="10,0"/>
+        </local:Drawer>
+        <local:Drawer HorizontalAlignment="Center" VerticalAlignment="Bottom" BorderBrush="Blue" BorderThickness="1"
+                      Orientation="Vertical"
+                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PresentIndex="4">
+            <local:DrawerItem Content="1" Width="40" Height="40" BorderBrush="Red"/>
+            <local:DrawerItem Content="2" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="3" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="4" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="5" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="6" Width="40" Height="40" BorderBrush="Red" Margin="10,0"/>
+            <local:DrawerItem Content="7" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="8" Width="40" Height="40" BorderBrush="Black" Margin="10,0"/>
+        </local:Drawer>
+        <local:Drawer HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Blue" BorderThickness="1"
+                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PresentIndex="4">
+            <local:DrawerItem Content="1" Width="40" Height="40" BorderBrush="Red"/>
+            <local:DrawerItem Content="2" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="3" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="4" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="5" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="6" Width="40" Height="40" BorderBrush="Red" Margin="10,0"/>
+            <local:DrawerItem Content="7" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="8" Width="40" Height="40" BorderBrush="Black" Margin="10,0"/>
+        </local:Drawer>
+        <local:Drawer HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Blue" BorderThickness="1"
+                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PresentIndex="4">
+            <local:DrawerItem Content="1" Width="40" Height="40" BorderBrush="Red"/>
+            <local:DrawerItem Content="2" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="3" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="4" Width="40" Height="40" BorderBrush="Yellow" Margin="10,0"/>
+            <local:DrawerItem Content="5" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="6" Width="40" Height="40" BorderBrush="Red" Margin="10,0"/>
+            <local:DrawerItem Content="7" Width="40" Height="40" BorderBrush="Green"/>
+            <local:DrawerItem Content="8" Width="40" Height="40" BorderBrush="Black" Margin="10,0"/>
+        </local:Drawer>
+    </Grid>
 </Window>

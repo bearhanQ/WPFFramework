@@ -26,5 +26,7 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMenu.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerToolTip.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerExpander.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Drawer.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/DrawerItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

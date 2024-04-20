@@ -23,33 +23,6 @@ namespace WPFTemplate
         {
             InitializeComponent();
         }
-
-        private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)
-        {
-            double horizontalChange = e.VerticalChange;
-            if (horizontalChange > 0) // 向右拖动，按钮变长
-            {
-                bd1.Height += horizontalChange;
-            }
-            else // 向左拖动，按钮变短
-            {
-                if (bd1.Height + horizontalChange > bd1.MinWidth) // 防止按钮宽度小于最小宽度
-                {
-                    bd1.Height += horizontalChange;
-                }
-            }
-        }
-
-        private void CornerButton_Click(object sender, RoutedEventArgs e)
-        {
-            double totalHeight = 0;
-            foreach(var item in lb1.Items)
-            {
-                var a = item as FrameworkElement;
-                totalHeight += a.ActualHeight;
-            }
-            bd1.Height = totalHeight;
-        }
     }
 
     public class People
