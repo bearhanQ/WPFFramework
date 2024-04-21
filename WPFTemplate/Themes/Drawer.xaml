@@ -12,8 +12,7 @@
                     <ColumnDefinition Width="2"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <local:CornerButton BorderThickness="0" Grid.Column="0" VerticalAlignment="Center"
-                                    x:Name="btnDrag"
+                <local:CornerButton x:Name="btnDrag" Grid.Column="0" BorderThickness="0" VerticalAlignment="Center"
                                     ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False" 
                                     Background="{TemplateBinding Background}">
                     <Button.Content>
@@ -31,7 +30,7 @@
                     </Button.Content>
                 </local:CornerButton>
                 <ItemsPresenter x:Name="itemsPresenter1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.Column="2" HorizontalAlignment="Right"/>
-                <local:CornerButton x:Name="btnExpand" BorderThickness="0" Grid.Column="4" VerticalAlignment="Center"
+                <local:CornerButton x:Name="btnExpand" Grid.Column="4" BorderThickness="0" VerticalAlignment="Center"
                                     ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False">
                     <local:CornerButton.Content>
                         <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
@@ -62,17 +61,17 @@
                     <RowDefinition Height="2"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <local:CornerButton BorderThickness="0" VerticalAlignment="Center"
-                                    x:Name="btnDrag" Grid.Row="4"
+                <local:CornerButton x:Name="btnDrag" Grid.Row="4"
+                                    BorderThickness="0" VerticalAlignment="Center"
                                     ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False" 
                                     Background="{TemplateBinding Background}">
                     <Button.Content>
                         <Thumb x:Name="thumb1" Width="10" Height="10">
                             <Thumb.Template>
                                 <ControlTemplate>
-                                    <StackPanel Orientation="Vertical" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
+                                    <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
                                         <Ellipse Fill="Black" Width="2" Height="2"/>
-                                        <Ellipse Fill="Black" Width="2" Height="2" Margin="0,2"/>
+                                        <Ellipse Fill="Black" Width="2" Height="2" Margin="2,0"/>
                                         <Ellipse Fill="Black" Width="2" Height="2"/>
                                     </StackPanel>
                                 </ControlTemplate>
@@ -81,12 +80,12 @@
                     </Button.Content>
                 </local:CornerButton>
                 <ItemsPresenter x:Name="itemsPresenter1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.Row="2" HorizontalAlignment="Right"/>
-                <local:CornerButton x:Name="btnExpand" BorderThickness="0" Grid.Row="0" VerticalAlignment="Center"
+                <local:CornerButton x:Name="btnExpand" Grid.Row="0" BorderThickness="0" VerticalAlignment="Center"
                                     ButtonType="Link" LinkShowUnderLine="False" PressShowShadow="False">
                     <local:CornerButton.Content>
-                        <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
+                        <StackPanel Orientation="Vertical" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Drawer}, Path=Background}">
                             <Ellipse Fill="Black" Width="2" Height="2"/>
-                            <Ellipse Fill="Black" Width="2" Height="2" Margin="2,0"/>
+                            <Ellipse Fill="Black" Width="2" Height="2" Margin="0,2"/>
                             <Ellipse Fill="Black" Width="2" Height="2"/>
                         </StackPanel>
                     </local:CornerButton.Content>

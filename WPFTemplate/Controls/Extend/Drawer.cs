@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -23,7 +24,7 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty PresentIndexProperty;
 
-        private const double constWidth = 10 + 2 + 2 + 10;
+        private const double constSize = 10 + 2 + 2 + 10;
 
         private Thumb thumb;
 
@@ -108,45 +109,15 @@ namespace WPFTemplate
         }
         private void ButtonExpand_Click(object sender, RoutedEventArgs e)
         {
-            if(Orientation == Orientation.Horizontal)
+            if (Orientation == Orientation.Horizontal)
             {
-                Storyboard storyboard = new Storyboard();
-                DoubleAnimation animation = new DoubleAnimation
-                {
-                    From = itemsPresenter.Width,
-                    To = itemsPresenterActualWidth,
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
-                    Duration = new Duration(TimeSpan.FromMilliseconds(500)),
-                    FillBehavior = FillBehavior.Stop
-                };
-                Storyboard.SetTarget(animation, itemsPresenter);
-                Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Width)"));
-                storyboard.Children.Add(animation);
-                storyboard.Completed += (s, d) =>
-                {
-                    itemsPresenter.Width = itemsPresenterActualWidth;
-                };
-                storyboard.Begin();
+                double to = itemsPresenter.Width < itemsPresenterActualWidth ? itemsPresenterActualWidth : 0;
+                CreateStoryboard(itemsPresenter.Width, to, FrameworkElement.WidthProperty);
             }
             else
             {
-                Storyboard storyboard = new Storyboard();
-                DoubleAnimation animation = new DoubleAnimation
-                {
-                    From = itemsPresenter.Height,
-                    To = itemsPresenterActualHeight,
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
-                    Duration = new Duration(TimeSpan.FromMilliseconds(500)),
-                    FillBehavior = FillBehavior.Stop
-                };
-                Storyboard.SetTarget(animation, itemsPresenter);
-                Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Height)"));
-                storyboard.Children.Add(animation);
-                storyboard.Completed += (s, d) =>
-                {
-                    itemsPresenter.Height = itemsPresenterActualHeight;
-                };
-                storyboard.Begin();
+                double to = itemsPresenter.Height < itemsPresenterActualHeight ? itemsPresenterActualHeight : 0;
+                CreateStoryboard(itemsPresenter.Height, to, FrameworkElement.HeightProperty);
             }
         }
         private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)
@@ -158,17 +129,7 @@ namespace WPFTemplate
                 {
                     horizontalChange = 0 - horizontalChange;
                 }
-                if (itemsPresenter.Width - horizontalChange < 0)
-                {
-                    itemsPresenter.Width = 0;
-                    return;
-                }
-                if (itemsPresenter.Width - horizontalChange > itemsPresenterActualWidth + constWidth)
-                {
-                    itemsPresenter.Width = itemsPresenterActualWidth;
-                    return;
-                }
-                itemsPresenter.Width -= horizontalChange;
+                DragDelta(horizontalChange, FrameworkElement.WidthProperty, itemsPresenterActualWidth);
             }
             else
             {
@@ -177,55 +138,68 @@ namespace WPFTemplate
                 {
                     verticalChange = 0 - verticalChange;
                 }
-                if (itemsPresenter.Height - verticalChange < 0)
-                {
-                    itemsPresenter.Height = 0;
-                    return;
-                }
-                if (itemsPresenter.Height - verticalChange > itemsPresenterActualHeight + constWidth)
-                {
-                    itemsPresenter.Height = itemsPresenterActualHeight;
-                    return;
-                }
-                itemsPresenter.Height -= verticalChange;
+                DragDelta(verticalChange, FrameworkElement.HeightProperty, itemsPresenterActualHeight);
             }
         }
         private void CalculateItemPresenterSize()
         {
-            if (Orientation == Orientation.Horizontal)
+            double value = 0;
+            if (this.Items.Count >= 1)
             {
-                double width = 0;
-                if (this.Items.Count >= 1)
+                for (int i = 0; i < PresentIndex; i++)
                 {
-                    for (int i = 0; i < PresentIndex; i++)
+                    var item = this.Items[i];
+                    var presentItem = item as FrameworkElement;
+                    if (presentItem != null)
                     {
-                        var item = this.Items[i];
-                        var presentItem = item as FrameworkElement;
-                        if (presentItem != null)
+                        if(Orientation== Orientation.Horizontal)
                         {
-                            width += presentItem.ActualWidth + presentItem.Margin.Left + presentItem.Margin.Right;
+                            value += presentItem.ActualWidth + presentItem.Margin.Left + presentItem.Margin.Right;
+                        }
+                        else
+                        {
+                            value += presentItem.ActualHeight + presentItem.Margin.Top + presentItem.Margin.Bottom;
                         }
                     }
-                    itemsPresenter.Width = width;
                 }
+                DependencyProperty d = Orientation == Orientation.Horizontal ? FrameworkElement.WidthProperty : FrameworkElement.HeightProperty;
+                itemsPresenter.SetValue(d, value);
             }
-            else
+        }
+        private void CreateStoryboard(double from, double to, DependencyProperty property)
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation animation = new DoubleAnimation
             {
-                double height = 0;
-                if (this.Items.Count >= 1)
-                {
-                    for (int i = 0; i < PresentIndex; i++)
-                    {
-                        var item = this.Items[i];
-                        var presentItem = item as FrameworkElement;
-                        if (presentItem != null)
-                        {
-                            height += presentItem.ActualHeight + presentItem.Margin.Top + presentItem.Margin.Bottom;
-                        }
-                    }
-                    itemsPresenter.Height = height;
-                }
+                From = from,
+                To = to,
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
+                Duration = new Duration(TimeSpan.FromMilliseconds(500)),
+                FillBehavior = FillBehavior.Stop
+            };
+            Storyboard.SetTarget(animation, itemsPresenter);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(string.Format("({0})", property.ToString())));
+            storyboard.Children.Add(animation);
+            storyboard.Completed += (s, d) =>
+            {
+                itemsPresenter.SetValue(property, to);
+            };
+            storyboard.Begin();
+        }
+        private void DragDelta(double Change, DependencyProperty property, double maxValue)
+        {
+            var propertyValue = (double)itemsPresenter.GetValue(property);
+            if (propertyValue - Change < 0)
+            {
+                itemsPresenter.SetValue(property, (double)0);
+                return;
             }
+            if (propertyValue - Change > maxValue + constSize)
+            {
+                itemsPresenter.SetValue(property, maxValue);
+                return;
+            }
+            itemsPresenter.SetValue(property, propertyValue - Change);
         }
     }
 }
