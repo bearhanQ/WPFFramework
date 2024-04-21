@@ -17,9 +17,19 @@ namespace WPFTemplate
 {
     public class DrawerItem : ContentControl
     {
+
+        public static readonly DependencyProperty CornerRadiusProperty;
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
         static DrawerItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DrawerItem), new FrameworkPropertyMetadata(typeof(DrawerItem)));
+            CornerRadiusProperty =  DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(DrawerItem));
         }
     }
 }

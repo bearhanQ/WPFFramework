@@ -8,7 +8,7 @@
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
         xmlns:vm="clr-namespace:WpfBootstrap.Model"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Title="MainWindow" Height="800" Width="1400" WindowStartupLocation="CenterScreen"
+        Title="Samples" Height="800" Width="1400" WindowStartupLocation="CenterScreen"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <Window.Resources>
         <CornerRadius x:Key="cornerRadius" TopLeft="3" TopRight="3" BottomRight="3" BottomLeft="3"/>
@@ -94,8 +94,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <cc:CornerMenu ItemsSource="{Binding VerticalMenuCollection}"
+
+            <cc:CornerMenu ItemsSource="{Binding MenuCollection}"
                            Style="{StaticResource cornerMenu1}">
                 <cc:CornerMenu.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Children}">
@@ -115,7 +115,7 @@
                            Style="{StaticResource treeViewStyle1}"
                            IconDisplayMemberPath="Icon"
                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                           ItemsSource="{Binding VerticalMenuCollection}">
+                           ItemsSource="{Binding MenuCollection}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction Command="{Binding ItemCommand}"
