@@ -33,7 +33,7 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Style.Triggers>
 
-            <Trigger Property="ButtonStyle" Value="Normal">
+            <Trigger Property="ButtonType" Value="Normal">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">
@@ -81,7 +81,7 @@
                 </Setter>
             </Trigger>
             
-            <Trigger Property="ButtonStyle" Value="OutLine">
+            <Trigger Property="ButtonType" Value="OutLine">
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -129,7 +129,7 @@
                 </Setter>
             </Trigger>
 
-            <Trigger Property="ButtonStyle" Value="Link">
+            <Trigger Property="ButtonType" Value="Link">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:CornerButton}">

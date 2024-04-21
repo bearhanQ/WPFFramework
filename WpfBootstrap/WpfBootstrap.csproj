@@ -117,6 +117,9 @@
     <Compile Include="View\CornerContextMenuView.xaml.cs">
       <DependentUpon>CornerContextMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CornerExpanderView.xaml.cs">
+      <DependentUpon>CornerExpanderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CornerMultiComboBoxView.xaml.cs">
       <DependentUpon>CornerMultiComboBoxView.xaml</DependentUpon>
     </Compile>
@@ -132,8 +135,14 @@
     <Compile Include="View\CornerRadioButtonView.xaml.cs">
       <DependentUpon>CornerRadioButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CornerSliderView.xaml.cs">
+      <DependentUpon>CornerSliderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CornerTabControlView.xaml.cs">
       <DependentUpon>CornerTabControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CornerToolTipView.xaml.cs">
+      <DependentUpon>CornerToolTipView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CornerTreeViewView.xaml.cs">
       <DependentUpon>CornerTreeViewView.xaml</DependentUpon>
@@ -150,11 +159,11 @@
     <Compile Include="View\PlaceControlView.xaml.cs">
       <DependentUpon>PlaceControlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReminderCalendarView.xaml.cs">
-      <DependentUpon>ReminderCalendarView.xaml</DependentUpon>
+    <Compile Include="View\CornerCalendarView.xaml.cs">
+      <DependentUpon>CornerCalendarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReminderDatePickerView.xaml.cs">
-      <DependentUpon>ReminderDatePickerView.xaml</DependentUpon>
+    <Compile Include="View\CornerDatePickerView.xaml.cs">
+      <DependentUpon>CornerDatePickerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UnicodeView.xaml.cs">
       <DependentUpon>UnicodeView.xaml</DependentUpon>
@@ -215,6 +224,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CornerExpanderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CornerMultiComboBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,7 +248,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CornerSliderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CornerTabControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CornerToolTipView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,11 +280,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ReminderCalendarView.xaml">
+    <Page Include="View\CornerCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ReminderDatePickerView.xaml">
+    <Page Include="View\CornerDatePickerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,7 +326,6 @@
       <Name>WPFTemplate</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\ice.jpg" />
   </ItemGroup>

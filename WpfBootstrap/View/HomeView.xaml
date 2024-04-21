@@ -344,7 +344,7 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Column="1" Grid.Row="4" Width="950">
+            <Grid Grid.Column="1" Grid.Row="4">
                 <DataGrid x:Name="dg1" CanUserAddRows="False" ColumnHeaderHeight="30" AutoGenerateColumns="False"
                           HorizontalScrollBarVisibility="Hidden" SelectedItem="{Binding SelectedRowView}"
                           MinRowHeight="40" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="LightGray">
@@ -392,10 +392,10 @@
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Border x:Name="bd" Background="White">
                                                     <Grid>
-                                                        <cc:CornerButton ButtonStyle="Link" Content="Edit"
+                                                        <cc:CornerButton ButtonType="Link" Content="Edit"
                                                                          Width="50" Height="20" HorizontalAlignment="Left"
                                                                          Command="{Binding RelativeSource={RelativeSource AncestorType=local:HomeView}, Path=DataContext.EditCommand}"/>
-                                                        <cc:CornerButton ButtonStyle="Link" Content="Delete"
+                                                        <cc:CornerButton ButtonType="Link" Content="Delete"
                                                          Width="50" Height="20" HorizontalAlignment="Right"
                                                          Command="{Binding RelativeSource={RelativeSource AncestorType=local:HomeView}, Path=DataContext.DelCommand}"
                                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=SelectedItem}"/>

@@ -38,17 +38,11 @@
     <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Unnoficial.Microsoft.Expression.Drawing.1.0.0\lib\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,14 +67,16 @@
     <Compile Include="common\LocalVisualTreeHelper.cs" />
     <Compile Include="common\NotifyWindow.cs" />
     <Compile Include="common\TreeViewItemHelper.cs" />
-    <Compile Include="common\WindowHelper.cs" />
+    <Compile Include="common\ButtonHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />
+    <Compile Include="Controls\CornerExpander.cs" />
     <Compile Include="Controls\CornerMenu.cs" />
     <Compile Include="Controls\CornerMenuItem.cs" />
     <Compile Include="Controls\CornerScrollViewer.cs" />
     <Compile Include="Controls\CornerSlider.cs" />
+    <Compile Include="Controls\CornerToolTip.cs" />
     <Compile Include="Controls\Extend\Carousel.cs" />
     <Compile Include="Controls\CornerPasswordBox.xaml.cs">
       <DependentUpon>CornerPasswordBox.xaml</DependentUpon>
@@ -96,9 +92,11 @@
     <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
     <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
     <Compile Include="Controls\Extend\CornerPagination.cs" />
+    <Compile Include="Controls\Extend\Drawer.cs" />
+    <Compile Include="Controls\Extend\DrawerItem.cs" />
     <Compile Include="Controls\Extend\PlaceControl.cs" />
-    <Compile Include="Controls\Extend\ReminderCalendar.cs" />
-    <Compile Include="Controls\Extend\ReminderDatePicker.cs" />
+    <Compile Include="Controls\Extend\CornerCalendar.cs" />
+    <Compile Include="Controls\Extend\CornerDatePicker.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
@@ -161,6 +159,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\CornerExpander.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\CornerMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,7 +207,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\CornerToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\CornerTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Drawer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DrawerItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,11 +231,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\ReminderCalendar.xaml">
+    <Page Include="Themes\CornerCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\ReminderDatePicker.xaml">
+    <Page Include="Themes\CornerDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <ObjectDataProvider x:Key="buttonType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="cc:ButtonStyle"/>
+                <x:Type TypeName="cc:ButtonType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
@@ -37,7 +37,7 @@
             </Grid.ColumnDefinitions>
             <cc:CornerButton Content="Hello" Width="200" Height="30" FontSize="15"
                              Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-                             ButtonStyle="{Binding ElementName=cbButtonType, Path=SelectedItem}" 
+                             ButtonType="{Binding ElementName=cbButtonType, Path=SelectedItem}" 
                              BorderBrush="{Binding ElementName=colorSlider1, Path=SelectedColor}"
                              Background="{Binding ElementName=colorSlider2, Path=SelectedColor}"
                              Icon="{Binding ElementName=cbIcon, Path=SelectedValue}"
@@ -46,7 +46,7 @@
                        Grid.Column="0" Grid.Row="2"/>
             <cc:CornerCombobox x:Name="cbButtonType"  Width="100" 
                                Grid.Column="1" Grid.Row="2"
-                               WaterText="ButtonStyle"
+                               WaterText="ButtonType"
                                SelectedIndex="1"
                                ItemsSource="{Binding Source={StaticResource buttonType}}"/>
             <TextBlock Text="BorderBrush:" VerticalAlignment="Center"

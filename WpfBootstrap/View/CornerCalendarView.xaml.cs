@@ -13,13 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFTemplate
+namespace WpfBootstrap.View
 {
-    public class ReminderDatePicker : DatePicker
+    /// <summary>
+    /// CornerCalendarView.xaml 的交互逻辑
+    /// </summary>
+    public partial class CornerCalendarView : UserControl
     {
-        static ReminderDatePicker()
+        public CornerCalendarView()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ReminderDatePicker), new FrameworkPropertyMetadata(typeof(ReminderDatePicker)));
+            InitializeComponent();
         }
     }
 }

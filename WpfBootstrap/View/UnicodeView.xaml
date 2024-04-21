@@ -27,7 +27,7 @@
 
         <DataTemplate x:Key="unicode" DataType="{x:Type m:UnicodeModel}">
             <StackPanel Width="150" Margin="0,10" x:Name="sp1">
-                <cc:CornerButton ButtonStyle="Link" LinkShowUnderLine="False" Width="50" Height="50"
+                <cc:CornerButton ButtonType="Link" LinkShowUnderLine="False" Width="50" Height="50"
                                  VerticalContentAlignment="Center" x:Name="btn1"
                                  Icon="{Binding Icon}" HorizontalAlignment="Center" FontSize="30"/>
                 <cc:PlaceControl PlaceMentTarget="{Binding ElementName=sp1}"

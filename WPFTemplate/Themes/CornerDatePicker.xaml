@@ -247,7 +247,7 @@
                 <ControlTemplate TargetType="{x:Type CalendarItem}">
                     <ControlTemplate.Resources>
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
-                            <TextBlock Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ReminderCalendar}, Path=Foreground}" FontFamily="Verdana" FontWeight="Bold" FontSize="9.5" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCalendar}, Path=Foreground}" FontFamily="Verdana" FontWeight="Bold" FontSize="9.5" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </ControlTemplate.Resources>
                     <Grid x:Name="PART_Root">
@@ -431,7 +431,7 @@
 
     <!--endregion-->
     
-    <Style TargetType="{x:Type local:ReminderDatePicker}">
+    <Style TargetType="{x:Type local:CornerDatePicker}">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Short"/>

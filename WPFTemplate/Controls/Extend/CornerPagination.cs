@@ -302,9 +302,12 @@ namespace WPFTemplate
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            ItemSource.RowChanged += ItemSource_RowChanged;
-            ItemSource.RowDeleting += ItemSource_RowDeleting;
-            ItemSource.RowDeleted += ItemSource_RowDeleted;
+            if (ItemSource != null)
+            {
+                ItemSource.RowChanged += ItemSource_RowChanged;
+                ItemSource.RowDeleting += ItemSource_RowDeleting;
+                ItemSource.RowDeleted += ItemSource_RowDeleted;
+            }
         }
     }
 

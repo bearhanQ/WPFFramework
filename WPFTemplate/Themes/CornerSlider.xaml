@@ -24,12 +24,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Border x:Name="PART_Border">
-                        <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-                    </Border>
+                    <TextBlock x:Name="textBlock1" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="PART_Border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            <Setter Property="Foreground" TargetName="textBlock1" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -278,7 +276,7 @@
             <local:CornerTextBox x:Name="PART_TextBox" Text="{Binding RelativeSource={RelativeSource AncestorType=Slider}, Path=Value}" 
                                  VerticalContentAlignment="Center" Grid.ColumnSpan="2" CornerRadius="{TemplateBinding CornerRadius}"
                                  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-            <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
                 <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Content="+" Style="{StaticResource RepeatButtonAddMinus}"/>
                 <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Content="-"  Style="{StaticResource RepeatButtonAddMinus}"/>
             </StackPanel>

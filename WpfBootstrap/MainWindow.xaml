@@ -21,7 +21,7 @@
         <Style x:Key="treeViewStyle1" TargetType="{x:Type cc:CornerTreeView}" BasedOn="{StaticResource {x:Type cc:CornerTreeView}}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Layout}" Value="Horizontal">
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -63,7 +63,7 @@
     <Grid Background="#FFF4F6FA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto" MinWidth="950"/>
+            <ColumnDefinition Width="1000"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -76,14 +76,14 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="Gray" Grid.ColumnSpan="3" Background="White"/>
         <Border BorderThickness="0,1,0,1" BorderBrush="Gray" Grid.Row="1" Grid.ColumnSpan="3" Background="White"/>
         <Grid Grid.Column="1" Margin="0,1">
-            <cc:CornerButton ButtonStyle="Link" Content="Han" Icon="&#xe7df;" LinkShowUnderLine="False"
+            <cc:CornerButton ButtonType="Link" Content="Han" Icon="&#xe7df;" LinkShowUnderLine="False"
                              VerticalAlignment="Center" HorizontalAlignment="Left" >
             </cc:CornerButton>
-            <cc:CornerButton ButtonStyle="OutLine" Content="Sponsor" Icon="&#xe60a;"
+            <cc:CornerButton ButtonType="OutLine" Content="Sponsor" Icon="&#xe60a;"
                              Height="30" Width="100" Margin="120,0"
                              CornerRadius="{StaticResource cornerRadius}"
                              VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <cc:CornerButton ButtonStyle="OutLine" Content="Source code" Icon="&#xe6ea;"
+            <cc:CornerButton ButtonType="OutLine" Content="Source code" Icon="&#xe6ea;"
                              Height="30" Width="100" Margin="10,0"
                              CornerRadius="{StaticResource cornerRadius}"
                              VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -91,12 +91,11 @@
         
         <Grid Grid.Column="1" Grid.Row="1" Margin="0,1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             
-            <cc:CornerMenu HorizontalAlignment="Left" VerticalAlignment="Center"
-                           ItemsSource="{Binding MenuCollection}"
+            <cc:CornerMenu ItemsSource="{Binding VerticalMenuCollection}"
                            Style="{StaticResource cornerMenu1}">
                 <cc:CornerMenu.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Children}">
@@ -107,13 +106,16 @@
                 </cc:CornerMenu.ItemTemplate>
             </cc:CornerMenu>
             
-            <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150" CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
+            <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150"
+                              HorizontalAlignment="Right" Margin="10,0"
+                              CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
         </Grid>
 
-        <cc:CornerTreeView Grid.Row="3" TreeViewType="Normal" 
+        <cc:CornerTreeView TreeViewType="Normal" Grid.Row="3"
                            Style="{StaticResource treeViewStyle1}"
                            IconDisplayMemberPath="Icon"
-                           ItemsSource="{Binding MenuCollection}">
+                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                           ItemsSource="{Binding VerticalMenuCollection}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction Command="{Binding ItemCommand}"
@@ -134,7 +136,7 @@
                 <TextBlock Text="OVERVIEW" FontSize="9" Margin="0,3"/>
                 <TextBlock Text="Dashboard" FontFamily="Bahnschrift"/>
             </StackPanel>
-            <cc:CornerButton Content="New View" Height="30" Width="100" ButtonStyle="OutLine" 
+            <cc:CornerButton Content="New View" Height="30" Width="100" ButtonType="OutLine" 
                              CornerRadius="{StaticResource cornerRadius}" Canvas.Top="15" Canvas.Right="170"/>
             <cc:CornerButton Content="Create new report" Icon="&#xe6e0;" Height="30" Width="150" 
                              CornerRadius="{StaticResource cornerRadius}" Background="#FF1F68BF" Foreground="White"
