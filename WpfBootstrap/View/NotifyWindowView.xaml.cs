@@ -38,5 +38,10 @@ namespace WpfBootstrap.View
         {
             window.SendMessage((NotifySourceEnum)Enum.Parse(typeof(NotifySourceEnum),cbType.Text), tbMessage.Text);
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            window.Owner = LocalLogicalTreeHelper.GetParent(this, typeof(Window)) as Window;
+        }
     }
 }

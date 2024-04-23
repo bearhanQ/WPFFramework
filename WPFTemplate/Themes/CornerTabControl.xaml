@@ -87,6 +87,12 @@
                                             <Trigger Property="IsSelected" Value="True">
                                                 <Setter TargetName="bordermain" Property="Visibility" Value="Visible"/>
                                             </Trigger>
+                                            <Trigger Property="TabStripPlacement" Value="Left">
+                                                <Setter Property="BorderThickness" TargetName="bordermain" Value="2,0,0,0"/>
+                                            </Trigger>
+                                            <Trigger Property="TabStripPlacement" Value="Right">
+                                                <Setter Property="BorderThickness" TargetName="bordermain" Value="0,0,2,0"/>
+                                            </Trigger>
                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=ItemRemovable}" Value="True">
                                                 <Setter TargetName="deleteItem" Property="Visibility" Value="Visible"/>
                                             </DataTrigger>

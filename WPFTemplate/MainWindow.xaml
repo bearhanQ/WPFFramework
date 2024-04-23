@@ -8,7 +8,10 @@
         Width="400" Height="300"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Width="100" Height="30" Content="Add" Click="Button_Click"/>
-        <Label x:Name="labelClock" VerticalAlignment="Top"/>
+        <local:CornerTabControl TabControlType="Underline">
+            <TabItem Header="123"/>
+            <TabItem Header="234"/>
+            <TabItem Header="345"/>
+        </local:CornerTabControl>
     </Grid>
 </Window>

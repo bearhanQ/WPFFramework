@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:WpfBootstrap.View"
              mc:Ignorable="d" 
              Width="350" Height="200"
-             xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate">
+             xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+             Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="type1" ObjectType="{x:Type cc:NotifySourceEnum}" MethodName="GetNames">
             <ObjectDataProvider.MethodParameters>

@@ -26,21 +26,8 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
-            window.Show();
-            Binding bd = new Binding();
-            bd.Source = window;
-            bd.Path = new PropertyPath("NewMsgCount");
-            labelClock.SetBinding(Label.ContentProperty, bd);
         }
 
-        NotifyWindow window = new NotifyWindow();
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            window.SendMessage("我有点晕了");
-            window.SendMessage(NotifySourceEnum.Warn, "我有点晕了 我有点晕了 我有点晕了 我有点晕了 我有点晕了 我有点晕了");
-            window.SendMessage(NotifySourceEnum.Error, "我有点晕了");
-        }
     }
 
     public class People
