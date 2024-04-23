@@ -129,7 +129,7 @@
                             <TextBlock Text="SALES"/>
                             <TextBlock Text="75%" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>
@@ -163,7 +163,7 @@
                             <TextBlock Text="REVENUE"/>
                             <TextBlock Text="$4,300" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>
@@ -197,7 +197,7 @@
                             <TextBlock Text="NEW CLIENTS"/>
                             <TextBlock Text="6,782" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>
@@ -231,7 +231,7 @@
                             <TextBlock Text="ACTIVE USERS"/>
                             <TextBlock Text="2,986" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWatermark="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>

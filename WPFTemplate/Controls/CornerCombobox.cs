@@ -26,7 +26,7 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty CornerRadiusProperty;
 
-        public static readonly DependencyProperty ShowWatermarkProperty;
+        public static readonly DependencyProperty ShowWaterTextProperty;
 
         public ComboBoxViewFilterHelper FilterCommand
         {
@@ -57,10 +57,10 @@ namespace WPFTemplate
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        public bool ShowWatermark
+        public bool ShowWaterText
         {
-            get { return (bool)GetValue(ShowWatermarkProperty); }
-            set { SetValue(ShowWatermarkProperty, value); }
+            get { return (bool)GetValue(ShowWaterTextProperty); }
+            set { SetValue(ShowWaterTextProperty, value); }
         }
 
         private CornerTextBox textBox;
@@ -71,7 +71,7 @@ namespace WPFTemplate
             WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerCombobox), new PropertyMetadata("Water"));
             SearchableProperty = DependencyProperty.Register("Searchable", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
             CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
-            ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(true));
+            ShowWaterTextProperty = DependencyProperty.Register("ShowWaterText", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(true));
         }
 
         public override void OnApplyTemplate()

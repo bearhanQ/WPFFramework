@@ -28,20 +28,20 @@
                                WaterText="{Binding ElementName=tbWater, Path=Text}"
                                Searchable="{Binding ElementName=cbSearchable, Path=IsChecked}"
                                CornerRadius="{Binding ElementName=slider1, Path=Value}"
-                               ShowWatermark="{Binding ElementName=cbShowWatermark, Path=IsChecked}">
+                               ShowWaterText="{Binding ElementName=cbShowWaterText, Path=IsChecked}">
                 <ComboBoxItem Content="First"/>
                 <ComboBoxItem Content="Second"/>
                 <ComboBoxItem Content="Third"/>
                 <ComboBoxItem Content="Fourth"/>
             </cc:CornerCombobox>
-            <TextBlock Text="Watermark:" Grid.Row="2"/>
+            <TextBlock Text="WaterText:" Grid.Row="2"/>
             <cc:CornerTextBox x:Name="tbWater" Grid.Row="2" Grid.Column="1" Text="Hello World"/>
             <TextBlock Text="Searchable:" Grid.Row="4"/>
             <cc:CornerCheckBox x:Name="cbSearchable" CheckBoxType="Switch" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" CornerRadius="5"/>
             <TextBlock Text="CornerRadius:" Grid.Row="6"/>
             <cc:CornerSlider x:Name="slider1" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="10"/>
-            <TextBlock Text="ShowWatermark:" Grid.Row="8"/>
-            <cc:CornerCheckBox x:Name="cbShowWatermark" CheckBoxType="Switch" IsChecked="True" CornerRadius="5"
+            <TextBlock Text="ShowWaterText:" Grid.Row="8"/>
+            <cc:CornerCheckBox x:Name="cbShowWaterText" CheckBoxType="Switch" IsChecked="True" CornerRadius="5"
                                Grid.Row="8" Grid.Column="1" VerticalAlignment="Center"/>
         </Grid>
     </Grid>

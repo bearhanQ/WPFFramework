@@ -217,7 +217,7 @@
             </Trigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWatermark}" Value="true"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWaterText}" Value="true"/>
                     <Condition Binding="{Binding ElementName=PART_EditableTextBox, Path=Text.Length}" Value="0"/>
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Opacity" Value="0.3" TargetName="waterTextBlock"/>

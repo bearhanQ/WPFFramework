@@ -24,7 +24,7 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty WaterTextProperty;
 
-        public static readonly DependencyProperty ShowWatermarkProperty;
+        public static readonly DependencyProperty ShowWaterTextProperty;
 
         public static readonly DependencyProperty MaxDropDownHeightProperty;
 
@@ -50,10 +50,10 @@ namespace WPFTemplate
             set { SetValue(WaterTextProperty, value); }
         }
 
-        public bool ShowWatermark
+        public bool ShowWaterText
         {
-            get { return (bool)GetValue(ShowWatermarkProperty); }
-            set { SetValue(ShowWatermarkProperty, value); }
+            get { return (bool)GetValue(ShowWaterTextProperty); }
+            set { SetValue(ShowWaterTextProperty, value); }
         }
 
         public double MaxDropDownHeight
@@ -84,7 +84,7 @@ namespace WPFTemplate
             TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata(string.Empty));
             CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerMultiComboBox), new PropertyMetadata(new CornerRadius(0)));
             WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerMultiComboBox), new PropertyMetadata("MultiComboBox"));
-            ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerMultiComboBox), new PropertyMetadata(true));
+            ShowWaterTextProperty = DependencyProperty.Register("ShowWaterText", typeof(bool), typeof(CornerMultiComboBox), new PropertyMetadata(true));
             MaxDropDownHeightProperty = DependencyProperty.Register("MaxDropDownHeight", typeof(double), typeof(CornerMultiComboBox),
                 new PropertyMetadata(SystemParameters.PrimaryScreenHeight / 3.0));
             IsDropDownOpenProperty = DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(CornerMultiComboBox),

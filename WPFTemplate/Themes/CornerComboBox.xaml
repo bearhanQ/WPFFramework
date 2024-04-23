@@ -97,7 +97,7 @@
                         </Grid.RowDefinitions>
 
                         <Border x:Name="searchBd" Background="White" Grid.Row="0">
-                            <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1" BorderThickness="0,0,0,1" Height="{TemplateBinding ActualHeight}" VerticalContentAlignment="Center"
+                            <local:CornerTextBox x:Name="searchTextBox" WaterText="Search..." Margin="1" BorderThickness="0,0,0,1" Height="{TemplateBinding ActualHeight}" VerticalContentAlignment="Center"
                                                  FontSize="{TemplateBinding FontSize}">
                                 <!--<i:Interaction.Triggers>
                                     <i:EventTrigger EventName="TextChanged">
@@ -161,7 +161,7 @@
             </Trigger>-->
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWatermark}" Value="true"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWaterText}" Value="true"/>
                     <Condition Binding="{Binding ElementName=PART_EditableTextBox, Path=Text.Length}" Value="0"/>
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Opacity" Value="0.3" TargetName="waterTextBlock"/>
@@ -196,7 +196,7 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Grid x:Name="searchRootGrid" Grid.Row="0" Margin="1" Panel.ZIndex="1">
-                                    <local:CornerTextBox x:Name="searchTextBox" Watermark="Search..." Margin="1">
+                                    <local:CornerTextBox x:Name="searchTextBox" WaterText="Search..." Margin="1">
                                         <!--<i:Interaction.Triggers>
                                             <i:EventTrigger EventName="TextChanged">
                                                 <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=FilterCommand}">

@@ -65,7 +65,6 @@
     <Compile Include="common\LocalLogicalTreeHelper.cs" />
     <Compile Include="common\ModelConvertHelper.cs" />
     <Compile Include="common\LocalVisualTreeHelper.cs" />
-    <Compile Include="common\NotifyWindow.cs" />
     <Compile Include="common\TreeViewItemHelper.cs" />
     <Compile Include="common\ButtonHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
@@ -94,10 +93,14 @@
     <Compile Include="Controls\Extend\CornerPagination.cs" />
     <Compile Include="Controls\Extend\Drawer.cs" />
     <Compile Include="Controls\Extend\DrawerItem.cs" />
+    <Compile Include="Controls\Extend\NotifyWindow.xaml.cs">
+      <DependentUpon>NotifyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Extend\PlaceControl.cs" />
     <Compile Include="Controls\Extend\CornerCalendar.cs" />
     <Compile Include="Controls\Extend\CornerDatePicker.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
+    <Compile Include="Enums\NotifySourceEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
     <Compile Include="Enums\SliderEnum.cs" />
@@ -113,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Extend\ColorSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Extend\NotifyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

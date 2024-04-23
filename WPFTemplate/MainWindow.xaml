@@ -5,6 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
-        Width="800" Height="800"
+        Width="400" Height="300"
         WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button Width="100" Height="30" Content="Add" Click="Button_Click"/>
+        <Label x:Name="labelClock" VerticalAlignment="Top"/>
+    </Grid>
 </Window>

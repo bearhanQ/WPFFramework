@@ -28,28 +28,28 @@
         <TextBlock Text="Action:" Canvas.Left="65" Canvas.Top="220"/>
 
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="8" Height="20" Width="100" 
-                          ShowWatermark="False" VerticalContentAlignment="Center"
+                          ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[No],Mode=TwoWay}"/>
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="38" Height="20" Width="100" 
-                          ShowWatermark="False" VerticalContentAlignment="Center"
+                          ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[INVOICE],Mode=TwoWay}"/>
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="68" Height="20" Width="100" 
-                          ShowWatermark="False" VerticalContentAlignment="Center"
+                          ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[CLIENT],Mode=TwoWay}"/>
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="98" Height="20" Width="100" 
-                          ShowWatermark="False" VerticalContentAlignment="Center"
+                          ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[VAT],Mode=TwoWay}"/>
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="128" Height="20" Width="100" 
-                          ShowWatermark="False" VerticalContentAlignment="Center"
+                          ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[CREATED],Mode=TwoWay}"/>
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="158" Height="20" Width="100" 
-                          ShowWatermark="False" VerticalContentAlignment="Center"
+                          ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[STATUS],Mode=TwoWay}"/>
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="188" Height="20" Width="100" 
-                          ShowWatermark="False" VerticalContentAlignment="Center"
+                          ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[PRICE],Mode=TwoWay}"/>
         <cc:CornerCombobox Canvas.Left="130" Canvas.Top="218" Height="20" Width="100" ItemsSource="{Binding Source={StaticResource myEnum}}"
-                           ShowWatermark="False" VerticalContentAlignment="Center"
+                           ShowWaterText="False" VerticalContentAlignment="Center"
                            SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[ACTION],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         
     </Canvas>

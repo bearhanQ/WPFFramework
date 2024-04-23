@@ -52,7 +52,7 @@
             </StackPanel>
             <cc:CornerTextBox Grid.Column="1" Height="30" 
                               VerticalAlignment="Center" VerticalContentAlignment="Center"
-                              Watermark="搜索功能、软件" CornerRadius="15" 
+                              WaterText="搜索功能、软件" CornerRadius="15" 
                               Background="#FFEEF8FE" Icon="&#xe600;"/>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
                 <cc:CornerButton Background="#FFD8EFFF" Icon="&#xe602;" 

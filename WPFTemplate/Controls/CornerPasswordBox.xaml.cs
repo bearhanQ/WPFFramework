@@ -25,9 +25,9 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty PasswordProperty;
 
-        public static readonly DependencyProperty WatermarkProperty;
+        public static readonly DependencyProperty WaterTextProperty;
 
-        public static readonly DependencyProperty ShowWatermarkProperty;
+        public static readonly DependencyProperty ShowWaterTextProperty;
 
         public static readonly DependencyProperty IconProperty;
 
@@ -48,15 +48,15 @@ namespace WPFTemplate
             get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
         }
-        public string Watermark
+        public string WaterText
         {
-            get { return (string)GetValue(WatermarkProperty); }
-            set { SetValue(WatermarkProperty, value); }
+            get { return (string)GetValue(WaterTextProperty); }
+            set { SetValue(WaterTextProperty, value); }
         }
-        public bool ShowWatermark
+        public bool ShowWaterText
         {
-            get { return (bool)GetValue(ShowWatermarkProperty); }
-            set { SetValue(ShowWatermarkProperty, value); }
+            get { return (bool)GetValue(ShowWaterTextProperty); }
+            set { SetValue(ShowWaterTextProperty, value); }
         }
         public string Icon
         {
@@ -80,8 +80,8 @@ namespace WPFTemplate
             PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(CornerPasswordBox),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     new PropertyChangedCallback(OnPasswordChanged), null, false, UpdateSourceTrigger.PropertyChanged));
-            WatermarkProperty = DependencyProperty.Register("Watermark", typeof(string), typeof(CornerPasswordBox), new PropertyMetadata("Password"));
-            ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
+            WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerPasswordBox), new PropertyMetadata("Password"));
+            ShowWaterTextProperty = DependencyProperty.Register("ShowWaterText", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
             IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerPasswordBox), new PropertyMetadata(null));
             ShowEyeProperty = DependencyProperty.Register("ShowEye", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));
             PressShowShadowProperty = DependencyProperty.Register("PressShowShadow", typeof(bool), typeof(CornerPasswordBox), new PropertyMetadata(true));

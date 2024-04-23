@@ -74,7 +74,7 @@
             <cc:CornerTextBox Width="200" Height="30"
                               VerticalContentAlignment="Center"
                               Canvas.Left="115" Canvas.Top="38"
-                              Watermark="Username"
+                              WaterText="Username"
                               Icon="&#xe741;"
                               PressShowShadow="False"
                               BorderThickness="0,0,0,1"/>

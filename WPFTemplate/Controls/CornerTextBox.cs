@@ -24,9 +24,9 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty IconProperty;
 
-        public static readonly DependencyProperty WatermarkProperty;
+        public static readonly DependencyProperty WaterTextProperty;
 
-        public static readonly DependencyProperty ShowWatermarkProperty;
+        public static readonly DependencyProperty ShowWaterTextProperty;
 
         public static readonly DependencyProperty PressShowShadowProperty;
 
@@ -40,15 +40,15 @@ namespace WPFTemplate
             get { return (string)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-        public string Watermark
+        public string WaterText
         {
-            get { return (string)GetValue(WatermarkProperty); }
-            set { SetValue(WatermarkProperty, value); }
+            get { return (string)GetValue(WaterTextProperty); }
+            set { SetValue(WaterTextProperty, value); }
         }
-        public bool ShowWatermark
+        public bool ShowWaterText
         {
-            get { return (bool)GetValue(ShowWatermarkProperty); }
-            set { SetValue(ShowWatermarkProperty, value); }
+            get { return (bool)GetValue(ShowWaterTextProperty); }
+            set { SetValue(ShowWaterTextProperty, value); }
         }
         public bool PressShowShadow
         {
@@ -61,8 +61,8 @@ namespace WPFTemplate
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerTextBox), new FrameworkPropertyMetadata(typeof(CornerTextBox)));
             CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerTextBox));
             IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(CornerTextBox), new PropertyMetadata(null));
-            WatermarkProperty = DependencyProperty.Register("Watermark", typeof(string), typeof(CornerTextBox), new PropertyMetadata("Watermark"));
-            ShowWatermarkProperty = DependencyProperty.Register("ShowWatermark", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
+            WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerTextBox), new PropertyMetadata("WaterText"));
+            ShowWaterTextProperty = DependencyProperty.Register("ShowWaterText", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
             PressShowShadowProperty = DependencyProperty.Register("PressShowShadow", typeof(bool), typeof(CornerTextBox), new PropertyMetadata(true));
         }
     }

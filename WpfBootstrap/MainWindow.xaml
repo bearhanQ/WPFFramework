@@ -106,7 +106,7 @@
                 </cc:CornerMenu.ItemTemplate>
             </cc:CornerMenu>
             
-            <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" Watermark="Search..." Height="25" Width="150"
+            <cc:CornerTextBox Grid.Column="1" Icon="&#xe600;" WaterText="Search..." Height="25" Width="150"
                               HorizontalAlignment="Right" Margin="10,0"
                               CornerRadius="{StaticResource cornerRadius}" VerticalContentAlignment="Center"/>
         </Grid>

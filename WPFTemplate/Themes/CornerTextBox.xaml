@@ -41,7 +41,7 @@
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" Margin="10,0,5,0"/>
                         <Grid Grid.Column="1" x:Name="tbgrid">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            <TextBlock x:Name="tbWatermark" Text="{TemplateBinding Watermark}" Margin="3,0,0,0" VerticalAlignment="Center" Opacity="0.4" IsHitTestVisible="False"
+                            <TextBlock x:Name="tbWaterText" Text="{TemplateBinding WaterText}" Margin="3,0,0,0" VerticalAlignment="Center" Opacity="0.4" IsHitTestVisible="False"
                                        FontSize="{TemplateBinding FontSize}"/>
                         </Grid>
                     </Grid>
@@ -60,10 +60,10 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text, Converter={StaticResource TextLengthIsNullOrEmptyToTrue}}" Value="false">
-                            <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
+                            <Setter TargetName="tbWaterText" Property="Opacity" Value="0"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWatermark}" Value="false">
-                            <Setter TargetName="tbWatermark" Property="Opacity" Value="0"/>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ShowWaterText}" Value="false">
+                            <Setter TargetName="tbWaterText" Property="Opacity" Value="0"/>
                         </DataTrigger>
                         <Trigger Property="Icon" Value="{x:Null}">
                             <Setter TargetName="tbicon" Property="Visibility" Value="Collapsed"/>

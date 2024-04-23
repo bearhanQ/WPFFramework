@@ -79,7 +79,7 @@
                         <TextBlock Text="前往" Margin="20,0,3,0" VerticalAlignment="Center"/>
                         <local:CornerTextBox Text="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=CurrentPageIndex, Mode=TwoWay}"
                                              Width="30" VerticalAlignment="Center" HorizontalContentAlignment="Center" Height="30" VerticalContentAlignment="Center"
-                                             ShowWatermark="False"/>
+                                             ShowWaterText="False"/>
                         <TextBlock Text="页" Margin="3,0,0,0" VerticalAlignment="Center"/>
 
                         <local:CornerCombobox SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageSize, Mode=TwoWay,Converter={StaticResource PageCountConverter}}"

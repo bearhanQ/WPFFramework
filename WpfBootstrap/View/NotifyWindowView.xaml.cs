@@ -12,22 +12,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFTemplate;
 
 namespace WpfBootstrap.View
 {
     /// <summary>
     /// NotifyWindowView.xaml 的交互逻辑
     /// </summary>
-    public partial class NotifyWindowView : Window
+    public partial class NotifyWindowView : UserControl
     {
+        readonly NotifyWindow window;
+
         public NotifyWindowView()
         {
             InitializeComponent();
+            window = new NotifyWindow();
+
+            Binding bd = new Binding();
+            bd.Source = window;
+            bd.Path = new PropertyPath("NewMsgCount");
+            tbIsRead.SetBinding(TextBlock.TextProperty, bd);
         }
 
         private void CornerButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            window.SendMessage((NotifySourceEnum)Enum.Parse(typeof(NotifySourceEnum),cbType.Text), tbMessage.Text);
         }
     }
 }
