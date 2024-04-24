@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -9,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfBootstrap.Model;
 using WpfBootstrap.View;
+using WPFTemplate;
 
 namespace WpfBootstrap.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
-        public ObservableCollection<Revenue> RevenueList { get; set; }
+        public ObservableCollection<Model.Revenue> RevenueList { get; set; }
 
         public ObservableCollection<WorkScream> WorkScreamList { get; set; }
 
@@ -41,9 +40,9 @@ namespace WpfBootstrap.ViewModel
             }
         }
 
-        public RelayCommand<DataRowView> DelCommand { get; set; }
+        public CommandBase DelCommand { get; set; }
 
-        public RelayCommand EditCommand { get; set; }
+        public CommandBase EditCommand { get; set; }
 
         private DataRowView _selectedRowView;
         public DataRowView SelectedRowView
@@ -144,19 +143,20 @@ namespace WpfBootstrap.ViewModel
             DataTableSource.Rows.Add(true, "001405", "Marketing Templates", "Printic", "87956621", "29 Jan 2018", "Due in 2 Weeks", "$648", Action.active);
             DataTableSource.Rows.Add(true, "001406", "Sales Presentation", "Tabdaq", "87956621", "4 Feb 2018", "Paid Today", "$300", Action.frozen);
 
-            DelCommand = new RelayCommand<DataRowView>(DeleteDataRow);
-            EditCommand = new RelayCommand(EditDataRow);
+            DelCommand = new CommandBase(DeleteDataRow);
+            EditCommand = new CommandBase(EditDataRow);
         }
 
-        private void DeleteDataRow(DataRowView row)
+        private void DeleteDataRow(object parameter)
         {
+            var row = parameter as DataRowView;
             if (row != null)
             {
                 DataTableSource.Rows.Remove(row.Row);
             }
         }
 
-        private void EditDataRow()
+        private void EditDataRow(object parameter)
         {
             HomeTableEditView view = new HomeTableEditView();
             view.ShowDialog();

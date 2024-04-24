@@ -115,13 +115,10 @@
                            Style="{StaticResource treeViewStyle1}"
                            IconDisplayMemberPath="Icon"
                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                           ItemsSource="{Binding MenuCollection}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectedItemChanged">
-                    <i:InvokeCommandAction Command="{Binding ItemCommand}"
-                                           CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TreeView}, Path=SelectedItem.Header}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                           ItemsSource="{Binding MenuCollection}"
+                           cc:CommandCenter.Event="{x:Static cc:CornerTreeView.SelectedItemChangedEvent}"
+                           cc:CommandCenter.Command="{Binding ItemCommand}"
+                           cc:CommandCenter.CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=SelectedItem.Header}">
             <cc:CornerTreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewModel}" ItemsSource="{Binding Children}">
                     <Grid Height="40">

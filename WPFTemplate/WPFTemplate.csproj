@@ -61,12 +61,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="common\ComboBoxViewFilterHelper.cs" />
-    <Compile Include="common\LocalLogicalTreeHelper.cs" />
-    <Compile Include="common\ModelConvertHelper.cs" />
-    <Compile Include="common\LocalVisualTreeHelper.cs" />
-    <Compile Include="common\TreeViewItemHelper.cs" />
-    <Compile Include="common\ButtonHelper.cs" />
+    <Compile Include="Command\CommandCenter.cs" />
+    <Compile Include="Common\ComboBoxViewFilterHelper.cs" />
+    <Compile Include="Common\LocalLogicalTreeHelper.cs" />
+    <Compile Include="Common\ModelConvertHelper.cs" />
+    <Compile Include="Common\LocalVisualTreeHelper.cs" />
+    <Compile Include="Common\TreeViewItemHelper.cs" />
+    <Compile Include="Common\ButtonHelper.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />
@@ -111,6 +112,9 @@
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>
     <Compile Include="Test\Models.cs" />
+    <Compile Include="Command\CommandBase.cs" />
+    <Compile Include="VMFactory\ViewModelBase.cs" />
+    <Compile Include="VMFactory\ViewModelFactory.cs" />
     <Page Include="Controls\CornerPasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,7 +135,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="common\Converters.cs" />
+    <Compile Include="Common\Converters.cs" />
     <Compile Include="Controls\CornerButton.cs" />
     <Compile Include="Enums\ButtonEnum.cs" />
     <Compile Include="MainWindow.xaml.cs">

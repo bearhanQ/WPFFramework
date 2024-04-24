@@ -1,4 +1,3 @@
-using GalaSoft.MvvmLight;
 using System;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -7,15 +6,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using WpfBootstrap.Command;
 using WpfBootstrap.Model;
 using WpfBootstrap.View;
+using WPFTemplate;
 
 namespace WpfBootstrap.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public ICommand ItemCommand => new CommandBase(ItemCanExecute, ItemExecute);
+        public CommandBase ItemCommand => new CommandBase(ItemExecute, ItemCanExecute);
 
         public ObservableCollection<TreeViewModel> MenuCollection { get; set; }
 
@@ -43,8 +42,7 @@ namespace WpfBootstrap.ViewModel
 
         public MainViewModel()
         {
-            HomeView view = new HomeView();
-            Content = view;
+            ItemExecute("Home");
 
             MenuCollection = new ObservableCollection<TreeViewModel>()
             {

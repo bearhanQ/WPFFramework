@@ -1,11 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfBootstrap.Model;
+using WPFTemplate;
 
 namespace WpfBootstrap.ViewModel
 {
@@ -23,7 +22,7 @@ namespace WpfBootstrap.ViewModel
             }
         }
 
-        public RelayCommand<string> CopyCommand { get; set; }
+        public CommandBase CopyCommand { get; set; }
 
         public UnicodeViewModel()
         {
@@ -69,12 +68,12 @@ namespace WpfBootstrap.ViewModel
                 new UnicodeModel{Name ="import",Code = "&#xe7db;"},
                 new UnicodeModel{Name ="user",Code = "&#xe741;"}
             };
-            CopyCommand = new RelayCommand<string>(ExecuteCopy);
+            CopyCommand = new CommandBase(ExecuteCopy);
         }
 
-        private void ExecuteCopy(string code)
+        private void ExecuteCopy(object code)
         {
-            System.Windows.Clipboard.SetText(code);
+            System.Windows.Clipboard.SetText(code.ToString());
         }
     }
 }
