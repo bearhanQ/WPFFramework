@@ -50,10 +50,10 @@ namespace WPFTemplate
                 , new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF206BC4"))));
             ItemRemovableProperty = DependencyProperty.Register("ItemRemovable", typeof(bool), typeof(CornerTabControl), new PropertyMetadata(false));
 
-            EventManager.RegisterClassHandler(typeof(CornerTabControl), TabItem.PreviewMouseDownEvent, new RoutedEventHandler(DeleteAndDragEvent));
-            EventManager.RegisterClassHandler(typeof(CornerTabControl), TabItem.DropEvent, new DragEventHandler(DropItem));
-            EventManager.RegisterClassHandler(typeof(CornerTabControl),TabItem.DragEnterEvent, new DragEventHandler(ItemDragEnter));
-            EventManager.RegisterClassHandler(typeof(CornerTabControl), TabItem.DragLeaveEvent, new DragEventHandler(ItemDragLeave));
+            EventManager.RegisterClassHandler(typeof(CornerTabControl), CornerTabItem.PreviewMouseDownEvent, new RoutedEventHandler(DeleteAndDragEvent));
+            EventManager.RegisterClassHandler(typeof(CornerTabControl), CornerTabItem.DropEvent, new DragEventHandler(DropItem));
+            EventManager.RegisterClassHandler(typeof(CornerTabControl), CornerTabItem.DragEnterEvent, new DragEventHandler(ItemDragEnter));
+            EventManager.RegisterClassHandler(typeof(CornerTabControl), CornerTabItem.DragLeaveEvent, new DragEventHandler(ItemDragLeave));
         }
 
         private static void DeleteAndDragEvent(object sender, RoutedEventArgs e)
@@ -62,23 +62,24 @@ namespace WPFTemplate
             var element = e.OriginalSource as FrameworkElement;
             if (element.Name == "deleteItem")
             {
-                var tabItem = (TabItem)LocalVisualTreeHelper.GetParent(element, typeof(TabItem));
+                var tabItem = (CornerTabItem)LocalVisualTreeHelper.GetParent(element, typeof(CornerTabItem));
                 var tabControl = (CornerTabControl)LocalVisualTreeHelper.GetParent(element, typeof(CornerTabControl));
                 tabControl.Items.Remove(tabItem);
                 e.Handled = true;
             }
 
             //dragdrop item
-            if (element.Name == "textblockheader" || element.Name == "bordermain" || element.Name == "gridmain")
+            if (element.Name == "CPHeader" || element.Name == "bordermain" || element.Name == "gridmain")
             {
-                var tabItem = (TabItem)LocalVisualTreeHelper.GetParent(element, typeof(TabItem));
+                var tabItem = (CornerTabItem)LocalVisualTreeHelper.GetParent(element, typeof(CornerTabItem));
                 DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.Move);
             }
         }
         private static void DropItem(object sender, DragEventArgs e)
         {
-            TabItem targetTabItem = e.Source as TabItem;
-            TabItem draggedTabItem = e.Data.GetData(typeof(TabItem)) as TabItem;
+            CornerTabItem targetTabItem = e.Source as CornerTabItem;
+            CornerTabItem draggedTabItem = e.Data.GetData(typeof(CornerTabItem)) as CornerTabItem;
+
             TabControl tabControl = (TabControl)sender;
 
             if (targetTabItem != null && draggedTabItem != null)
@@ -104,8 +105,8 @@ namespace WPFTemplate
         }
         private static void ItemDragEnter(object sender, DragEventArgs e)
         {
-            var targetitem = e.Source as TabItem;
-            var draggeditem = e.Data.GetData(typeof(TabItem));
+            var targetitem = e.Source as CornerTabItem;
+            var draggeditem = e.Data.GetData(typeof(CornerTabItem));
 
             if (targetitem == draggeditem)
             {
@@ -134,6 +135,14 @@ namespace WPFTemplate
                 LocalVisualTreeHelper.SetTemplateItemVisibility(targetitem, "lefthighlightborder", Visibility.Collapsed);
                 LocalVisualTreeHelper.SetTemplateItemVisibility(targetitem, "righthighlightborder", Visibility.Collapsed);
             }
+        }
+        protected override bool IsItemItsOwnContainerOverride(object item)
+        {
+            return item is CornerTabItem;
+        }
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new CornerTabItem();
         }
     }
 }

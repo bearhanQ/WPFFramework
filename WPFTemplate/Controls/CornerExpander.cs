@@ -131,29 +131,11 @@ namespace WPFTemplate
             {
                 if (this.ExpandDirection == ExpandDirection.Up || this.ExpandDirection == ExpandDirection.Down)
                 {
-                    Storyboard storyboard = new Storyboard();
-                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                    EasingDoubleKeyFrame key1 = new EasingDoubleKeyFrame(ExpandSiteActualHeight, KeyTime.FromTimeSpan(TimeSpan.Zero));
-                    EasingDoubleKeyFrame key2 = new EasingDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200)));
-                    animation.KeyFrames.Add(key1);
-                    animation.KeyFrames.Add(key2);
-                    Storyboard.SetTarget(animation, ExpandSite);
-                    Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Height)"));
-                    storyboard.Children.Add(animation);
-                    storyboard.Begin();
+                    CreateStoryboard(ExpandSiteActualHeight, 0, ExpandSite, FrameworkElement.HeightProperty);
                 }
                 if (this.ExpandDirection == ExpandDirection.Left || this.ExpandDirection == ExpandDirection.Right)
                 {
-                    Storyboard storyboard = new Storyboard();
-                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                    EasingDoubleKeyFrame key1 = new EasingDoubleKeyFrame(ExpandSiteActualWidth, KeyTime.FromTimeSpan(TimeSpan.Zero));
-                    EasingDoubleKeyFrame key2 = new EasingDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200)));
-                    animation.KeyFrames.Add(key1);
-                    animation.KeyFrames.Add(key2);
-                    Storyboard.SetTarget(animation, ExpandSite);
-                    Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Width)"));
-                    storyboard.Children.Add(animation);
-                    storyboard.Begin();
+                    CreateStoryboard(ExpandSiteActualWidth, 0, ExpandSite, FrameworkElement.WidthProperty);
                 }
             }
         }
@@ -204,29 +186,11 @@ namespace WPFTemplate
             {
                 if (this.ExpandDirection == ExpandDirection.Up || this.ExpandDirection == ExpandDirection.Down)
                 {
-                    Storyboard storyboard = new Storyboard();
-                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                    EasingDoubleKeyFrame key1 = new EasingDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.Zero));
-                    EasingDoubleKeyFrame key2 = new EasingDoubleKeyFrame(HeaderPresenterActualHeight, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200)));
-                    animation.KeyFrames.Add(key1);
-                    animation.KeyFrames.Add(key2);
-                    Storyboard.SetTarget(animation, HeaderPresenter);
-                    Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Height)"));
-                    storyboard.Children.Add(animation);
-                    storyboard.Begin();
+                    CreateStoryboard(0, HeaderPresenterActualHeight, HeaderPresenter, FrameworkElement.HeightProperty);
                 }
                 if (this.ExpandDirection == ExpandDirection.Left || this.ExpandDirection == ExpandDirection.Right)
                 {
-                    Storyboard storyboard = new Storyboard();
-                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                    EasingDoubleKeyFrame key1 = new EasingDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.Zero));
-                    EasingDoubleKeyFrame key2 = new EasingDoubleKeyFrame(HeaderPresenterActualWidth, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200)));
-                    animation.KeyFrames.Add(key1);
-                    animation.KeyFrames.Add(key2);
-                    Storyboard.SetTarget(animation, HeaderPresenter);
-                    Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Width)"));
-                    storyboard.Children.Add(animation);
-                    storyboard.Begin();
+                    CreateStoryboard(0, HeaderPresenterActualWidth, HeaderPresenter, FrameworkElement.WidthProperty);
                 }
             }
         }
@@ -236,31 +200,27 @@ namespace WPFTemplate
             {
                 if (this.ExpandDirection == ExpandDirection.Up || this.ExpandDirection == ExpandDirection.Down)
                 {
-                    Storyboard storyboard = new Storyboard();
-                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                    EasingDoubleKeyFrame key1 = new EasingDoubleKeyFrame(HeaderPresenterActualHeight, KeyTime.FromTimeSpan(TimeSpan.Zero));
-                    EasingDoubleKeyFrame key2 = new EasingDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200)));
-                    animation.KeyFrames.Add(key1);
-                    animation.KeyFrames.Add(key2);
-                    Storyboard.SetTarget(animation, HeaderPresenter);
-                    Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Height)"));
-                    storyboard.Children.Add(animation);
-                    storyboard.Begin();
+
+                    CreateStoryboard(HeaderPresenterActualHeight, 0, HeaderPresenter, FrameworkElement.HeightProperty);
                 }
                 if (this.ExpandDirection == ExpandDirection.Left || this.ExpandDirection == ExpandDirection.Right)
                 {
-                    Storyboard storyboard = new Storyboard();
-                    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-                    EasingDoubleKeyFrame key1 = new EasingDoubleKeyFrame(HeaderPresenterActualWidth, KeyTime.FromTimeSpan(TimeSpan.Zero));
-                    EasingDoubleKeyFrame key2 = new EasingDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200)));
-                    animation.KeyFrames.Add(key1);
-                    animation.KeyFrames.Add(key2);
-                    Storyboard.SetTarget(animation, HeaderPresenter);
-                    Storyboard.SetTargetProperty(animation, new PropertyPath("(FrameworkElement.Width)"));
-                    storyboard.Children.Add(animation);
-                    storyboard.Begin();
+                    CreateStoryboard(HeaderPresenterActualWidth, 0, HeaderPresenter, FrameworkElement.WidthProperty);
                 }
             }
+        }
+        private void CreateStoryboard(double from, double to, FrameworkElement target, DependencyProperty property)
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+            EasingDoubleKeyFrame key1 = new EasingDoubleKeyFrame(from, KeyTime.FromTimeSpan(TimeSpan.Zero));
+            EasingDoubleKeyFrame key2 = new EasingDoubleKeyFrame(to, KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200)));
+            animation.KeyFrames.Add(key1);
+            animation.KeyFrames.Add(key2);
+            Storyboard.SetTarget(animation, target);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(string.Format("({0})", property.ToString())));
+            storyboard.Children.Add(animation);
+            storyboard.Begin();
         }
     }
 }

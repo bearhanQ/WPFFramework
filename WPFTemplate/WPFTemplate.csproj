@@ -76,6 +76,7 @@
     <Compile Include="Controls\CornerMenuItem.cs" />
     <Compile Include="Controls\CornerScrollViewer.cs" />
     <Compile Include="Controls\CornerSlider.cs" />
+    <Compile Include="Controls\CornerTabItem.cs" />
     <Compile Include="Controls\CornerToolTip.cs" />
     <Compile Include="Controls\Extend\Carousel.cs" />
     <Compile Include="Controls\CornerPasswordBox.xaml.cs">
@@ -211,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CornerTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CornerTabItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

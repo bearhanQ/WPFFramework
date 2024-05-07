@@ -16,15 +16,14 @@ namespace WPFTemplate
 
         public Func<object, bool> FcCanExecute { get; set; }
 
-        public CommandBase(Action<object> ac, Func<object, bool> fc)
+        public CommandBase(Action<object> execute, Func<object, bool> canExecute)
         {
-            this.AcExecute = ac;
-            this.FcCanExecute = fc;
+            this.AcExecute = execute;
+            this.FcCanExecute = canExecute;
         }
-
-        public CommandBase(Action<object> ac)
+        public CommandBase(Action<object> execute)
         {
-            this.AcExecute = ac;
+            this.AcExecute = execute;
             this.FcCanExecute = (o) =>
             {
                 return true;

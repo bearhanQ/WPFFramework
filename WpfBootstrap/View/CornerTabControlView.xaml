@@ -25,15 +25,15 @@
                                  TabControlType="{Binding ElementName=cbType, Path=Text}"
                                  SelectedColor="{Binding ElementName=selectedColorSlider1, Path=SelectedColor}"
                                  ItemRemovable="{Binding ElementName=cbItemRemovable, Path=IsChecked}">
-                <TabItem Header="First">
+                <cc:CornerTabItem Header="First">
                     <Grid Background="Red" Height="100"/>
-                </TabItem>
-                <TabItem Header="Second">
+                </cc:CornerTabItem>
+                <cc:CornerTabItem Header="Second">
                     <Grid Background="Blue" Height="100"/>
-                </TabItem>
-                <TabItem Header="Third">
+                </cc:CornerTabItem>
+                <cc:CornerTabItem Header="Third">
                     <Grid Background="Yellow" Height="100"/>
-                </TabItem>
+                </cc:CornerTabItem>
             </cc:CornerTabControl>
             <TextBlock Text="Type:" Grid.Row="2"/>
             <cc:CornerCombobox x:Name="cbType" Grid.Row="2" Grid.Column="1" WaterText="TabControlType" SelectedIndex="0">
