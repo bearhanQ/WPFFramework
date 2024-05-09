@@ -66,7 +66,15 @@ namespace WpfBootstrap.ViewModel
                 new UnicodeModel{Name ="export",Code = "&#xe66f;"},
                 new UnicodeModel{Name ="print",Code = "&#xe67a;"},
                 new UnicodeModel{Name ="import",Code = "&#xe7db;"},
-                new UnicodeModel{Name ="user",Code = "&#xe741;"}
+                new UnicodeModel{Name ="user",Code = "&#xe741;"},
+                new UnicodeModel{Name ="phone",Code = "&#xe725;"},
+                new UnicodeModel{Name ="face",Code = "&#xe71c;"},
+                new UnicodeModel{Name ="silence",Code = "&#xe68b;"},
+                new UnicodeModel{Name ="camera",Code = "&#xe698;"},
+                new UnicodeModel{Name ="gif",Code = "&#xe90e;"},
+                new UnicodeModel{Name ="picture",Code = "&#xe67c;"},
+                new UnicodeModel{Name ="package",Code = "&#xecd2;"},
+                new UnicodeModel{Name ="scissor",Code = "&#xe6fc;"}
             };
             CopyCommand = new CommandBase(ExecuteCopy);
         }

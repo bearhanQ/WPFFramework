@@ -56,7 +56,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\QQModel.cs" />
+    <Compile Include="Data\Groups.cs" />
+    <Compile Include="Data\Relations.cs" />
+    <Compile Include="Data\Users.cs" />
+    <Compile Include="Model\GroupUser.cs" />
+    <Compile Include="Model\QQGroup.cs" />
+    <Compile Include="Model\QQRelation.cs" />
+    <Compile Include="Model\QQUser.cs" />
     <Compile Include="ViewModel\QQViewModel.cs" />
     <Compile Include="VmFactory.cs" />
     <Page Include="MainWindow.xaml">

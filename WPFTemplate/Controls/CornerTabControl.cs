@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -64,6 +65,19 @@ namespace WPFTemplate
             {
                 var tabItem = (CornerTabItem)LocalVisualTreeHelper.GetParent(element, typeof(CornerTabItem));
                 var tabControl = (CornerTabControl)LocalVisualTreeHelper.GetParent(element, typeof(CornerTabControl));
+
+                if (tabControl.ItemsSource != null)
+                {
+                    var selectItem = tabControl.SelectedItem;
+                    var list = tabControl.ItemsSource as IList;
+                    if (list != null)
+                    {
+                        list.Remove(selectItem);
+                        e.Handled = true;
+                        return;
+                    }
+                }
+
                 tabControl.Items.Remove(tabItem);
                 e.Handled = true;
             }

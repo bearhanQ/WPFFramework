@@ -21,13 +21,40 @@
             <Setter Property="Foreground" Value="Blue"/>
             <Setter Property="CornerRadius" Value="4"/>
         </Style>
+        <DataTemplate x:Key="UsersTemplate" DataType="{x:Type local:QQUser}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Ellipse Width="15" Height="15">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding Profile}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Text="{Binding UserName}" Grid.Column="1"/>
+                <cc:CornerButton Icon="&#xe741;" Grid.Column="2" ButtonType="Link" x:Name="btnRole"/>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Role}" Value="Leader">
+                    <Setter TargetName="btnRole" Property="Foreground" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Role}" Value="Manager">
+                    <Setter TargetName="btnRole" Property="Foreground" Value="Yellow"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Role}" Value="Customer">
+                    <Setter TargetName="btnRole" Property="Foreground" Value="Gray"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
         <Style x:Key="TabContainerStyle1" TargetType="cc:CornerTabItem" BasedOn="{StaticResource {x:Type cc:CornerTabItem}}">
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="#FF5081BD"/>
             <Setter Property="ContentTemplate">
                 <Setter.Value>
-                    <DataTemplate DataType="{x:Type local:QQModel}">
+                    <DataTemplate DataType="{x:Type local:GroupUser}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -49,13 +76,13 @@
                                                 <RowDefinition Height="40"/>
                                             </Grid.RowDefinitions>
                                             <StackPanel Orientation="Horizontal">
-                                                <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
-                                                <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
-                                                <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
-                                                <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
-                                                <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
-                                                <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
-                                                <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
+                                                <cc:CornerButton Background="White" Icon="&#xe71c;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
+                                                <cc:CornerButton Background="White" Icon="&#xe90e;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
+                                                <cc:CornerButton Background="White" Icon="&#xe6fc;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
+                                                <cc:CornerButton Background="White" Icon="&#xecd2;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
+                                                <cc:CornerButton Background="White" Icon="&#xe67c;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
+                                                <cc:CornerButton Background="White" Icon="&#xe68b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
+                                                <cc:CornerButton Background="White" Icon="&#xe690;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
                                                 <cc:CornerButton Background="White" Icon="&#xe63b;" BorderThickness="0" Width="30" Height="30" Margin="5,0,0,0"/>
                                             </StackPanel>
                                             <cc:CornerTextBox Grid.Row="1" ShowWaterText="False" TextWrapping="Wrap" BorderThickness="0" PressShowShadow="False"/>
@@ -80,15 +107,11 @@
                                 <cc:CornerTabItem Header="应用" FontSize="16"/>
                                 <cc:CornerTabItem Header="设置" FontSize="16"/>
                             </cc:CornerTabControl>
-                            <cc:CornerButton Grid.Column="1" Margin="107,10,239,518" Icon="&#xe601;" 
-                                             Background="White" FontSize="20" BorderThickness="0"
-                                             Width="20" Height="20"
-                                             PressShowShadow="False"/>
                             <cc:Drawer Grid.Column="1" PresentIndex="4" Grid.ColumnSpan="3" Margin="0,10,0,0"
                                        VerticalAlignment="Top" HorizontalAlignment="Right"
                                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                                <cc:DrawerItem Content="&#xe602;" Style="{StaticResource DrawerItemStyle1}" />
-                                <cc:DrawerItem Content="&#xe6ea;" Style="{StaticResource DrawerItemStyle1}" Margin="10,0"/>
+                                <cc:DrawerItem Content="&#xe725;" Style="{StaticResource DrawerItemStyle1}" />
+                                <cc:DrawerItem Content="&#xe698;" Style="{StaticResource DrawerItemStyle1}" Margin="10,0"/>
                                 <cc:DrawerItem Content="&#xe60a;" Style="{StaticResource DrawerItemStyle1}"/>
                                 <cc:DrawerItem Content="&#xe7df;" Style="{StaticResource DrawerItemStyle1}" Margin="10,0"/>
                                 <cc:DrawerItem Content="&#xe690;" Style="{StaticResource DrawerItemStyle1}" />
@@ -96,22 +119,38 @@
                                 <cc:DrawerItem Content="&#xe62f;" Style="{StaticResource DrawerItemStyle1}" />
                                 <cc:DrawerItem Content="&#xe82f;" Style="{StaticResource DrawerItemStyle1}" Margin="10,0"/>
                             </cc:Drawer>
-                            <StackPanel Grid.Column="2" Background="LightBlue" Margin="0,60,0,0">
-                                <TextBlock Text="  群通知" FontSize="15"/>
-                                <Separator/>
-                                <TextBlock Text="【公告】" FontSize="15" Margin="0,5"/>
-                                <TextBlock Text="  本群暂不参加所有政治话题讨论" FontSize="10" Opacity="0.6"/>
-                                <Separator/>
-                                <TextBlock Text="【文件】" FontSize="15" Margin="0,5"/>
-                                <TextBlock Text="  Oracle安装包" FontSize="10" Opacity="0.6"/>
-                                <Separator/>
-                            </StackPanel>
+                            <Grid Grid.Column="2" Margin="0,60,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="  群通知" FontSize="15"/>
+                                    <Separator/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="2">
+                                    <TextBlock Text="【公告】" FontSize="15" />
+                                    <TextBlock Text="  本群暂不参加所有政治话题讨论" FontSize="10" Opacity="0.6"/>
+                                    <Separator/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="4">
+                                    <TextBlock Text="【文件】" FontSize="15"/>
+                                    <TextBlock Text="  Oracle安装包" FontSize="10" Opacity="0.6"/>
+                                    <Separator/>
+                                </StackPanel>
+                                <ListBox Grid.Row="7" ItemsSource="{Binding Users}" ItemTemplate="{StaticResource UsersTemplate}" HorizontalContentAlignment="Stretch" BorderThickness="0"/>
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <DataTemplate DataType="{x:Type local:QQModel}" x:Key="QQDataHeaderTemplate1">
+        <DataTemplate x:Key="QQDataHeaderTemplate1" DataType="{x:Type local:GroupUser}" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
@@ -128,7 +167,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Name}" FontSize="15"/>
+                    <TextBlock Text="{Binding GroupName}" FontSize="15"/>
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -150,7 +189,7 @@
                              Background="#FF3079C3" BorderThickness="0"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock x:Name="TbGroupName" Text="人工智能杀死比赛" VerticalAlignment="Center" FontSize="20"/>
+            <TextBlock x:Name="TbGroupName" Text="{Binding ElementName=TcGroup, Path=SelectedItem.GroupName}" VerticalAlignment="Center" FontSize="20"/>
             <cc:CornerButton Icon="&#xe613;" Margin="5" Width="30" Background="{StaticResource MainBackground}" BorderThickness="0"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -171,7 +210,7 @@
 
         <!--左边的列表-->
         <cc:CornerTabControl Grid.Row="1" TabStripPlacement="Left" Grid.ColumnSpan="3" ItemRemovable="True" TabControlType="Underline"
-                             x:Name="TcGroup" ItemsSource="{Binding Groups}" ItemContainerStyle="{StaticResource TabContainerStyle1}"
+                             x:Name="TcGroup" ItemsSource="{Binding GroupUsers}" ItemContainerStyle="{StaticResource TabContainerStyle1}"
                              ItemTemplate="{StaticResource QQDataHeaderTemplate1}" HorizontalContentAlignment="Stretch">
         </cc:CornerTabControl>
     </Grid>
