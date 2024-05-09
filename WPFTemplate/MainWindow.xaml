@@ -8,4 +8,25 @@
         mc:Ignorable="d"
         Width="500" Height="400"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="TabContainerStyle1" TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Background" Value="#FF5081BD"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid Background="Red" Width="200">
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl TabStripPlacement="Left" ItemContainerStyle="{StaticResource TabContainerStyle1}">
+            <TabItem Header="123"/>
+            <TabItem Header="234"/>
+        </TabControl>
+    </Grid>
 </Window>

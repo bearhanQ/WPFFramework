@@ -7,13 +7,14 @@
     <ControlTemplate x:Key="NormalTemplate" TargetType="{x:Type local:CornerTabItem}">
         <Border x:Name="outsideborder" BorderBrush="LightGray" BorderThickness="1">
             <Grid x:Name="gridmain" Background="Transparent">
-                <Border x:Name="bordermain" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}" 
-                                                        Visibility="Hidden">
-                </Border>
+                <Border x:Name="bordermain" Visibility="Hidden"
+                        Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}"/>
                 <Border x:Name="lefthighlightborder" BorderThickness="4,0,0,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-2" Visibility="Collapsed"/>
                 <Border x:Name="righthighlightborder" BorderThickness="0,0,4,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-2" Visibility="Collapsed"/>
-                <ContentPresenter x:Name="CPHeader" ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"
-                                                                  TextElement.Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
+                <ContentPresenter x:Name="CPHeader" ContentSource="Header" 
+                                  VerticalAlignment="Center" 
+                                  HorizontalAlignment="Center" Cursor="Hand"
+                                  TextElement.Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
                 <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden"/>
             </Grid>
         </Border>
@@ -46,12 +47,14 @@
 
     <ControlTemplate x:Key="UnderLineTemplate" TargetType="{x:Type local:CornerTabItem}">
         <Grid x:Name="gridmain" Background="Transparent">
-            <Border x:Name="bordermain" BorderThickness="0,0,0,2" Background="{TemplateBinding Background}"
-                                                    BorderBrush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}" Visibility="Hidden"/>
+            <Border x:Name="bordermain" BorderThickness="0,0,0,2" Background="{TemplateBinding Background}" Visibility="Hidden"
+                    BorderBrush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerTabControl}, Path=SelectedColor}"/>
             <Border x:Name="lefthighlightborder" BorderThickness="4,0,0,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-1" Visibility="Collapsed"/>
             <Border x:Name="righthighlightborder" BorderThickness="0,0,4,0" BorderBrush="{StaticResource TabItem.MouseDrag.HighlightBorder.BorderBrush}" Margin="-1" Visibility="Collapsed"/>
-            <ContentPresenter x:Name="CPHeader" ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"
-                                                              TextElement.Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
+            <ContentPresenter x:Name="CPHeader" ContentSource="Header" 
+                              VerticalAlignment="Center" 
+                              HorizontalAlignment="Center" Cursor="Hand"
+                              TextElement.Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}, Path=Foreground}"/>
             <TextBlock x:Name="deleteItem" Text="x" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Candara Light" Margin="0,0,5,0" Visibility="Hidden"/>
         </Grid>
         <ControlTemplate.Triggers>

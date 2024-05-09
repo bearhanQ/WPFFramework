@@ -88,12 +88,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
                 <Border x:Name="BorderUnderline" Grid.ColumnSpan="4" BorderThickness="0,0,0,2" BorderBrush="Blue" Visibility="Hidden" VerticalAlignment="Bottom"/>
                 <TextBlock x:Name="TbIcon" Text="{TemplateBinding Icon}" Grid.Column="1" FontFamily="{StaticResource FatSheep}" VerticalAlignment="Center" FontSize="{TemplateBinding FontSize}" Margin="2,0,0,0" HorizontalAlignment="Center"/>
-                <ContentPresenter ContentSource="Header" Grid.Column="2" Margin="{TemplateBinding Padding, Converter={StaticResource MenuItemContenAndArrowConverter}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                <ContentPresenter ContentSource="Header" Grid.Column="2" Margin="{TemplateBinding Padding, Converter={StaticResource MenuItemContenAndArrowConverter}}" RecognizesAccessKey="True" 
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -272,6 +273,7 @@
 
     <Style TargetType="{x:Type local:CornerMenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
         <Setter Property="Background" Value="{StaticResource Menu.Static.Background}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Padding" Value="6,0"/>
         <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type local:CornerMenuItem}}}"/>

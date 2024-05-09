@@ -102,7 +102,7 @@ namespace WPFTemplate
                     var window = ownerWindow as Window;
                     button.Click += (o, j) =>
                     {
-                        window.WindowState = WindowState.Maximized;
+                        window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
                     };
                 }
             }
