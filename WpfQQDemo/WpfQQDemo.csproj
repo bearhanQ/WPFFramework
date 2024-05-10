@@ -59,6 +59,7 @@
     <Compile Include="Data\Db.cs" />
     <Compile Include="Model\GroupUser.cs" />
     <Compile Include="Model\QQGroup.cs" />
+    <Compile Include="Model\QQMessage.cs" />
     <Compile Include="Model\QQRelation.cs" />
     <Compile Include="Model\QQUser.cs" />
     <Compile Include="ViewModel\QQViewModel.cs" />

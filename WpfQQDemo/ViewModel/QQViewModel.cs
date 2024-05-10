@@ -13,6 +13,10 @@ namespace WpfQQDemo
     {
         public ObservableCollection<GroupUser> GroupUsers { get; set; }
 
+        public ObservableCollection<QQMessage> QQMessages { get; set; }
+
+        public CommandBase SendMessage { get; set; }
+
         public QQViewModel()
         {
             var list = Db.Groups.Select(g =>
@@ -27,6 +31,27 @@ namespace WpfQQDemo
             }).ToList();
 
             GroupUsers = new ObservableCollection<GroupUser>(list);
+
+            QQMessages = new ObservableCollection<QQMessage>();
+
+            SendMessage = new CommandBase(SendAction, CanSend);
+        }
+
+        private void SendAction(object parameter)
+        {
+            var textBox = parameter as CornerTextBox;
+            QQMessage item = new QQMessage();
+            item.Profile = "pack://application:,,,/WpfQQDemo;component/Resources/profile5.jpg";
+            item.UserName = "曹操";
+            item.Time = DateTime.Now.ToString("HH:mm:ss");
+            item.Message = textBox.Text;
+            QQMessages.Add(item);
+            textBox.Clear();
+        }
+
+        private bool CanSend(object parameter)
+        {
+            return true;
         }
     }
 }
