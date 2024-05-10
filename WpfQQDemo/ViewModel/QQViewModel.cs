@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
-using WpfQQDemo.Data;
-using WpfQQDemo.Model;
 using WPFTemplate;
 
 namespace WpfQQDemo
@@ -17,14 +15,14 @@ namespace WpfQQDemo
 
         public QQViewModel()
         {
-            var list = Groups.Data.Select(g =>
+            var list = Db.Groups.Select(g =>
             new GroupUser
             {
                 GroupId = g.GroupId,
-                GroupName = g.Name,
+                GroupName = g.GroupName,
                 Image = g.Image,
                 Time = g.Time,
-                Users = Users.Data.Join(Relations.Data, u => u.UserId, gu => gu.UserId, (u, gu) =>
+                Users = Db.Users.Join(Db.Relations, u => u.UserId, gu => gu.UserId, (u, gu) =>
                 new { User = u, GroupId = gu.GroupId }).Where(x => x.GroupId == g.GroupId).Select(x => x.User).ToList()
             }).ToList();
 

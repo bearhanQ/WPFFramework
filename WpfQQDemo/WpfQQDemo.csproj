@@ -56,9 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\Groups.cs" />
-    <Compile Include="Data\Relations.cs" />
-    <Compile Include="Data\Users.cs" />
+    <Compile Include="Data\Db.cs" />
     <Compile Include="Model\GroupUser.cs" />
     <Compile Include="Model\QQGroup.cs" />
     <Compile Include="Model\QQRelation.cs" />
@@ -118,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\profile7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profile9.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

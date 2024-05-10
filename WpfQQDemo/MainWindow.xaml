@@ -21,7 +21,7 @@
             <Setter Property="Foreground" Value="Blue"/>
             <Setter Property="CornerRadius" Value="4"/>
         </Style>
-        <DataTemplate x:Key="UsersTemplate" DataType="{x:Type local:QQUser}">
+        <DataTemplate x:Key="UsersTemplate" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
@@ -54,7 +54,7 @@
             <Setter Property="Background" Value="#FF5081BD"/>
             <Setter Property="ContentTemplate">
                 <Setter.Value>
-                    <DataTemplate DataType="{x:Type local:GroupUser}">
+                    <DataTemplate >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -150,7 +150,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <DataTemplate x:Key="QQDataHeaderTemplate1" DataType="{x:Type local:GroupUser}" >
+        <DataTemplate x:Key="QQDataHeaderTemplate1" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
