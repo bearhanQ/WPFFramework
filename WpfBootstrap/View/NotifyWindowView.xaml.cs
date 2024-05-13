@@ -36,7 +36,7 @@ namespace WpfBootstrap.View
 
         private void CornerButton_Click(object sender, RoutedEventArgs e)
         {
-            window.SendMessage((NotifySourceEnum)Enum.Parse(typeof(NotifySourceEnum),cbType.Text), tbMessage.Text);
+            window.SendMessage((NotifySourceEnum)Enum.Parse(typeof(NotifySourceEnum), cbType.Text), tbMessage.Text);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

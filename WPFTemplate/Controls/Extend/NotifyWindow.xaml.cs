@@ -30,7 +30,6 @@ namespace WPFTemplate
             set 
             { 
                 _messages = value;
-                NotifyNewMsgCount();
             }
         }
         public int NewMsgCount
@@ -50,7 +49,14 @@ namespace WPFTemplate
             InitializeComponent();
             Messages = new ObservableCollection<NotifyModel>();
             listbox1.ItemsSource = Messages;
+            Messages.CollectionChanged += Messages_CollectionChanged;
         }
+
+        private void Messages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            NotifyNewMsgCount();
+        }
+
         private void ShowMessage(NotifyModel model)
         {
             if (this.Visibility != Visibility.Visible)
@@ -58,7 +64,6 @@ namespace WPFTemplate
                 this.Visibility = Visibility.Visible;
             }
             Messages.Insert(0, model);
-            NotifyNewMsgCount();
         }
         public void SendMessage(string message)
         {
@@ -77,7 +82,6 @@ namespace WPFTemplate
         public void Clear()
         {
             this.Messages.Clear();
-            NotifyNewMsgCount();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -107,7 +111,6 @@ namespace WPFTemplate
                     if (model != null)
                     {
                         Messages.Remove(model);
-                        NotifyNewMsgCount();
                     }
                 }
             }
