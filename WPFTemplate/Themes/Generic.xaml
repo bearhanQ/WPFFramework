@@ -29,5 +29,6 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Drawer.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/DrawerItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTabItem.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Card.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

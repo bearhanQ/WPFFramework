@@ -9,8 +9,22 @@
         Width="500" Height="400"
         WindowStartupLocation="CenterScreen">
     <StackPanel>
-        <ListBox x:Name="listbox1" Width="100" Height="130" HorizontalContentAlignment="Right" Margin="20"/>
-        <Button Content="add" Width="100" Height="30" Click="Button_Click"/>
-        <TextBlock x:Name="tb1"/>
+        <Grid Width="100" Height="100">
+            <Grid.Clip>
+                <RectangleGeometry Rect="0,0,100,100" RadiusX="10" RadiusY="10"/>
+            </Grid.Clip>
+            <Grid Panel.ZIndex="1">
+                <TextBlock Text="123" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Border CornerRadius="10" BorderThickness="1" BorderBrush="Red" Panel.ZIndex="1"/>
+            <Border CornerRadius="10" Background="Black"/>
+            <Ellipse Width="50" Height="50" Fill="White" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="-10" Opacity="0.5"/>
+            <Ellipse Width="50" Height="50" Fill="White" HorizontalAlignment="Right" Margin="-10" Opacity="0.5"/>
+            <Ellipse Width="50" Height="50" Fill="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-5,-10" Opacity="0.5"/>
+        </Grid>
+        <local:Card Width="150" Height="100" BorderBrush="Red"
+                    CornerRadius="20"
+                    BorderThickness="1" Background="Blue" Margin="10">
+        </local:Card>
     </StackPanel>
 </Window>

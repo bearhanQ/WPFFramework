@@ -96,7 +96,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
@@ -109,12 +109,13 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
-                <Grid Height="140" Grid.Column="1">
-                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
-                        </Border.Effect>
-                    </Border>
+                <cc:Card Height="140" Grid.Column="1">
+                    <cc:Card.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#FF40F60A"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </cc:Card.Background>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -129,7 +130,7 @@
                             <TextBlock Text="SALES"/>
                             <TextBlock Text="75%" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0" Background="Transparent">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>
@@ -142,13 +143,14 @@
                         <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
-                </Grid>
-                <Grid Height="140" Grid.Column="3">
-                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
-                        </Border.Effect>
-                    </Border>
+                </cc:Card>
+                <cc:Card Height="140" Grid.Column="3">
+                    <cc:Card.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#FFDAF60F"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </cc:Card.Background>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -163,7 +165,7 @@
                             <TextBlock Text="REVENUE"/>
                             <TextBlock Text="$4,300" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0" Background="Transparent">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>
@@ -176,13 +178,14 @@
                         <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
-                </Grid>
-                <Grid Height="140" Grid.Column="5">
-                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
-                        </Border.Effect>
-                    </Border>
+                </cc:Card>
+                <cc:Card Height="140" Grid.Column="5">
+                    <cc:Card.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#FF17F9E0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </cc:Card.Background>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -197,7 +200,7 @@
                             <TextBlock Text="NEW CLIENTS"/>
                             <TextBlock Text="6,782" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0" Background="Transparent">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>
@@ -210,13 +213,14 @@
                         <cc:CornerProgressBar Height="5" ShowPercentage="False" Grid.Row="3" Grid.ColumnSpan="2"
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
-                </Grid>
-                <Grid Height="140" Grid.Column="7">
-                    <Border BorderBrush="#FFDADADA" BorderThickness="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="8" Color="#FFDEE3E9" Direction="306" ShadowDepth="0" RenderingBias="Performance"/>
-                        </Border.Effect>
-                    </Border>
+                </cc:Card>
+                <cc:Card Height="140" Grid.Column="7">
+                    <cc:Card.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#FF006CFF"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </cc:Card.Background>
                     <Grid Margin="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -231,7 +235,7 @@
                             <TextBlock Text="ACTIVE USERS"/>
                             <TextBlock Text="2,986" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="20"/>
                         </StackPanel>
-                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0">
+                        <cc:CornerCombobox Grid.Column="1" Height="20" VerticalAlignment="Top" BorderThickness="0" ShowWaterText="False" SelectedIndex="0" Background="Transparent">
                             <ComboBoxItem Content="Last 7 days"/>
                             <ComboBoxItem Content="Last 30 days"/>
                             <ComboBoxItem Content="Last 3 months"/>
@@ -250,7 +254,7 @@
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
                     </Grid>
-                </Grid>
+                </cc:Card>
             </Grid>
 
             <Grid Grid.Column="1" Grid.Row="2">

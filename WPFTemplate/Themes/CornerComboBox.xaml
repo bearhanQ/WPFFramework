@@ -28,10 +28,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FFF0F0F0" Offset="0.0"/>
-        <GradientStop Color="#FFE5E5E5" Offset="1.0"/>
-    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ComboBox.Static.Background" Color="White"/>
     <SolidColorBrush x:Key="ComboBox.Static.Border" Color="#FFACACAC"/>
     <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="#FF606060"/>
     <SolidColorBrush x:Key="ComboBox.Static.Editable.Background" Color="#FFFFFFFF"/>
@@ -130,7 +127,7 @@
                           Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                           Style="{StaticResource ComboBoxToggleButton}" Panel.ZIndex="2" />
             <Border x:Name="borderOutline" BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" CornerRadius="{TemplateBinding CornerRadius}" Margin="-4" Opacity="0"/>
-            <Border x:Name="border" Margin="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Grid.ColumnSpan="2" Panel.ZIndex="1" Background="White">
+            <Border x:Name="border" Margin="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Grid.ColumnSpan="2" Panel.ZIndex="1" Background="{TemplateBinding Background}">
                 <Grid>
                     <TextBlock x:Name="waterTextBlock" Text="{TemplateBinding WaterText}" Opacity="0" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" IsHitTestVisible="False"/>
                     <TextBox x:Name="PART_EditableTextBox" IsEnabled="False" Style="{StaticResource ComboBoxEditableTextBox}" Margin="{TemplateBinding Padding}" 

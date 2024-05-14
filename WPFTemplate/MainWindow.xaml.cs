@@ -23,38 +23,9 @@ namespace WPFTemplate
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Man> data;
         public MainWindow()
         {
             InitializeComponent();
-            data = new ObservableCollection<Man>
-            {
-                new Man{Name="123"},
-                new Man{Name="321"},
-                new Man{Name="456"},
-            };
-            listbox1.ItemsSource = data;
-            listbox1.DisplayMemberPath = "Name";
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Task.Run(() =>
-            {
-                Add();
-                //tb1.Dispatcher.Invoke(() =>
-                //{
-                //    tb1.Text = "123";
-                //});
-            });
-        }
-
-        private void Add()
-        {
-            listbox1.Dispatcher.Invoke(() =>
-            {
-                data.Add(new Man { Name = "new item" });
-            });
         }
     }
 
