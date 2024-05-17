@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfBootstrap.View"
              xmlns:s="clr-namespace:System;assembly=mscorlib"
+             xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
              xmlns:m="clr-namespace:WpfBootstrap.Model"
              mc:Ignorable="d" Background="Wheat">
     <UserControl.Resources>
@@ -19,6 +20,10 @@
             <m:Revenue Day="27" Value="400"/>
             <m:Revenue Day="28" Value="120"/>
             <m:Revenue Day="29" Value="320"/>
+            <m:Revenue Day="30" Value="420"/>
+            <m:Revenue Day="30" Value="420"/>
+            <m:Revenue Day="30" Value="420"/>
+            <m:Revenue Day="30" Value="420"/>
             <m:Revenue Day="30" Value="420"/>
         </x:Array>
         <x:Array x:Key="nums" Type="{x:Type s:String}">
@@ -71,7 +76,7 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-                        <ItemsPresenter Grid.Column="2" SnapsToDevicePixels="True" VerticalAlignment="Center" Height="{TemplateBinding Height}"/>
+                        <ItemsPresenter Grid.Column="2" SnapsToDevicePixels="True" Height="{TemplateBinding Height}"/>
                     </Grid>
                 </ControlTemplate>
             </ListBox.Template>
