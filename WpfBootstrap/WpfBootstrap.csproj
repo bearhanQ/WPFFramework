@@ -131,6 +131,9 @@
     <Compile Include="View\CornerTreeViewView.xaml.cs">
       <DependentUpon>CornerTreeViewView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DonutView.xaml.cs">
+      <DependentUpon>DonutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DrawerView.xaml.cs">
       <DependentUpon>DrawerView.xaml</DependentUpon>
     </Compile>
@@ -248,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerTreeViewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DonutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

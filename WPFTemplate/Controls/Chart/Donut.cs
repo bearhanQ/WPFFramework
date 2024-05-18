@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,7 +43,8 @@ namespace WPFTemplate
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Donut), new FrameworkPropertyMetadata(typeof(Donut)));
             ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Donut));
-            ArcThicknessProperty = DependencyProperty.Register("ArcThickness", typeof(double), typeof(Donut), new PropertyMetadata((double)20));
+            ArcThicknessProperty = DependencyProperty.Register("ArcThickness", typeof(double), typeof(Donut), 
+                new FrameworkPropertyMetadata((double)20, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(ArcThicknessChangedCallBack)));
         }
 
         public Donut()
@@ -50,6 +52,11 @@ namespace WPFTemplate
             this.Loaded += Donut_Loaded;
         }
 
+        private static void ArcThicknessChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs arg)
+        {
+            var donut = d as Donut;
+            donut.GenerateArcs();
+        }
         private void Donut_Loaded(object sender, RoutedEventArgs e)
         {
             GenerateItem();
@@ -87,6 +94,7 @@ namespace WPFTemplate
 
                 if (gridMain != null)
                 {
+                    gridMain.Children.Clear();
                     double startAngle = 0;
                     double value = 0;
                     double nexValue = 0;
@@ -98,7 +106,12 @@ namespace WPFTemplate
                             nexValue += value;
                             double endAngle = CalculateAngle(sum, nexValue);
                             Arc arc = GenerateArc(startAngle, endAngle, i);
+                            Arc tag = GenerateTagArc(startAngle, endAngle, i);
+                            arc.Tag = tag;
+
                             gridMain.Children.Add(arc);
+                            gridMain.Children.Add(tag);
+
                             startAngle = endAngle;
                         }
                     }
@@ -115,15 +128,54 @@ namespace WPFTemplate
         }
         private Arc GenerateArc(double StartAngle, double EndAngle, int index)
         {
+            var Stroke= this.DonutColors[index].Stroke;
+            var Fill = this.DonutColors[index].Fill;
+
             Arc arc = new Arc();
             arc.Width = gridMain.ActualHeight;
             arc.Height = gridMain.ActualHeight;
-            arc.Stroke = this.DonutColors[index].Stroke;
-            arc.Fill = this.DonutColors[index].Fill;
+            arc.Stroke = Stroke;
+            arc.Fill = Fill;
             arc.StartAngle = StartAngle;
             arc.EndAngle = EndAngle;
             arc.ArcThickness = this.ArcThickness;
             arc.Stretch = Stretch.None;
+
+            arc.MouseEnter += (sender, e) =>
+            {
+                var tagArc = ((Arc)sender).Tag as Arc;
+                tagArc.Visibility = Visibility.Visible;
+            };
+            arc.MouseLeave += (sender, e) =>
+            {
+                var tagArc = ((Arc)sender).Tag as Arc;
+                tagArc.Visibility = Visibility.Hidden;
+            };
+
+            var item = listBoxMain.Items[index];
+            var content = item.GetType().GetProperty(this.DisplayMemberPath).GetValue(item).ToString();
+            CornerToolTip toolTip = new CornerToolTip();
+            toolTip.Background = Fill;
+            toolTip.BorderBrush = Stroke;
+            toolTip.Foreground = Brushes.White;
+            toolTip.Content = content;
+            arc.ToolTip = toolTip;
+
+            return arc;
+        }
+        private Arc GenerateTagArc(double StartAngle, double EndAngle, int index)
+        {
+            Arc arc = new Arc();
+            arc.Width = gridMain.ActualHeight;
+            arc.Height = gridMain.ActualHeight;
+            arc.Fill = Brushes.Gray;
+            arc.StartAngle = StartAngle;
+            arc.EndAngle = EndAngle;
+            arc.ArcThickness = this.ArcThickness;
+            arc.Stretch = Stretch.None;
+            arc.Visibility = Visibility.Hidden;
+            arc.Opacity = 0.3;
+            arc.IsHitTestVisible = false;
             return arc;
         }
         public override void OnApplyTemplate()
@@ -132,6 +184,12 @@ namespace WPFTemplate
 
             listBoxMain = GetTemplateChild("listBoxMain") as ListBox;
             gridMain = GetTemplateChild("gridMain") as Grid;
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+            GenerateArcs();
         }
     }
 
@@ -153,18 +211,33 @@ namespace WPFTemplate
                         },
                         new DonutColor
                         {
-                            Stroke = new SolidColorBrush(Colors.Blue),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF9AD0F5"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Green),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF58E658"))
+                            Stroke = new SolidColorBrush(Colors.Orange),
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF9BE51"))
                         },
                         new DonutColor
                         {
                             Stroke = new SolidColorBrush(Colors.Yellow),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF1F14F"))
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFDFD6B"))
+                        },
+                        new DonutColor
+                        {
+                            Stroke = new SolidColorBrush(Colors.Green),
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF22EE22"))
+                        },
+                        new DonutColor
+                        {
+                            Stroke = new SolidColorBrush(Colors.Cyan),
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4AF7F7"))
+                        },
+                        new DonutColor
+                        {
+                            Stroke = new SolidColorBrush(Colors.Blue),
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5151F4"))
+                        },
+                        new DonutColor
+                        {
+                            Stroke = new SolidColorBrush(Colors.Purple),
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFEE56EE"))
                         }
                     };
                 }

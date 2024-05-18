@@ -15,6 +15,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
+using Microsoft.Expression.Shapes;
 
 namespace WPFTemplate
 {
@@ -32,6 +33,8 @@ namespace WPFTemplate
     class Man
     {
         public string Name { get; set; }
+
+        public string NickName { get; set; }
 
         public int Age { get; set; }
     }

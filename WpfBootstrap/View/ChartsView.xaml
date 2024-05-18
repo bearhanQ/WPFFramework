@@ -7,13 +7,15 @@
              xmlns:s="clr-namespace:System;assembly=mscorlib"
              xmlns:m="clr-namespace:WpfBootstrap.Model"
              xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+             xmlns:vws="clr-namespace:WpfBootstrap.View"
              mc:Ignorable="d" Background="Wheat">
     <Grid>
-        <cc:Carousel Height="340" Width="500">
+        <cc:Carousel Height="340" Width="500" BorderThickness="0">
             <local:ChartCurveView/>
             <local:ChartCylinderView/>
             <local:ChartLineView/>
             <local:ChartSlopeView/>
+            <vws:DonutView/>
         </cc:Carousel>
     </Grid>
 </UserControl>
