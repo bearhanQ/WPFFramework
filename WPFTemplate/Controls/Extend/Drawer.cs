@@ -174,7 +174,7 @@ namespace WPFTemplate
                 From = from,
                 To = to,
                 EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
-                Duration = new Duration(TimeSpan.FromMilliseconds(500)),
+                Duration = new Duration(TimeSpan.FromMilliseconds(250)),
                 FillBehavior = FillBehavior.Stop
             };
             Storyboard.SetTarget(animation, itemsPresenter);

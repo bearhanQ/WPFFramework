@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -26,6 +27,8 @@ namespace WPFTemplate
         public static readonly DependencyProperty ArcThicknessProperty;
 
         public static readonly DependencyProperty DonutColorsProperty;
+
+        public static readonly DependencyProperty OpenAnimationProperty;
 
         private ListBox listBoxMain;
 
@@ -60,6 +63,12 @@ namespace WPFTemplate
             set { SetValue(ArcThicknessProperty, value); }
         }
 
+        public bool OpenAnimation
+        {
+            get { return (bool)GetValue(OpenAnimationProperty); }
+            set { SetValue(OpenAnimationProperty, value); }
+        }
+
         [TypeConverter(typeof(StringToBrushCollectionTypeConverter))]
         public ObservableCollection<Brush> DonutColors
         {
@@ -73,9 +82,8 @@ namespace WPFTemplate
             ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Donut));
             ArcThicknessProperty = DependencyProperty.Register("ArcThickness", typeof(double), typeof(Donut), 
                 new FrameworkPropertyMetadata((double)20, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(ArcThicknessChangedCallBack)));
-            DonutColorsProperty =
-            DependencyProperty.Register("DonutColors", typeof(ObservableCollection<Brush>), typeof(Donut),
-                new FrameworkPropertyMetadata(DonutDefalutColors));
+            DonutColorsProperty = DependencyProperty.Register("DonutColors", typeof(ObservableCollection<Brush>), typeof(Donut),new FrameworkPropertyMetadata(DonutDefalutColors));
+            OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Donut), new PropertyMetadata(true));
         }
 
         public Donut()
@@ -189,6 +197,11 @@ namespace WPFTemplate
             toolTip.Content = content;
             arc.ToolTip = toolTip;
 
+            if (OpenAnimation)
+            {
+                CreateArcAnimation(StartAngle, EndAngle, arc);
+            }
+
             return arc;
         }
         private Arc GenerateTagArc(double StartAngle, double EndAngle)
@@ -205,6 +218,17 @@ namespace WPFTemplate
             arc.Opacity = 0.3;
             arc.IsHitTestVisible = false;
             return arc;
+        }
+        private void CreateArcAnimation(double from, double to,DependencyObject d)
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.Zero, Value = from });
+            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(1), Value = to });
+            Storyboard.SetTarget(animation, d);
+            Storyboard.SetTargetProperty(animation, new PropertyPath("EndAngle"));
+            storyboard.Children.Add(animation);
+            storyboard.Begin();
         }
         public override void OnApplyTemplate()
         {
