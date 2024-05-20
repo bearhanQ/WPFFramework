@@ -17,7 +17,7 @@
             <local:Man Name="fourth" Age="3" NickName="wangwu"/>
         </x:Array>
     </Window.Resources>
-    <StackPanel>
-        <local:Donut ItemsSource="{StaticResource men}" DisplayMemberPath="Name" Width="300" Height="300" ValueMemberPath="Age" ArcThickness="50"/>
-    </StackPanel>
+    <Grid>
+        <local:Donut ItemsSource="{StaticResource men}" DisplayMemberPath="Name" Width="300" Height="200" ValueMemberPath="Age" ArcThickness="50" FontSize="15"/>
+    </Grid>
 </Window>

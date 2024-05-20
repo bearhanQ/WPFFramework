@@ -13,8 +13,9 @@
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <ListBox ItemsSource="{TemplateBinding ItemsSource}" DisplayMemberPath="{TemplateBinding DisplayMemberPath}" BorderThickness="0" HorizontalAlignment="Center"
-                                 x:Name="listBoxMain" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="Transparent">
+                        <ListBox ItemsSource="{TemplateBinding ItemsSource}" DisplayMemberPath="{TemplateBinding DisplayMemberPath}"
+                                 x:Name="listBoxMain" BorderThickness="0" HorizontalAlignment="Center"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="Transparent">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal"/>
