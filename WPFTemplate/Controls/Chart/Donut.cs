@@ -1,6 +1,8 @@
 ﻿using Microsoft.Expression.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,15 +19,34 @@ using System.Windows.Shapes;
 
 namespace WPFTemplate
 {
-    public partial class Donut : ItemsControl
+    public class Donut : ItemsControl
     {
         public static readonly DependencyProperty ValueMemberPathProperty;
 
         public static readonly DependencyProperty ArcThicknessProperty;
 
+        public static readonly DependencyProperty DonutColorsProperty;
+
         private ListBox listBoxMain;
 
         private Grid gridMain;
+
+        private static ObservableCollection<Brush> DonutDefalutColors
+        {
+            get
+            {
+                return new ObservableCollection<Brush>()
+                {
+                    new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFB1C1")),
+                    new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF9BE51")),
+                    new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFDFD6B")),
+                    new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF22EE22")),
+                    new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4AF7F7")),
+                    new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5151F4")),
+                    new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFEE56EE"))
+                };
+            }
+        }
 
         public string ValueMemberPath
         {
@@ -39,12 +60,22 @@ namespace WPFTemplate
             set { SetValue(ArcThicknessProperty, value); }
         }
 
+        [TypeConverter(typeof(StringToBrushCollectionTypeConverter))]
+        public ObservableCollection<Brush> DonutColors
+        {
+            get { return (ObservableCollection<Brush>)GetValue(DonutColorsProperty); }
+            set { SetValue(DonutColorsProperty, value); }
+        }
+
         static Donut()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Donut), new FrameworkPropertyMetadata(typeof(Donut)));
             ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Donut));
             ArcThicknessProperty = DependencyProperty.Register("ArcThickness", typeof(double), typeof(Donut), 
                 new FrameworkPropertyMetadata((double)20, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(ArcThicknessChangedCallBack)));
+            DonutColorsProperty =
+            DependencyProperty.Register("DonutColors", typeof(ObservableCollection<Brush>), typeof(Donut),
+                new FrameworkPropertyMetadata(DonutDefalutColors));
         }
 
         public Donut()
@@ -72,8 +103,7 @@ namespace WPFTemplate
                     ListBoxItem listboxitem = listBoxMain.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
                     if (listboxitem != null)
                     {
-                        listboxitem.Background = this.DonutColors[i].Fill;
-                        listboxitem.BorderBrush = this.DonutColors[i].Stroke;
+                        listboxitem.Background = this.DonutColors[i];
                     }
                 }
             }
@@ -128,13 +158,11 @@ namespace WPFTemplate
         }
         private Arc GenerateArc(double StartAngle, double EndAngle, int index, double value)
         {
-            var Stroke= this.DonutColors[index].Stroke;
-            var Fill = this.DonutColors[index].Fill;
+            var Fill = this.DonutColors[index];
 
             Arc arc = new Arc();
             arc.Width = gridMain.ActualHeight;
             arc.Height = gridMain.ActualHeight;
-            arc.Stroke = Stroke;
             arc.Fill = Fill;
             arc.StartAngle = StartAngle;
             arc.EndAngle = EndAngle;
@@ -157,7 +185,6 @@ namespace WPFTemplate
             content = content + ": " + value;
             CornerToolTip toolTip = new CornerToolTip();
             toolTip.Background = Fill;
-            toolTip.BorderBrush = Stroke;
             toolTip.Foreground = Brushes.White;
             toolTip.Content = content;
             arc.ToolTip = toolTip;
@@ -191,94 +218,5 @@ namespace WPFTemplate
             base.OnRenderSizeChanged(sizeInfo);
             LoadArcs();
         }
-    }
-
-    public partial class Donut
-    {
-        private List<DonutColor> _DonutColors;
-        private List<DonutColor> DonutColors
-        {
-            get
-            {
-                if (_DonutColors == null)
-                {
-                    _DonutColors = new List<DonutColor>()
-                    {
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Red),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFB1C1"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Orange),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF9BE51"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Yellow),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFDFD6B"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Green),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF22EE22"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Cyan),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4AF7F7"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Blue),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5151F4"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Purple),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFEE56EE"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Blue),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5151F4"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Cyan),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4AF7F7"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Green),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF22EE22"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Yellow),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFDFD6B"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Orange),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF9BE51"))
-                        },
-                        new DonutColor
-                        {
-                            Stroke = new SolidColorBrush(Colors.Red),
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFB1C1"))
-                        }
-                    };
-                }
-                return _DonutColors;
-            }
-        }
-    }
-
-    internal class DonutColor
-    {
-        public SolidColorBrush Stroke { get; set; }
-        public SolidColorBrush Fill { get; set; }
     }
 }

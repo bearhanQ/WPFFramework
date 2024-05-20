@@ -200,13 +200,4 @@ namespace WPFTemplate
             }
         }
     }
-
-    public enum PlaceMent
-    {
-        Bottom,
-        Top,
-        Left,
-        Right,
-        Center
-    }
 }

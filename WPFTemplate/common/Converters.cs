@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Globalization;
@@ -386,6 +387,24 @@ namespace WPFTemplate
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public class StringToBrushCollectionTypeConverter : TypeConverter
+    {
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value != null)
+            {
+                var result = new ObservableCollection<Brush>();
+                var brushs = value.ToString().Split(',');
+                foreach (var brush in brushs)
+                {
+                    result.Add(new SolidColorBrush((Color)ColorConverter.ConvertFromString(brush)));
+                }
+                return result;
+            }
+            return null;
         }
     }
 }

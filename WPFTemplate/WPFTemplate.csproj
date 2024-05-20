@@ -105,6 +105,7 @@
     <Compile Include="Controls\Extend\CornerDatePicker.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\NotifySourceEnum.cs" />
+    <Compile Include="Enums\PlaceControlEnum.cs" />
     <Compile Include="Enums\ProgressBarEnum.cs" />
     <Compile Include="Enums\RadioButtonEnums.cs" />
     <Compile Include="Enums\SliderEnum.cs" />

@@ -13,11 +13,11 @@
         <x:Array Type="{x:Type local:Man}" x:Key="men">
             <local:Man Name="first" Age="1" NickName="zhangsan"/>
             <local:Man Name="second" Age="2" NickName="lisi"/>
-            <local:Man Name="third" Age="3" NickName="wangwu"/>
-            <local:Man Name="fourth" Age="3" NickName="wangwu"/>
         </x:Array>
     </Window.Resources>
     <Grid>
-        <local:Donut ItemsSource="{StaticResource men}" DisplayMemberPath="Name" Width="300" Height="200" ValueMemberPath="Age" ArcThickness="50" FontSize="15"/>
+        <local:Donut ItemsSource="{StaticResource men}" DisplayMemberPath="Name" Width="300" Height="200" 
+                     ValueMemberPath="Age" ArcThickness="50" FontSize="15"
+                     DonutColors="red,#FFFFB1C1"/>
     </Grid>
 </Window>

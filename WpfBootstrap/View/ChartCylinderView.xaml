@@ -21,10 +21,10 @@
             <m:Revenue Day="28" Value="120"/>
             <m:Revenue Day="29" Value="320"/>
             <m:Revenue Day="30" Value="420"/>
-            <m:Revenue Day="30" Value="420"/>
-            <m:Revenue Day="30" Value="420"/>
-            <m:Revenue Day="30" Value="420"/>
-            <m:Revenue Day="30" Value="420"/>
+            <m:Revenue Day="30" Value="320"/>
+            <m:Revenue Day="30" Value="120"/>
+            <m:Revenue Day="30" Value="300"/>
+            <m:Revenue Day="30" Value="200"/>
         </x:Array>
         <x:Array x:Key="nums" Type="{x:Type s:String}">
             <s:String>500</s:String>
