@@ -51,7 +51,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <ListBox ItemsSource="{StaticResource nums}" Grid.ColumnSpan="3"
-                                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                 ScrollViewer.VerticalScrollBarVisibility="Hidden" IsHitTestVisible="False">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
                                     <Setter Property="Template">

@@ -3,32 +3,34 @@
                      xmlns:local="clr-namespace:WPFTemplate">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Carousel.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerButton.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTextBox.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerCheckBox.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerRadioButton.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerComboBox.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerProgressBar.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTabControl.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTreeView.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBox.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMultiComboBoxItem.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerCalendar.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerDatePicker.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMenuItem.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerContextMenu.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerSlider.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerPagination.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerScrollViewer.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/PlaceControl.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerMenu.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerToolTip.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerExpander.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Drawer.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/DrawerItem.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/CornerTabItem.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Card.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerProgressBar.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerTabItem.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerMenu.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerToolTip.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerExpander.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerTabControl.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerTreeView.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerMultiComboBox.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerMultiComboBoxItem.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerCalendar.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerDatePicker.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerMenuItem.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerContextMenu.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerSlider.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerScrollViewer.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerButton.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerTextBox.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerCheckBox.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerRadioButton.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerComboBox.xaml"/>
+
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/Carousel.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/CornerPagination.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/PlaceControl.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/Drawer.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/DrawerItem.xaml"/>
+
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/Card.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/Donut.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     

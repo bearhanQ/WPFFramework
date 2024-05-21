@@ -68,7 +68,9 @@ namespace WpfBootstrap.ViewModel
                         new TreeViewModel { Header = "CornerTreeView"},
                         new TreeViewModel { Header = "CornerExpander"},
                         new TreeViewModel { Header = "CornerToolTip"},
-                        new TreeViewModel { Header = "CornerSlider"}
+                        new TreeViewModel { Header = "CornerSlider"},
+                        new TreeViewModel { Header = "CornerCalendar"},
+                        new TreeViewModel { Header = "CornerDatePicker"}
                     }
                 },
                 new TreeViewModel
@@ -81,8 +83,6 @@ namespace WpfBootstrap.ViewModel
                         new TreeViewModel { Header = "ColorSlider"},
                         new TreeViewModel { Header = "CornerMultiComboBox"},
                         new TreeViewModel { Header = "CornerPagination"},
-                        new TreeViewModel { Header = "CornerCalendar"},
-                        new TreeViewModel { Header = "CornerDatePicker"},
                         new TreeViewModel { Header = "NotifyWindow"},
                         new TreeViewModel { Header = "PlaceControl"},
                         new TreeViewModel { Header = "Drawer"}

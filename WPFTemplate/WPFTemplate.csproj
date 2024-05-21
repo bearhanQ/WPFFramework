@@ -154,11 +154,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Card.xaml">
+    <Page Include="Themes\Extra\Card.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Carousel.xaml">
+    <Page Include="Themes\Extra\Carousel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,87 +166,87 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerButton.xaml">
+    <Page Include="Themes\Original\CornerButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerCheckBox.xaml">
+    <Page Include="Themes\Original\CornerCheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerComboBox.xaml">
+    <Page Include="Themes\Original\CornerComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerContextMenu.xaml">
+    <Page Include="Themes\Original\CornerContextMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerExpander.xaml">
+    <Page Include="Themes\Original\CornerExpander.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerMenu.xaml">
+    <Page Include="Themes\Original\CornerMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerMenuItem.xaml">
+    <Page Include="Themes\Original\CornerMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerMultiComboBox.xaml">
+    <Page Include="Themes\Original\CornerMultiComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerMultiComboBoxItem.xaml">
+    <Page Include="Themes\Original\CornerMultiComboBoxItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerPagination.xaml">
+    <Page Include="Themes\Extra\CornerPagination.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerProgressBar.xaml">
+    <Page Include="Themes\Original\CornerProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerRadioButton.xaml">
+    <Page Include="Themes\Original\CornerRadioButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerScrollViewer.xaml">
+    <Page Include="Themes\Original\CornerScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerSlider.xaml">
+    <Page Include="Themes\Original\CornerSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerTabControl.xaml">
+    <Page Include="Themes\Original\CornerTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerTabItem.xaml">
+    <Page Include="Themes\Original\CornerTabItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerTextBox.xaml">
+    <Page Include="Themes\Original\CornerTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerToolTip.xaml">
+    <Page Include="Themes\Original\CornerToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerTreeView.xaml">
+    <Page Include="Themes\Original\CornerTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Drawer.xaml">
+    <Page Include="Themes\Extra\Drawer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\DrawerItem.xaml">
+    <Page Include="Themes\Extra\DrawerItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,15 +254,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\PlaceControl.xaml">
+    <Page Include="Themes\Extra\PlaceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerCalendar.xaml">
+    <Page Include="Themes\Original\CornerCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\CornerDatePicker.xaml">
+    <Page Include="Themes\Original\CornerDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
