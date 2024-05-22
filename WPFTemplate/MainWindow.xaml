@@ -7,17 +7,91 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
         mc:Ignorable="d"
-        Width="500" Height="400"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <x:Array Type="{x:Type local:Man}" x:Key="men">
-            <local:Man Name="first" Age="1" NickName="zhangsan"/>
-            <local:Man Name="second" Age="2" NickName="lisi"/>
+            <local:Man Name="一月" Age="100"/>
+            <local:Man Name="二月" Age="200"/>
+            <local:Man Name="三月" Age="50"/>
+            <local:Man Name="四月" Age="150"/>
         </x:Array>
+
+        <x:Array x:Key="nums" Type="{x:Type s:String}">
+            <s:String>400</s:String>
+            <s:String>300</s:String>
+            <s:String>200</s:String>
+            <s:String>100</s:String>
+            <s:String>0</s:String>
+        </x:Array>
+
     </Window.Resources>
-    <Grid>
-        <local:Donut ItemsSource="{StaticResource men}" DisplayMemberPath="Name" Width="300" Height="200" 
-                     ValueMemberPath="Age" ArcThickness="50" FontSize="15"
-                     DonutColors="red,#FFFFB1C1"/>
+    <Grid Width="400" Height="400">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<Grid Width="200" Height="200">
+            <ListBox x:Name="listBoxLine" ItemsSource="{StaticResource nums}" IsHitTestVisible="False" BorderThickness="0" Background="Transparent"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Panel.ZIndex="1">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid x:Name="grid1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="27"/>
+                                            <ColumnDefinition Width="3"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <Rectangle Grid.Column="2" Stroke="Gray" StrokeThickness="1" StrokeDashArray="3,6" Height="1" SnapsToDevicePixels="False"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <ListBox ItemsSource="{StaticResource men}" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" DisplayMemberPath="Name" Background="Transparent" Margin="33,0,0,-1">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Margin" Value="0,0,11,0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid Width="11">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="20"/>
+                                        </Grid.RowDefinitions>
+                                        <Rectangle Fill="#FF206BC4" Height="100">
+                                            <Rectangle.LayoutTransform>
+                                                <ScaleTransform ScaleY="0.8"/>
+                                            </Rectangle.LayoutTransform>
+                                        </Rectangle>
+                                        <ContentPresenter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <ContentPresenter.LayoutTransform>
+                                                <RotateTransform Angle="0"/>
+                                            </ContentPresenter.LayoutTransform>
+                                        </ContentPresenter>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Grid>-->
+        <local:Bar x:Name="bar1" DisplayMemberPath="Name" 
+                   ValueMemberPath="Age" VerticalLineCount="5"/>
+        <Button Grid.Row="1" Width="100" Height="30" Content="Add" Click="Button_Click"/>
     </Grid>
 </Window>

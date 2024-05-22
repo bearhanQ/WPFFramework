@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFTemplate">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="{x:Type local:Bar}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Bar}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ListBox x:Name="ListBoxLine" IsHitTestVisible="False" BorderThickness="0" Background="Transparent"
+                                 Panel.ZIndex="1" ItemsSource="{TemplateBinding VerticalNumbers}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Height">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource BarHeightConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="ActualHeight"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="VerticalNumbers"/>
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Grid x:Name="grid1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="27"/>
+                                                        <ColumnDefinition Width="3"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                    <Rectangle Grid.Column="2" Stroke="Gray" StrokeThickness="1" StrokeDashArray="3,6" Height="1" SnapsToDevicePixels="False"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <ItemsPresenter Margin="30,0,0,-1" HorizontalAlignment="Center"
+                                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

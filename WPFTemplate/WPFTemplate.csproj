@@ -68,6 +68,8 @@
     <Compile Include="Common\LocalVisualTreeHelper.cs" />
     <Compile Include="Common\TreeViewItemHelper.cs" />
     <Compile Include="Common\ButtonHelper.cs" />
+    <Compile Include="Controls\Chart\Bar.cs" />
+    <Compile Include="Controls\Chart\BarItem.cs" />
     <Compile Include="Controls\Chart\Donut.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
@@ -151,6 +153,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Chart\Bar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Chart\BarItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

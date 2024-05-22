@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -405,6 +406,111 @@ namespace WPFTemplate
                 return result;
             }
             return null;
+        }
+    }
+
+    internal class BarRowHeightConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var actualHeight = (double)values[0];
+            var list = values[1] as IList;
+            if (list != null)
+            {
+                var height = Math.Floor(actualHeight / list.Count / 2);
+                return new GridLength(height, GridUnitType.Pixel);
+            }
+            return null;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class BarHeightConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var actualHeight = (double)values[0];
+            var list = values[1] as IList;
+            if (list != null)
+            {
+                var height = Math.Floor(actualHeight / list.Count);
+                return height;
+            }
+            return 0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class BarItemWidthConverter : IMultiValueConverter
+    {
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var actualWidth = (double)value[0];
+            var list = value[1] as IList;
+            if (list != null)
+            {
+                var count = list.Count == 0 ? 1 : list.Count;
+                var result = Math.Floor((actualWidth - 30) / count / 2);
+                return result;
+            }
+            return 0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class BarItemMarginConverter : IMultiValueConverter
+    {
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
+{
+            Thickness result = new Thickness();
+            var actualWidth = (double)value[0];
+            var list = value[1] as IList;
+            if (list != null)
+            {
+                var count = list.Count == 0 ? 1 : list.Count;
+                var right = Math.Floor((actualWidth - 30) / count / 2);
+                result.Right = right;
+            }
+            return result;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class BarItemScaleYConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var actualHeight = (double)values[0];
+            var list = (IList)values[1];
+            var ratio = (double)values[2];
+            if (list != null)
+            {
+                var height = actualHeight / list.Count;
+                var Y = Math.Round(height / ratio, 3);
+                return Y;
+            }
+            return null;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

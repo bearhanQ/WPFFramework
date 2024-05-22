@@ -24,13 +24,26 @@ namespace WPFTemplate
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Man> Men { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            Men = new ObservableCollection<Man>
+            {
+                new Man {Name="一月",Age=100},
+                new Man {Name="二月",Age=200},
+                new Man {Name="三月",Age=300},
+            };
+            bar1.ItemsSource = Men;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Men.RemoveAt(1);
         }
     }
 
-    class Man
+    public class Man
     {
         public string Name { get; set; }
 
