@@ -48,7 +48,7 @@ namespace WPFTemplate
         {
             if (ParentBar != null && ParentBar.OpenAnimation)
             {
-                CreateArcAnimation(0, this.ActualHeight, this);
+                CreateAnimation(0, this.ActualHeight, this);
             }
         }
 
@@ -83,7 +83,7 @@ namespace WPFTemplate
             }
         }
 
-        private void CreateArcAnimation(double from, double to, DependencyObject d)
+        private void CreateAnimation(double from, double to, DependencyObject d)
         {
             Storyboard storyboard = new Storyboard();
             DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();

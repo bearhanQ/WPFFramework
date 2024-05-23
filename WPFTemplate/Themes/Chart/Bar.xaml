@@ -4,11 +4,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
-    <SolidColorBrush x:Key="BarItem.Default.Background" Color="#FF206BC4"/>
-    
+
     <Style TargetType="{x:Type local:Bar}">
-        <Setter Property="Background" Value="{StaticResource BarItem.Default.Background}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Bar}">

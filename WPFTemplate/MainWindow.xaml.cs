@@ -37,7 +37,6 @@ namespace WPFTemplate
                 new Man {Name="五月",Age=150},
                 new Man {Name="六月",Age=50}
             };
-            bar1.ItemsSource = Men;
         }
     }
 

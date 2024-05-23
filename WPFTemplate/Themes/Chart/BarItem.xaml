@@ -6,8 +6,10 @@
         <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <SolidColorBrush x:Key="BarItem.Default.Background" Color="#FF206BC4"/>
 
     <Style TargetType="{x:Type local:BarItem}">
+        <Setter Property="Background" Value="{StaticResource BarItem.Default.Background}"/>
         <Setter Property="Margin">
             <Setter.Value>
                 <MultiBinding Converter="{StaticResource BarItemMarginConverter}">
@@ -45,7 +47,7 @@
                                 </RowDefinition.Height>
                             </RowDefinition>
                         </Grid.RowDefinitions>
-                        <Rectangle x:Name="PART_Rectangle" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:Bar}, Path=Background}" VerticalAlignment="Bottom">
+                        <Rectangle x:Name="PART_Rectangle" Fill="{TemplateBinding Background}" VerticalAlignment="Bottom">
                             <Rectangle.LayoutTransform>
                                 <ScaleTransform>
                                     <ScaleTransform.ScaleY>
@@ -78,7 +80,7 @@
                         </Rectangle>
                         <local:PlaceControl BorderBrush="#FF737373" PlaceMent="Top" PlaceMentTarget="{Binding ElementName=PART_Rectangle}"
                                             OpenEvent="{x:Static Button.MouseEnterEvent}" CloseEvent="{x:Static Button.MouseLeaveEvent}"
-                                            x:Name="pc4" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Bar}, Path=Background}">
+                                            x:Name="pc4" Background="{TemplateBinding Background}">
                                 <Grid Width="100" Height="30">
                                     <TextBlock x:Name="TbContent" Text="1000" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
                                 </Grid>

@@ -26,9 +26,8 @@
         </x:Array>
 
     </Window.Resources>
-    <Grid>
-        <Grid Width="200" Height="200">
-            <local:Bar x:Name="bar1" DisplayMemberPath="Name" ValueMemberPath="Age"/>
-        </Grid>
+    <Grid Width="300" Height="300">
+        <local:Donut ItemsSource="{StaticResource men}" ValueMemberPath="Age" DisplayMemberPath="Name"
+                     Grid.Column="1" ArcThickness="60" Orientation="Vertical"/>
     </Grid>
 </Window>

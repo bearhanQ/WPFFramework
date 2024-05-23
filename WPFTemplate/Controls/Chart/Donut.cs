@@ -30,6 +30,8 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty OpenAnimationProperty;
 
+        public static readonly DependencyProperty OrientationProperty;
+
         private ListBox listBoxMain;
 
         private Grid gridMain;
@@ -69,6 +71,12 @@ namespace WPFTemplate
             set { SetValue(OpenAnimationProperty, value); }
         }
 
+        public Orientation Orientation
+        {
+            get { return (Orientation)GetValue(OrientationProperty); }
+            set { SetValue(OrientationProperty, value); }
+        }
+
         [TypeConverter(typeof(StringToBrushCollectionTypeConverter))]
         public ObservableCollection<Brush> DonutColors
         {
@@ -84,6 +92,7 @@ namespace WPFTemplate
                 new FrameworkPropertyMetadata((double)20, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(ArcThicknessChangedCallBack)));
             DonutColorsProperty = DependencyProperty.Register("DonutColors", typeof(ObservableCollection<Brush>), typeof(Donut),new FrameworkPropertyMetadata(DonutDefalutColors));
             OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Donut), new PropertyMetadata(true));
+            OrientationProperty = DependencyProperty.Register("Orientation", typeof(Orientation), typeof(Donut));
         }
 
         public Donut()
@@ -105,14 +114,20 @@ namespace WPFTemplate
         {
             if (listBoxMain != null)
             {
+                int x = 0;
                 for (int i = 0; i < listBoxMain.Items.Count; i++)
                 {
                     var item = listBoxMain.Items[i];
                     ListBoxItem listboxitem = listBoxMain.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
                     if (listboxitem != null)
                     {
-                        listboxitem.Background = this.DonutColors[i];
+                        if (x >= this.DonutColors.Count)
+                        {
+                            x = 0;
+                        }
+                        listboxitem.Background = this.DonutColors[x];
                     }
+                    x++;
                 }
             }
         }
@@ -136,6 +151,7 @@ namespace WPFTemplate
                     double startAngle = 0;
                     double value = 0;
                     double nexValue = 0;
+                    int x = 0;
                     for (int i = 0; i < listBoxMain.Items.Count; i++)
                     {
                         var item = listBoxMain.Items[i];
@@ -143,7 +159,12 @@ namespace WPFTemplate
                         {
                             nexValue += value;
                             double endAngle = CalculateAngle(sum, nexValue);
-                            Arc arc = GenerateArc(startAngle, endAngle, i, value);
+                            var content = item.GetType().GetProperty(this.DisplayMemberPath).GetValue(item).ToString();
+                            if (x >= this.DonutColors.Count)
+                            {
+                                x = 0;
+                            }
+                            Arc arc = GenerateArc(startAngle, endAngle, x, value, content);
                             Arc tag = GenerateTagArc(startAngle, endAngle);
                             arc.Tag = tag;
 
@@ -151,6 +172,7 @@ namespace WPFTemplate
                             gridMain.Children.Add(tag);
 
                             startAngle = endAngle;
+                            x++;
                         }
                     }
                 }
@@ -164,13 +186,13 @@ namespace WPFTemplate
             var EndAngle = num * 360;
             return EndAngle;
         }
-        private Arc GenerateArc(double StartAngle, double EndAngle, int index, double value)
+        private Arc GenerateArc(double StartAngle, double EndAngle, int index, double value, string content)
         {
             var Fill = this.DonutColors[index];
-
+            var size = gridMain.ActualHeight < gridMain.ActualWidth ? gridMain.ActualHeight : gridMain.ActualWidth;
             Arc arc = new Arc();
-            arc.Width = gridMain.ActualHeight;
-            arc.Height = gridMain.ActualHeight;
+            arc.Width = size;
+            arc.Height = size;
             arc.Fill = Fill;
             arc.StartAngle = StartAngle;
             arc.EndAngle = EndAngle;
@@ -188,8 +210,6 @@ namespace WPFTemplate
                 tagArc.Visibility = Visibility.Hidden;
             };
 
-            var item = listBoxMain.Items[index];
-            var content = item.GetType().GetProperty(this.DisplayMemberPath).GetValue(item).ToString();
             content = content + ": " + value;
             CornerToolTip toolTip = new CornerToolTip();
             toolTip.Background = Fill;
@@ -206,9 +226,10 @@ namespace WPFTemplate
         }
         private Arc GenerateTagArc(double StartAngle, double EndAngle)
         {
+            var size = gridMain.ActualHeight < gridMain.ActualWidth ? gridMain.ActualHeight : gridMain.ActualWidth;
             Arc arc = new Arc();
-            arc.Width = gridMain.ActualHeight;
-            arc.Height = gridMain.ActualHeight;
+            arc.Width = size;
+            arc.Height = size;
             arc.Fill = Brushes.White;
             arc.StartAngle = StartAngle;
             arc.EndAngle = EndAngle;

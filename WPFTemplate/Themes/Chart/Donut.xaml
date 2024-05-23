@@ -9,16 +9,21 @@
                 <ControlTemplate TargetType="{x:Type local:Donut}">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" MinHeight="20"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
                         <ListBox ItemsSource="{TemplateBinding ItemsSource}" DisplayMemberPath="{TemplateBinding DisplayMemberPath}"
                                  x:Name="listBoxMain" BorderThickness="0" HorizontalAlignment="Center"
                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="Transparent">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal"/>
+                                    <StackPanel Orientation="{Binding RelativeSource={RelativeSource AncestorType=local:Donut}, Path=Orientation}"/>
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                             <ListBox.ItemContainerStyle>
@@ -45,6 +50,13 @@
                             <ed:Arc Width="100" Height="100" Stroke="Yellow" Fill="#FFF1F14F" StartAngle="270" EndAngle="360" ArcThickness="20" Stretch="None"/>-->
                         </Grid>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter TargetName="listBoxMain" Property="Grid.Column" Value="2"/>
+                            <Setter TargetName="listBoxMain" Property="Grid.Row" Value="2"/>
+                            <Setter TargetName="listBoxMain" Property="VerticalAlignment" Value="Center"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

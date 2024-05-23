@@ -74,9 +74,6 @@
     <Compile Include="View\ChartCurveView.xaml.cs">
       <DependentUpon>ChartCurveView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ChartCylinderView.xaml.cs">
-      <DependentUpon>ChartCylinderView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ChartLineView.xaml.cs">
       <DependentUpon>ChartLineView.xaml</DependentUpon>
     </Compile>
@@ -175,10 +172,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChartCurveView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ChartCylinderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
