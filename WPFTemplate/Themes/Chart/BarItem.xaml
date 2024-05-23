@@ -6,6 +6,7 @@
         <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+
     <Style TargetType="{x:Type local:BarItem}">
         <Setter Property="Margin">
             <Setter.Value>
@@ -44,7 +45,7 @@
                                 </RowDefinition.Height>
                             </RowDefinition>
                         </Grid.RowDefinitions>
-                        <Rectangle x:Name="PART_Rectangle" Fill="#FF206BC4" VerticalAlignment="Bottom">
+                        <Rectangle x:Name="PART_Rectangle" Fill="{Binding RelativeSource={RelativeSource AncestorType=local:Bar}, Path=Background}" VerticalAlignment="Bottom">
                             <Rectangle.LayoutTransform>
                                 <ScaleTransform>
                                     <ScaleTransform.ScaleY>
@@ -59,12 +60,40 @@
                                 </ScaleTransform>
                             </Rectangle.LayoutTransform>
                         </Rectangle>
+                        <Rectangle x:Name="RectangleShade" Fill="White" IsHitTestVisible="False" Opacity="0.3" Visibility="Hidden" VerticalAlignment="Bottom" Panel.ZIndex="1"
+                                   Width="{Binding ElementName=PART_Rectangle, Path=ActualWidth}" Height="{Binding ElementName=PART_Rectangle, Path=ActualHeight}">
+                            <Rectangle.LayoutTransform>
+                                <ScaleTransform>
+                                    <ScaleTransform.ScaleY>
+                                        <MultiBinding Converter="{StaticResource BarItemScaleYConverter}">
+                                            <MultiBinding.Bindings>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="ActualHeight"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="VerticalNumbers"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="Ratio"/>
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </ScaleTransform.ScaleY>
+                                </ScaleTransform>
+                            </Rectangle.LayoutTransform>
+                        </Rectangle>
+                        <local:PlaceControl BorderBrush="#FF737373" PlaceMent="Top" PlaceMentTarget="{Binding ElementName=PART_Rectangle}"
+                                            OpenEvent="{x:Static Button.MouseEnterEvent}" CloseEvent="{x:Static Button.MouseLeaveEvent}"
+                                            x:Name="pc4" Background="{Binding RelativeSource={RelativeSource AncestorType=local:Bar}, Path=Background}">
+                                <Grid Width="100" Height="30">
+                                    <TextBlock x:Name="TbContent" Text="1000" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
+                                </Grid>
+                        </local:PlaceControl>
                         <ContentPresenter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <ContentPresenter.LayoutTransform>
                                 <RotateTransform Angle="0"/>
                             </ContentPresenter.LayoutTransform>
                         </ContentPresenter>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" SourceName="PART_Rectangle" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="RectangleShade"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

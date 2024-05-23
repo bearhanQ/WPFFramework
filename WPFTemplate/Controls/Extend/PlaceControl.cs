@@ -73,6 +73,17 @@ namespace WPFTemplate
             IsOpenProperty = DependencyProperty.Register("IsOpen", typeof(bool), typeof(PlaceControl));
         }
 
+        public PlaceControl()
+        {
+            this.Loaded += PlaceControl_Loaded;
+        }
+
+        private void PlaceControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CreatePath();
+            CorrectPathOffset();
+        }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -98,10 +109,11 @@ namespace WPFTemplate
                 {
                     PlaceMentTarget.AddHandler(CloseEvent, new RoutedEventHandler(CloseEventHandle));
                 }
+                PlaceMentTarget.SizeChanged += (s, e) =>
+                {
+                    CorrectPathOffset();
+                };
             }
-
-            CreatePath();
-            CorrectPathOffset();
         }
 
         private void OpenEventHandler(object sender,RoutedEventArgs args)
@@ -191,11 +203,11 @@ namespace WPFTemplate
             {
                 if (this.PlaceMent == PlaceMent.Top || this.PlaceMent == PlaceMent.Bottom)
                 {
-                    _popup.HorizontalOffset = (PlaceMentTarget.Width - _child.Width) / 2;
+                    _popup.HorizontalOffset = (PlaceMentTarget.ActualWidth - _child.Width) / 2;
                 }
                 if (this.PlaceMent == PlaceMent.Left || this.PlaceMent == PlaceMent.Right)
                 {
-                    _popup.VerticalOffset = (PlaceMentTarget.Height - _child.Height) / 2;
+                    _popup.VerticalOffset = (PlaceMentTarget.ActualWidth - _child.Width) / 2;
                 }
             }
         }

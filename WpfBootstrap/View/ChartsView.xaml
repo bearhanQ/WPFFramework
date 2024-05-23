@@ -9,13 +9,27 @@
              xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
              xmlns:vws="clr-namespace:WpfBootstrap.View"
              mc:Ignorable="d" Background="Wheat">
+    <UserControl.Resources>
+        <x:Array x:Key="revenueInfo" Type="{x:Type m:Revenue}">
+            <m:Revenue Day="1" Value="100"/>
+            <m:Revenue Day="2" Value="150"/>
+            <m:Revenue Day="3" Value="200"/>
+            <m:Revenue Day="4" Value="50"/>
+            <m:Revenue Day="5" Value="250"/>
+            <m:Revenue Day="6" Value="300"/>
+            <m:Revenue Day="7" Value="500"/>
+        </x:Array>
+    </UserControl.Resources>
     <Grid>
-        <cc:Carousel Height="340" Width="500" BorderThickness="0">
-            <local:ChartCurveView/>
-            <local:ChartCylinderView/>
-            <local:ChartLineView/>
-            <local:ChartSlopeView/>
-            <vws:DonutView/>
-        </cc:Carousel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <cc:Bar ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day"/>
+        <cc:Donut ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day" Grid.Column="1" ArcThickness="50"/>
     </Grid>
 </UserControl>

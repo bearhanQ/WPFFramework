@@ -209,7 +209,7 @@ namespace WPFTemplate
             Arc arc = new Arc();
             arc.Width = gridMain.ActualHeight;
             arc.Height = gridMain.ActualHeight;
-            arc.Fill = Brushes.Gray;
+            arc.Fill = Brushes.White;
             arc.StartAngle = StartAngle;
             arc.EndAngle = EndAngle;
             arc.ArcThickness = this.ArcThickness;

@@ -20,11 +20,13 @@ namespace WPFTemplate
 {
     public class Bar : ItemsControl
     {
-        internal static readonly DependencyProperty VerticalNumbersProperty;
-
-        public static readonly DependencyProperty VerticalLineCountProperty;
+        public static readonly DependencyProperty HorizontalLineCountProperty;
 
         public static readonly DependencyProperty ValueMemberPathProperty;
+
+        public static readonly DependencyProperty OpenAnimationProperty;
+
+        internal static readonly DependencyProperty VerticalNumbersProperty;
 
         internal static readonly DependencyProperty RatioProperty;
 
@@ -33,10 +35,10 @@ namespace WPFTemplate
             get { return (ObservableCollection<double>)GetValue(VerticalNumbersProperty); }
             set { SetValue(VerticalNumbersProperty, value); }
         }
-        public int VerticalLineCount
+        public int HorizontalLineCount
         {
-            get { return (int)GetValue(VerticalLineCountProperty); }
-            set { SetValue(VerticalLineCountProperty, value); }
+            get { return (int)GetValue(HorizontalLineCountProperty); }
+            set { SetValue(HorizontalLineCountProperty, value); }
         }
         public string ValueMemberPath
         {
@@ -48,16 +50,23 @@ namespace WPFTemplate
             get { return (double)GetValue(RatioProperty); }
             set { SetValue(RatioProperty, value); }
         }
+        public bool OpenAnimation
+        {
+            get { return (bool)GetValue(OpenAnimationProperty); }
+            set { SetValue(OpenAnimationProperty, value); }
+        }
+
         static Bar()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Bar), new FrameworkPropertyMetadata(typeof(Bar)));
             VerticalNumbersProperty = DependencyProperty.Register("VerticalNumbers", typeof(ObservableCollection<double>), typeof(Bar),
                 new PropertyMetadata(new ObservableCollection<double>(new List<double> { 400, 300, 200, 100, 0 })));
-            VerticalLineCountProperty = DependencyProperty.Register("VerticalLineCount", typeof(int), typeof(Bar), 
+            HorizontalLineCountProperty = DependencyProperty.Register("HorizontalLineCount", typeof(int), typeof(Bar), 
                 new FrameworkPropertyMetadata(5,FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                new PropertyChangedCallback(VerticalLineCountPropertyChangedCallback)));
+                new PropertyChangedCallback(HorizontalLineCountPropertyChangedCallback)));
             ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Bar));
             RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(Bar), new PropertyMetadata((double)1));
+            OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Bar), new PropertyMetadata(true));
         }
         private void GenerateVerticalNumbers()
         {
@@ -75,9 +84,9 @@ namespace WPFTemplate
                         }
                     }
                 }
-                if (VerticalLineCount > 0)
+                if (HorizontalLineCount > 0)
                 {
-                    var num = this.VerticalLineCount - 1;
+                    var num = this.HorizontalLineCount - 1;
                     this.SetValue(RatioProperty, Math.Ceiling(max) / num);
                     VerticalNumbers.Clear();
                     var collection = new ObservableCollection<double>();
@@ -89,7 +98,7 @@ namespace WPFTemplate
                 }
             }
         }
-        private static void VerticalLineCountPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void HorizontalLineCountPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (Bar)d;
             if (bar != null)

@@ -33,13 +33,11 @@ namespace WPFTemplate
                 new Man {Name="一月",Age=100},
                 new Man {Name="二月",Age=200},
                 new Man {Name="三月",Age=300},
+                new Man {Name="四月",Age=250},
+                new Man {Name="五月",Age=150},
+                new Man {Name="六月",Age=50}
             };
             bar1.ItemsSource = Men;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Men.RemoveAt(1);
         }
     }
 
