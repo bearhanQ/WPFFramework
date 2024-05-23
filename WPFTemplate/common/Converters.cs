@@ -458,7 +458,7 @@ namespace WPFTemplate
             if (list != null)
             {
                 var count = list.Count == 0 ? 1 : list.Count;
-                var result = Math.Floor((actualWidth - 30) / count / 2);
+                var result = Math.Floor((actualWidth - 60) / count / 2);
                 return result;
             }
             return 0;
@@ -480,7 +480,7 @@ namespace WPFTemplate
             if (list != null)
             {
                 var count = list.Count == 0 ? 1 : list.Count;
-                var right = Math.Floor((actualWidth - 30) / count / 2);
+                var right = Math.Floor((actualWidth - 60) / count / 2);
                 result.Right = right;
             }
             return result;
@@ -502,7 +502,7 @@ namespace WPFTemplate
             if (list != null)
             {
                 var height = actualHeight / list.Count;
-                var Y = Math.Round(height / ratio, 3);
+                var Y = Math.Round(height / ratio, 10);
                 return Y;
             }
             return null;

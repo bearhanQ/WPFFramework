@@ -30,7 +30,7 @@
                                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                 <Grid x:Name="grid1">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="27"/>
+                                                        <ColumnDefinition Width="57"/>
                                                         <ColumnDefinition Width="3"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
@@ -43,7 +43,7 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-                        <ItemsPresenter Margin="30,0,0,-1" HorizontalAlignment="Center"
+                        <ItemsPresenter Margin="60,0,0,-1" HorizontalAlignment="Center"
                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
                     </Grid>
