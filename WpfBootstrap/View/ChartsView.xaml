@@ -7,6 +7,7 @@
              xmlns:s="clr-namespace:System;assembly=mscorlib"
              xmlns:m="clr-namespace:WpfBootstrap.Model"
              xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+             xmlns:p="clr-namespace:WpfBootstrap.Common"
              xmlns:vws="clr-namespace:WpfBootstrap.View"
              mc:Ignorable="d" Background="Wheat">
     <UserControl.Resources>
@@ -19,6 +20,27 @@
             <m:Revenue Day="周六" Value="300"/>
             <m:Revenue Day="周七" Value="500"/>
         </x:Array>
+        <p:BarValueWarningConverter x:Key="BarValueWarningConverter"/>
+        <Style x:Key="barStyle1" TargetType="{x:Type cc:Bar}" BasedOn="{StaticResource {x:Type cc:Bar}}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type cc:BarItem}" BasedOn="{StaticResource {x:Type cc:BarItem}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value,Converter={StaticResource BarValueWarningConverter},ConverterParameter=200}" Value="True">
+                                <DataTrigger.Setters>
+                                    <Setter Property="Background" Value="#FFF4D505"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value,Converter={StaticResource BarValueWarningConverter},ConverterParameter=300}" Value="True">
+                                <DataTrigger.Setters>
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -29,7 +51,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <cc:Bar ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day"/>
+        <cc:Bar ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day" Style="{StaticResource barStyle1}"/>
         <cc:Donut ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day"
                   Grid.Column="1" ArcThickness="60" Orientation="Vertical"/>
     </Grid>

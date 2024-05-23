@@ -22,4 +22,20 @@ namespace WpfBootstrap.Common
             throw new NotImplementedException();
         }
     }
+
+    public class BarValueWarningConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double t = (double)value;
+            double x = 0;
+            double.TryParse(parameter.ToString(), out x);
+            return t >= x;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
