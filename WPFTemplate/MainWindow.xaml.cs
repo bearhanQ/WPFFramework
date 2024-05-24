@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Drawing.Text;
@@ -28,12 +27,6 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
-            Men = new ObservableCollection<Man>
-            {
-                new Man {Name="一月",Age=300}
-            };
-
-            bar1.ItemsSource = Men;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

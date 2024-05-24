@@ -72,6 +72,7 @@
     <Compile Include="Controls\Chart\BarItem.cs" />
     <Compile Include="Controls\Chart\Chart.cs" />
     <Compile Include="Controls\Chart\Donut.cs" />
+    <Compile Include="Controls\Chart\LineChart.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />
@@ -162,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Chart\BarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Chart\LineChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

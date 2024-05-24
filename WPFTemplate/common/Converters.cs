@@ -513,4 +513,26 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    internal class LineChartScaleYConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var actualHeight = (double)values[0];
+            var list = (IList)values[1];
+            var ratio = (double)values[2];
+            if (list != null)
+            {
+                var height = actualHeight / list.Count;
+                var Y = Math.Round(height / ratio, 10);
+                return 0 - Y;
+            }
+            return null;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

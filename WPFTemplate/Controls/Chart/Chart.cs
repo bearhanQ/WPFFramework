@@ -52,13 +52,13 @@ namespace WPFTemplate
 
         static Chart()
         {
-            VerticalNumbersProperty = DependencyProperty.Register("VerticalNumbers", typeof(ObservableCollection<double>), typeof(Bar),
+            VerticalNumbersProperty = DependencyProperty.Register("VerticalNumbers", typeof(ObservableCollection<double>), typeof(Chart),
                 new PropertyMetadata(new ObservableCollection<double>(new List<double> { 400, 300, 200, 100, 0 })));
-            HorizontalLineCountProperty = DependencyProperty.Register("HorizontalLineCount", typeof(int), typeof(Bar),
+            HorizontalLineCountProperty = DependencyProperty.Register("HorizontalLineCount", typeof(int), typeof(Chart),
                 new FrameworkPropertyMetadata(5,FrameworkPropertyMetadataOptions.None,new PropertyChangedCallback(HorizontalLineCountPropertyChangedCallback)));
-            ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Bar));
-            RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(Bar), new PropertyMetadata((double)1));
-            OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Bar), new PropertyMetadata(true));
+            ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Chart));
+            RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(Chart), new PropertyMetadata((double)1));
+            OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Chart), new PropertyMetadata(true));
         }
 
         public override void OnApplyTemplate()
@@ -98,10 +98,10 @@ namespace WPFTemplate
         }
         private static void HorizontalLineCountPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var bar = (Bar)d;
-            if (bar != null)
+            var chart = (Chart)d;
+            if (chart != null)
             {
-                bar.GenerateVerticalNumbers();
+                chart.GenerateVerticalNumbers();
             }
         }
         protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)

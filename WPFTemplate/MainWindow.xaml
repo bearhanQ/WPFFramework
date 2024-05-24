@@ -7,21 +7,15 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
         mc:Ignorable="d"
-        Width="500" Height="500"
+        Width="400" Height="400"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <x:Array Type="{x:Type local:Man}" x:Key="men">
             <local:Man Name="2017" Age="100"/>
             <local:Man Name="2018" Age="200"/>
             <local:Man Name="2019" Age="50"/>
-            <local:Man Name="2020" Age="150"/>
-            <local:Man Name="2021" Age="150"/>
-            <local:Man Name="2022" Age="150"/>
-            <local:Man Name="2022" Age="150"/>
-            <local:Man Name="2022" Age="150"/>
-            <local:Man Name="2022" Age="150"/>
-            <local:Man Name="2022" Age="150"/>
-            <local:Man Name="2022" Age="150"/>
+            <local:Man Name="2019" Age="150"/>
+            <local:Man Name="2019" Age="0"/>
         </x:Array>
 
         <x:Array x:Key="nums" Type="{x:Type s:String}">
@@ -34,11 +28,6 @@
 
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        <local:Bar x:Name="bar1" DisplayMemberPath="Name" ValueMemberPath="Age" OpenAnimation="True"/>
-        <Button Content="show" Grid.Row="1" Click="Button_Click"/>
+        <local:LineChart ItemsSource="{StaticResource men}" DisplayMemberPath="Name" ValueMemberPath="Age"/>
     </Grid>
 </Window>

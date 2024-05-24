@@ -22,7 +22,6 @@
             <m:Revenue Day="30" Value="420"/>
         </x:Array>
         <x:Array x:Key="nums" Type="{x:Type s:String}">
-            <s:String>500</s:String>
             <s:String>400</s:String>
             <s:String>300</s:String>
             <s:String>200</s:String>
@@ -31,49 +30,107 @@
         </x:Array>
     </UserControl.Resources>
     <Grid>
-        <ListBox ItemsSource="{StaticResource nums}" Grid.ColumnSpan="3"
-                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                <Grid Margin="0,0,0,40" x:Name="gd1" Height="20">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="2"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                    <Path Grid.Column="2" Stroke="Gray" StrokeThickness="1" VerticalAlignment="Center" StrokeDashArray="4,2">
-                                        <Path.Data>
-                                            <LineGeometry StartPoint="0,0" EndPoint="460,0"/>
-                                        </Path.Data>
-                                    </Path>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-        <Path Stroke="#FF206BC4" StrokeThickness="1">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure StartPoint="40,250">
-                        <LineSegment Point="80,220"/>
-                        <LineSegment Point="120,190"/>
-                        <LineSegment Point="160,280"/>
-                        <LineSegment Point="200,160"/>
-                        <LineSegment Point="240,10"/>
-                        <LineSegment Point="280,70"/>
-                        <LineSegment Point="320,238"/>
-                        <LineSegment Point="360,118"/>
-                        <LineSegment Point="400,58"/>
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
+        <Grid Width="400" Height="400" Background="Black">
+            <ListBox ItemsSource="{StaticResource nums}" Grid.ColumnSpan="3"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 BorderThickness="0">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid x:Name="gd1" Background="Pink">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="3"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ListBox IsHitTestVisible="False" BorderThickness="0" Background="Transparent"
+                                             Panel.ZIndex="1" ItemsSource="{StaticResource nums}" Margin="-1"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                            <ListBox.ItemContainerStyle>
+                                                <Style TargetType="{x:Type ListBoxItem}">
+                                                    <Setter Property="Height" Value="80"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                                <Grid x:Name="grid1">
+                                                                    <Border x:Name="bd1">
+                                                                        <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                                    </Border>
+                                                                </Grid>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="Content" Value="400">
+                                                                        <Setter Property="Background" Value="green" TargetName="bd1"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="Content" Value="300">
+                                                                        <Setter Property="Background" Value="yellow" TargetName="bd1"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="Content" Value="200">
+                                                                        <Setter Property="Background" Value="Red" TargetName="bd1"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="Content" Value="100">
+                                                                        <Setter Property="Background" Value="lightblue" TargetName="bd1"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="Content" Value="0">
+                                                                        <Setter Property="Background" Value="blue" TargetName="bd1"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ListBox.ItemContainerStyle>
+                                        </ListBox>
+                                        <ListBox IsHitTestVisible="False" BorderThickness="0" Background="Transparent" Grid.Column="2"
+                                             Panel.ZIndex="1" ItemsSource="{StaticResource nums}" Margin="-1"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                            <ListBox.ItemContainerStyle>
+                                                <Style TargetType="{x:Type ListBoxItem}">
+                                                    <Setter Property="Height" Value="80"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                                <Grid x:Name="grid1">
+                                                                    <Rectangle Grid.Column="2" Stroke="Gray" StrokeThickness="1"
+                                                                           VerticalAlignment="Center"
+                                                                           StrokeDashArray="3,6" Height="1" SnapsToDevicePixels="False"/>
+                                                                </Grid>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ListBox.ItemContainerStyle>
+                                        </ListBox>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <Path Stroke="#FF206BC4" StrokeThickness="1">
+                <Path.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-180"/>
+                    </TransformGroup>
+                </Path.LayoutTransform>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="40,280">
+                            <LineSegment Point="80,240"/>
+                            <LineSegment Point="120,200"/>
+                            <LineSegment Point="160,280"/>
+                            <LineSegment Point="200,160"/>
+                            <LineSegment Point="240,0"/>
+                            <LineSegment Point="280,70"/>
+                            <LineSegment Point="320,80"/>
+                            <LineSegment Point="360,120"/>
+                            <LineSegment Point="400,40"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Grid>
     </Grid>
-
 </UserControl>
