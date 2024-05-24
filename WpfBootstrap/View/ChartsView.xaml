@@ -9,16 +9,17 @@
              xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
              xmlns:p="clr-namespace:WpfBootstrap.Common"
              xmlns:vws="clr-namespace:WpfBootstrap.View"
-             mc:Ignorable="d" Background="Wheat">
+             mc:Ignorable="d" Background="Wheat"
+             d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
         <x:Array x:Key="revenueInfo" Type="{x:Type m:Revenue}">
-            <m:Revenue Day="周一" Value="10000000"/>
-            <m:Revenue Day="周二" Value="15000000"/>
-            <m:Revenue Day="周三" Value="20000000"/>
-            <m:Revenue Day="周四" Value="50000000"/>
-            <m:Revenue Day="周五" Value="25000000"/>
-            <m:Revenue Day="周六" Value="30000000"/>
-            <m:Revenue Day="周七" Value="50000000"/>
+            <m:Revenue Day="周一" Value="1000000"/>
+            <m:Revenue Day="周二" Value="1500000"/>
+            <m:Revenue Day="周三" Value="2000000"/>
+            <m:Revenue Day="周四" Value="5000000"/>
+            <m:Revenue Day="周五" Value="2500000"/>
+            <m:Revenue Day="周六" Value="3000000"/>
+            <m:Revenue Day="周七" Value="1000000"/>
         </x:Array>
         <p:BarValueWarningConverter x:Key="BarValueWarningConverter"/>
         <Style x:Key="barStyle1" TargetType="{x:Type cc:Bar}" BasedOn="{StaticResource {x:Type cc:Bar}}">
@@ -26,12 +27,12 @@
                 <Setter.Value>
                     <Style TargetType="{x:Type cc:BarItem}" BasedOn="{StaticResource {x:Type cc:BarItem}}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value,Converter={StaticResource BarValueWarningConverter},ConverterParameter=20000000}" Value="True">
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value,Converter={StaticResource BarValueWarningConverter},ConverterParameter=2000000}" Value="True">
                                 <DataTrigger.Setters>
                                     <Setter Property="Background" Value="#FFF4D505"/>
                                 </DataTrigger.Setters>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value,Converter={StaticResource BarValueWarningConverter},ConverterParameter=30000000}" Value="True">
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value,Converter={StaticResource BarValueWarningConverter},ConverterParameter=3000000}" Value="True">
                                 <DataTrigger.Setters>
                                     <Setter Property="Background" Value="Red"/>
                                 </DataTrigger.Setters>

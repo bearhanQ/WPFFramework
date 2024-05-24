@@ -458,7 +458,7 @@ namespace WPFTemplate
             if (list != null)
             {
                 var count = list.Count == 0 ? 1 : list.Count;
-                var result = Math.Floor((actualWidth - 60) / count / 2);
+                var result = Math.Floor((actualWidth) / count / 2);
                 return result;
             }
             return 0;
@@ -480,7 +480,7 @@ namespace WPFTemplate
             if (list != null)
             {
                 var count = list.Count == 0 ? 1 : list.Count;
-                var right = Math.Floor((actualWidth - 60) / count / 2);
+                var right = Math.Floor((actualWidth) / count / 2);
                 result.Right = right;
             }
             return result;

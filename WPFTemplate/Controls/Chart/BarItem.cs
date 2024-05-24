@@ -22,6 +22,8 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty ValueProperty;
 
+        public bool IsInDesignMode => System.ComponentModel.DesignerProperties.GetIsInDesignMode(this);
+
         public double Value
         {
             get
@@ -41,22 +43,14 @@ namespace WPFTemplate
 
         public BarItem()
         {
-            this.Loaded += BarItem_Loaded;
-        }
-
-        private void BarItem_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (ParentBar != null && ParentBar.OpenAnimation)
-            {
-                CreateAnimation(0, this.ActualHeight, this);
-            }
+            
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            ParentBar = LocalVisualTreeHelper.GetParent(this, typeof(Bar)) as Bar;
             GenerateBarItem();
-            ParentBar = LocalVisualTreeHelper.GetParent(this,typeof(Bar)) as Bar;
         }
 
         private void GenerateBarItem()
@@ -77,6 +71,11 @@ namespace WPFTemplate
                         {
                             textBlock.Text = value.ToString();
                         }
+
+                        if (ParentBar != null && ParentBar.OpenAnimation && !IsInDesignMode)
+                        {
+                            CreateAnimation(0, rectangle.Height, rectangle);
+                        }
                     }
                     SetValue(ValuePropertyKey, value);
                 }
@@ -88,7 +87,7 @@ namespace WPFTemplate
             Storyboard storyboard = new Storyboard();
             DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
             animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.Zero, Value = from });
-            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(1), Value = to });
+            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromMilliseconds(500), Value = to });
             Storyboard.SetTarget(animation, d);
             Storyboard.SetTargetProperty(animation, new PropertyPath("Height"));
             storyboard.Children.Add(animation);

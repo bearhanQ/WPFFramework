@@ -245,7 +245,7 @@ namespace WPFTemplate
             Storyboard storyboard = new Storyboard();
             DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
             animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.Zero, Value = from });
-            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(1), Value = to });
+            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromMilliseconds(500), Value = to });
             Storyboard.SetTarget(animation, d);
             Storyboard.SetTargetProperty(animation, new PropertyPath("EndAngle"));
             storyboard.Children.Add(animation);

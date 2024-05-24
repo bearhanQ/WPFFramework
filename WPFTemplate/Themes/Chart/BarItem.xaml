@@ -28,7 +28,7 @@
                         <Grid.Width>
                             <MultiBinding Converter="{StaticResource BarItemWidthConverter}">
                                 <MultiBinding.Bindings>
-                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="ActualWidth"/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=ItemsPresenter}" Path="ActualWidth"/>
                                     <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="Items"/>
                                     <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="VerticalNumbers"/>
                                 </MultiBinding.Bindings>
@@ -81,11 +81,11 @@
                         <local:PlaceControl BorderBrush="#FF737373" PlaceMent="Top" PlaceMentTarget="{Binding ElementName=PART_Rectangle}"
                                             OpenEvent="{x:Static Button.MouseEnterEvent}" CloseEvent="{x:Static Button.MouseLeaveEvent}"
                                             x:Name="pc4" Background="{TemplateBinding Background}">
-                                <Grid Width="100" Height="30">
-                                    <TextBlock x:Name="TbContent" Text="1000" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
-                                </Grid>
+                            <Grid Width="100" Height="30">
+                                <TextBlock x:Name="TbContent" Text="1000" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
+                            </Grid>
                         </local:PlaceControl>
-                        <ContentPresenter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <ContentPresenter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5">
                             <ContentPresenter.LayoutTransform>
                                 <RotateTransform Angle="0"/>
                             </ContentPresenter.LayoutTransform>

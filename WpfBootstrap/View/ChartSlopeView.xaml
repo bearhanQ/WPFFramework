@@ -57,7 +57,7 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Path Stroke="#FF206BC4" StrokeThickness="3">
+        <Path Stroke="#FF206BC4" StrokeThickness="1">
             <Path.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="40,250">

@@ -10,9 +10,14 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Bar}">
                     <Grid>
-                        <ListBox x:Name="ListBoxLine" IsHitTestVisible="False" BorderThickness="0" Background="Transparent"
-                                 Panel.ZIndex="1" ItemsSource="{TemplateBinding VerticalNumbers}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox IsHitTestVisible="False" BorderThickness="0" Background="Transparent"
+                                 Panel.ZIndex="1" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:Bar}, Path=VerticalNumbers}" 
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
                                     <Setter Property="Height">
@@ -29,13 +34,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                 <Grid x:Name="grid1">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="57"/>
-                                                        <ColumnDefinition Width="3"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
                                                     <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                                    <Rectangle Grid.Column="2" Stroke="Gray" StrokeThickness="1" StrokeDashArray="3,6" Height="1" SnapsToDevicePixels="False"/>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -43,7 +42,36 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-                        <ItemsPresenter Margin="60,0,0,-1" HorizontalAlignment="Center"
+                        <ListBox IsHitTestVisible="False" BorderThickness="0" Background="Transparent" Grid.Column="2"
+                                 Panel.ZIndex="1" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:Bar}, Path=VerticalNumbers}" 
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Height">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource BarHeightConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="ActualHeight"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="VerticalNumbers"/>
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Grid x:Name="grid1">
+                                                    <Rectangle Grid.Column="2" Stroke="Gray" StrokeThickness="1"
+                                                               VerticalAlignment="Center"
+                                                               StrokeDashArray="3,6" Height="1" SnapsToDevicePixels="False"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <ItemsPresenter Grid.Column="2" HorizontalAlignment="Center"
                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
                     </Grid>
