@@ -25,4 +25,6 @@
     <local:BarItemMarginConverter x:Key="BarItemMarginConverter"/>
     <local:BarItemScaleYConverter x:Key="BarItemScaleYConverter"/>
     <local:LineChartScaleYConverter x:Key="LineChartScaleYConverter"/>
+    <local:LineChartPathMarginConverter x:Key="LineChartPathMarginConverter"/>
+
 </ResourceDictionary>

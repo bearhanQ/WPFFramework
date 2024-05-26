@@ -29,8 +29,8 @@
                                 </RowDefinition.Height>
                             </RowDefinition>
                         </Grid.RowDefinitions>
-                        <ListBox IsHitTestVisible="False" BorderThickness="0" Background="Transparent" Margin="-1" Grid.RowSpan="2"
-                                 Panel.ZIndex="1" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:LineChart}, Path=VerticalNumbers}" 
+                        <ListBox IsHitTestVisible="False" BorderThickness="0" Background="Transparent" Grid.RowSpan="2"
+                                 Panel.ZIndex="2" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:LineChart}, Path=VerticalNumbers}" 
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
@@ -57,7 +57,7 @@
                             </ListBox.ItemContainerStyle>
                         </ListBox>
                         <ListBox IsHitTestVisible="False" BorderThickness="0" Background="Transparent" Grid.Column="2" Grid.RowSpan="2"
-                                 Panel.ZIndex="1" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:LineChart}, Path=VerticalNumbers}" 
+                                 Panel.ZIndex="2" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:LineChart}, Path=VerticalNumbers}" 
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
@@ -85,8 +85,16 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-                        <Border x:Name="BorderMain" Grid.Column="2" Background="Transparent"/>
-                        <Path x:Name="PathMain" Stroke="#FF206BC4" StrokeThickness="2" Grid.Column="2">
+                        <Path x:Name="PathMain" Stroke="#FF206BC4" StrokeThickness="1" Grid.Column="2" Panel.ZIndex="1" SnapsToDevicePixels="True">
+                            <Path.Margin>
+                                <MultiBinding Converter="{StaticResource LineChartPathMarginConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding ElementName="itemPresenter" Path="ActualWidth"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:LineChart}" Path="Items"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:LineChart}" Path="VerticalNumbers"/>
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </Path.Margin>
                             <Path.Data>
                                 <PathGeometry>
                                     <PathFigure Segments="{Binding RelativeSource={RelativeSource AncestorType=local:LineChart}, Path=Segments}"
@@ -94,21 +102,19 @@
                                 </PathGeometry>
                             </Path.Data>
                             <Path.LayoutTransform>
-                                <ScaleTransform>
-                                    <ScaleTransform.ScaleY>
-                                        <MultiBinding Converter="{StaticResource LineChartScaleYConverter}">
-                                            <MultiBinding.Bindings>
-                                                <Binding RelativeSource="{RelativeSource AncestorType=local:LineChart}" Path="ActualHeight"/>
-                                                <Binding RelativeSource="{RelativeSource AncestorType=local:LineChart}" Path="VerticalNumbers"/>
-                                                <Binding RelativeSource="{RelativeSource AncestorType=local:LineChart}" Path="Ratio"/>
-                                            </MultiBinding.Bindings>
-                                        </MultiBinding>
-                                    </ScaleTransform.ScaleY>
-                                </ScaleTransform>
+                                <ScaleTransform ScaleY="-1"/>
                             </Path.LayoutTransform>
                         </Path>
+                        <ItemsPresenter x:Name="itemPresenter" Grid.Column="2" Grid.RowSpan="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
                     </Grid>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"/>
+                </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>

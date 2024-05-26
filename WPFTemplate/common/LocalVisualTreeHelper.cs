@@ -13,7 +13,7 @@ namespace WPFTemplate
     {
         public static DependencyObject GetParent(DependencyObject dependency, Type type)
         {
-            if (dependency.GetType() == typeof(Window))
+            if (dependency.GetType() == typeof(Window) || dependency.GetType().IsSubclassOf(typeof(Window)))
             {
                 return dependency;
             }
@@ -24,7 +24,7 @@ namespace WPFTemplate
                 return dependency;
             }
 
-            if (parent.GetType() == type)
+            if (parent.GetType() == type || parent.GetType().IsSubclassOf(type))
             {
                 return parent;
             }

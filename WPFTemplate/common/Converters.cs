@@ -417,7 +417,8 @@ namespace WPFTemplate
             var list = values[1] as IList;
             if (list != null)
             {
-                var height = Math.Floor(actualHeight / list.Count / 2);
+                var count = list.Count == 0 ? 1 : list.Count;
+                var height = Math.Floor(actualHeight / count / 2);
                 return new GridLength(height, GridUnitType.Pixel);
             }
             return null;
@@ -458,7 +459,7 @@ namespace WPFTemplate
             if (list != null)
             {
                 var count = list.Count == 0 ? 1 : list.Count;
-                var result = Math.Floor((actualWidth) / count / 2);
+                var result = Math.Round((actualWidth) / count / 2, 2);
                 return result;
             }
             return 0;
@@ -480,8 +481,8 @@ namespace WPFTemplate
             if (list != null)
             {
                 var count = list.Count == 0 ? 1 : list.Count;
-                var right = Math.Floor((actualWidth) / count / 2);
-                result.Right = right;
+                var tick = Math.Round((actualWidth) / count / 2, 2);
+                result.Right = tick;
             }
             return result;
         }
@@ -501,7 +502,8 @@ namespace WPFTemplate
             var ratio = (double)values[2];
             if (list != null)
             {
-                var height = actualHeight / list.Count;
+                var count = list.Count == 0 ? 1 : list.Count;
+                var height = actualHeight / count;
                 var Y = Math.Round(height / ratio, 10);
                 return Y;
             }
@@ -523,11 +525,34 @@ namespace WPFTemplate
             var ratio = (double)values[2];
             if (list != null)
             {
-                var height = actualHeight / list.Count;
+                var count = list.Count == 0 ? 1 : list.Count;
+                var height = actualHeight / count;
                 var Y = Math.Round(height / ratio, 10);
                 return 0 - Y;
             }
             return null;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class LineChartPathMarginConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            Thickness result = new Thickness();
+            var actualWidth = (double)values[0];
+            var list = values[1] as IList;
+            if (list != null)
+            {
+                var count = list.Count == 0 ? 1 : list.Count;
+                var tick = Math.Floor((actualWidth) / count / 4);
+                result.Left = tick;
+            }
+            return result;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

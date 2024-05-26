@@ -47,7 +47,7 @@
                                 </RowDefinition.Height>
                             </RowDefinition>
                         </Grid.RowDefinitions>
-                        <Rectangle x:Name="PART_Rectangle" Fill="{TemplateBinding Background}" VerticalAlignment="Bottom">
+                        <Rectangle x:Name="PART_Rectangle" Fill="{TemplateBinding Background}" VerticalAlignment="Bottom" Height="{Binding RelativeSource={RelativeSource AncestorType=local:BarItem}, Path=Value}">
                             <Rectangle.LayoutTransform>
                                 <ScaleTransform>
                                     <ScaleTransform.ScaleY>
@@ -82,7 +82,8 @@
                                             OpenEvent="{x:Static Button.MouseEnterEvent}" CloseEvent="{x:Static Button.MouseLeaveEvent}"
                                             x:Name="pc4" Background="{TemplateBinding Background}">
                             <Grid Width="100" Height="30">
-                                <TextBlock x:Name="TbContent" Text="1000" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="TbContent" Text="{Binding RelativeSource={RelativeSource AncestorType=local:BarItem}, Path=Value}" 
+                                           VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
                             </Grid>
                         </local:PlaceControl>
                         <ContentPresenter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5">

@@ -27,17 +27,37 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
+            Men = new ObservableCollection<Man>
+            {
+                new Man
+                {
+
+                    Age = 11
+                },
+                new Man
+                {
+
+                    Age = 14
+                },
+                new Man
+                {
+
+                    Age = 17
+                },
+                new Man
+                {
+                    Age = 9
+                },
+            };
+            lc1.ItemsSource = Men;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Random rd = new Random();
-            var age = rd.Next(100, 300);
-            Man m = new Man
-            {
-                Name = "二月",
-                Age = age
-            };
+            var age = rd.Next(10, 30);
+            Man m = new Man();
+            m.Age = age;
             Men.Add(m);
         }
     }

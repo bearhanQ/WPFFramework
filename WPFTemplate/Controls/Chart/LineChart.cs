@@ -17,53 +17,35 @@ namespace WPFTemplate
 {
     public class LineChart : Chart
     {
-        public static readonly DependencyProperty SegmentsProperty;
-
-        private Border BorderMain;
-
-        public PathSegmentCollection Segments
-        {
-            get { return (PathSegmentCollection)GetValue(SegmentsProperty); }
-            set { SetValue(SegmentsProperty, value); }
-        }
-
         static LineChart()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LineChart), new FrameworkPropertyMetadata(typeof(LineChart)));
-            PathSegmentCollection pathSegments = new PathSegmentCollection();
-            SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(LineChart));
         }
 
-        public LineChart()
+        protected override void GeneratePath()
         {
-            this.Loaded += LineChart_Loaded;
-        }
-
-        private void LineChart_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (BorderMain != null && this.ItemsSource != null && !string.IsNullOrWhiteSpace(ValueMemberPath))
+            if (Segments == null)
             {
-                double pointX = Math.Floor(BorderMain.ActualWidth / this.Items.Count / 2);
+                Segments = new PathSegmentCollection();
+            }
+            else
+            {
+                Segments.Clear();
+            }
+            if (itemPresenter != null && this.ItemsSource != null && !string.IsNullOrWhiteSpace(ValueMemberPath))
+            {
+                double pointX = Math.Round(itemPresenter.ActualWidth / this.Items.Count, 2);
                 for (int i = 0; i < this.Items.Count; i++)
                 {
                     var item = Items[i];
-                    double pointY = 0;
-                    if (double.TryParse(item.GetType().GetProperty(ValueMemberPath).GetValue(item).ToString(), out pointY))
+                    double value = 0;
+                    if (double.TryParse(item.GetType().GetProperty(ValueMemberPath).GetValue(item).ToString(), out value))
                     {
-                        if (Segments == null)
-                        {
-                            Segments = new PathSegmentCollection();
-                        }
+                        var pointY = Math.Floor(this.ActualHeight / this.VerticalNumbers.Count) * value / Ratio;
                         Segments.Add(GenerateSegment(pointX * i, pointY));
                     }
                 }
             }
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-            BorderMain = GetTemplateChild("BorderMain") as Border;
         }
 
         private PathSegment GenerateSegment(double x, double y)

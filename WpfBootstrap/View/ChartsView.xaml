@@ -55,5 +55,6 @@
         <cc:Bar ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day" Style="{StaticResource barStyle1}"/>
         <cc:Donut ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day"
                   Grid.Column="1" ArcThickness="60" Orientation="Vertical"/>
+        <cc:LineChart Grid.Row="1" ItemsSource="{StaticResource revenueInfo}" DisplayMemberPath="Day" ValueMemberPath="Value" OpenAnimation="False"/>
     </Grid>
 </UserControl>

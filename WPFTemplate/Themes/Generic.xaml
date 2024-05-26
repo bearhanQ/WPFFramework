@@ -35,6 +35,9 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/Bar.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/BarItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/LineChart.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/ChartItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
   
+
+
 </ResourceDictionary>

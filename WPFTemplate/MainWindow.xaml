@@ -7,15 +7,14 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
         mc:Ignorable="d"
-        Width="400" Height="400"
+        Width="600" Height="600"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <x:Array Type="{x:Type local:Man}" x:Key="men">
-            <local:Man Name="2017" Age="100"/>
-            <local:Man Name="2018" Age="200"/>
-            <local:Man Name="2019" Age="50"/>
-            <local:Man Name="2019" Age="150"/>
-            <local:Man Name="2019" Age="0"/>
+            <local:Man Name="2017" Age="11"/>
+            <local:Man Name="2018" Age="14"/>
+            <local:Man Name="2019" Age="17"/>
+            <local:Man Name="2020" Age="9"/>
         </x:Array>
 
         <x:Array x:Key="nums" Type="{x:Type s:String}">
@@ -23,11 +22,16 @@
             <s:String>300</s:String>
             <s:String>200</s:String>
             <s:String>100</s:String>
-            <s:String>0</s:String>
         </x:Array>
 
     </Window.Resources>
     <Grid>
-        <local:LineChart ItemsSource="{StaticResource men}" DisplayMemberPath="Name" ValueMemberPath="Age"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <local:LineChart DisplayMemberPath="Name" ValueMemberPath="Age" x:Name="lc1" OpenAnimation="False"/>
+        <Button Content="add" Grid.Row="1" Height="30" Click="Button_Click_1"/>
+        <!--<local:Bar ItemsSource="{StaticResource men}" DisplayMemberPath="Name" ValueMemberPath="Age"/>-->
     </Grid>
 </Window>

@@ -1,0 +1,100 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFTemplate">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <SolidColorBrush x:Key="BarItem.Default.Background" Color="#FF206BC4"/>
+    
+    <Style TargetType="{x:Type local:ChartItem}">
+        <Setter Property="Background" Value="{StaticResource BarItem.Default.Background}"/>
+        <Setter Property="Margin">
+            <Setter.Value>
+                <MultiBinding Converter="{StaticResource BarItemMarginConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding RelativeSource="{RelativeSource AncestorType=ItemsPresenter}" Path="ActualWidth"/>
+                        <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="Items"/>
+                        <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="VerticalNumbers"/>
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ChartItem}">
+                    <Grid>
+                        <Grid.Width>
+                            <MultiBinding Converter="{StaticResource BarItemWidthConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=ItemsPresenter}" Path="ActualWidth"/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="Items"/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="VerticalNumbers"/>
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </Grid.Width>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition>
+                                <RowDefinition.Height>
+                                    <MultiBinding Converter="{StaticResource BarRowHeightConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="ActualHeight"/>
+                                            <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="VerticalNumbers"/>
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </RowDefinition.Height>
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="grid1" Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Ellipse x:Name="ellipse1" Width="15" Height="15" Fill="{TemplateBinding Background}" Panel.ZIndex="1" 
+                                     VerticalAlignment="Bottom" Margin="0,0,0,-5" Visibility="Hidden" IsHitTestVisible="False"/>
+                            <Rectangle x:Name="PART_Rectangle" VerticalAlignment="Bottom" Visibility="Hidden" Grid.Row="1" IsHitTestVisible="False"
+                                       Height="{Binding RelativeSource={RelativeSource AncestorType=local:ChartItem}, Path=Value}">
+                                <Rectangle.LayoutTransform>
+                                    <ScaleTransform>
+                                        <ScaleTransform.ScaleY>
+                                            <MultiBinding Converter="{StaticResource BarItemScaleYConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="ActualHeight"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="VerticalNumbers"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:Chart}" Path="Ratio"/>
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </ScaleTransform.ScaleY>
+                                    </ScaleTransform>
+                                </Rectangle.LayoutTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="rectangle1" Stroke="Gray" StrokeDashArray="4,5" SnapsToDevicePixels="False" Width="1" Visibility="Hidden" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False"/>
+                            <local:PlaceControl x:Name="pc1" BorderBrush="#FF737373" PlaceMent="Top" PlaceMentTarget="{Binding ElementName=ellipse1}"
+                                                Background="{StaticResource BarItem.Default.Background}" IsHitTestVisible="False">
+                                <Grid Width="100" Height="30">
+                                    <TextBlock x:Name="TbContent" Text="{Binding RelativeSource={RelativeSource AncestorType=local:ChartItem}, Path=Value}" 
+                                               VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </local:PlaceControl>
+                        </Grid>
+                        <ContentPresenter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5">
+                            <ContentPresenter.LayoutTransform>
+                                <RotateTransform Angle="0"/>
+                            </ContentPresenter.LayoutTransform>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" SourceName="grid1" Value="True">
+                            <Setter TargetName="ellipse1" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="rectangle1" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="pc1" Property="IsOpen" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

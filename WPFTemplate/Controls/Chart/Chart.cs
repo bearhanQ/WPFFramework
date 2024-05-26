@@ -7,10 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace WPFTemplate
 {
-    public class Chart : ItemsControl
+    public abstract class Chart : ItemsControl
     {
         public static readonly DependencyProperty HorizontalLineCountProperty;
 
@@ -21,6 +23,12 @@ namespace WPFTemplate
         internal static readonly DependencyProperty VerticalNumbersProperty;
 
         internal static readonly DependencyProperty RatioProperty;
+
+        internal static readonly DependencyProperty SegmentsProperty;
+
+        protected FrameworkElement itemPresenter;
+
+        protected Path pathMain;
 
         public bool IsInDesignMode => System.ComponentModel.DesignerProperties.GetIsInDesignMode(this);
 
@@ -49,6 +57,11 @@ namespace WPFTemplate
             get { return (bool)GetValue(OpenAnimationProperty); }
             set { SetValue(OpenAnimationProperty, value); }
         }
+        internal PathSegmentCollection Segments
+        {
+            get { return (PathSegmentCollection)GetValue(SegmentsProperty); }
+            set { SetValue(SegmentsProperty, value); }
+        }
 
         static Chart()
         {
@@ -59,11 +72,23 @@ namespace WPFTemplate
             ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Chart));
             RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(Chart), new PropertyMetadata((double)1));
             OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Chart), new PropertyMetadata(true));
+            PathSegmentCollection pathSegments = new PathSegmentCollection();
+            SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(LineChart));
         }
 
+        public Chart()
+        {
+            this.Loaded += Chart_Loaded;
+        }
+        private void Chart_Loaded(object sender, RoutedEventArgs e)
+        {
+            GeneratePath();
+        }
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            itemPresenter = GetTemplateChild("itemPresenter") as FrameworkElement;
+            pathMain = GetTemplateChild("PathMain") as Path;
             GenerateVerticalNumbers();
         }
         private void GenerateVerticalNumbers()
@@ -108,6 +133,24 @@ namespace WPFTemplate
         {
             base.OnItemsChanged(e);
             GenerateVerticalNumbers();
+            GeneratePath();
+        }
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new ChartItem();
+        }
+        protected override bool IsItemItsOwnContainerOverride(object item)
+        {
+            return item is ChartItem;
+        }
+        protected virtual void GeneratePath()
+        {
+
+        }
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+            GeneratePath();
         }
     }
 }

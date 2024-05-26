@@ -77,9 +77,6 @@
     <Compile Include="View\ChartLineView.xaml.cs">
       <DependentUpon>ChartLineView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ChartSlopeView.xaml.cs">
-      <DependentUpon>ChartSlopeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ChartsView.xaml.cs">
       <DependentUpon>ChartsView.xaml</DependentUpon>
     </Compile>
@@ -176,10 +173,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChartLineView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ChartSlopeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
