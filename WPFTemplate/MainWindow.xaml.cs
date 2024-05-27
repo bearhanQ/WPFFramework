@@ -23,51 +23,14 @@ namespace WPFTemplate
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Man> Men { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            Men = new ObservableCollection<Man>
-            {
-                new Man
-                {
-
-                    Age = 11
-                },
-                new Man
-                {
-
-                    Age = 14
-                },
-                new Man
-                {
-
-                    Age = 17
-                },
-                new Man
-                {
-                    Age = 9
-                },
-            };
-            lc1.ItemsSource = Men;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Random rd = new Random();
-            var age = rd.Next(10, 30);
-            Man m = new Man();
-            m.Age = age;
-            Men.Add(m);
+            MessageBox.Show("123");
         }
-    }
-
-    public class Man
-    {
-        public string Name { get; set; }
-
-        public string NickName { get; set; }
-
-        public int Age { get; set; }
     }
 }
