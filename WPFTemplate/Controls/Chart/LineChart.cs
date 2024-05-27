@@ -17,11 +17,6 @@ namespace WPFTemplate
 {
     public class LineChart : Chart
     {
-        static LineChart()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LineChart), new FrameworkPropertyMetadata(typeof(LineChart)));
-        }
-
         protected override void GeneratePath()
         {
             if (Segments == null)
@@ -34,6 +29,7 @@ namespace WPFTemplate
             }
             if (itemPresenter != null && this.ItemsSource != null && !string.IsNullOrWhiteSpace(ValueMemberPath))
             {
+                var b = pathMain.ActualWidth;
                 double pointX = Math.Round(itemPresenter.ActualWidth / this.Items.Count, 2);
                 for (int i = 0; i < this.Items.Count; i++)
                 {

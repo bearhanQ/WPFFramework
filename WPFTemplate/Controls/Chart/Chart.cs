@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 
 namespace WPFTemplate
 {
-    public abstract class Chart : ItemsControl
+    public class Chart : ItemsControl
     {
         public static readonly DependencyProperty HorizontalLineCountProperty;
 
@@ -65,6 +65,7 @@ namespace WPFTemplate
 
         static Chart()
         {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Chart), new FrameworkPropertyMetadata(typeof(Chart)));
             VerticalNumbersProperty = DependencyProperty.Register("VerticalNumbers", typeof(ObservableCollection<double>), typeof(Chart),
                 new PropertyMetadata(new ObservableCollection<double>(new List<double> { 400, 300, 200, 100, 0 })));
             HorizontalLineCountProperty = DependencyProperty.Register("HorizontalLineCount", typeof(int), typeof(Chart),

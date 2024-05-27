@@ -23,14 +23,43 @@ namespace WPFTemplate
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<People> list;
         public MainWindow()
         {
             InitializeComponent();
+            list = new ObservableCollection<People>();
+            Random rd = new Random();
+            for(int i = 0; i < 200; i++)
+            {
+                list.Add(new People
+                {
+                    Name = "22",
+                    Age = rd.Next(1, 200)
+                });
+            }
+            for (int i = 200; i < 800; i++)
+            {
+                list.Add(new People
+                {
+                    Name = "22",
+                    Age = rd.Next(200, 400)
+                });
+            }
+            for (int i = 800; i < 1000; i++)
+            {
+                list.Add(new People
+                {
+                    Name = "22",
+                    Age = rd.Next(1, 200)
+                });
+            }
+            lc1.ItemsSource = list;
         }
+    }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("123");
-        }
+    public class People
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
     }
 }

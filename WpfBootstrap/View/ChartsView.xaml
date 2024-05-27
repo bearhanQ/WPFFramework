@@ -22,7 +22,7 @@
             <m:Revenue Day="周七" Value="1000000"/>
         </x:Array>
         <p:BarValueWarningConverter x:Key="BarValueWarningConverter"/>
-        <Style x:Key="barStyle1" TargetType="{x:Type cc:Bar}" BasedOn="{StaticResource {x:Type cc:Bar}}">
+        <Style x:Key="barStyle1" TargetType="{x:Type cc:Bar}">
             <Setter Property="ItemContainerStyle">
                 <Setter.Value>
                     <Style TargetType="{x:Type cc:BarItem}" BasedOn="{StaticResource {x:Type cc:BarItem}}">

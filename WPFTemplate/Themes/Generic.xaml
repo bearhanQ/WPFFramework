@@ -30,12 +30,11 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/Drawer.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/DrawerItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/Card.xaml"/>
-        
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/Donut.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/Bar.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/BarItem.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/LineChart.xaml"/>
+
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/Chart.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/ChartItem.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/Donut.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/BarItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
   
 

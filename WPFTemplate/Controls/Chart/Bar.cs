@@ -20,10 +20,6 @@ namespace WPFTemplate
 {
     public class Bar : Chart
     {
-        static Bar()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Bar), new FrameworkPropertyMetadata(typeof(Bar)));
-        }
         protected override DependencyObject GetContainerForItemOverride()
         {
             return new BarItem();

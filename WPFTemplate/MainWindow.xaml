@@ -18,8 +18,6 @@
         </x:Array>
     </Window.Resources>
     <Grid Background="LightBlue">
-        <local:CornerButton ButtonType="Link" Width="100" Height="30" Foreground="Red"
-                            Icon="&#xe613;" Content="Show" VerticalContentAlignment="Center"
-                            BorderBrush="Red" Click="Button_Click_1"/>
+        <local:LineChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age"/>
     </Grid>
 </Window>
