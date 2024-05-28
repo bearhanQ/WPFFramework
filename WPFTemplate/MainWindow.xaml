@@ -7,7 +7,7 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
         mc:Ignorable="d"
-        Width="300" Height="300"
+        Width="600" Height="600"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <x:Array x:Key="nums" Type="{x:Type s:String}">
@@ -20,9 +20,24 @@
     <Grid Background="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <local:LineChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age"/>
-        <Button Content="add" Grid.Row="1" Background="Red" Click="Button_Click"/>
+        <local:CurveChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age"/>
+        <Path Stroke="Black" StrokeThickness="2" Grid.Row="1">
+            <Path.LayoutTransform>
+                <ScaleTransform ScaleY="-1"/>
+            </Path.LayoutTransform>
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="0,216">
+                        <BezierSegment Point1="0,216" Point2="116.12,206.13" Point3="232.24,206.13"/>
+                        <BezierSegment Point1="348.36,206.13" Point2="464.48,49.34" Point3="580.6,49.34"/>
+                        <BezierSegment Point1="696.72,49.34" Point2="812.84,121.71" Point3="928.96,121.71"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Button Content="add" Grid.Row="2" Background="Red" Click="Button_Click"/>
     </Grid>
 </Window>

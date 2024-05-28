@@ -45,7 +45,7 @@
         <Path Stroke="Black" StrokeThickness="2">
             <Path.Data>
                 <PathGeometry>
-                    <PathFigure StartPoint="40,250">
+                    <PathFigure StartPoint="60,250">
                         <BezierSegment Point1="60,250" Point2="80,220" Point3="100,220"/>
                         <BezierSegment Point1="120,220" Point2="140,190" Point3="160,190"/>
                         <BezierSegment Point1="180,190" Point2="200,280" Point3="220,280"/>

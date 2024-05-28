@@ -29,15 +29,13 @@ namespace WPFTemplate
             }
             if (itemPresenter != null && this.ItemsSource != null && !string.IsNullOrWhiteSpace(ValueMemberPath))
             {
-                var b = pathMain.ActualWidth;
                 double pointX = Math.Round(itemPresenter.ActualWidth / this.Items.Count, 2);
                 for (int i = 0; i < this.Items.Count; i++)
                 {
                     var item = Items[i];
-                    double value = 0;
-                    if (double.TryParse(item.GetType().GetProperty(ValueMemberPath).GetValue(item).ToString(), out value))
+                    if (double.TryParse(item.GetType().GetProperty(ValueMemberPath).GetValue(item).ToString(), out double value))
                     {
-                        var pointY = Math.Floor(this.ActualHeight / this.VerticalNumbers.Count) * value / Ratio;
+                        var pointY = Math.Round(Math.Floor(this.ActualHeight / this.VerticalNumbers.Count) * value / Ratio, 2);
                         Segments.Add(GenerateSegment(pointX * i, pointY));
                     }
                 }

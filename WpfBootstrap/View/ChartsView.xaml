@@ -9,7 +9,7 @@
              xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
              xmlns:p="clr-namespace:WpfBootstrap.Common"
              xmlns:vws="clr-namespace:WpfBootstrap.View"
-             mc:Ignorable="d" Background="Wheat"
+             mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
         <x:Array x:Key="revenueInfo" Type="{x:Type m:Revenue}">

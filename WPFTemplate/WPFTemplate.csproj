@@ -72,6 +72,7 @@
     <Compile Include="Controls\Chart\BarItem.cs" />
     <Compile Include="Controls\Chart\Chart.cs" />
     <Compile Include="Controls\Chart\ChartItem.cs" />
+    <Compile Include="Controls\Chart\CurveChart.cs" />
     <Compile Include="Controls\Chart\Donut.cs" />
     <Compile Include="Controls\Chart\LineChart.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />

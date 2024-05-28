@@ -29,7 +29,7 @@ namespace WPFTemplate
             InitializeComponent();
             list = new ObservableCollection<People>();
             Random rd = new Random();
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 5; i++)
             {
                 list.Add(new People
                 {
