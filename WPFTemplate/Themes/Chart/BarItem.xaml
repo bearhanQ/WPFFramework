@@ -10,11 +10,12 @@
 
     <Style TargetType="{x:Type local:BarItem}">
         <Setter Property="Background" Value="{StaticResource BarItem.Default.Background}"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="Margin">
             <Setter.Value>
                 <MultiBinding Converter="{StaticResource BarItemMarginConverter}">
                     <MultiBinding.Bindings>
-                        <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="ActualWidth"/>
+                        <Binding RelativeSource="{RelativeSource AncestorType=ItemsPresenter}" Path="ActualWidth"/>
                         <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="Items"/>
                         <Binding RelativeSource="{RelativeSource AncestorType=local:Bar}" Path="VerticalNumbers"/>
                     </MultiBinding.Bindings>

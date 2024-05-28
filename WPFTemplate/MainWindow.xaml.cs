@@ -29,31 +29,24 @@ namespace WPFTemplate
             InitializeComponent();
             list = new ObservableCollection<People>();
             Random rd = new Random();
-            for(int i = 0; i < 200; i++)
+            for(int i = 0; i < 10; i++)
             {
                 list.Add(new People
                 {
-                    Name = "22",
-                    Age = rd.Next(1, 200)
-                });
-            }
-            for (int i = 200; i < 800; i++)
-            {
-                list.Add(new People
-                {
-                    Name = "22",
-                    Age = rd.Next(200, 400)
-                });
-            }
-            for (int i = 800; i < 1000; i++)
-            {
-                list.Add(new People
-                {
-                    Name = "22",
+                    Name = "2" + i.ToString(),
                     Age = rd.Next(1, 200)
                 });
             }
             lc1.ItemsSource = list;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            list.Add(new People
+            {
+                Name = "30",
+                Age = 50
+            });
         }
     }
 

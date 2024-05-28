@@ -48,7 +48,7 @@ namespace WPFTemplate
 
         private void ChartItem_Loaded(object sender, RoutedEventArgs e)
         {
-            if(ParentChart!=null && ParentChart.OpenAnimation)
+            if (ParentChart != null && ParentChart.OpenAnimation && ParentChart.GetType() == typeof(Bar))
             {
                 CreateAnimation(0, this.ActualHeight, this);
             }

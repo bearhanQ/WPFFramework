@@ -18,6 +18,11 @@
         </x:Array>
     </Window.Resources>
     <Grid Background="LightBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
         <local:LineChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age"/>
+        <Button Content="add" Grid.Row="1" Background="Red" Click="Button_Click"/>
     </Grid>
 </Window>
