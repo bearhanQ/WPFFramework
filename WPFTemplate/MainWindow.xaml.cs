@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 using Microsoft.Expression.Shapes;
+using System.Windows.Media;
 
 namespace WPFTemplate
 {
@@ -24,28 +25,48 @@ namespace WPFTemplate
     public partial class MainWindow : Window
     {
         public ObservableCollection<People> list;
+
+        public PathSegmentCollection psc { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
             list = new ObservableCollection<People>();
             Random rd = new Random();
-            for(int i = 0; i < 5; i++)
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    list.Add(new People
+            //    {
+            //        Name = "2" + i.ToString(),
+            //        Age = rd.Next(1, 200)
+            //    });
+            //}
+            list.Add(new People
             {
-                list.Add(new People
-                {
-                    Name = "2" + i.ToString(),
-                    Age = rd.Next(1, 200)
-                });
-            }
+                Name = "21",
+                Age = 100
+            });
+            list.Add(new People
+            {
+                Name = "22",
+                Age = 200
+            });
+            list.Add(new People
+            {
+                Name = "23",
+                Age = 100
+            });
             lc1.ItemsSource = list;
+            lc2.ItemsSource = list;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Random rd =new Random();
             list.Add(new People
             {
                 Name = "30",
-                Age = 50
+                Age = rd.Next(100,200)
             });
         }
     }

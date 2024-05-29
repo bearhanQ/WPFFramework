@@ -74,7 +74,7 @@ namespace WPFTemplate
             RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(Chart), new PropertyMetadata((double)1));
             OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Chart), new PropertyMetadata(true));
             PathSegmentCollection pathSegments = new PathSegmentCollection();
-            SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(LineChart));
+            SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(Chart));
         }
 
         public Chart()

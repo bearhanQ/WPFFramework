@@ -560,4 +560,32 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    internal class ChartPathStartPointConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var pc = value as PathSegmentCollection;
+            if (pc != null && pc.Count > 1)
+            {
+                var item = pc[0];
+                if (item.GetType() == typeof(LineSegment))
+                {
+                    var ls = item as LineSegment;
+                    return ls.Point;
+                }
+                if (item.GetType() == typeof(BezierSegment))
+                {
+                    var bs = item as BezierSegment;
+                    return bs.Point1;
+                }
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
