@@ -20,11 +20,7 @@
     <Grid Background="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <local:LineChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age"/>
-        <local:CurveChart x:Name="lc2" DisplayMemberPath="Name" ValueMemberPath="Age" Grid.Row="1"/>
-        <Button Grid.Row="2" Click="Button_Click" Height="50" Content="Add"/>
+        <local:LineChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age" IsBottomContentVisible="False"/>
     </Grid>
 </Window>

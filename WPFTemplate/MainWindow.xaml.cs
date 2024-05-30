@@ -33,41 +33,27 @@ namespace WPFTemplate
             InitializeComponent();
             list = new ObservableCollection<People>();
             Random rd = new Random();
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    list.Add(new People
-            //    {
-            //        Name = "2" + i.ToString(),
-            //        Age = rd.Next(1, 200)
-            //    });
-            //}
-            list.Add(new People
+            for (int i = 0; i < 1000; i++)
             {
-                Name = "21",
-                Age = 100
-            });
-            list.Add(new People
-            {
-                Name = "22",
-                Age = 200
-            });
-            list.Add(new People
-            {
-                Name = "23",
-                Age = 100
-            });
+                list.Add(new People
+                {
+                    Name = "2" + i.ToString(),
+                    Age = rd.Next(1, 200)
+                });
+            }
             lc1.ItemsSource = list;
-            lc2.ItemsSource = list;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Random rd =new Random();
-            list.Add(new People
+            if(lc1.Visibility == Visibility.Visible)
             {
-                Name = "30",
-                Age = rd.Next(100,200)
-            });
+                lc1.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                lc1.Visibility = Visibility.Visible;
+            }
         }
     }
 
