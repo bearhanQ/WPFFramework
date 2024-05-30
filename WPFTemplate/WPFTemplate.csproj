@@ -75,6 +75,7 @@
     <Compile Include="Controls\Chart\CurveChart.cs" />
     <Compile Include="Controls\Chart\Donut.cs" />
     <Compile Include="Controls\Chart\LineChart.cs" />
+    <Compile Include="Controls\Chart\StepChart.cs" />
     <Compile Include="Controls\CornerCheckBox.cs" />
     <Compile Include="Controls\CornerCombobox.cs" />
     <Compile Include="Controls\CornerContextMenu.cs" />

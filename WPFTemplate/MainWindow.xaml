@@ -20,7 +20,9 @@
     <Grid Background="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <local:LineChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age" IsBottomContentVisible="False"/>
+        <local:StepChart x:Name="lc2" DisplayMemberPath="Name" ValueMemberPath="Age" IsBottomContentVisible="False" Grid.Row="1"/>
     </Grid>
 </Window>

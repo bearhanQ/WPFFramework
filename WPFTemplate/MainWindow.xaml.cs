@@ -33,7 +33,7 @@ namespace WPFTemplate
             InitializeComponent();
             list = new ObservableCollection<People>();
             Random rd = new Random();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 15; i++)
             {
                 list.Add(new People
                 {
@@ -42,6 +42,7 @@ namespace WPFTemplate
                 });
             }
             lc1.ItemsSource = list;
+            lc2.ItemsSource = list;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
