@@ -32,6 +32,8 @@ namespace WPFTemplate
 
         private bool PauseOnMouseEnter = true;
 
+        private Grid gridMain;
+
         internal FrameworkElement ItemsPresenter => GetTemplateChild("itemsPresenter") as FrameworkElement;
 
         public int SelectedIndex
@@ -145,7 +147,7 @@ namespace WPFTemplate
 
                 animation.KeyFrames.Add(new EasingThicknessKeyFrame
                 {
-                    KeyTime = KeyTime.FromTimeSpan(Interval),
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(1000)),
                     Value = new Thickness(0 - (this.Width * newIndex), 0, 0, 0)
                 });
 
@@ -170,7 +172,10 @@ namespace WPFTemplate
                         }
                         else
                         {
-                            this.SelectedIndex++;
+                            if (gridMain != null)
+                            {
+                                this.SelectedIndex++;
+                            }
                         }
                         await Task.Delay(Interval);
                     }
@@ -185,7 +190,7 @@ namespace WPFTemplate
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            var gridMain = this.Template.FindName("gridMain", this) as Grid;
+            gridMain = this.Template.FindName("gridMain", this) as Grid;
             gridMain.Clip = new RectangleGeometry
             {
                 Rect = new Rect
@@ -196,9 +201,7 @@ namespace WPFTemplate
                     Height = this.Height,
                 }
             };
-
             OffSetChildItemsSize();
-            RepeatAnimation();
         }
     }
 }

@@ -228,14 +228,10 @@ namespace WPFTemplate
             string strValue = value as string;
             if (strValue != null)
             {
-                string[] parts = strValue.Split(',');
-                if (parts.Length == 3)
+                double ms = 0;
+                if(double.TryParse(strValue,out ms))
                 {
-                    int hours = 0, minutes = 0, seconds = 0;
-                    int.TryParse(parts[0], out hours);
-                    int.TryParse(parts[1], out minutes);
-                    int.TryParse(parts[2], out seconds);
-                    return new TimeSpan(hours, minutes, seconds);
+                    return TimeSpan.FromMilliseconds(ms);
                 }
             }
             return base.ConvertFrom(context, culture, value);
