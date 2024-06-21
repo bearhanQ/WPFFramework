@@ -17,12 +17,12 @@
             <s:String>100</s:String>
         </x:Array>
     </Window.Resources>
-    <Grid Background="LightBlue">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <local:LineChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age" IsBottomContentVisible="False"/>
-        <local:StepChart x:Name="lc2" DisplayMemberPath="Name" ValueMemberPath="Age" IsBottomContentVisible="False" Grid.Row="1"/>
+    <Grid>
+        <local:Carousel x:Name="carousel1" Width="400" Height="400" IsAutoSwitch="True" Interval="10000">
+            <Grid Background="Red"/>
+            <Grid Background="Green"/>
+            <Grid Background="Blue"/>
+        </local:Carousel>
+        <Button Width="100" Height="20" VerticalAlignment="Bottom" Click="Button_Click"/>
     </Grid>
 </Window>

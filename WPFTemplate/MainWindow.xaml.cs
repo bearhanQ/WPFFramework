@@ -31,30 +31,11 @@ namespace WPFTemplate
         public MainWindow()
         {
             InitializeComponent();
-            list = new ObservableCollection<People>();
-            Random rd = new Random();
-            for (int i = 0; i < 15; i++)
-            {
-                list.Add(new People
-                {
-                    Name = "2" + i.ToString(),
-                    Age = rd.Next(1, 200)
-                });
-            }
-            lc1.ItemsSource = list;
-            lc2.ItemsSource = list;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(lc1.Visibility == Visibility.Visible)
-            {
-                lc1.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                lc1.Visibility = Visibility.Visible;
-            }
+            carousel1.IsAutoSwitch = true;
         }
     }
 
