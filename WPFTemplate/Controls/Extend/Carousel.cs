@@ -30,7 +30,7 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty ShowBottomPageProperty;
 
-        private bool PauseOnMouseEnter = true;
+        public static readonly DependencyProperty PauseOnMouseOverProperty;
 
         private Grid gridMain;
 
@@ -61,6 +61,12 @@ namespace WPFTemplate
             set { SetValue(ShowBottomPageProperty, value); }
         }
 
+        public bool PauseOnMouseOver
+        {
+            get { return (bool)GetValue(PauseOnMouseOverProperty); }
+            set { SetValue(PauseOnMouseOverProperty, value); }
+        }
+
         static Carousel()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Carousel), new FrameworkPropertyMetadata(typeof(Carousel)));
@@ -72,9 +78,7 @@ namespace WPFTemplate
                     new PropertyChangedCallback(OnIsAutoSwitchChanged), null, false, UpdateSourceTrigger.PropertyChanged));
             IntervalProperty = DependencyProperty.Register("Interval", typeof(TimeSpan), typeof(Carousel), new PropertyMetadata(new TimeSpan(0, 0, 1)));
             ShowBottomPageProperty = DependencyProperty.Register("ShowBottomPage", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
-
-            EventManager.RegisterClassHandler(typeof(Carousel), UIElement.MouseEnterEvent, new RoutedEventHandler(MouseEnterHandler));
-            EventManager.RegisterClassHandler(typeof(Carousel), UIElement.MouseLeaveEvent, new RoutedEventHandler(MouseLeaveHandler));
+            PauseOnMouseOverProperty = DependencyProperty.Register("PauseOnMouseOver", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
         }
 
         public Carousel()
@@ -98,24 +102,6 @@ namespace WPFTemplate
                 };
             }
             OffSetChildItemsSize();
-        }
-
-        private static void MouseEnterHandler(object sender, RoutedEventArgs args)
-        {
-            var carousel = sender as Carousel;
-            if (carousel != null)
-            {
-                carousel.PauseOnMouseEnter = false;
-            }
-        }
-
-        private static void MouseLeaveHandler(object sender, RoutedEventArgs args)
-        {
-            var carousel = sender as Carousel;
-            if (carousel != null)
-            {
-                carousel.PauseOnMouseEnter = true;
-            }
         }
 
         private void OffSetChildItemsSize()
@@ -187,7 +173,7 @@ namespace WPFTemplate
             {
                 while (IsAutoSwitch)
                 {
-                    if (PauseOnMouseEnter)
+                    if (!PauseOnMouseOver)
                     {
                         if (this.SelectedIndex == this.Items.Count - 1)
                         {
@@ -204,7 +190,25 @@ namespace WPFTemplate
                     }
                     else
                     {
-                        await Task.Delay(500);
+                        if (!this.IsMouseOver)
+                        {
+                            if (this.SelectedIndex == this.Items.Count - 1)
+                            {
+                                this.SelectedIndex = 0;
+                            }
+                            else
+                            {
+                                if (gridMain != null)
+                                {
+                                    this.SelectedIndex++;
+                                }
+                            }
+                            await Task.Delay(Interval);
+                        }
+                        else
+                        {
+                            await Task.Delay(500);
+                        }
                     }
                 }
             }));
