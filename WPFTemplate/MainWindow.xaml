@@ -18,11 +18,10 @@
         </x:Array>
     </Window.Resources>
     <Grid>
-        <local:Carousel x:Name="carousel1" Width="400" Height="400" IsAutoSwitch="True" Interval="10000">
+        <local:Carousel x:Name="carousel1" IsAutoSwitch="True" Interval="1000">
             <Grid Background="Red"/>
             <Grid Background="Green"/>
             <Grid Background="Blue"/>
         </local:Carousel>
-        <Button Width="100" Height="20" VerticalAlignment="Bottom" Click="Button_Click"/>
     </Grid>
 </Window>

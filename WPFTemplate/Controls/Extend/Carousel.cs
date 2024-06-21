@@ -77,6 +77,29 @@ namespace WPFTemplate
             EventManager.RegisterClassHandler(typeof(Carousel), UIElement.MouseLeaveEvent, new RoutedEventHandler(MouseLeaveHandler));
         }
 
+        public Carousel()
+        {
+            this.Loaded += Carousel_Loaded;
+        }
+
+        private void Carousel_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (gridMain != null)
+            {
+                gridMain.Clip = new RectangleGeometry
+                {
+                    Rect = new Rect
+                    {
+                        X = 0,
+                        Y = 0,
+                        Width = this.ActualWidth,
+                        Height = this.ActualHeight,
+                    }
+                };
+            }
+            OffSetChildItemsSize();
+        }
+
         private static void MouseEnterHandler(object sender, RoutedEventArgs args)
         {
             var carousel = sender as Carousel;
@@ -104,8 +127,8 @@ namespace WPFTemplate
                     var c = item as FrameworkElement;
                     if (c != null)
                     {
-                        c.Width = this.Width;
-                        c.Height = this.Height;
+                        c.Width = this.ActualWidth;
+                        c.Height = this.ActualHeight;
                     }
                 }
             }
@@ -142,13 +165,13 @@ namespace WPFTemplate
                 animation.KeyFrames.Add(new EasingThicknessKeyFrame
                 {
                     KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0)),
-                    Value = new Thickness(0 - (this.Width * oldIndex), 0, 0, 0)
+                    Value = new Thickness(0 - (this.ActualWidth * oldIndex), 0, 0, 0)
                 });
 
                 animation.KeyFrames.Add(new EasingThicknessKeyFrame
                 {
                     KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(1000)),
-                    Value = new Thickness(0 - (this.Width * newIndex), 0, 0, 0)
+                    Value = new Thickness(0 - (this.ActualWidth * newIndex), 0, 0, 0)
                 });
 
                 Storyboard.SetTarget(animation, ItemsPresenter);
@@ -191,16 +214,23 @@ namespace WPFTemplate
         {
             base.OnApplyTemplate();
             gridMain = this.Template.FindName("gridMain", this) as Grid;
-            gridMain.Clip = new RectangleGeometry
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            if (gridMain != null)
             {
-                Rect = new Rect
+                gridMain.Clip = new RectangleGeometry
                 {
-                    X = 0,
-                    Y = 0,
-                    Width = this.Width,
-                    Height = this.Height,
-                }
-            };
+                    Rect = new Rect
+                    {
+                        X = 0,
+                        Y = 0,
+                        Width = this.ActualWidth,
+                        Height = this.ActualHeight,
+                    }
+                };
+            }
             OffSetChildItemsSize();
         }
     }
