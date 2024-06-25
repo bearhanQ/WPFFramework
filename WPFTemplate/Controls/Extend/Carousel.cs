@@ -88,19 +88,7 @@ namespace WPFTemplate
 
         private void Carousel_Loaded(object sender, RoutedEventArgs e)
         {
-            if (gridMain != null)
-            {
-                gridMain.Clip = new RectangleGeometry
-                {
-                    Rect = new Rect
-                    {
-                        X = 0,
-                        Y = 0,
-                        Width = this.ActualWidth,
-                        Height = this.ActualHeight,
-                    }
-                };
-            }
+            CreateClip();
             OffSetChildItemsSize();
         }
 
@@ -175,34 +163,14 @@ namespace WPFTemplate
                 {
                     if (!PauseOnMouseOver)
                     {
-                        if (this.SelectedIndex == this.Items.Count - 1)
-                        {
-                            this.SelectedIndex = 0;
-                        }
-                        else
-                        {
-                            if (gridMain != null)
-                            {
-                                this.SelectedIndex++;
-                            }
-                        }
+                        AddIndex();
                         await Task.Delay(Interval);
                     }
                     else
                     {
                         if (!this.IsMouseOver)
                         {
-                            if (this.SelectedIndex == this.Items.Count - 1)
-                            {
-                                this.SelectedIndex = 0;
-                            }
-                            else
-                            {
-                                if (gridMain != null)
-                                {
-                                    this.SelectedIndex++;
-                                }
-                            }
+                            AddIndex();
                             await Task.Delay(Interval);
                         }
                         else
@@ -222,6 +190,12 @@ namespace WPFTemplate
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
+            CreateClip();
+            OffSetChildItemsSize();
+        }
+
+        private void CreateClip()
+        {
             if (gridMain != null)
             {
                 gridMain.Clip = new RectangleGeometry
@@ -235,7 +209,22 @@ namespace WPFTemplate
                     }
                 };
             }
-            OffSetChildItemsSize();
+        }
+
+        private void AddIndex()
+        {
+            if (this.SelectedIndex == this.Items.Count - 1)
+            {
+                var item = Items[0];
+                this.Items.Remove(item);
+                this.Items.Insert(this.Items.Count, item);
+                this.SelectedIndex--;
+            }
+
+            if (gridMain != null)
+            {
+                this.SelectedIndex++;
+            }
         }
     }
 }
