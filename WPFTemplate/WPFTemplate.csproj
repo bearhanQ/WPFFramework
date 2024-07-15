@@ -110,6 +110,7 @@
     <Compile Include="Controls\Extend\PlaceControl.cs" />
     <Compile Include="Controls\Extend\CornerCalendar.cs" />
     <Compile Include="Controls\Extend\CornerDatePicker.cs" />
+    <Compile Include="Enums\CardType.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\NotifySourceEnum.cs" />
     <Compile Include="Enums\PlaceControlEnum.cs" />

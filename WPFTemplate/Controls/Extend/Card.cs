@@ -19,6 +19,10 @@ namespace WPFTemplate
     {
         public static readonly DependencyProperty CornerRadiusProperty;
 
+        public static readonly DependencyProperty CardTypeProperty;
+
+        public static readonly DependencyProperty AngleSizeProperty;
+
         private Grid GridMain;
 
         private Ellipse ellipse1;
@@ -33,11 +37,25 @@ namespace WPFTemplate
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        public CardType CardType
+        {
+            get { return (CardType)GetValue(CardTypeProperty); }
+            set { SetValue(CardTypeProperty, value); }
+        }
+
+        public double AngleSize
+        {
+            get { return (double)GetValue(AngleSizeProperty); }
+            set { SetValue(AngleSizeProperty, value); }
+        }
+
         static Card()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Card), new FrameworkPropertyMetadata(typeof(Card)));
             CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Card),
                 new FrameworkPropertyMetadata(new CornerRadius(0),FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(CornerRadiusCallback)));
+            CardTypeProperty = DependencyProperty.Register("CardType", typeof(CardType), typeof(Card));
+            AngleSizeProperty = DependencyProperty.Register("AngleSize", typeof(double), typeof(Card), new PropertyMetadata((double)10));
         }
 
         private static void CornerRadiusCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

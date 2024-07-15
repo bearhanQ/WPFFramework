@@ -32,11 +32,6 @@ namespace WPFTemplate
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            carousel1.IsAutoSwitch = true;
-        }
     }
 
     public class People

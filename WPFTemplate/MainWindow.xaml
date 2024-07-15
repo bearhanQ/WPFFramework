@@ -18,10 +18,8 @@
         </x:Array>
     </Window.Resources>
     <Grid>
-        <local:Carousel x:Name="carousel1" IsAutoSwitch="True" Interval="1000">
-            <Grid Background="Red"/>
-            <Grid Background="Green"/>
-            <Grid Background="Blue"/>
-        </local:Carousel>
+        <local:Card CardType="Modern" Width="100" Height="100" BorderBrush="Green" AngleSize="30">
+            <Border Background="Blue" Margin="2"/>
+        </local:Card>
     </Grid>
 </Window>

@@ -18,5 +18,29 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="CardType" Value="Modern">
+                <Setter Property="BorderBrush" Value="#FF00FFF9"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:Card}">
+                            <Grid>
+                                <ContentPresenter/>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Margin="1.5" Opacity="0.7"/>
+                                <Border Margin="1.5" Opacity="0.1" Background="White"/>
+                                <Rectangle HorizontalAlignment="Right" Height="{TemplateBinding AngleSize}" VerticalAlignment="Top" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                                <Rectangle HorizontalAlignment="Right" Height="{TemplateBinding AngleSize}" VerticalAlignment="Bottom" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                                <Rectangle HorizontalAlignment="Left" Height="{TemplateBinding AngleSize}" VerticalAlignment="Bottom" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                                <Rectangle HorizontalAlignment="Left" Height="{TemplateBinding AngleSize}" VerticalAlignment="Top" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                                <Rectangle HorizontalAlignment="Left" Width="{TemplateBinding AngleSize}" VerticalAlignment="Top" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                                <Rectangle HorizontalAlignment="Left" Width="{TemplateBinding AngleSize}" VerticalAlignment="Bottom" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                                <Rectangle HorizontalAlignment="Right" Width="{TemplateBinding AngleSize}" VerticalAlignment="Bottom" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                                <Rectangle HorizontalAlignment="Right" Width="{TemplateBinding AngleSize}" VerticalAlignment="Top" Margin="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
