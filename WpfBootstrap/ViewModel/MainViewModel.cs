@@ -85,7 +85,8 @@ namespace WpfBootstrap.ViewModel
                         new TreeViewModel { Header = "CornerPagination"},
                         new TreeViewModel { Header = "NotifyWindow"},
                         new TreeViewModel { Header = "PlaceControl"},
-                        new TreeViewModel { Header = "Drawer"}
+                        new TreeViewModel { Header = "Drawer"},
+                        new TreeViewModel { Header = "Card"},
                     }
                 },
                 new TreeViewModel

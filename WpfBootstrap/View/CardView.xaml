@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="WpfBootstrap.View.CardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfBootstrap.View"
+             xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="cardType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="cc:CardType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <cc:Card Width="200" Height="200" Background="LightBlue"
+                 CardType="{Binding ElementName=cbType, Path=SelectedItem}"
+                 AngleSize="{Binding ElementName=angleSlider, Path=Value}"
+                 CornerRadius="{Binding ElementName=cornerSlider, Path=Value}"
+                 BorderBrush="{Binding ElementName=bbSlider, Path=SelectedColor}"/>
+        <Grid Width="200" Height="200" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="CardType" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <cc:CornerCombobox ItemsSource="{Binding Source={StaticResource cardType}}" x:Name="cbType" SelectedIndex="0"
+                               Grid.Column="1" WaterText="" Height="30" VerticalContentAlignment="Center"/>
+
+            <TextBlock Text="BorderBrush" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+            <cc:ColorSlider x:Name="bbSlider" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+
+            <TextBlock Text="AngleSize" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+            <cc:CornerSlider x:Name="angleSlider" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Value="10" Minimum="0" Maximum="30"/>
+        </Grid>
+    </Grid>
+</UserControl>

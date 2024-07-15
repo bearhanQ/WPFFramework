@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,6 +69,9 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\TreeViewViewModel.cs" />
     <Compile Include="ViewModel\UnicodeViewModel.cs" />
+    <Compile Include="View\CardView.xaml.cs">
+      <DependentUpon>CardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CarouselView.xaml.cs">
       <DependentUpon>CarouselView.xaml</DependentUpon>
     </Compile>
@@ -164,6 +168,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CarouselView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

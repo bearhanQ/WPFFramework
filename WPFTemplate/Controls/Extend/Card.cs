@@ -52,19 +52,9 @@ namespace WPFTemplate
         static Card()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Card), new FrameworkPropertyMetadata(typeof(Card)));
-            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Card),
-                new FrameworkPropertyMetadata(new CornerRadius(0),FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(CornerRadiusCallback)));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Card));
             CardTypeProperty = DependencyProperty.Register("CardType", typeof(CardType), typeof(Card));
             AngleSizeProperty = DependencyProperty.Register("AngleSize", typeof(double), typeof(Card), new PropertyMetadata((double)10));
-        }
-
-        private static void CornerRadiusCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var card = (Card)d;
-            if (card != null)
-            {
-                card.CreateCardElement();
-            }
         }
 
         private void CreateCardElement()

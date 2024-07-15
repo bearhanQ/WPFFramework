@@ -18,8 +18,6 @@
         </x:Array>
     </Window.Resources>
     <Grid>
-        <local:Card CardType="Modern" Width="100" Height="100" BorderBrush="Green" AngleSize="30">
-            <Border Background="Blue" Margin="2"/>
-        </local:Card>
+        <local:Card CardType="Modern" Width="100" Height="100" BorderBrush="Green" AngleSize="10"/>
     </Grid>
 </Window>
