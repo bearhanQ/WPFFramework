@@ -16,8 +16,10 @@
             <s:String>200</s:String>
             <s:String>100</s:String>
         </x:Array>
+
     </Window.Resources>
     <Grid>
-        <local:Card CardType="Modern" Width="100" Height="100" BorderBrush="Green" AngleSize="10"/>
+        <local:CornerProgressBar Width="200" Height="20" IsIndeterminate="False" BorderBrush="Green"/>
     </Grid>
+
 </Window>
