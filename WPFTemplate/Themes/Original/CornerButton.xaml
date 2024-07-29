@@ -161,6 +161,7 @@
                                 </MultiTrigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="textblockIcon" Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
+                                    <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
