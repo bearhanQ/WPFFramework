@@ -19,7 +19,7 @@
 
     </Window.Resources>
     <Grid>
-        <local:CornerProgressBar Width="200" Height="20" IsIndeterminate="False" BorderBrush="Green"/>
+        <local:ColorSlider Width="100" Height="30"/>
     </Grid>
 
 </Window>
