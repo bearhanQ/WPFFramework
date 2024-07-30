@@ -2,18 +2,26 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFTemplate">
     <Style TargetType="{x:Type local:Card}">
+        <Setter Property="Background" Value="#FFF4C900"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Card}">
-                    <Grid x:Name="gridMain">
-                        <ContentPresenter Panel.ZIndex="1"/>
-                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                    <Grid>
+                        <Border BorderBrush="Gray" Background="Gray" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0"/>
+                            </Border.Effect>
+                        </Border>
+                        <Grid x:Name="gridMain">
+                            <ContentPresenter Panel.ZIndex="1"/>
+                            <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="{TemplateBinding CornerRadius}" Panel.ZIndex="1"/>
-                        <Border CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}"/>
-                        <Ellipse x:Name="ellipse1" Fill="White" HorizontalAlignment="Right" Margin="-10" Opacity="0.5"/>
-                        <Ellipse x:Name="ellipse2" Fill="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-5,-10" Opacity="0.5"/>
-                        <Ellipse x:Name="ellipse3" Fill="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-10" Opacity="0.5"/>
+                            <Border CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}"/>
+                            <Ellipse x:Name="ellipse1" Fill="White" HorizontalAlignment="Right" Margin="-10" Opacity="0.5"/>
+                            <Ellipse x:Name="ellipse2" Fill="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-5,-10" Opacity="0.5"/>
+                            <Ellipse x:Name="ellipse3" Fill="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-10" Opacity="0.5"/>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

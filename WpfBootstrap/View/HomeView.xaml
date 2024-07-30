@@ -109,7 +109,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
-                <cc:Card Height="140" Grid.Column="1">
+                <cc:Card Height="130" Grid.Column="1">
                     <cc:Card.Background>
                         <LinearGradientBrush>
                             <GradientStop Color="#FF40F60A"/>
@@ -144,7 +144,7 @@
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
                 </cc:Card>
-                <cc:Card Height="140" Grid.Column="3">
+                <cc:Card Height="130" Grid.Column="3">
                     <cc:Card.Background>
                         <LinearGradientBrush>
                             <GradientStop Color="#FFDAF60F"/>
@@ -179,7 +179,7 @@
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
                 </cc:Card>
-                <cc:Card Height="140" Grid.Column="5">
+                <cc:Card Height="130" Grid.Column="5">
                     <cc:Card.Background>
                         <LinearGradientBrush>
                             <GradientStop Color="#FF17F9E0"/>
@@ -214,7 +214,7 @@
                                           Minimum="0" Maximum="10" Value="7" Foreground="#FF1F68BF"/>
                     </Grid>
                 </cc:Card>
-                <cc:Card Height="140" Grid.Column="7">
+                <cc:Card Height="130" Grid.Column="7">
                     <cc:Card.Background>
                         <LinearGradientBrush>
                             <GradientStop Color="#FF006CFF"/>
