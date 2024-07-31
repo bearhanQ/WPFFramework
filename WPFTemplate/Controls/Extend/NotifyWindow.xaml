@@ -8,6 +8,7 @@
         Width="400" Height="300"
         WindowStyle="None"
         ResizeMode="NoResize"
+        ShowInTaskbar="False"
         Loaded="Window_Loaded">
     <Window.Resources>
         <SolidColorBrush x:Key="Warn.BorderBrush" Color="#FFF3FF00"/>

@@ -7,6 +7,11 @@
              xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <cc:CornerExpander VerticalAlignment="Top" ExpandDirection="Up" Header="123" 
                            Background="{Binding ElementName=colorSliderBg, Path=SelectedColor}" BorderBrush="{Binding ElementName=colorSliderBb, Path=SelectedColor}" 
@@ -47,7 +52,7 @@
             <TextBlock Text="BorderBrush:" Grid.Row="1" VerticalAlignment="Center"/>
             <cc:ColorSlider x:Name="colorSliderBb" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Grid.Column="1" Grid.Row="1"/>
             <TextBlock Text="CornerRadius:" Grid.Row="2" VerticalAlignment="Center"/>
-            <cc:CornerSlider x:Name="cornerSlidercd" Grid.Row="2" Grid.Column="1" Width="100" Maximum="10" Minimum="0"/>
+            <cc:CornerSlider x:Name="cornerSlidercd" Grid.Row="2" Grid.Column="1" Width="100" Maximum="10" Minimum="0" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </UserControl>

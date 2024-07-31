@@ -19,7 +19,19 @@
 
     </Window.Resources>
     <Grid>
-        <local:ColorSlider Width="100" Height="30"/>
+        <Grid Width="100" Height="100">
+            <Border BorderBrush="Gray" Background="Gray" BorderThickness="1">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Gray" BlurRadius="5" Opacity="1" RenderingBias="Performance"/>
+                </Border.Effect>
+            </Border>
+            <Border Background="White"/>
+        </Grid>
+        <local:Card Width="100" Height="100" HorizontalAlignment="Right" CardType="Classic" CornerRadius="10">
+            <Grid>
+                <TextBlock Text="123" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </local:Card>
     </Grid>
 
 </Window>

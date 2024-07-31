@@ -28,7 +28,7 @@ namespace WPFTemplate
         {
             get { return _messages; }
             set 
-            { 
+            {
                 _messages = value;
             }
         }

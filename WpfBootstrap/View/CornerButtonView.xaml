@@ -13,6 +13,9 @@
                 <x:Type TypeName="cc:ButtonType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">

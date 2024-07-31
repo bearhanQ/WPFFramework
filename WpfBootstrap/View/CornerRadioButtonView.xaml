@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:WpfBootstrap.View"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
         mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
