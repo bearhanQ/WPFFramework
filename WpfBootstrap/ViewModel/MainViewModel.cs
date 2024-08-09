@@ -87,6 +87,7 @@ namespace WpfBootstrap.ViewModel
                         new TreeViewModel { Header = "PlaceControl"},
                         new TreeViewModel { Header = "Drawer"},
                         new TreeViewModel { Header = "Card"},
+                        new TreeViewModel { Header = "Badge"},
                     }
                 },
                 new TreeViewModel
