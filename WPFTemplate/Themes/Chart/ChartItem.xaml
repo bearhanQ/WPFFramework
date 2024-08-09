@@ -52,7 +52,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Ellipse x:Name="ellipse1" Width="15" Height="15" Fill="{TemplateBinding Background}" Panel.ZIndex="1" 
+                            <Ellipse x:Name="ellipse1" Width="10" Height="10" Fill="{TemplateBinding Background}" Panel.ZIndex="1" 
                                      VerticalAlignment="Bottom" Margin="0,0,0,-5" Visibility="Hidden" IsHitTestVisible="False"/>
                             <Rectangle x:Name="PART_Rectangle" VerticalAlignment="Bottom" Visibility="Hidden" Grid.Row="1" IsHitTestVisible="False"
                                        Height="{Binding RelativeSource={RelativeSource AncestorType=local:ChartItem}, Path=Value}">
@@ -74,16 +74,19 @@
                             <local:PlaceControl x:Name="pc1" BorderBrush="#FF737373" PlaceMent="Top" PlaceMentTarget="{Binding ElementName=ellipse1}"
                                                 Background="{StaticResource BarItem.Default.Background}" IsHitTestVisible="False">
                                 <Grid Width="100" Height="30">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="2"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Background="#FF009AFF"/>
+                                    <ContentPresenter x:Name="PlaceContent" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TbContent" Text="{Binding RelativeSource={RelativeSource AncestorType=local:ChartItem}, Path=Value}" 
-                                               VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
+                                               VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" Grid.Row="2"/>
                                 </Grid>
                             </local:PlaceControl>
                         </Grid>
-                        <ContentPresenter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5">
-                            <ContentPresenter.LayoutTransform>
-                                <RotateTransform Angle="0"/>
-                            </ContentPresenter.LayoutTransform>
-                        </ContentPresenter>
+                        <ContentPresenter x:Name="BottomContent" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" SourceName="grid1" Value="True">
@@ -91,6 +94,10 @@
                             <Setter TargetName="rectangle1" Property="Visibility" Value="Visible"/>
                             <Setter TargetName="pc1" Property="IsOpen" Value="True"/>
                         </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=IsBottomContentVisible}" Value="false">
+                            <Setter Property="Visibility" Value="Visible" TargetName="PlaceContent"/>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="BottomContent"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

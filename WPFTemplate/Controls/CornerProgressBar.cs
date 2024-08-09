@@ -85,15 +85,15 @@ namespace WPFTemplate
                                 var border = partTrackBorder as Border;
                                 border.Clip = new RectangleGeometry
                                 {
-                                    Rect = new Rect { X = 0, Y = 0, Width = border.Width / 2, Height = border.Height },
+                                    Rect = new Rect { X = 0, Y = 0, Width = progressBar.ActualWidth / 2, Height = progressBar.ActualHeight },
                                     Transform = new TranslateTransform { X = 0 }
                                 };
                                 Storyboard storyboard = new Storyboard();
                                 storyboard.RepeatBehavior = RepeatBehavior.Forever;
                                 DoubleAnimation animation = new DoubleAnimation
                                 {
-                                    From = -border.Width,
-                                    To = border.Width,
+                                    From = -progressBar.ActualWidth,
+                                    To = progressBar.ActualWidth,
                                     Duration = TimeSpan.FromSeconds(2)
                                 };
                                 Storyboard.SetTarget(animation, border);
@@ -171,6 +171,7 @@ namespace WPFTemplate
         {
             base.OnRenderSizeChanged(sizeInfo);
             SetPartTrackValue();
+            OnIsIndeterminateChanged(this, new DependencyPropertyChangedEventArgs());
         }
         public override void OnApplyTemplate()
         {

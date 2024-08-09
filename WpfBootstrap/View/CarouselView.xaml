@@ -12,7 +12,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <cc:Carousel Width="400" Height="270" IsAutoSwitch="{Binding ElementName=cbIsAutoSwitch, Path=IsChecked}" Interval="0,0,2">
+            <cc:Carousel Width="400" Height="270" IsAutoSwitch="{Binding ElementName=cbIsAutoSwitch, Path=IsChecked}" Interval="8000">
                 <Image Source="/Resources/ice.jpg" Stretch="Fill"/>
                 <Image Source="/Resources/island.jpg" Stretch="Fill"/>
                 <Image Source="/Resources/Mountain.jpg" Stretch="Fill"/>

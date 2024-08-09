@@ -85,7 +85,7 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-                        <Path x:Name="PathMain" Stroke="#FF206BC4" StrokeThickness="2" Grid.Column="2" Panel.ZIndex="1" SnapsToDevicePixels="True">
+                        <Path x:Name="PathMain" Stroke="{TemplateBinding Stroke}" StrokeThickness="2" Grid.Column="2" Panel.ZIndex="1" SnapsToDevicePixels="True">
                             <Path.Margin>
                                 <MultiBinding Converter="{StaticResource LineChartPathMarginConverter}">
                                     <MultiBinding.Bindings>
@@ -98,7 +98,7 @@
                             <Path.Data>
                                 <PathGeometry>
                                     <PathFigure Segments="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Segments}"
-                                                StartPoint="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Segments[0].Point}"/>
+                                                StartPoint="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Segments,Converter={StaticResource ChartPathStartPointConverter}}"/>
                                 </PathGeometry>
                             </Path.Data>
                             <Path.LayoutTransform>

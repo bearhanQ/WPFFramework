@@ -30,7 +30,9 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty ShowBottomPageProperty;
 
-        private bool PauseOnMouseEnter = true;
+        public static readonly DependencyProperty PauseOnMouseOverProperty;
+
+        private Grid gridMain;
 
         internal FrameworkElement ItemsPresenter => GetTemplateChild("itemsPresenter") as FrameworkElement;
 
@@ -59,6 +61,12 @@ namespace WPFTemplate
             set { SetValue(ShowBottomPageProperty, value); }
         }
 
+        public bool PauseOnMouseOver
+        {
+            get { return (bool)GetValue(PauseOnMouseOverProperty); }
+            set { SetValue(PauseOnMouseOverProperty, value); }
+        }
+
         static Carousel()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Carousel), new FrameworkPropertyMetadata(typeof(Carousel)));
@@ -70,27 +78,18 @@ namespace WPFTemplate
                     new PropertyChangedCallback(OnIsAutoSwitchChanged), null, false, UpdateSourceTrigger.PropertyChanged));
             IntervalProperty = DependencyProperty.Register("Interval", typeof(TimeSpan), typeof(Carousel), new PropertyMetadata(new TimeSpan(0, 0, 1)));
             ShowBottomPageProperty = DependencyProperty.Register("ShowBottomPage", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
-
-            EventManager.RegisterClassHandler(typeof(Carousel), UIElement.MouseEnterEvent, new RoutedEventHandler(MouseEnterHandler));
-            EventManager.RegisterClassHandler(typeof(Carousel), UIElement.MouseLeaveEvent, new RoutedEventHandler(MouseLeaveHandler));
+            PauseOnMouseOverProperty = DependencyProperty.Register("PauseOnMouseOver", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
         }
 
-        private static void MouseEnterHandler(object sender, RoutedEventArgs args)
+        public Carousel()
         {
-            var carousel = sender as Carousel;
-            if (carousel != null)
-            {
-                carousel.PauseOnMouseEnter = false;
-            }
+            this.Loaded += Carousel_Loaded;
         }
 
-        private static void MouseLeaveHandler(object sender, RoutedEventArgs args)
+        private void Carousel_Loaded(object sender, RoutedEventArgs e)
         {
-            var carousel = sender as Carousel;
-            if (carousel != null)
-            {
-                carousel.PauseOnMouseEnter = true;
-            }
+            CreateClip();
+            OffSetChildItemsSize();
         }
 
         private void OffSetChildItemsSize()
@@ -102,8 +101,8 @@ namespace WPFTemplate
                     var c = item as FrameworkElement;
                     if (c != null)
                     {
-                        c.Width = this.Width;
-                        c.Height = this.Height;
+                        c.Width = this.ActualWidth;
+                        c.Height = this.ActualHeight;
                     }
                 }
             }
@@ -140,13 +139,13 @@ namespace WPFTemplate
                 animation.KeyFrames.Add(new EasingThicknessKeyFrame
                 {
                     KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0)),
-                    Value = new Thickness(0 - (this.Width * oldIndex), 0, 0, 0)
+                    Value = new Thickness(0 - (this.ActualWidth * oldIndex), 0, 0, 0)
                 });
 
                 animation.KeyFrames.Add(new EasingThicknessKeyFrame
                 {
-                    KeyTime = KeyTime.FromTimeSpan(Interval),
-                    Value = new Thickness(0 - (this.Width * newIndex), 0, 0, 0)
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(1000)),
+                    Value = new Thickness(0 - (this.ActualWidth * newIndex), 0, 0, 0)
                 });
 
                 Storyboard.SetTarget(animation, ItemsPresenter);
@@ -162,21 +161,22 @@ namespace WPFTemplate
             {
                 while (IsAutoSwitch)
                 {
-                    if (PauseOnMouseEnter)
+                    if (!PauseOnMouseOver)
                     {
-                        if (this.SelectedIndex == this.Items.Count - 1)
-                        {
-                            this.SelectedIndex = 0;
-                        }
-                        else
-                        {
-                            this.SelectedIndex++;
-                        }
+                        AddIndex();
                         await Task.Delay(Interval);
                     }
                     else
                     {
-                        await Task.Delay(500);
+                        if (!this.IsMouseOver)
+                        {
+                            AddIndex();
+                            await Task.Delay(Interval);
+                        }
+                        else
+                        {
+                            await Task.Delay(500);
+                        }
                     }
                 }
             }));
@@ -185,20 +185,46 @@ namespace WPFTemplate
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            var gridMain = this.Template.FindName("gridMain", this) as Grid;
-            gridMain.Clip = new RectangleGeometry
-            {
-                Rect = new Rect
-                {
-                    X = 0,
-                    Y = 0,
-                    Width = this.Width,
-                    Height = this.Height,
-                }
-            };
+            gridMain = this.Template.FindName("gridMain", this) as Grid;
+        }
 
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            CreateClip();
             OffSetChildItemsSize();
-            RepeatAnimation();
+        }
+
+        private void CreateClip()
+        {
+            if (gridMain != null)
+            {
+                gridMain.Clip = new RectangleGeometry
+                {
+                    Rect = new Rect
+                    {
+                        X = 0,
+                        Y = 0,
+                        Width = this.ActualWidth,
+                        Height = this.ActualHeight,
+                    }
+                };
+            }
+        }
+
+        private void AddIndex()
+        {
+            if (this.SelectedIndex == this.Items.Count - 1)
+            {
+                var item = Items[0];
+                this.Items.Remove(item);
+                this.Items.Insert(this.Items.Count, item);
+                this.SelectedIndex--;
+            }
+
+            if (gridMain != null)
+            {
+                this.SelectedIndex++;
+            }
         }
     }
 }

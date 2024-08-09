@@ -16,28 +16,22 @@
             <s:String>200</s:String>
             <s:String>100</s:String>
         </x:Array>
+
     </Window.Resources>
-    <Grid Background="LightBlue">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        <local:CurveChart x:Name="lc1" DisplayMemberPath="Name" ValueMemberPath="Age"/>
-        <Path Stroke="Black" StrokeThickness="2" Grid.Row="1">
-            <Path.LayoutTransform>
-                <ScaleTransform ScaleY="-1"/>
-            </Path.LayoutTransform>
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure StartPoint="0,216">
-                        <BezierSegment Point1="0,216" Point2="116.12,206.13" Point3="232.24,206.13"/>
-                        <BezierSegment Point1="348.36,206.13" Point2="464.48,49.34" Point3="580.6,49.34"/>
-                        <BezierSegment Point1="696.72,49.34" Point2="812.84,121.71" Point3="928.96,121.71"/>
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
-        <Button Content="add" Grid.Row="2" Background="Red" Click="Button_Click"/>
+    <Grid>
+        <Grid Width="100" Height="100">
+            <Border BorderBrush="Gray" Background="Gray" BorderThickness="1">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Gray" BlurRadius="5" Opacity="1" RenderingBias="Performance"/>
+                </Border.Effect>
+            </Border>
+            <Border Background="White"/>
+        </Grid>
+        <local:Card Width="100" Height="100" HorizontalAlignment="Right" CardType="Classic" CornerRadius="10">
+            <Grid>
+                <TextBlock Text="123" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </local:Card>
     </Grid>
+
 </Window>

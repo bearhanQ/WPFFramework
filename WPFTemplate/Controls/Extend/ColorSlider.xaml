@@ -7,22 +7,30 @@
              mc:Ignorable="d" d:DesignWidth="100">
     <UserControl.Template>
         <ControlTemplate TargetType="{x:Type UserControl}">
-            <local:CornerSlider Maximum="8" Minimum="0" Width="{TemplateBinding Width}" SmallChange="0.1" LargeChange="0.1"
-                                ValueChanged="CornerSlider_ValueChanged">
-                <local:CornerSlider.TrackBackground>
-                    <LinearGradientBrush>
-                        <GradientStop Color="Red"/>
-                        <GradientStop Color="Orange" Offset="0.125"/>
-                        <GradientStop Color="Yellow" Offset="0.25"/>
-                        <GradientStop Color="Lime" Offset="0.375"/>
-                        <GradientStop Color="Cyan" Offset="0.5"/>
-                        <GradientStop Color="Blue" Offset="0.625"/>
-                        <GradientStop Color="Magenta" Offset="0.75"/>
-                        <GradientStop Color="White" Offset="0.875"/>
-                        <GradientStop Color="Black" Offset="1"/>
-                    </LinearGradientBrush>
-                </local:CornerSlider.TrackBackground>
-            </local:CornerSlider>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <local:CornerTextBox HorizontalAlignment="Right" WaterText="" BorderBrush="Transparent" Background="Transparent"
+                                     Text="{Binding RelativeSource={RelativeSource AncestorType=local:ColorSlider}, Path=SelectedColor}"/>
+                <local:CornerSlider Maximum="8" Minimum="0" Width="{TemplateBinding Width}" SmallChange="0.1" LargeChange="0.1"
+                                    ValueChanged="CornerSlider_ValueChanged" Grid.Row="1" VerticalAlignment="Center">
+                    <local:CornerSlider.TrackBackground>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Red"/>
+                            <GradientStop Color="Orange" Offset="0.125"/>
+                            <GradientStop Color="Yellow" Offset="0.25"/>
+                            <GradientStop Color="Lime" Offset="0.375"/>
+                            <GradientStop Color="Cyan" Offset="0.5"/>
+                            <GradientStop Color="Blue" Offset="0.625"/>
+                            <GradientStop Color="Magenta" Offset="0.75"/>
+                            <GradientStop Color="White" Offset="0.875"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </local:CornerSlider.TrackBackground>
+                </local:CornerSlider>
+            </Grid>
         </ControlTemplate>
     </UserControl.Template>
 </UserControl>

@@ -15,38 +15,54 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 using Microsoft.Expression.Shapes;
+using System.Windows.Media;
+using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace WPFTemplate
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public ObservableCollection<People> list;
+        private ObservableCollection<People> _list;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<People> list
+        {
+            get { return _list; }
+            set
+            {
+                _list = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("list"));
+                }
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
             list = new ObservableCollection<People>();
-            Random rd = new Random();
-            for(int i = 0; i < 5; i++)
+            list.Add(new People
             {
-                list.Add(new People
-                {
-                    Name = "2" + i.ToString(),
-                    Age = rd.Next(1, 200)
-                });
-            }
-            lc1.ItemsSource = list;
+                Name = "张三"
+            });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            list.Add(new People
+            ObservableCollection<People> peoples = new ObservableCollection<People>
             {
-                Name = "30",
-                Age = 50
-            });
+                new People
+                {
+                    Name = "李四"
+                }
+            };
+            list = peoples;
         }
     }
 

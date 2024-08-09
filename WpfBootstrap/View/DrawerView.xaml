@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
         <Style x:Key="style1" TargetType="cc:DrawerItem" BasedOn="{StaticResource {x:Type cc:DrawerItem}}">
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="40"/>
@@ -20,10 +23,10 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <TextBlock Text="BorderBrush:" VerticalAlignment="Center"/>
             <cc:ColorSlider x:Name="colorSlider1" VerticalAlignment="Center" Grid.Column="1" Width="100"/>
@@ -31,11 +34,11 @@
             <cc:ColorSlider x:Name="colorSlider2" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
             <TextBlock Text="BorderThickness:"  Grid.Column="0" Grid.Row="2"/>
             <cc:CornerSlider x:Name="cornerSlider3" Maximum="5" Minimum="1"  
-                             SmallChange="1" LargeChange="1" VerticalAlignment="Center"
-                             Grid.Column="1" Grid.Row="2"/>
+                             SmallChange="1" LargeChange="1"
+                             Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom"/>
             <TextBlock Text="PresentIndex:"  Grid.Column="0" Grid.Row="3"/>
             <cc:CornerSlider x:Name="cornerSlider4" Maximum="8" Minimum="0" IsSnapToTickEnabled="True"
-                             SmallChange="1" LargeChange="1" VerticalAlignment="Center"
+                             SmallChange="1" LargeChange="1" VerticalAlignment="Bottom"
                              Grid.Column="1" Grid.Row="3"/>
         </Grid>
         <cc:Drawer HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Vertical"

@@ -228,14 +228,10 @@ namespace WPFTemplate
             string strValue = value as string;
             if (strValue != null)
             {
-                string[] parts = strValue.Split(',');
-                if (parts.Length == 3)
+                double ms = 0;
+                if(double.TryParse(strValue,out ms))
                 {
-                    int hours = 0, minutes = 0, seconds = 0;
-                    int.TryParse(parts[0], out hours);
-                    int.TryParse(parts[1], out minutes);
-                    int.TryParse(parts[2], out seconds);
-                    return new TimeSpan(hours, minutes, seconds);
+                    return TimeSpan.FromMilliseconds(ms);
                 }
             }
             return base.ConvertFrom(context, culture, value);
@@ -556,6 +552,34 @@ namespace WPFTemplate
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class ChartPathStartPointConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var pc = value as PathSegmentCollection;
+            if (pc != null && pc.Count > 1)
+            {
+                var item = pc[0];
+                if (item.GetType() == typeof(LineSegment))
+                {
+                    var ls = item as LineSegment;
+                    return ls.Point;
+                }
+                if (item.GetType() == typeof(BezierSegment))
+                {
+                    var bs = item as BezierSegment;
+                    return bs.Point1;
+                }
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

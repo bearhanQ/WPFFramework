@@ -20,6 +20,10 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty OpenAnimationProperty;
 
+        public static readonly DependencyProperty IsBottomContentVisibleProperty;
+
+        public static readonly DependencyProperty StrokeProperty;
+
         internal static readonly DependencyProperty VerticalNumbersProperty;
 
         internal static readonly DependencyProperty RatioProperty;
@@ -62,6 +66,16 @@ namespace WPFTemplate
             get { return (PathSegmentCollection)GetValue(SegmentsProperty); }
             set { SetValue(SegmentsProperty, value); }
         }
+        public bool IsBottomContentVisible
+        {
+            get { return (bool)GetValue(IsBottomContentVisibleProperty); }
+            set { SetValue(IsBottomContentVisibleProperty, value); }
+        }
+        public Brush Stroke
+        {
+            get { return (Brush)GetValue(StrokeProperty); }
+            set { SetValue(StrokeProperty, value); }
+        }
 
         static Chart()
         {
@@ -74,7 +88,10 @@ namespace WPFTemplate
             RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(Chart), new PropertyMetadata((double)1));
             OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Chart), new PropertyMetadata(true));
             PathSegmentCollection pathSegments = new PathSegmentCollection();
-            SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(LineChart));
+            SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(Chart));
+            IsBottomContentVisibleProperty = DependencyProperty.Register("IsBottomContentVisible", typeof(bool), typeof(Chart), new PropertyMetadata(true));
+            StrokeProperty = DependencyProperty.Register("Stroke", typeof(Brush), typeof(Chart), 
+                new FrameworkPropertyMetadata((new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF206BC4")))));
         }
 
         public Chart()

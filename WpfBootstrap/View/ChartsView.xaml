@@ -10,7 +10,7 @@
              xmlns:p="clr-namespace:WpfBootstrap.Common"
              xmlns:vws="clr-namespace:WpfBootstrap.View"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="400">
+             d:DesignHeight="600" d:DesignWidth="400">
     <UserControl.Resources>
         <x:Array x:Key="revenueInfo" Type="{x:Type m:Revenue}">
             <m:Revenue Day="周一" Value="1000000"/>
@@ -43,18 +43,26 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <cc:Bar ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day" Style="{StaticResource barStyle1}"/>
-        <cc:Donut ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day"
+    <cc:CornerScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="300"/>
+            </Grid.RowDefinitions>
+            <cc:Bar ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day" Style="{StaticResource barStyle1}"/>
+            <cc:Donut ItemsSource="{StaticResource revenueInfo}" ValueMemberPath="Value" DisplayMemberPath="Day"
                   Grid.Column="1" ArcThickness="60" Orientation="Vertical"/>
-        <cc:LineChart Grid.Row="1" ItemsSource="{StaticResource revenueInfo}" DisplayMemberPath="Day" ValueMemberPath="Value" OpenAnimation="False"/>
-    </Grid>
+            <cc:LineChart Grid.Row="1" ItemsSource="{StaticResource revenueInfo}" DisplayMemberPath="Day" ValueMemberPath="Value" OpenAnimation="False"/>
+            <cc:CurveChart Grid.Row="1" Grid.Column="1" ItemsSource="{StaticResource revenueInfo}" 
+                       DisplayMemberPath="Day" ValueMemberPath="Value" OpenAnimation="False"
+                       Stroke="Red"/>
+            <cc:StepChart Grid.Row="2" ItemsSource="{StaticResource revenueInfo}" Stroke="#FF0CFF00"
+                      DisplayMemberPath="Day" ValueMemberPath="Value" OpenAnimation="False"/>
+        </Grid>
+    </cc:CornerScrollViewer>
 </UserControl>

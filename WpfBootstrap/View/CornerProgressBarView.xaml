@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfBootstrap.View"
         xmlns:cc="clr-namespace:WPFTemplate;assembly=WPFTemplate"
-        mc:Ignorable="d">
+        mc:Ignorable="d" Background="White">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -13,6 +18,10 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="Auto"/>
@@ -28,6 +37,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <cc:CornerProgressBar Grid.ColumnSpan="2" Minimum="0" Maximum="100"
+                                  BorderBrush="{Binding ElementName=borderBrushSlider, Path=SelectedColor}"
+                                  Background="{Binding ElementName=backgroundSlider, Path=SelectedColor}"
                                   Foreground="{Binding ElementName=colorSlider1, Path=SelectedColor}"
                                   CornerRadius="{Binding ElementName=cornerRadiusSlider1, Path=Value}"
                                   ShowPercentage="{Binding ElementName=cbShowPercentage, Path=IsChecked}"
@@ -49,10 +60,10 @@
             </cc:CornerProgressBar>
             <TextBlock Text="Foreground:" Grid.Row="2"/>
             <cc:ColorSlider x:Name="colorSlider1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
-            <TextBlock Text="CornerRadius:" Grid.Row="4"/>
-            <cc:CornerSlider x:Name="cornerRadiusSlider1" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="10"/>
-            <TextBlock Text="ShowPercentage:" Grid.Row="6"/>
-            <cc:CornerCheckBox x:Name="cbShowPercentage" Grid.Row="6" Grid.Column="1" CheckBoxType="Switch"/>
+            <TextBlock Text="Background" Grid.Row="4"/>
+            <cc:ColorSlider x:Name="backgroundSlider" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBlock Text="BorderBrush" Grid.Row="6"/>
+            <cc:ColorSlider x:Name="borderBrushSlider" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
             <TextBlock Text="IsIndeterminate:" Grid.Row="8"/>
             <cc:CornerCheckBox x:Name="cbIsIndeterminate" Grid.Row="8" Grid.Column="1" CheckBoxType="Switch"/>
             <TextBlock Text="Type:" Grid.Row="10"/>
@@ -61,7 +72,12 @@
                 <ComboBoxItem Content="Cycle"/>
             </cc:CornerCombobox>
             <TextBlock Text="value:" Grid.Row="12"/>
-            <cc:CornerSlider x:Name="valueSlider1" Grid.Row="12" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="100" SmallChange="1"/>
+            <cc:CornerSlider x:Name="valueSlider1" Grid.Row="12" Grid.Column="1" 
+                             VerticalAlignment="Center" Minimum="0" Maximum="100" SmallChange="1"/>
+            <TextBlock Text="CornerRadius:" Grid.Row="14"/>
+            <cc:CornerSlider x:Name="cornerRadiusSlider1" Grid.Row="14" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="10"/>
+            <TextBlock Text="ShowPercentage:" Grid.Row="16"/>
+            <cc:CornerCheckBox x:Name="cbShowPercentage" Grid.Row="16" Grid.Column="1" CheckBoxType="Switch"/>
         </Grid>
     </Grid>
 </UserControl>

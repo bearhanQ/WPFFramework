@@ -60,7 +60,7 @@
         <Path Stroke="#FF206BC4" StrokeThickness="3">
             <Path.Data>
                 <PathGeometry>
-                    <PathFigure StartPoint="40,250">
+                    <PathFigure StartPoint="40,220">
                         <LineSegment Point="40,220"/>
                         <LineSegment Point="80,220"/>
                         <LineSegment Point="80,190"/>
