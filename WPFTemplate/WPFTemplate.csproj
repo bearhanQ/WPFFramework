@@ -85,6 +85,7 @@
     <Compile Include="Controls\CornerSlider.cs" />
     <Compile Include="Controls\CornerTabItem.cs" />
     <Compile Include="Controls\CornerToolTip.cs" />
+    <Compile Include="Controls\Extend\Badge.cs" />
     <Compile Include="Controls\Extend\Card.cs" />
     <Compile Include="Controls\Extend\Carousel.cs" />
     <Compile Include="Controls\CornerPasswordBox.xaml.cs">
