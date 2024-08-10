@@ -28,7 +28,7 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty IntervalProperty;
 
-        public static readonly DependencyProperty ShowBottomPageProperty;
+        public static readonly DependencyProperty ShowPageButtonProperty;
 
         public static readonly DependencyProperty PauseOnMouseOverProperty;
 
@@ -55,10 +55,10 @@ namespace WPFTemplate
             set { SetValue(IntervalProperty, value); }
         }
 
-        public bool ShowBottomPage
+        public bool ShowPageButton
         {
-            get { return (bool)GetValue(ShowBottomPageProperty); }
-            set { SetValue(ShowBottomPageProperty, value); }
+            get { return (bool)GetValue(ShowPageButtonProperty); }
+            set { SetValue(ShowPageButtonProperty, value); }
         }
 
         public bool PauseOnMouseOver
@@ -77,8 +77,28 @@ namespace WPFTemplate
                 new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     new PropertyChangedCallback(OnIsAutoSwitchChanged), null, false, UpdateSourceTrigger.PropertyChanged));
             IntervalProperty = DependencyProperty.Register("Interval", typeof(TimeSpan), typeof(Carousel), new PropertyMetadata(new TimeSpan(0, 0, 1)));
-            ShowBottomPageProperty = DependencyProperty.Register("ShowBottomPage", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
+            ShowPageButtonProperty = DependencyProperty.Register("ShowPageButton", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
             PauseOnMouseOverProperty = DependencyProperty.Register("PauseOnMouseOver", typeof(bool), typeof(Carousel), new PropertyMetadata(true));
+
+            EventManager.RegisterClassHandler(typeof(Carousel), Button.ClickEvent, new RoutedEventHandler(OnClickEventHandler));
+        }
+
+        private static void OnClickEventHandler(object sender, RoutedEventArgs e)
+        {
+            var button = e.OriginalSource as Button;
+            var carousel = sender as Carousel;
+            if (button != null && carousel != null)
+            {
+                if (button.Name == "btnPrevious")
+                {
+                    carousel.SubIndex();
+                }
+
+                if (button.Name == "btnNext")
+                {
+                    carousel.AddIndex();
+                }
+            }
         }
 
         public Carousel()
@@ -89,10 +109,10 @@ namespace WPFTemplate
         private void Carousel_Loaded(object sender, RoutedEventArgs e)
         {
             CreateClip();
-            OffSetChildItemsSize();
+            ResizeChildItems();
         }
 
-        private void OffSetChildItemsSize()
+        private void ResizeChildItems()
         {
             if (this.HasItems)
             {
@@ -191,7 +211,7 @@ namespace WPFTemplate
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             CreateClip();
-            OffSetChildItemsSize();
+            ResizeChildItems();
         }
 
         private void CreateClip()
@@ -224,6 +244,22 @@ namespace WPFTemplate
             if (gridMain != null)
             {
                 this.SelectedIndex++;
+            }
+        }
+
+        private void SubIndex()
+        {
+            if (this.SelectedIndex == 0)
+            {
+                var item = Items[Items.Count - 1];
+                this.Items.Remove(item);
+                this.Items.Insert(0, item);
+                this.SelectedIndex++;
+            }
+
+            if (gridMain != null)
+            {
+                this.SelectedIndex--;
             }
         }
     }

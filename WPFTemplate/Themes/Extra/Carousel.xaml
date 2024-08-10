@@ -13,8 +13,15 @@
                 <ControlTemplate TargetType="{x:Type local:Carousel}">
                     <Grid x:Name="gridMain" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Panel.ZIndex="1"/>
-                        <ItemsPresenter x:Name="itemsPresenter" Height="{TemplateBinding Height}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Carousel},Converter={StaticResource CarouselItemsPresenterWidthConverter}}"/>
+                        <ItemsPresenter x:Name="itemsPresenter" Height="{TemplateBinding Height}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <local:CornerButton Width="50" Height="50" CornerRadius="25" Foreground="#FFBEBEBE" LinkShowUnderLine="False"
+                                            Visibility="{Binding RelativeSource={RelativeSource AncestorType=local:Carousel}, Path=ShowPageButton, Converter={StaticResource bool2VisibilityConverter}}"
+                                            HorizontalAlignment="Left" Margin="10,0,0,0" MouseOverForeground="White"
+                                            ButtonType="Link" Icon="&#xe617;" FontSize="40" x:Name="btnPrevious"/>
+                        <local:CornerButton Width="50" Height="50" CornerRadius="25" Foreground="#FFBEBEBE" LinkShowUnderLine="False"
+                                            Visibility="{Binding RelativeSource={RelativeSource AncestorType=local:Carousel}, Path=ShowPageButton, Converter={StaticResource bool2VisibilityConverter}}"
+                                            HorizontalAlignment="Right" Margin="0,0,10,0" MouseOverForeground="White"
+                                            ButtonType="Link" Icon="&#xe616;" FontSize="40" x:Name="btnNext"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

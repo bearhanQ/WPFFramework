@@ -196,26 +196,6 @@ namespace WPFTemplate
         }
     }
 
-    public class CarouselItemsPresenterWidthConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var carousel = value as Carousel;
-            if (carousel != null)
-            {
-                var itemscount = carousel.Items.Count;
-                var width = carousel.Width;
-                return itemscount * width;
-            }
-            return 0;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class TimeSpanConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)

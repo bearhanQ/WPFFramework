@@ -4,7 +4,6 @@
     
     <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
 
-    <local:CarouselItemsPresenterWidthConverter x:Key="CarouselItemsPresenterWidthConverter"/>
     <local:ComboBoxItemToCommandParameter x:Key="ComboBoxItemToCommandParameter"/>
     <local:ProgressBarValueToPercentage x:Key="ProgressBarValueToPercentage"/>
     <local:NormalTabControlCornerRadiusConverter x:Key="NormalTabControlCornerRadiusConverter"/>
