@@ -34,6 +34,10 @@ namespace WPFTemplate
 
         private Grid gridMain;
 
+        private bool isAddIndex;
+
+        private bool isSubIndex;
+
         internal FrameworkElement ItemsPresenter => GetTemplateChild("itemsPresenter") as FrameworkElement;
 
         public int SelectedIndex
@@ -144,7 +148,15 @@ namespace WPFTemplate
             var carousel = sender as Carousel;
             if (carousel != null)
             {
-                carousel.BeginAnimation(oldValue, newValue);
+                if (carousel.isAddIndex && newValue > oldValue)
+                {
+                    carousel.BeginAnimation(oldValue, newValue);
+                }
+
+                if (carousel.isSubIndex && newValue < oldValue)
+                {
+                    carousel.BeginAnimation(oldValue, newValue);
+                }
             }
         }
 
@@ -233,6 +245,8 @@ namespace WPFTemplate
 
         private void AddIndex()
         {
+            isAddIndex = true;
+
             if (this.SelectedIndex == this.Items.Count - 1)
             {
                 var item = Items[0];
@@ -245,10 +259,14 @@ namespace WPFTemplate
             {
                 this.SelectedIndex++;
             }
+
+            isAddIndex = false;
         }
 
         private void SubIndex()
         {
+            isSubIndex = true;
+
             if (this.SelectedIndex == 0)
             {
                 var item = Items[Items.Count - 1];
@@ -261,6 +279,8 @@ namespace WPFTemplate
             {
                 this.SelectedIndex--;
             }
+
+            isSubIndex = false;
         }
     }
 }
