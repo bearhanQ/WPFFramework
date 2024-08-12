@@ -86,9 +86,9 @@
     <Compile Include="Controls\CornerSlider.cs" />
     <Compile Include="Controls\CornerTabItem.cs" />
     <Compile Include="Controls\CornerToolTip.cs" />
-    <Compile Include="Controls\Extend\Badge.cs" />
-    <Compile Include="Controls\Extend\Card.cs" />
-    <Compile Include="Controls\Extend\Carousel.cs" />
+    <Compile Include="Controls\Extra\Badge.cs" />
+    <Compile Include="Controls\Extra\Card.cs" />
+    <Compile Include="Controls\Extra\Carousel.cs" />
     <Compile Include="Controls\CornerPasswordBox.xaml.cs">
       <DependentUpon>CornerPasswordBox.xaml</DependentUpon>
     </Compile>
@@ -97,20 +97,20 @@
     <Compile Include="Controls\CornerTabControl.cs" />
     <Compile Include="Controls\CornerTextBox.cs" />
     <Compile Include="Controls\CornerTreeView.cs" />
-    <Compile Include="Controls\Extend\ColorSlider.xaml.cs">
+    <Compile Include="Controls\Extra\ColorSlider.xaml.cs">
       <DependentUpon>ColorSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
-    <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
-    <Compile Include="Controls\Extend\CornerPagination.cs" />
-    <Compile Include="Controls\Extend\Drawer.cs" />
-    <Compile Include="Controls\Extend\DrawerItem.cs" />
-    <Compile Include="Controls\Extend\NotifyWindow.xaml.cs">
+    <Compile Include="Controls\Extra\CornerMultiComboBox.cs" />
+    <Compile Include="Controls\Extra\CornerMultiComboBoxItem.cs" />
+    <Compile Include="Controls\Extra\CornerPagination.cs" />
+    <Compile Include="Controls\Extra\Drawer.cs" />
+    <Compile Include="Controls\Extra\DrawerItem.cs" />
+    <Compile Include="Controls\Extra\NotifyWindow.xaml.cs">
       <DependentUpon>NotifyWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Extend\PlaceControl.cs" />
-    <Compile Include="Controls\Extend\CornerCalendar.cs" />
-    <Compile Include="Controls\Extend\CornerDatePicker.cs" />
+    <Compile Include="Controls\Extra\PlaceControl.cs" />
+    <Compile Include="Controls\Extra\CornerCalendar.cs" />
+    <Compile Include="Controls\Extra\CornerDatePicker.cs" />
     <Compile Include="Enums\CardType.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\NotifySourceEnum.cs" />
@@ -132,11 +132,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Extend\ColorSlider.xaml">
+    <Page Include="Controls\Extra\ColorSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Extend\NotifyWindow.xaml">
+    <Page Include="Controls\Extra\NotifyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
