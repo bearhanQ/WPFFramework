@@ -64,13 +64,14 @@ namespace WPFTemplate
         {
             var maximum = System.Convert.ToDouble(values[0]);
             var value = System.Convert.ToDouble(values[1]);
+            var minimum = System.Convert.ToDouble(values[2]);
 
             if (maximum == 0)
             {
                 return "0" + "%";
             }
 
-            double progressValue = value / maximum * 100;
+            double progressValue = (value - minimum) / (maximum - minimum) * 100;
             return (Math.Round(progressValue)).ToString() + "%";
         }
 
