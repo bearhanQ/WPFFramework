@@ -12,7 +12,7 @@
         Loaded="Window_Loaded">
     <Window.Resources>
         <SolidColorBrush x:Key="Warn.BorderBrush" Color="#FFF3FF00"/>
-        <SolidColorBrush x:Key="Tital.Background" Color="#FFBADFE0"/>
+        <SolidColorBrush x:Key="Title.Background" Color="#FF74C4F7"/>
         <DataTemplate x:Key="itemtemplate1" DataType="{x:Type local:NotifyModel}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -128,11 +128,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <local:CornerButton x:Name="BtnClear" Icon="&#xe67e;" HorizontalAlignment="Left" Width="20" ButtonType="Normal" 
-                            PressShowShadow="False" Background="{StaticResource Tital.Background}" BorderThickness="0"
-                            Margin="2,2,0,0" Click="BtnClear_Click"/>
+        <Border Background="Black"/>
+        <local:CornerButton x:Name="BtnClear" Icon="&#xe67e;" HorizontalAlignment="Left" Width="20" ButtonType="OutLine" 
+                            PressShowShadow="False" BorderThickness="0" Background="Red" Foreground="White"
+                            Click="BtnClear_Click"/>
         <local:CornerButton x:Name="BtnClose" Content="X" HorizontalAlignment="Right" Width="20" ButtonType="OutLine" 
-                            PressShowShadow="False" Background="Red" BorderThickness="0"
+                            PressShowShadow="False" Background="Red" BorderThickness="0" Foreground="White"
                             Click="BtnClose_Click"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -141,7 +142,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid>
-                <Border Background="{StaticResource Tital.Background}" Margin="2" Height="20">
+                <Border Background="{StaticResource Title.Background}" Margin="2" Height="20">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="2" ShadowDepth="0" Color="Black"/>
                     </Border.Effect>
@@ -149,7 +150,7 @@
                 <TextBlock Text="Source" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
             </Grid>
             <Grid Grid.Column="1">
-                <Border Background="{StaticResource Tital.Background}" Margin="2" Height="20">
+                <Border Background="{StaticResource Title.Background}" Margin="2" Height="20">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="2" ShadowDepth="0" Color="Black"/>
                     </Border.Effect>
@@ -157,7 +158,7 @@
                 <TextBlock Text="Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
             </Grid>
             <Grid Grid.Column="2">
-                <Border Background="{StaticResource Tital.Background}" Margin="2" Height="20">
+                <Border Background="{StaticResource Title.Background}" Margin="2" Height="20">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="2" ShadowDepth="0" Color="Black"/>
                     </Border.Effect>

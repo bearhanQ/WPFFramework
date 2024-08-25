@@ -23,12 +23,12 @@ namespace WPFTemplate
         static Badge()
         {
             ContentProperty = DependencyProperty.RegisterAttached("Content", typeof(string), typeof(Badge),
-                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(ContentChangedCallBack)));
+                new FrameworkPropertyMetadata(string.Empty, new PropertyChangedCallback(ContentChangedCallBack)));
         }
 
         public Badge(UIElement adornedElement) : base(adornedElement)
         {
-
+            
         }
 
         private static void ContentChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -92,7 +92,7 @@ namespace WPFTemplate
             double renderRadius = 5;
 
             var content = this.AdornedElement.GetValue(Badge.ContentProperty).ToString();
-            FormattedText formattedText = new FormattedText(content, CultureInfo.GetCultureInfo("en-cn"), FlowDirection.LeftToRight, new Typeface("Verdana"), 10, Brushes.White);
+            FormattedText formattedText = new FormattedText(content, CultureInfo.GetCultureInfo("zh-cn"), FlowDirection.LeftToRight, new Typeface("Verdana"), 10, Brushes.White);
             var textWidth = formattedText.Width;
             var textHeight = formattedText.Height;
             var rectangleSizeWidth = textWidth < 15 ? 15 : textWidth;

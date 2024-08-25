@@ -40,6 +40,7 @@
                                         <MultiBinding Converter="{StaticResource ResourceKey=ProgressBarValueToPercentage}">
                                             <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Maximum"/>
                                             <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Value"/>
+                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Minimum"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
@@ -98,6 +99,7 @@
                                         <MultiBinding Converter="{StaticResource ResourceKey=ProgressBarValueToPercentage}">
                                             <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Maximum"/>
                                             <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Value"/>
+                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerProgressBar}" Path="Minimum"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>

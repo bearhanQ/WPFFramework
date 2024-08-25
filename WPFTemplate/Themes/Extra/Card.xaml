@@ -7,9 +7,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Card}">
                     <Grid>
-                        <Border BorderBrush="Gray" Background="Gray" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border BorderBrush="Silver" Background="Silver" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0"/>
+                                <BlurEffect Radius="10"/>
                             </Border.Effect>
                         </Border>
                         <Grid x:Name="gridMain">

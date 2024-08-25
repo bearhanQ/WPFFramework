@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9CE3053E-547F-47F4-A087-0224A3953218}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>WPFTemplate</RootNamespace>
     <AssemblyName>WPFTemplate</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -34,9 +34,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unnoficial.Microsoft.Expression.Drawing.1.0.0\lib\Microsoft.Expression.Drawing.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
@@ -57,10 +61,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Compile Include="Command\CommandCenter.cs" />
     <Compile Include="Common\ComboBoxViewFilterHelper.cs" />
     <Compile Include="Common\LocalLogicalTreeHelper.cs" />
@@ -86,9 +86,9 @@
     <Compile Include="Controls\CornerSlider.cs" />
     <Compile Include="Controls\CornerTabItem.cs" />
     <Compile Include="Controls\CornerToolTip.cs" />
-    <Compile Include="Controls\Extend\Badge.cs" />
-    <Compile Include="Controls\Extend\Card.cs" />
-    <Compile Include="Controls\Extend\Carousel.cs" />
+    <Compile Include="Controls\Extra\Badge.cs" />
+    <Compile Include="Controls\Extra\Card.cs" />
+    <Compile Include="Controls\Extra\Carousel.cs" />
     <Compile Include="Controls\CornerPasswordBox.xaml.cs">
       <DependentUpon>CornerPasswordBox.xaml</DependentUpon>
     </Compile>
@@ -97,20 +97,20 @@
     <Compile Include="Controls\CornerTabControl.cs" />
     <Compile Include="Controls\CornerTextBox.cs" />
     <Compile Include="Controls\CornerTreeView.cs" />
-    <Compile Include="Controls\Extend\ColorSlider.xaml.cs">
+    <Compile Include="Controls\Extra\ColorSlider.xaml.cs">
       <DependentUpon>ColorSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Extend\CornerMultiComboBox.cs" />
-    <Compile Include="Controls\Extend\CornerMultiComboBoxItem.cs" />
-    <Compile Include="Controls\Extend\CornerPagination.cs" />
-    <Compile Include="Controls\Extend\Drawer.cs" />
-    <Compile Include="Controls\Extend\DrawerItem.cs" />
-    <Compile Include="Controls\Extend\NotifyWindow.xaml.cs">
+    <Compile Include="Controls\Extra\CornerMultiComboBox.cs" />
+    <Compile Include="Controls\Extra\CornerMultiComboBoxItem.cs" />
+    <Compile Include="Controls\Extra\CornerPagination.cs" />
+    <Compile Include="Controls\Extra\Drawer.cs" />
+    <Compile Include="Controls\Extra\DrawerItem.cs" />
+    <Compile Include="Controls\Extra\NotifyWindow.xaml.cs">
       <DependentUpon>NotifyWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Extend\PlaceControl.cs" />
-    <Compile Include="Controls\Extend\CornerCalendar.cs" />
-    <Compile Include="Controls\Extend\CornerDatePicker.cs" />
+    <Compile Include="Controls\Extra\PlaceControl.cs" />
+    <Compile Include="Controls\Extra\CornerCalendar.cs" />
+    <Compile Include="Controls\Extra\CornerDatePicker.cs" />
     <Compile Include="Enums\CardType.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\NotifySourceEnum.cs" />
@@ -132,29 +132,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Extend\ColorSlider.xaml">
+    <Page Include="Controls\Extra\ColorSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Extend\NotifyWindow.xaml">
+    <Page Include="Controls\Extra\NotifyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Common\Converters.cs" />
     <Compile Include="Controls\CornerButton.cs" />
     <Compile Include="Enums\ButtonEnum.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Page Include="Resources\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,7 +306,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Microsoft.Expression.Drawing.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\test.png" />
   </ItemGroup>
