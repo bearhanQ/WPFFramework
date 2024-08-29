@@ -11,7 +11,7 @@
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="MouseHoverHere" Height="30" Width="150">
                 <Button.ToolTip>
-                    <cc:CornerToolTip Content="what can i say" CornerRadius="15"/>
+                    <cc:CornerToolTip Content="what can i say"/>
                 </Button.ToolTip>
             </Button>
         </Grid>
