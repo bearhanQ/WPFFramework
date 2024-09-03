@@ -49,7 +49,8 @@
     <SolidColorBrush x:Key="SliderThumb.Track.Border" Color="#FFD6D6D6"/>
     <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
         <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
-            <Border x:Name="grip" Background="{StaticResource SliderThumb.Static.Background}" BorderBrush="{StaticResource SliderThumb.Static.Border}" SnapsToDevicePixels="True" 
+            <Border x:Name="grip" Background="{StaticResource SliderThumb.Static.Background}" 
+                    BorderBrush="{StaticResource SliderThumb.Static.Border}" SnapsToDevicePixels="True" 
                     BorderThickness="1" UseLayoutRounding="True" VerticalAlignment="Center" CornerRadius="5" Width="10" Height="10"/>
         </Grid>
         <ControlTemplate.Triggers>

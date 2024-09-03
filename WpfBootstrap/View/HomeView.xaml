@@ -69,22 +69,6 @@
                 <x:Type Type="{x:Type vv:Action}"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <Style TargetType="{x:Type DataGridCell}" x:Key="dgcStyle1">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <StackPanel Orientation="Horizontal" x:Name="sp1" Background="White">
-                            <ContentPresenter x:Name="textblock1" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" TargetName="sp1" Value="lightgray"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </UserControl.Resources>
     <cc:CornerScrollViewer VerticalScrollBarVisibility="Auto" Grid.RowSpan="8">
         <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -351,50 +335,77 @@
             <Grid Grid.Column="1" Grid.Row="4">
                 <DataGrid x:Name="dg1" CanUserAddRows="False" ColumnHeaderHeight="30" AutoGenerateColumns="False"
                           HorizontalScrollBarVisibility="Hidden" SelectedItem="{Binding SelectedRowView}"
-                          MinRowHeight="40" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="LightGray">
+                          HeadersVisibility="Column" HorizontalGridLinesBrush="LightGray"
+                          GridLinesVisibility="Horizontal" MinRowHeight="40" VerticalGridLinesBrush="Transparent">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#FF2285FF"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="No." Width="0.5*" IsReadOnly="True">
+                        <DataGridCheckBoxColumn Width="0.5*" IsReadOnly="True">
                             <DataGridCheckBoxColumn.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                <cc:CornerCheckBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                                                   IsChecked="{Binding Check, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <Border x:Name="bd1">
+                                                    <cc:CornerCheckBox HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                       IsChecked="{Binding Check, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter Property="Background" TargetName="bd1" Value="{StaticResource DataGridCell.IsSelected.Background}"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
                             </DataGridCheckBoxColumn.CellStyle>
                         </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="No." Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding No}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="INVOICE SUBJECT" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding INVOICE}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="CLIENT" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding CLIENT}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="VAT NO." Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding VAT}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="CREATED" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding CREATED}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="STATUS" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding STATUS}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="PRICE" Width="*" CellStyle="{StaticResource dgcStyle1}" Binding="{Binding PRICE}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="No." Width="0.6*" Binding="{Binding No}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="INVOICE SUBJECT" Width="1.5*" Binding="{Binding INVOICE}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="CLIENT" Width="*" Binding="{Binding CLIENT}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="VAT NO." Width="*" Binding="{Binding VAT}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="CREATED" Width="*" Binding="{Binding CREATED}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="STATUS" Width="*"  Binding="{Binding STATUS}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="PRICE" Width="*" Binding="{Binding PRICE}" IsReadOnly="True"/>
                         <DataGridComboBoxColumn Header="ACTIONS" Width="*">
+                            <DataGridComboBoxColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </DataGridComboBoxColumn.HeaderStyle>
                             <DataGridComboBoxColumn.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                <cc:CornerCombobox WaterText="Actions" ItemsSource="{Binding Source={StaticResource myEnum}}" VerticalContentAlignment="Center"
-                                                               SelectedIndex="{Binding Path=ACTION,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                <Border x:Name="bd1">
+                                                    <cc:CornerCombobox WaterText="Actions" ItemsSource="{Binding Source={StaticResource myEnum}}" 
+                                                                       VerticalContentAlignment="Center" Margin="5"
+                                                                       SelectedIndex="{Binding Path=ACTION,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter TargetName="bd1" Property="Background" Value="{StaticResource DataGridCell.IsSelected.Background}"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
                             </DataGridComboBoxColumn.CellStyle>
                         </DataGridComboBoxColumn>
-                        <DataGridTemplateColumn Header="Edit" Width="*" IsReadOnly="True">
+                        <DataGridTemplateColumn Width="*" IsReadOnly="True">
                             <DataGridTemplateColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                <Border x:Name="bd" Background="White">
+                                                <Border x:Name="bd">
                                                     <Grid>
                                                         <cc:CornerButton ButtonType="Link" Content="Edit"
                                                                          Width="50" Height="20" HorizontalAlignment="Left"
@@ -407,7 +418,7 @@
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsSelected" Value="True">
-                                                        <Setter TargetName="bd" Property="Background" Value="lightgray"/>
+                                                        <Setter TargetName="bd" Property="Background" Value="{StaticResource DataGridCell.IsSelected.Background}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>

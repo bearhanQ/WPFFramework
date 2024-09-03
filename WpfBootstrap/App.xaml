@@ -9,6 +9,23 @@
         <ResourceDictionary>
             <vm:VmFactory x:Key="Locator" xmlns:vm="clr-namespace:WpfBootstrap" d:IsDataSource="True"/>
             <FontFamily x:Key="FatSheep">pack://application:,,,/WPFTemplate;component/Resources/iconfont.ttf#FatSheep</FontFamily>
+            <SolidColorBrush x:Key="DataGridCell.IsSelected.Background" Color="LightGray"/>
+            <Style TargetType="{x:Type DataGridCell}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                            <StackPanel Orientation="Horizontal" x:Name="sp1" Background="White">
+                                <ContentPresenter x:Name="textblock1" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" TargetName="sp1" Value="{StaticResource DataGridCell.IsSelected.Background}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
