@@ -244,8 +244,13 @@
                                                 <RowDefinition Height="Auto" MinHeight="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=(local:TreeViewItemHelper.HeaderHeight)}"/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
+                                            <Border Grid.ColumnSpan="4" Background="Transparent" Margin="-200,0,-200,0"/>
                                             <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0" Visibility="Hidden"
-                                                    Background="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView}, Path=SelectedBackground}"/>
+                                                    Background="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView}, Path=SelectedBackground}">
+                                                <Border.Effect>
+                                                    <DropShadowEffect BlurRadius="5" ShadowDepth="2"/>
+                                                </Border.Effect>
+                                            </Border>
                                             <ToggleButton x:Name="Expander" Grid.Column="3" ClickMode="Press" Style="{StaticResource NormalExpandCollapseToggleStyle}"
                                                           IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent},Mode=OneWay}"/>
                                             <Border x:Name="Bd" Grid.Column="1" Background="Transparent"
