@@ -22,6 +22,14 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty IconDisplayMemberPathProperty;
 
+        public static readonly DependencyProperty SelectedBackgroundProperty;
+
+        public Brush SelectedBackground
+        {
+            get { return (Brush)GetValue(SelectedBackgroundProperty); }
+            set { SetValue(SelectedBackgroundProperty, value); }
+        }
+
         public TreeViewType TreeViewType
         {
             get { return (TreeViewType)GetValue(TreeViewTypeProperty); }
@@ -41,6 +49,7 @@ namespace WPFTemplate
             TreeViewTypeProperty = DependencyProperty.Register("TreeViewType", typeof(TreeViewType), typeof(CornerTreeView), new PropertyMetadata(TreeViewType.Original));
             IconDisplayMemberPathProperty = DependencyProperty.Register("IconDisplayMemberPath", typeof(string), typeof(CornerTreeView), 
                 new FrameworkPropertyMetadata(string.Empty,FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(IconDisplayMemberPathPropertyChanded)));
+            SelectedBackgroundProperty = DependencyProperty.Register("SelectedBackground", typeof(Brush), typeof(CornerTreeView), new PropertyMetadata(Brushes.Blue));
 
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.CheckedEvent, new RoutedEventHandler(ItemCheckBoxChecked));
             EventManager.RegisterClassHandler(typeof(CornerTreeView), CheckBox.UncheckedEvent, new RoutedEventHandler(ItemCheckBoxUnchecked));

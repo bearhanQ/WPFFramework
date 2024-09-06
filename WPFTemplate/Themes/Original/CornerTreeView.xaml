@@ -225,6 +225,7 @@
             </DataTrigger>
 
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=TreeViewType}" Value="Normal">
+                <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                 <Setter Property="ItemContainerStyle">
                     <Setter.Value>
                         <Style TargetType="{x:Type TreeViewItem}">
@@ -243,16 +244,16 @@
                                                 <RowDefinition Height="Auto" MinHeight="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=(local:TreeViewItemHelper.HeaderHeight)}"/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
-                                            <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0" Background="White"/>
+                                            <Border x:Name="BdSelected" Grid.ColumnSpan="4" Margin="-500,0,-500,0" Visibility="Hidden"
+                                                    Background="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView}, Path=SelectedBackground}"/>
                                             <ToggleButton x:Name="Expander" Grid.Column="3" ClickMode="Press" Style="{StaticResource NormalExpandCollapseToggleStyle}"
                                                           IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent},Mode=OneWay}"/>
-                                            <Border x:Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" 
-                                                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                            <Border x:Name="Bd" Grid.Column="1" Background="Transparent"
                                                     Padding="{Binding RelativeSource={RelativeSource AncestorType=local:CornerTreeView},Path=Padding}"
                                                     SnapsToDevicePixels="true">
                                                 <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                            Orientation="Horizontal">
+                                                            x:Name="sp1" Orientation="Horizontal">
                                                     <TextBlock FontFamily="{StaticResource FatSheep}"
                                                                VerticalAlignment="Center"
                                                                Margin="0,0,5,0"
@@ -273,7 +274,8 @@
                                                 <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
                                             </Trigger>
                                             <Trigger Property="IsSelected" Value="true">
-                                                <Setter Property="Background" TargetName="BdSelected" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                <Setter TargetName="BdSelected" Property="Visibility" Value="Visible"/>
+                                                <Setter TargetName="sp1" Property="Margin" Value="5,0,0,0"/>
                                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
                                             </Trigger>
                                             <MultiTrigger>
