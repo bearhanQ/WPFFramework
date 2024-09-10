@@ -9,21 +9,18 @@
             <EasingDoubleKeyFrame KeyTime="00:00:02" Value="100"/>
         </DoubleAnimationUsingKeyFrames>
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(FrameworkElement.Height)">
-            <EasingDoubleKeyFrame KeyTime="00:00:0.8" Value="20"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:1" Value="40"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:1.8" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:0.75" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1.75" Value="100"/>
             <EasingDoubleKeyFrame KeyTime="00:00:02" Value="80"/>
         </DoubleAnimationUsingKeyFrames>
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border2" Storyboard.TargetProperty="(FrameworkElement.Height)">
-            <EasingDoubleKeyFrame KeyTime="00:00:0.6" Value="20"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:1" Value="60"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:1.6" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:0.5" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1.5" Value="100"/>
             <EasingDoubleKeyFrame KeyTime="00:00:02" Value="60"/>
         </DoubleAnimationUsingKeyFrames>
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border3" Storyboard.TargetProperty="(FrameworkElement.Height)">
-            <EasingDoubleKeyFrame KeyTime="00:00:0.4" Value="20"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:1" Value="80"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:1.4" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:0.25" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1.25" Value="100"/>
             <EasingDoubleKeyFrame KeyTime="00:00:02" Value="40"/>
         </DoubleAnimationUsingKeyFrames>
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border4" Storyboard.TargetProperty="(FrameworkElement.Height)">
