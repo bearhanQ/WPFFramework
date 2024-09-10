@@ -105,6 +105,7 @@
     <Compile Include="Controls\Extra\CornerPagination.cs" />
     <Compile Include="Controls\Extra\Drawer.cs" />
     <Compile Include="Controls\Extra\DrawerItem.cs" />
+    <Compile Include="Controls\Extra\Loading.cs" />
     <Compile Include="Controls\Extra\NotifyWindow.xaml.cs">
       <DependentUpon>NotifyWindow.xaml</DependentUpon>
     </Compile>
@@ -172,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Chart\Donut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Extra\Loading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

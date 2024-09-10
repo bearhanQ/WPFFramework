@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFTemplate">
+
+    <Storyboard x:Key="Storyboard1" RepeatBehavior="Forever">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(FrameworkElement.Height)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:02" Value="100"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(FrameworkElement.Height)">
+            <EasingDoubleKeyFrame KeyTime="00:00:0.8" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1" Value="40"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1.8" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:02" Value="80"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border2" Storyboard.TargetProperty="(FrameworkElement.Height)">
+            <EasingDoubleKeyFrame KeyTime="00:00:0.6" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1" Value="60"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1.6" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:02" Value="60"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border3" Storyboard.TargetProperty="(FrameworkElement.Height)">
+            <EasingDoubleKeyFrame KeyTime="00:00:0.4" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1" Value="80"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:1.4" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:02" Value="40"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border4" Storyboard.TargetProperty="(FrameworkElement.Height)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="20"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="100"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:02" Value="20"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Style TargetType="{x:Type local:Loading}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Loading}">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="border" Width="15" Height="100" Background="#FFF806C8" CornerRadius="7"/>
+                        <Border x:Name="border1" Width="15" Height="80" Background="#FFF2F07F" CornerRadius="7" Grid.Column="2"/>
+                        <Border x:Name="border2" Width="15" Height="60" Background="#FFFF4B4B" CornerRadius="7" Grid.Column="4"/>
+                        <Border x:Name="border3" Width="15" Height="40" Background="#FF7FD0F2" CornerRadius="7" Grid.Column="6"/>
+                        <Border x:Name="border4" Width="15" Height="20" Background="#FF7FF2D3" CornerRadius="7" Grid.Column="8"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
