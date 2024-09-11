@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:WPFTemplate">
+                    xmlns:local="clr-namespace:WPFTemplate"
+                    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing">
 
+    <SolidColorBrush x:Key="LoadingStyle2.Ellipse.Fill" Color="#FFFF5800"/>
+    
     <Storyboard x:Key="Storyboard1" RepeatBehavior="Forever">
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(FrameworkElement.Height)">
             <EasingDoubleKeyFrame KeyTime="00:00:00" Value="100"/>
@@ -29,6 +32,90 @@
             <EasingDoubleKeyFrame KeyTime="00:00:02" Value="20"/>
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
+
+    <Storyboard x:Key="Storyboard2" RepeatBehavior="Forever" AutoReverse="True">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arc" Storyboard.TargetProperty="(ed:Arc.EndAngle)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-300"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:0.5" Value="-271"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arc" Storyboard.TargetProperty="(ed:Arc.StartAngle)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-240"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:0.5" Value="-270"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+    
+    <Storyboard x:Key="Storyboard3" RepeatBehavior="Forever">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-78"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-1"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-78"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <ControlTemplate x:Key="LoadingType2" TargetType="{x:Type local:Loading}">
+        <Grid>
+            <ed:Arc x:Name="arc" Height="100" Width="100" StrokeThickness="50" Panel.ZIndex="1"
+                    StartAngle="-240" EndAngle="-300" Stretch="None" ArcThicknessUnit="Pixel">
+                <ed:Arc.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.3,0.3" RadiusX="0.7" RadiusY="0.7">
+                        <GradientStop Color="#FFFFF00E" Offset="1"/>
+                        <GradientStop Color="White" Offset="0"/>
+                    </RadialGradientBrush>
+                </ed:Arc.Stroke>
+            </ed:Arc>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Margin="200,0,0,0">
+                <StackPanel.Clip>
+                    <RectangleGeometry>
+                        <RectangleGeometry.Rect>
+                            <Rect X="0" Y="0" Width="150" Height="40"/>
+                        </RectangleGeometry.Rect>
+                    </RectangleGeometry>
+                </StackPanel.Clip>
+                <StackPanel x:Name="stackPanel" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
+                </StackPanel>
+                <StackPanel x:Name="stackPanel1" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
+                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Storyboard="{StaticResource Storyboard2}"/>
+                    <BeginStoryboard Storyboard="{StaticResource Storyboard3}"/>
+                </Trigger.EnterActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
     <Style TargetType="{x:Type local:Loading}">
         <Setter Property="Template">
@@ -62,6 +149,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="LoadingType" Value="Type2">
+                <Setter Property="Template" Value="{StaticResource LoadingType2}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
