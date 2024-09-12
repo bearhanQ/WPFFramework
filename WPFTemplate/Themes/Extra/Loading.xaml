@@ -36,11 +36,11 @@
     <Storyboard x:Key="Storyboard2" RepeatBehavior="Forever" AutoReverse="True">
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arc" Storyboard.TargetProperty="(ed:Arc.EndAngle)">
             <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-300"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:0.5" Value="-271"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:0.25" Value="-271"/>
         </DoubleAnimationUsingKeyFrames>
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arc" Storyboard.TargetProperty="(ed:Arc.StartAngle)">
             <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-240"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:0.5" Value="-270"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:0.25" Value="-270"/>
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
     
