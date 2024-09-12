@@ -49,13 +49,6 @@
             <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
             <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-78"/>
         </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-1"/>
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-78"/>
-        </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
     <ControlTemplate x:Key="LoadingType2" TargetType="{x:Type local:Loading}">
@@ -86,24 +79,12 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </StackPanel.RenderTransform>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
-                </StackPanel>
-                <StackPanel x:Name="stackPanel1" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
-                    <StackPanel.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </StackPanel.RenderTransform>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}"/>
-                    <Ellipse Width="20" Height="20" Fill="{StaticResource LoadingStyle2.Ellipse.Fill}" Margin="20,0"/>
+                    <Ellipse Width="20" Height="20" Fill="#FFFF5800"/>
+                    <Ellipse Width="20" Height="20" Fill="#FFFF5800" Margin="20,0"/>
+                    <Ellipse Width="20" Height="20" Fill="#FFFF5800"/>
+                    <Ellipse Width="20" Height="20" Fill="#FFFF5800" Margin="20,0"/>
+                    <Ellipse Width="20" Height="20" Fill="#FFFF5800"/>
+                    <Ellipse Width="20" Height="20" Fill="#FFFF5800" Margin="20,0"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
