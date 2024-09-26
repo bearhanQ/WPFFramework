@@ -139,6 +139,7 @@
             <Trigger Property="Searchable" Value="false">
                 <Setter Property="Visibility" Value="Collapsed" TargetName="searchBd"/>
                 <Setter Property="Grid.Row" Value="0" TargetName="DropDownScrollViewer"/>
+                <Setter Property="Grid.RowSpan" Value="2" TargetName="DropDownScrollViewer"/>
             </Trigger>
             <Trigger SourceName="toggleButton" Property="IsChecked" Value="True">
                 <Setter TargetName="borderOutline" Property="Opacity" Value="0.4"/>
