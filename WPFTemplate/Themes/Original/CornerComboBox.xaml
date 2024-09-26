@@ -54,11 +54,11 @@
                     <Grid>
                         <Border x:Name="templateRoot" Opacity="1" SnapsToDevicePixels="true" Background="Transparent"
                                 BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" 
-                                CornerRadius="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=CornerRadius}">
+                                CornerRadius="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerComboBox}, Path=CornerRadius}">
                         </Border>
                         <Border x:Name="splitBorder" HorizontalAlignment="Right" SnapsToDevicePixels="true" 
                                 Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
-                                CornerRadius="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=CornerRadius}">
+                                CornerRadius="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerComboBox}, Path=CornerRadius}">
                             <Path x:Name="arrow" Data="{StaticResource ComboBoxToggleButton.Arrow.Static.Data}" 
                                   Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                         </Border>
@@ -73,7 +73,7 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type local:CornerCombobox}">
+    <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type local:CornerComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -98,10 +98,10 @@
                                                  FontSize="{TemplateBinding FontSize}">
                                 <!--<i:Interaction.Triggers>
                                     <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=FilterCommand}">
+                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerComboBox}, Path=FilterCommand}">
                                             <i:InvokeCommandAction.CommandParameter>
                                                 <MultiBinding Converter="{StaticResource ComboBoxItemToCommandParameter}">
-                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}" Path="DisplayMemberPath"/>
+                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerComboBox}" Path="DisplayMemberPath"/>
                                                     <Binding ElementName="searchTextBox" Path="Text"/>
                                                 </MultiBinding>
                                             </i:InvokeCommandAction.CommandParameter>
@@ -177,7 +177,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type local:CornerCombobox}">
+    <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type local:CornerComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -196,10 +196,10 @@
                                     <local:CornerTextBox x:Name="searchTextBox" WaterText="Search..." Margin="1">
                                         <!--<i:Interaction.Triggers>
                                             <i:EventTrigger EventName="TextChanged">
-                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}, Path=FilterCommand}">
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CornerComboBox}, Path=FilterCommand}">
                                                     <i:InvokeCommandAction.CommandParameter>
                                                         <MultiBinding Converter="{StaticResource ComboBoxItemToCommandParameter}">
-                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerCombobox}" Path="DisplayMemberPath"/>
+                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:CornerComboBox}" Path="DisplayMemberPath"/>
                                                             <Binding ElementName="searchTextBox" Path="Text"/>
                                                             <Binding ElementName="searchTextBox" Path="Name"/>
                                                         </MultiBinding>
@@ -291,7 +291,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:CornerCombobox}">
+    <Style TargetType="{x:Type local:CornerComboBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border}"/>

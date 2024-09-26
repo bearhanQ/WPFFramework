@@ -47,7 +47,7 @@
                              CornerRadius="{Binding ElementName=cornerSlider1, Path=Value}"/>
             <TextBlock Text="Style:" VerticalAlignment="Center"
                        Grid.Column="0" Grid.Row="2"/>
-            <cc:CornerCombobox x:Name="cbButtonType"  Width="100" 
+            <cc:CornerComboBox x:Name="cbButtonType"  Width="100" 
                                Grid.Column="1" Grid.Row="2"
                                WaterText="ButtonType"
                                SelectedIndex="1"
@@ -62,7 +62,7 @@
                             Grid.Column="1" Grid.Row="6"/>
             <TextBlock Text="Icon:" 
                        Grid.Column="0" Grid.Row="8"/>
-            <cc:CornerCombobox x:Name="cbIcon" Height="20" 
+            <cc:CornerComboBox x:Name="cbIcon" Height="20" 
                                Grid.Column="1" Grid.Row="8"
                                ItemsSource="{Binding Source={StaticResource Locator}, Path=Unicode.Unicodes}"
                                DisplayMemberPath="Name"

@@ -36,10 +36,10 @@
                 </cc:CornerTabItem>
             </cc:CornerTabControl>
             <TextBlock Text="Type:" Grid.Row="2"/>
-            <cc:CornerCombobox x:Name="cbType" Grid.Row="2" Grid.Column="1" WaterText="TabControlType" SelectedIndex="0">
+            <cc:CornerComboBox x:Name="cbType" Grid.Row="2" Grid.Column="1" WaterText="TabControlType" SelectedIndex="0">
                 <ComboBoxItem Content="Normal"/>
                 <ComboBoxItem Content="Underline"/>
-            </cc:CornerCombobox>
+            </cc:CornerComboBox>
             <TextBlock Text="SelectedColor:" Grid.Row="4" VerticalAlignment="Bottom"/>
             <cc:ColorSlider x:Name="selectedColorSlider1" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
             <TextBlock Text="ItemRemovable:" Grid.Row="6"/>

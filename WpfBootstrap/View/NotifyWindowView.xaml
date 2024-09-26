@@ -18,7 +18,7 @@
     <StackPanel>
         <TextBlock Text="NewMessageCount:" Width="150" Margin="20"/>
         <TextBlock x:Name="tbIsRead" Width="150" Margin="0,0,0,20"/>
-        <cc:CornerCombobox x:Name="cbType" ItemsSource="{Binding Source={StaticResource type1}}" WaterText="MessageType"
+        <cc:CornerComboBox x:Name="cbType" ItemsSource="{Binding Source={StaticResource type1}}" WaterText="MessageType"
                            HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" SelectedIndex="0"/>
         <cc:CornerTextBox x:Name="tbMessage" WaterText="Message" Height="20" Margin="20" Width="150"/>
         <cc:CornerButton Content="SendMessage" Width="150" ButtonType="OutLine" Click="CornerButton_Click"/>

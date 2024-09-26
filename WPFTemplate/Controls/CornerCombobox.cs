@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace WPFTemplate
 {
-    public class CornerCombobox : ComboBox
+    public class CornerComboBox : ComboBox
     {
         public static readonly DependencyProperty WaterTextProperty;
 
@@ -65,13 +65,13 @@ namespace WPFTemplate
 
         private CornerTextBox textBox;
 
-        static CornerCombobox()
+        static CornerComboBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerCombobox), new FrameworkPropertyMetadata(typeof(CornerCombobox)));
-            WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerCombobox), new PropertyMetadata("Water"));
-            SearchableProperty = DependencyProperty.Register("Searchable", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(false));
-            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerCombobox));
-            ShowWaterTextProperty = DependencyProperty.Register("ShowWaterText", typeof(bool), typeof(CornerCombobox), new PropertyMetadata(true));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerComboBox), new FrameworkPropertyMetadata(typeof(CornerComboBox)));
+            WaterTextProperty = DependencyProperty.Register("WaterText", typeof(string), typeof(CornerComboBox), new PropertyMetadata("Water"));
+            SearchableProperty = DependencyProperty.Register("Searchable", typeof(bool), typeof(CornerComboBox), new PropertyMetadata(false));
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerComboBox));
+            ShowWaterTextProperty = DependencyProperty.Register("ShowWaterText", typeof(bool), typeof(CornerComboBox), new PropertyMetadata(true));
         }
 
         public override void OnApplyTemplate()

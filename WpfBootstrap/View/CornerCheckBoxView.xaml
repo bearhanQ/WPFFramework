@@ -39,7 +39,7 @@
                                    Background="{Binding ElementName=colorSlider2, Path=SelectedColor}"
                                    CornerRadius="{Binding ElementName=cornerSlider1, Path=Value}"/>
                 <TextBlock Text="Style:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
-                <cc:CornerCombobox x:Name="cbType"  Width="100" 
+                <cc:CornerComboBox x:Name="cbType"  Width="100" 
                                Grid.Column="1" Grid.Row="2"
                                WaterText="CheckBoxType"
                                SelectedIndex="1"

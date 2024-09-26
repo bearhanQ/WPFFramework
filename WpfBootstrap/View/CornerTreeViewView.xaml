@@ -21,11 +21,11 @@
                     </HierarchicalDataTemplate>
                 </cc:CornerTreeView.ItemTemplate>
             </cc:CornerTreeView>
-            <cc:CornerCombobox Grid.Row="2" WaterText="Type" x:Name="cbType" SelectedIndex="0">
+            <cc:CornerComboBox Grid.Row="2" WaterText="Type" x:Name="cbType" SelectedIndex="0">
                 <ComboBoxItem Content="Original"/>
                 <ComboBoxItem Content="Normal"/>
                 <ComboBoxItem Content="Line"/>
-            </cc:CornerCombobox>
+            </cc:CornerComboBox>
         </Grid>
     </Grid>
 </UserControl>

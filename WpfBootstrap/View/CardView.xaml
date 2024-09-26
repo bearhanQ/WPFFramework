@@ -36,7 +36,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="CardType" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <cc:CornerCombobox ItemsSource="{Binding Source={StaticResource cardType}}" x:Name="cbType" SelectedIndex="0"
+            <cc:CornerComboBox ItemsSource="{Binding Source={StaticResource cardType}}" x:Name="cbType" SelectedIndex="0"
                                Grid.Column="1" WaterText="" Height="30" VerticalContentAlignment="Center"/>
 
             <TextBlock Text="BorderBrush" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>

@@ -82,13 +82,13 @@
                                              ShowWaterText="False"/>
                         <TextBlock Text="页" Margin="3,0,0,0" VerticalAlignment="Center"/>
 
-                        <local:CornerCombobox SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageSize, Mode=TwoWay,Converter={StaticResource PageCountConverter}}"
+                        <local:CornerComboBox SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageSize, Mode=TwoWay,Converter={StaticResource PageCountConverter}}"
                                               VerticalAlignment="Center" Margin="20,0" Width="80" Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                             <ComboBoxItem Content="10条/页"/>
                             <ComboBoxItem Content="20条/页"/>
                             <ComboBoxItem Content="50条/页"/>
                             <ComboBoxItem Content="100条/页"/>
-                        </local:CornerCombobox>
+                        </local:CornerComboBox>
                         <!--<local:CornerButton Content="导出" VerticalAlignment="Center" ButtonType="OutLine" FontFamily="{StaticResource FatSheep}" Icon="&#xe7db;" Width="80" Height="30"/>-->
                     </StackPanel>
                 </ControlTemplate>

@@ -48,7 +48,7 @@
         <cc:CornerTextBox Canvas.Left="130" Canvas.Top="188" Height="20" Width="100" 
                           ShowWaterText="False" VerticalContentAlignment="Center"
                           Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[PRICE],Mode=TwoWay}"/>
-        <cc:CornerCombobox Canvas.Left="130" Canvas.Top="218" Height="20" Width="100" ItemsSource="{Binding Source={StaticResource myEnum}}"
+        <cc:CornerComboBox Canvas.Left="130" Canvas.Top="218" Height="20" Width="100" ItemsSource="{Binding Source={StaticResource myEnum}}"
                            ShowWaterText="False" VerticalContentAlignment="Center"
                            SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext[ACTION],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         

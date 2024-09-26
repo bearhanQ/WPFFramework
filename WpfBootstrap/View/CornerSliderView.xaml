@@ -43,7 +43,7 @@
                           CornerRadius="{Binding ElementName=cornerSlider1, Path=Value}"/>
         <TextBlock Text="Type:" VerticalAlignment="Center"
                    Grid.Column="0" Grid.Row="2"/>
-        <cc:CornerCombobox x:Name="cbButtonType"  Width="100" 
+        <cc:CornerComboBox x:Name="cbButtonType"  Width="100" 
                            Grid.Column="1" Grid.Row="2"
                            WaterText="ButtonType"
                            SelectedIndex="1"
