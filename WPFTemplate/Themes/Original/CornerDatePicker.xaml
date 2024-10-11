@@ -468,7 +468,7 @@
                             <Grid.Resources>
                                 <SolidColorBrush x:Key="DisabledBrush" Color="#A5FFFFFF"/>
                                 <ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
-                                    <Grid Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#A5FFFFFF">
+                                    <Grid Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent">
                                         <TextBlock Text="&#xe6ba;" FontFamily="{StaticResource ResourceKey=FatSheep}"/>
                                     </Grid>
                                 </ControlTemplate>
