@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-            <cc:CornerDatePicker/>
+            <cc:CornerDatePicker CornerRadius="3"/>
         </Grid>
     </Grid>
 </UserControl>

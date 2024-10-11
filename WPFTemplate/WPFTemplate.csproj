@@ -76,27 +76,27 @@
     <Compile Include="Controls\Chart\Donut.cs" />
     <Compile Include="Controls\Chart\LineChart.cs" />
     <Compile Include="Controls\Chart\StepChart.cs" />
-    <Compile Include="Controls\CornerCheckBox.cs" />
-    <Compile Include="Controls\CornerCombobox.cs" />
-    <Compile Include="Controls\CornerContextMenu.cs" />
-    <Compile Include="Controls\CornerExpander.cs" />
-    <Compile Include="Controls\CornerMenu.cs" />
-    <Compile Include="Controls\CornerMenuItem.cs" />
-    <Compile Include="Controls\CornerScrollViewer.cs" />
-    <Compile Include="Controls\CornerSlider.cs" />
-    <Compile Include="Controls\CornerTabItem.cs" />
-    <Compile Include="Controls\CornerToolTip.cs" />
+    <Compile Include="Controls\Original\CornerCheckBox.cs" />
+    <Compile Include="Controls\Original\CornerCombobox.cs" />
+    <Compile Include="Controls\Original\CornerContextMenu.cs" />
+    <Compile Include="Controls\Original\CornerExpander.cs" />
+    <Compile Include="Controls\Original\CornerMenu.cs" />
+    <Compile Include="Controls\Original\CornerMenuItem.cs" />
+    <Compile Include="Controls\Original\CornerScrollViewer.cs" />
+    <Compile Include="Controls\Original\CornerSlider.cs" />
+    <Compile Include="Controls\Original\CornerTabItem.cs" />
+    <Compile Include="Controls\Original\CornerToolTip.cs" />
     <Compile Include="Controls\Extra\Badge.cs" />
     <Compile Include="Controls\Extra\Card.cs" />
     <Compile Include="Controls\Extra\Carousel.cs" />
-    <Compile Include="Controls\CornerPasswordBox.xaml.cs">
+    <Compile Include="Controls\Original\CornerPasswordBox.xaml.cs">
       <DependentUpon>CornerPasswordBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CornerProgressBar.cs" />
-    <Compile Include="Controls\CornerRadioButton.cs" />
-    <Compile Include="Controls\CornerTabControl.cs" />
-    <Compile Include="Controls\CornerTextBox.cs" />
-    <Compile Include="Controls\CornerTreeView.cs" />
+    <Compile Include="Controls\Original\CornerProgressBar.cs" />
+    <Compile Include="Controls\Original\CornerRadioButton.cs" />
+    <Compile Include="Controls\Original\CornerTabControl.cs" />
+    <Compile Include="Controls\Original\CornerTextBox.cs" />
+    <Compile Include="Controls\Original\CornerTreeView.cs" />
     <Compile Include="Controls\Extra\ColorSlider.xaml.cs">
       <DependentUpon>ColorSlider.xaml</DependentUpon>
     </Compile>
@@ -110,8 +110,8 @@
       <DependentUpon>NotifyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Extra\PlaceControl.cs" />
-    <Compile Include="Controls\Extra\CornerCalendar.cs" />
-    <Compile Include="Controls\Extra\CornerDatePicker.cs" />
+    <Compile Include="Controls\Original\CornerCalendar.cs" />
+    <Compile Include="Controls\Original\CornerDatePicker.cs" />
     <Compile Include="Enums\CardType.cs" />
     <Compile Include="Enums\CheckBoxEnum.cs" />
     <Compile Include="Enums\NotifySourceEnum.cs" />
@@ -129,7 +129,7 @@
     <Compile Include="Command\CommandBase.cs" />
     <Compile Include="VMFactory\ViewModelBase.cs" />
     <Compile Include="VMFactory\ViewModelFactory.cs" />
-    <Page Include="Controls\CornerPasswordBox.xaml">
+    <Page Include="Controls\Original\CornerPasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,7 +142,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="Common\Converters.cs" />
-    <Compile Include="Controls\CornerButton.cs" />
+    <Compile Include="Controls\Original\CornerButton.cs" />
     <Compile Include="Enums\ButtonEnum.cs" />
     <Page Include="Resources\Converters.xaml">
       <SubType>Designer</SubType>
