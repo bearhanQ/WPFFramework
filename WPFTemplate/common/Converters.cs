@@ -476,7 +476,7 @@ namespace WPFTemplate
         {
             var actualHeight = (double)values[0];
             var list = (IList)values[1];
-            var ratio = (double)values[2];
+            var ratio = (int)values[2];
             if (list != null)
             {
                 var count = list.Count == 0 ? 1 : list.Count;

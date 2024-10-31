@@ -44,7 +44,7 @@
                                         CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" Panel.ZIndex="1">
                                     <Grid>
                                         <Border x:Name="PART_ShadowBorder" Background="{StaticResource ResourceKey = Button.Hover.ShadowBorderColor}"
-                                                CornerRadius="{TemplateBinding CornerRadius}" Opacity="0.5"/>
+                                                CornerRadius="{TemplateBinding CornerRadius}" Opacity="0"/>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                             <TextBlock x:Name="textblockIcon" FontFamily="{StaticResource FatSheep}" FontSize="{TemplateBinding FontSize}" Text="{TemplateBinding Icon}" 
                                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -72,6 +72,7 @@
                                     <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="PART_ShadowBorder" Property="Opacity" Value="0.5"/>
                                     <Setter TargetName="textblockIcon" Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
                                     <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CornerButton}, Path=MouseOverForeground}"/>
                                 </Trigger>

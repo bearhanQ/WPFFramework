@@ -13,13 +13,13 @@
              d:DesignHeight="600" d:DesignWidth="400">
     <UserControl.Resources>
         <x:Array x:Key="revenueInfo" Type="{x:Type m:Revenue}">
-            <m:Revenue Day="周一" Value="1000000"/>
-            <m:Revenue Day="周二" Value="1500000"/>
-            <m:Revenue Day="周三" Value="2000000"/>
-            <m:Revenue Day="周四" Value="5000000"/>
-            <m:Revenue Day="周五" Value="2500000"/>
-            <m:Revenue Day="周六" Value="3000000"/>
-            <m:Revenue Day="周七" Value="1000000"/>
+            <m:Revenue Day="周一" Value="9"/>
+            <m:Revenue Day="周二" Value="5"/>
+            <m:Revenue Day="周三" Value="3"/>
+            <m:Revenue Day="周四" Value="4"/>
+            <m:Revenue Day="周五" Value="6"/>
+            <m:Revenue Day="周六" Value="8"/>
+            <m:Revenue Day="周七" Value="2"/>
         </x:Array>
         <p:BarValueWarningConverter x:Key="BarValueWarningConverter"/>
         <Style x:Key="barStyle1" TargetType="{x:Type cc:Bar}">

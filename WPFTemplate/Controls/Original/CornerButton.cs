@@ -74,8 +74,8 @@ namespace WPFTemplate
             LinkShowUnderLineProperty = DependencyProperty.Register("LinkShowUnderLine", typeof(bool), typeof(CornerButton), new PropertyMetadata(true));
             PressShowShadowProperty = DependencyProperty.Register("PressShowShadow", typeof(bool), typeof(CornerButton), new PropertyMetadata(true));
 
-            EventManager.RegisterClassHandler(typeof(CornerButton), UIElement.MouseEnterEvent, new RoutedEventHandler(OnMouseEnterEvent));
-            EventManager.RegisterClassHandler(typeof(CornerButton), UIElement.MouseLeaveEvent, new RoutedEventHandler(OnMouseLeaveEvent));
+            //EventManager.RegisterClassHandler(typeof(CornerButton), UIElement.MouseEnterEvent, new RoutedEventHandler(OnMouseEnterEvent));
+            //EventManager.RegisterClassHandler(typeof(CornerButton), UIElement.MouseLeaveEvent, new RoutedEventHandler(OnMouseLeaveEvent));
         }
 
         public static void OnMouseEnterEvent(object sender, RoutedEventArgs e)
@@ -117,6 +117,7 @@ namespace WPFTemplate
                     };
                     Storyboard.SetTarget(animation, button._shadowBorder);
                     Storyboard.SetTargetProperty(animation, new PropertyPath("(UIElement.Clip).(RectangleGeometry.Rect)"));
+                    storyboard.FillBehavior = FillBehavior.Stop;
                     storyboard.Children.Add(animation);
                     storyboard.Begin();
                 }
@@ -147,21 +148,21 @@ namespace WPFTemplate
 
         private void CreateClip()
         {
-            if (_shadowBorder != null)
-            {
-                var X = this.ActualWidth;
-                var Height = this.ActualHeight;
-                _shadowBorder.Clip = new RectangleGeometry
-                {
-                    Rect = new Rect
-                    {
-                        X = X / 2,
-                        Y = 0,
-                        Width = 0,
-                        Height = Height
-                    }
-                };
-            }
+            //if (_shadowBorder != null)
+            //{
+            //    var X = this.ActualWidth;
+            //    var Height = this.ActualHeight;
+            //    _shadowBorder.Clip = new RectangleGeometry
+            //    {
+            //        Rect = new Rect
+            //        {
+            //            X = X / 2,
+            //            Y = 0,
+            //            Width = 0,
+            //            Height = Height
+            //        }
+            //    };
+            //}
         }
     }
 }

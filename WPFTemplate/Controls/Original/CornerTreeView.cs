@@ -65,6 +65,7 @@ namespace WPFTemplate
         {
             ApplyItemContainerStyle(this);
         }
+
         private void ApplyItemContainerStyle(ItemsControl itemsControl)
         {
             foreach (var item in itemsControl.Items)

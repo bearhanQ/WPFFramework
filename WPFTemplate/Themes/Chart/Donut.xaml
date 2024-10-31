@@ -35,7 +35,8 @@
                                                     <Border Width="20" Height="10" VerticalAlignment="Center"
                                                             Background="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Background}"
                                                             BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=BorderBrush}"/>
-                                                    <ContentPresenter VerticalAlignment="Center" Margin="2,0,0,0"/>
+                                                    <ContentPresenter VerticalAlignment="Center" Margin="2,0,0,0"
+                                                                      TextElement.Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:Donut}, Path=Foreground}"/>
                                                 </StackPanel>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -43,12 +44,7 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-                        <Grid x:Name="gridMain" Grid.Row="2">
-                            <!--<ed:Arc Width="100" Height="100" Stroke="Red" Fill="#FFFFB1C1" StartAngle="0" EndAngle="90" ArcThickness="20" Stretch="None"/>
-                            <ed:Arc Width="100" Height="100" Stroke="Blue" Fill="#FF9AD0F5" StartAngle="90" EndAngle="180" ArcThickness="20" Stretch="None"/>
-                            <ed:Arc Width="100" Height="100" Stroke="Green" Fill="#FF58E658" StartAngle="180" EndAngle="270" ArcThickness="20" Stretch="None"/>
-                            <ed:Arc Width="100" Height="100" Stroke="Yellow" Fill="#FFF1F14F" StartAngle="270" EndAngle="360" ArcThickness="20" Stretch="None"/>-->
-                        </Grid>
+                        <Grid x:Name="gridMain" Grid.Row="2"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Vertical">

@@ -51,9 +51,9 @@ namespace WPFTemplate
             get { return (string)GetValue(ValueMemberPathProperty); }
             set { SetValue(ValueMemberPathProperty, value); }
         }
-        internal double Ratio
+        internal int Ratio
         {
-            get { return (double)GetValue(RatioProperty); }
+            get { return (int)GetValue(RatioProperty); }
             set { SetValue(RatioProperty, value); }
         }
         public bool OpenAnimation
@@ -83,9 +83,9 @@ namespace WPFTemplate
             VerticalNumbersProperty = DependencyProperty.Register("VerticalNumbers", typeof(ObservableCollection<double>), typeof(Chart),
                 new PropertyMetadata(new ObservableCollection<double>(new List<double> { 400, 300, 200, 100, 0 })));
             HorizontalLineCountProperty = DependencyProperty.Register("HorizontalLineCount", typeof(int), typeof(Chart),
-                new FrameworkPropertyMetadata(5,FrameworkPropertyMetadataOptions.None,new PropertyChangedCallback(HorizontalLineCountPropertyChangedCallback)));
+                new FrameworkPropertyMetadata(6,FrameworkPropertyMetadataOptions.None,new PropertyChangedCallback(HorizontalLineCountPropertyChangedCallback)));
             ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Chart));
-            RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(Chart), new PropertyMetadata((double)1));
+            RatioProperty = DependencyProperty.Register("Ratio", typeof(int), typeof(Chart), new PropertyMetadata(1));
             OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Chart), new PropertyMetadata(true));
             PathSegmentCollection pathSegments = new PathSegmentCollection();
             SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(Chart));
@@ -113,11 +113,11 @@ namespace WPFTemplate
         {
             if (this.ItemsSource != null && !string.IsNullOrWhiteSpace(ValueMemberPath))
             {
-                double max = 0;
+                int max = 0;
                 foreach (var item in this.ItemsSource)
                 {
-                    double value = 0;
-                    if (double.TryParse(item.GetType().GetProperty(ValueMemberPath).GetValue(item).ToString(), out value))
+                    int value = 0;
+                    if (int.TryParse(item.GetType().GetProperty(ValueMemberPath).GetValue(item).ToString(), out value))
                     {
                         if (value > max)
                         {
@@ -125,10 +125,17 @@ namespace WPFTemplate
                         }
                     }
                 }
+
+                if (max % 5 != 0)
+                {
+                    max = ((max / 5) + 1) * 5;
+                }
+
                 if (HorizontalLineCount > 0)
                 {
                     var num = this.HorizontalLineCount - 1;
-                    this.SetValue(RatioProperty, Math.Ceiling(max) / num);
+                    var ratio = max / num;
+                    this.SetValue(RatioProperty, ratio);
                     VerticalNumbers.Clear();
                     var collection = new ObservableCollection<double>();
                     for (int i = num; i >= 0; i--)

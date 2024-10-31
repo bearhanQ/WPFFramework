@@ -7,6 +7,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type local:Chart}">
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Chart}">
@@ -48,7 +49,8 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                 <Grid x:Name="grid1">
-                                                    <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                    <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                                                      TextElement.Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Foreground}"/>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>

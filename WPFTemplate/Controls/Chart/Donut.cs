@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography;
@@ -240,6 +241,7 @@ namespace WPFTemplate
             arc.IsHitTestVisible = false;
             return arc;
         }
+
         private void CreateArcAnimation(double from, double to,DependencyObject d)
         {
             Storyboard storyboard = new Storyboard();
@@ -251,6 +253,7 @@ namespace WPFTemplate
             storyboard.Children.Add(animation);
             storyboard.Begin();
         }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -258,9 +261,17 @@ namespace WPFTemplate
             listBoxMain = GetTemplateChild("listBoxMain") as ListBox;
             gridMain = GetTemplateChild("gridMain") as Grid;
         }
+
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
+            LoadArcs();
+        }
+
+        protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
+        {
+            base.OnItemsChanged(e);
+            LoadDisplayItem();
             LoadArcs();
         }
     }
