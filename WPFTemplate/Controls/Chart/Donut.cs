@@ -92,43 +92,33 @@ namespace WPFTemplate
             ArcThicknessProperty = DependencyProperty.Register("ArcThickness", typeof(double), typeof(Donut), 
                 new FrameworkPropertyMetadata((double)20, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,new PropertyChangedCallback(ArcThicknessChangedCallBack)));
             DonutColorsProperty = DependencyProperty.Register("DonutColors", typeof(ObservableCollection<Brush>), typeof(Donut),new FrameworkPropertyMetadata(DonutDefalutColors));
-            OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Donut), new PropertyMetadata(true));
+            OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Donut), new PropertyMetadata(false));
             OrientationProperty = DependencyProperty.Register("Orientation", typeof(Orientation), typeof(Donut));
         }
-
-        public Donut()
-        {
-            this.Loaded += Donut_Loaded;
-        }
-
         private static void ArcThicknessChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs arg)
         {
             var donut = d as Donut;
             donut.LoadArcs();
         }
-        private void Donut_Loaded(object sender, RoutedEventArgs e)
-        {
-            LoadDisplayItem();
-            LoadArcs();
-        }
         private void LoadDisplayItem()
         {
             if (listBoxMain != null)
             {
-                int x = 0;
-                for (int i = 0; i < listBoxMain.Items.Count; i++)
+                listBoxMain.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
+            }
+        }
+        private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
+        {
+            if (listBoxMain.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
+            {
+                listBoxMain.ItemContainerGenerator.StatusChanged -= ItemContainerGenerator_StatusChanged;
+                foreach (var item in Items)
                 {
-                    var item = listBoxMain.Items[i];
-                    ListBoxItem listboxitem = listBoxMain.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
-                    if (listboxitem != null)
+                    var listBoxItem = listBoxMain.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
+                    if (listBoxItem != null)
                     {
-                        if (x >= this.DonutColors.Count)
-                        {
-                            x = 0;
-                        }
-                        listboxitem.Background = this.DonutColors[x];
+                        listBoxItem.Background = this.DonutColors[Items.IndexOf(item)];
                     }
-                    x++;
                 }
             }
         }
@@ -241,7 +231,6 @@ namespace WPFTemplate
             arc.IsHitTestVisible = false;
             return arc;
         }
-
         private void CreateArcAnimation(double from, double to,DependencyObject d)
         {
             Storyboard storyboard = new Storyboard();
@@ -253,26 +242,43 @@ namespace WPFTemplate
             storyboard.Children.Add(animation);
             storyboard.Begin();
         }
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
             listBoxMain = GetTemplateChild("listBoxMain") as ListBox;
             gridMain = GetTemplateChild("gridMain") as Grid;
-        }
 
+            if (ItemsSource == null)
+            {
+                List<TestModel> testModels = new List<TestModel>
+                {
+                    new TestModel{Group="A",Count=50},
+                    new TestModel{Group="B",Count=50}
+                };
+                this.ItemsSource = testModels;
+                this.DisplayMemberPath = "Group";
+                this.ValueMemberPath = "Count";
+            }
+
+            LoadDisplayItem();
+            LoadArcs();
+        }
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
             LoadArcs();
         }
-
         protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
         {
             base.OnItemsChanged(e);
             LoadDisplayItem();
             LoadArcs();
+        }
+        private class TestModel
+        {
+            public string Group { get; set; }
+            public int Count { get; set; }
         }
     }
 }

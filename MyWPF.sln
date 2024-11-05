@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf063Demo", "Wpf063Demo\Wp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfQQDemo", "WpfQQDemo\WpfQQDemo.csproj", "{6CBC005D-E23C-47EF-B84E-045ED0DC6C02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{31509D7E-921B-4201-B71A-CD3168EF9C34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6CBC005D-E23C-47EF-B84E-045ED0DC6C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CBC005D-E23C-47EF-B84E-045ED0DC6C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CBC005D-E23C-47EF-B84E-045ED0DC6C02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31509D7E-921B-4201-B71A-CD3168EF9C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31509D7E-921B-4201-B71A-CD3168EF9C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31509D7E-921B-4201-B71A-CD3168EF9C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31509D7E-921B-4201-B71A-CD3168EF9C34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

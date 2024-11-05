@@ -123,12 +123,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPFTemplate\WPFTemplate.csproj">
-      <Project>{9ce3053e-547f-47f4-a087-0224a3953218}</Project>
-      <Name>WPFTemplate</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\smallpng\mmcs.png" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +154,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPFTemplate\WPFTemplate.csproj">
+      <Project>{9ce3053e-547f-47f4-a087-0224a3953218}</Project>
+      <Name>WPFTemplate</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
