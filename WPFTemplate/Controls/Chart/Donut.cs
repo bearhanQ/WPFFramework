@@ -130,13 +130,17 @@ namespace WPFTemplate
                 foreach (var item in this.ItemsSource)
                 {
                     double value = 0;
-                    if (double.TryParse(item.GetType().GetProperty(this.ValueMemberPath).GetValue(item).ToString(), out value))
+                    var propertyInfo = item.GetType().GetProperty(this.ValueMemberPath);
+                    if(propertyInfo != null)
                     {
-                        sum += value;
+                        if (double.TryParse(propertyInfo.GetValue(item).ToString(), out value))
+                        {
+                            sum += value;
+                        }
                     }
                 }
 
-                if (gridMain != null)
+                if (gridMain != null && listBoxMain.Items != null)
                 {
                     gridMain.Children.Clear();
                     double startAngle = 0;
@@ -146,24 +150,28 @@ namespace WPFTemplate
                     for (int i = 0; i < listBoxMain.Items.Count; i++)
                     {
                         var item = listBoxMain.Items[i];
-                        if (double.TryParse(item.GetType().GetProperty(this.ValueMemberPath).GetValue(item).ToString(), out value))
+                        var propertyInfo = item.GetType().GetProperty(this.ValueMemberPath);
+                        if (propertyInfo != null)
                         {
-                            nexValue += value;
-                            double endAngle = CalculateAngle(sum, nexValue);
-                            var content = item.GetType().GetProperty(this.DisplayMemberPath).GetValue(item).ToString();
-                            if (x >= this.DonutColors.Count)
+                            if (double.TryParse(propertyInfo.GetValue(item).ToString(), out value))
                             {
-                                x = 0;
+                                nexValue += value;
+                                double endAngle = CalculateAngle(sum, nexValue);
+                                var content = item.GetType().GetProperty(this.DisplayMemberPath).GetValue(item).ToString();
+                                if (x >= this.DonutColors.Count)
+                                {
+                                    x = 0;
+                                }
+                                Arc arc = GenerateArc(startAngle, endAngle, x, value, content);
+                                Arc tag = GenerateTagArc(startAngle, endAngle);
+                                arc.Tag = tag;
+
+                                gridMain.Children.Add(arc);
+                                gridMain.Children.Add(tag);
+
+                                startAngle = endAngle;
+                                x++;
                             }
-                            Arc arc = GenerateArc(startAngle, endAngle, x, value, content);
-                            Arc tag = GenerateTagArc(startAngle, endAngle);
-                            arc.Tag = tag;
-
-                            gridMain.Children.Add(arc);
-                            gridMain.Children.Add(tag);
-
-                            startAngle = endAngle;
-                            x++;
                         }
                     }
                 }
