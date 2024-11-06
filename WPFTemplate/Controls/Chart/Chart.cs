@@ -18,8 +18,6 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty ValueMemberPathProperty;
 
-        public static readonly DependencyProperty OpenAnimationProperty;
-
         public static readonly DependencyProperty IsBottomContentVisibleProperty;
 
         public static readonly DependencyProperty StrokeProperty;
@@ -56,11 +54,6 @@ namespace WPFTemplate
             get { return (int)GetValue(RatioProperty); }
             set { SetValue(RatioProperty, value); }
         }
-        public bool OpenAnimation
-        {
-            get { return (bool)GetValue(OpenAnimationProperty); }
-            set { SetValue(OpenAnimationProperty, value); }
-        }
         internal PathSegmentCollection Segments
         {
             get { return (PathSegmentCollection)GetValue(SegmentsProperty); }
@@ -86,7 +79,6 @@ namespace WPFTemplate
                 new FrameworkPropertyMetadata(6,FrameworkPropertyMetadataOptions.None,new PropertyChangedCallback(HorizontalLineCountPropertyChangedCallback)));
             ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(Chart));
             RatioProperty = DependencyProperty.Register("Ratio", typeof(int), typeof(Chart), new PropertyMetadata(1));
-            OpenAnimationProperty = DependencyProperty.Register("OpenAnimation", typeof(bool), typeof(Chart), new PropertyMetadata(true));
             PathSegmentCollection pathSegments = new PathSegmentCollection();
             SegmentsProperty = DependencyProperty.Register("Segments", typeof(PathSegmentCollection), typeof(Chart));
             IsBottomContentVisibleProperty = DependencyProperty.Register("IsBottomContentVisible", typeof(bool), typeof(Chart), new PropertyMetadata(true));

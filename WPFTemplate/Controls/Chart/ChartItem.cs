@@ -41,19 +41,6 @@ namespace WPFTemplate
             ValueProperty = ValuePropertyKey.DependencyProperty;
         }
 
-        public ChartItem()
-        {
-            this.Loaded += ChartItem_Loaded;
-        }
-
-        private void ChartItem_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (ParentChart != null && ParentChart.OpenAnimation && ParentChart.GetType() == typeof(Bar))
-            {
-                CreateAnimation(0, this.ActualHeight, this);
-            }
-        }
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -74,17 +61,17 @@ namespace WPFTemplate
             }
         }
 
-        private void CreateAnimation(double from, double to, DependencyObject d)
-        {
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-            animation.FillBehavior = FillBehavior.Stop;
-            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.Zero, Value = from });
-            animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromMilliseconds(500), Value = to });
-            Storyboard.SetTarget(animation, d);
-            Storyboard.SetTargetProperty(animation, new PropertyPath("Height"));
-            storyboard.Children.Add(animation);
-            storyboard.Begin();
-        }
+        //private void CreateAnimation(double from, double to, DependencyObject d)
+        //{
+        //    Storyboard storyboard = new Storyboard();
+        //    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
+        //    animation.FillBehavior = FillBehavior.Stop;
+        //    animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.Zero, Value = from });
+        //    animation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromMilliseconds(500), Value = to });
+        //    Storyboard.SetTarget(animation, d);
+        //    Storyboard.SetTargetProperty(animation, new PropertyPath("Height"));
+        //    storyboard.Children.Add(animation);
+        //    storyboard.Begin();
+        //}
     }
 }

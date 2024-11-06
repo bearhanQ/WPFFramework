@@ -99,8 +99,10 @@
                             </Path.Margin>
                             <Path.Data>
                                 <PathGeometry>
-                                    <PathFigure Segments="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Segments}"
-                                                StartPoint="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Segments,Converter={StaticResource ChartPathStartPointConverter}}"/>
+                                    <PathGeometry.Figures>
+                                        <PathFigure Segments="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Segments}"
+                                                    StartPoint="{Binding RelativeSource={RelativeSource AncestorType=local:Chart}, Path=Segments,Converter={StaticResource ChartPathStartPointConverter}}"/>
+                                    </PathGeometry.Figures>
                                 </PathGeometry>
                             </Path.Data>
                             <Path.LayoutTransform>
