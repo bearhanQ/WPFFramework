@@ -34,7 +34,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Border x:Name="PART_BorderOutline" Background="{TemplateBinding BorderBrush}" Margin="-4" Panel.ZIndex="-1" Grid.ColumnSpan="2" 
-                                CornerRadius="{TemplateBinding CornerRadius}" Opacity="0" BorderThickness="2"/>
+                                CornerRadius="{TemplateBinding CornerRadius}" Opacity="0.7" Visibility="Hidden"/>
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" 
                                 CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True"/>
                         <TextBlock x:Name="tbicon" Text="{TemplateBinding Icon}" FontFamily="{StaticResource FatSheep}" 
@@ -54,7 +54,7 @@
                                 <Condition Property="IsFocused" Value="True"/>
                                 <Condition Property="PressShowShadow" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="PART_BorderOutline" Property="Opacity" Value="0.5"/>
+                            <Setter TargetName="PART_BorderOutline" Property="Visibility" Value="Visible"/>
                         </MultiTrigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>

@@ -37,6 +37,8 @@ namespace WPFTemplate
 
         private Grid gridMain;
 
+        public bool IsInDesignMode => System.ComponentModel.DesignerProperties.GetIsInDesignMode(this);
+
         private static ObservableCollection<Brush> DonutDefalutColors
         {
             get
@@ -257,7 +259,7 @@ namespace WPFTemplate
             listBoxMain = GetTemplateChild("listBoxMain") as ListBox;
             gridMain = GetTemplateChild("gridMain") as Grid;
 
-            if (ItemsSource == null)
+            if (ItemsSource == null && IsInDesignMode)
             {
                 List<TestModel> testModels = new List<TestModel>
                 {
