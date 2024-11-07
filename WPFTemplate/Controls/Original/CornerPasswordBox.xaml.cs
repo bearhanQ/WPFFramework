@@ -120,6 +120,7 @@ namespace WPFTemplate
             if (passwordbox != null)
             {
                 BasePasswordBox = passwordbox as PasswordBox;
+                this.UpdatePassword();
             }
 
             base.OnApplyTemplate();
