@@ -76,6 +76,9 @@
     <Compile Include="Controls\Chart\Donut.cs" />
     <Compile Include="Controls\Chart\LineChart.cs" />
     <Compile Include="Controls\Chart\StepChart.cs" />
+    <Compile Include="Controls\Extra\ToastWindow.xaml.cs">
+      <DependentUpon>ToastWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Original\CornerCheckBox.cs" />
     <Compile Include="Controls\Original\CornerCombobox.cs" />
     <Compile Include="Controls\Original\CornerContextMenu.cs" />
@@ -129,6 +132,10 @@
     <Compile Include="Command\CommandBase.cs" />
     <Compile Include="VMFactory\ViewModelBase.cs" />
     <Compile Include="VMFactory\ViewModelFactory.cs" />
+    <Page Include="Controls\Extra\ToastWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Original\CornerPasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
