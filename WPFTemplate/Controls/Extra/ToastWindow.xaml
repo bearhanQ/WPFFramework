@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTemplate.Controls.Extra"
+        xmlns:cc="clr-namespace:WPFTemplate"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -23,7 +24,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:3.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Style TargetType="{x:Type Border}">
+        <Style TargetType="{x:Type Border}" x:Key="bdStyle1">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Info">
                     <Setter Property="BorderBrush" Value="#FF0098FF"/>
@@ -43,11 +44,39 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type cc:CornerButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Info">
+                    <Setter Property="Foreground" Value="#FF0098FF"/>
+                    <Setter Property="Icon" Value="&#xe83d;"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Error">
+                    <Setter Property="Foreground" Value="#FFFF1900"/>
+                    <Setter Property="Icon" Value="&#xe6f2;"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Warning">
+                    <Setter Property="Foreground" Value="#FFFFDE00"/>
+                    <Setter Property="Icon" Value="&#xe849;"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Success">
+                    <Setter Property="Foreground" Value="#FF21FF00"/>
+                    <Setter Property="Icon" Value="&#xe842;"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
-    <Border x:Name="bd1" BorderThickness="1" HorizontalAlignment="Center" MinWidth="200" VerticalAlignment="Bottom" CornerRadius="5">
-        <Grid>
-            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=Text}" FontSize="18" Margin="20,5"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    <Border x:Name="bd1" HorizontalAlignment="Center" MinWidth="200" VerticalAlignment="Bottom">
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border HorizontalAlignment="Left" BorderThickness="1.5" Style="{StaticResource bdStyle1}"/>
+            <Border BorderBrush="#FFCECECE" BorderThickness="0.5" Grid.ColumnSpan="2"/>
+            <cc:CornerButton ButtonType="Link" LinkShowUnderLine="False" IsHitTestVisible="False"
+                             HorizontalAlignment="Right" FontSize="20"/>
+            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=Text}" FontSize="18" Margin="5"
+                       VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
     </Border>
 </Window>
