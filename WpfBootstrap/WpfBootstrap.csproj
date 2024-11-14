@@ -150,6 +150,9 @@
     <Compile Include="View\LoadingView.xaml.cs">
       <DependentUpon>LoadingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NoticeBarView.xaml.cs">
+      <DependentUpon>NoticeBarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NotifyWindowView.xaml.cs">
       <DependentUpon>NotifyWindowView.xaml</DependentUpon>
     </Compile>
@@ -285,6 +288,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoadingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NoticeBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

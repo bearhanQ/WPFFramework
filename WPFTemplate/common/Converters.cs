@@ -557,7 +557,7 @@ namespace WPFTemplate
                     return bs.Point1;
                 }
             }
-            return null;
+            return new Point(0,0);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

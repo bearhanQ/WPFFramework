@@ -31,6 +31,7 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/DrawerItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/Card.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/Loading.xaml"/>
+        <ResourceDictionary Source="/WPFTemplate;component/Themes/Extra/NoticeBar.xaml"/>
 
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/Chart.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Chart/ChartItem.xaml"/>
