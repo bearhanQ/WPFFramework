@@ -56,7 +56,7 @@ namespace WPFTemplate
                 KeyFrames = new DoubleKeyFrameCollection
                 {
                     new EasingDoubleKeyFrame{ KeyTime = TimeSpan.Zero, Value = 0 },
-                    new EasingDoubleKeyFrame{ KeyTime = TimeSpan.FromSeconds(8),Value = 0 - (this.ActualWidth + contentPresenter.ActualWidth + 5)}
+                    new EasingDoubleKeyFrame{ KeyTime = TimeSpan.FromSeconds(12),Value = 0 - (this.ActualWidth + contentPresenter.ActualWidth + 5)}
                 }
             };
             storyboard.RepeatBehavior = RepeatBehavior.Forever;
