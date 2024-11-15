@@ -24,26 +24,6 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:3.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Style TargetType="{x:Type Border}" x:Key="bdStyle1">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Info">
-                    <Setter Property="BorderBrush" Value="#FF0098FF"/>
-                    <Setter Property="Background" Value="#FFC1E6FF"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Error">
-                    <Setter Property="BorderBrush" Value="#FFFF1900"/>
-                    <Setter Property="Background" Value="#FFFFC7C1"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Warning">
-                    <Setter Property="BorderBrush" Value="#FFFFDE00"/>
-                    <Setter Property="Background" Value="#FFFAFFC1"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Success">
-                    <Setter Property="BorderBrush" Value="#FF21FF00"/>
-                    <Setter Property="Background" Value="#FFC9FFC1"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
         <Style TargetType="{x:Type cc:CornerButton}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=ToastType}" Value="Info">
@@ -66,17 +46,15 @@
         </Style>
     </Window.Resources>
     <Border x:Name="bd1" HorizontalAlignment="Center" MinWidth="200" VerticalAlignment="Bottom">
-        <Grid Background="White">
+        <Grid Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border HorizontalAlignment="Left" BorderThickness="1.5" Style="{StaticResource bdStyle1}"/>
-            <Border BorderBrush="#FFCECECE" BorderThickness="0.5" Grid.ColumnSpan="2"/>
             <cc:CornerButton ButtonType="Link" LinkShowUnderLine="False" IsHitTestVisible="False"
                              HorizontalAlignment="Right" FontSize="20"/>
             <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:ToastWindow}, Path=Text}" FontSize="18" Margin="5"
-                       VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"/>
+                       VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Foreground="White"/>
         </Grid>
     </Border>
 </Window>
