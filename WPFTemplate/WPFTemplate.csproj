@@ -77,6 +77,8 @@
     <Compile Include="Controls\Chart\LineChart.cs" />
     <Compile Include="Controls\Chart\StepChart.cs" />
     <Compile Include="Controls\Extra\NoticeBar.cs" />
+    <Compile Include="Controls\Extra\Steps.cs" />
+    <Compile Include="Controls\Extra\StepsItem.cs" />
     <Compile Include="Controls\Extra\Toast.cs" />
     <Compile Include="Controls\Extra\ToastWindow.xaml.cs">
       <DependentUpon>ToastWindow.xaml</DependentUpon>
@@ -190,6 +192,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Extra\NoticeBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Extra\Steps.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Extra\StepsItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

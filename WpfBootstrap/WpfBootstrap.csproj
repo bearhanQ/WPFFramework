@@ -165,6 +165,9 @@
     <Compile Include="View\CornerDatePickerView.xaml.cs">
       <DependentUpon>CornerDatePickerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StepsView.xaml.cs">
+      <DependentUpon>StepsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ToastView.xaml.cs">
       <DependentUpon>ToastView.xaml</DependentUpon>
     </Compile>
@@ -308,6 +311,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CornerDatePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StepsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

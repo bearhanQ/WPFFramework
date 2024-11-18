@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFTemplate">
+
+    <local:StepLineGridColumnSpanConverter x:Key="StepLineGridColumnSpanConverter"/>
+    <local:StepsLineGridColumnConverter x:Key="StepsLineGridColumnConverter"/>
+
+    <Storyboard x:Key="Storyboard1" RepeatBehavior="Forever">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bd2" Storyboard.TargetProperty="(UIElement.Opacity)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.6"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Style TargetType="{x:Type local:StepsItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:StepsItem}">
+                    <Border x:Name="Bd" SnapsToDevicePixels="true">
+                        <StackPanel VerticalAlignment="Center">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Grid Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="bd1" Width="15" Height="15" Background="#4C22A722" CornerRadius="10" Grid.ColumnSpan="2" Visibility="Hidden"/>
+                                <Border x:Name="bd2" Width="10" Height="10" Background="Green" CornerRadius="10" Grid.ColumnSpan="2" Panel.ZIndex="1"/>
+                                <Rectangle x:Name="line" Height="0.5" Stroke="#FF00A900">
+                                    <Grid.Column>
+                                        <MultiBinding Converter="{StaticResource StepsLineGridColumnConverter}">
+                                            <MultiBinding.Bindings>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:Steps}"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:StepsItem}"/>
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </Grid.Column>
+                                    <Grid.ColumnSpan>
+                                        <MultiBinding Converter="{StaticResource StepLineGridColumnSpanConverter}">
+                                            <MultiBinding.Bindings>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:Steps}"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:StepsItem}"/>
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </Grid.ColumnSpan>
+                                </Rectangle>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="bd1"/>
+                            <Setter Property="Background" Value="#FF4CD131" TargetName="bd2"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="s1" Storyboard="{StaticResource Storyboard1}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="s1"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -77,7 +77,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                 <Grid x:Name="grid1">
-                                                    <Rectangle Grid.Column="2" Stroke="Gray" StrokeThickness="1"
+                                                    <Rectangle Grid.Column="2" Stroke="#FFDADADA" StrokeThickness="1"
                                                                VerticalAlignment="Center"
                                                                StrokeDashArray="3,6" Height="1" SnapsToDevicePixels="False"/>
                                                 </Grid>

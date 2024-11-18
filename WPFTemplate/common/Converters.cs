@@ -565,4 +565,52 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    internal class StepsLineGridColumnConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var steps = values[0] as Steps;
+            var stepsItem = values[1] as StepsItem;
+            if (steps != null && stepsItem != null)
+            {
+                var index = steps.Items.IndexOf(stepsItem);
+                var count = steps.Items.Count;
+                if (index == 0)
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class StepLineGridColumnSpanConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var steps = values[0] as Steps;
+            var stepsItem = values[1] as StepsItem;
+            if (steps != null && stepsItem != null)
+            {
+                var index = steps.Items.IndexOf(stepsItem);
+                var count = steps.Items.Count;
+                if (0 < index && index < count - 1)
+                {
+                    return 2;
+                }
+            }
+            return 1;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
