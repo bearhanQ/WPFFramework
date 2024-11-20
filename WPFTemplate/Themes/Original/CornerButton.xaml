@@ -64,7 +64,7 @@
                                         <Condition Property="IsPressed" Value="true"/>
                                         <Condition Property="PressShowShadow" Value="true"/>
                                     </MultiTrigger.Conditions>
-                                    <Setter Property="Opacity" TargetName="PART_ClickOutlineBorder" Value="0.5"/>
+                                    <Setter Property="Opacity" TargetName="PART_ClickOutlineBorder" Value="0.4"/>
                                 </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
@@ -110,7 +110,7 @@
                                         <Condition Property="IsPressed" Value="true"/>
                                         <Condition Property="PressShowShadow" Value="true"/>
                                     </MultiTrigger.Conditions>
-                                    <Setter Property="Opacity" TargetName="PART_ClickOutlineBorder" Value="0.5"/>
+                                    <Setter Property="Opacity" TargetName="PART_ClickOutlineBorder" Value="0.4"/>
                                 </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
