@@ -89,7 +89,7 @@ namespace WPFTemplate
 
             SolidColorBrush renderBrush = new SolidColorBrush(Colors.Red);
             Pen renderPen = new Pen(new SolidColorBrush(Colors.Red), 0.5);
-            double renderRadius = 5;
+            double renderRadius = 7;
 
             var content = this.AdornedElement.GetValue(Badge.ContentProperty).ToString();
             FormattedText formattedText = new FormattedText(content, CultureInfo.GetCultureInfo("zh-cn"), FlowDirection.LeftToRight, new Typeface("Verdana"), 10, Brushes.White);
