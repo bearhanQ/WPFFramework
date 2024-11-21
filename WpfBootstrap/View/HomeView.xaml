@@ -42,7 +42,7 @@
             </Setter>
         </Style>
         <DataTemplate x:Key="revenue1" DataType="{x:Type mm:Revenue}">
-            <Border Height="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=ActualHeight}" Margin="6,0">
+            <Border Margin="6,0">
                 <Rectangle Fill="#FF1F68BF" Width="5" Height="{Binding Value}" VerticalAlignment="Bottom">
                     <Rectangle.ToolTip>
                         <ToolTip Style="{StaticResource CustomToolTipStyle}"/>
