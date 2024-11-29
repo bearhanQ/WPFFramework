@@ -41,13 +41,15 @@ namespace WPFTemplate
                 {
                     for (int i = 0; i < point3Collection.Count - 1; i++)
                     {
-                        if(i == 0)
+                        if (i == 0)
                         {
                             var bs_point1 = point3Collection[i];
                             var bs_point3 = point3Collection[i + 1];
                             var bs_point2_X = (bs_point3.X - bs_point1.X) / 2;
                             var bs_point2_Y = bs_point3.Y;
                             var bs_point2 = new Point(bs_point2_X, bs_point2_Y);
+
+                            //Segments.Add(GenerateSegment(0, bs_point1.Y));
                             Segments.Add(GenerateSegment(bs_point1, bs_point2, bs_point3));
                         }
                         else
@@ -62,6 +64,15 @@ namespace WPFTemplate
                             var bs_point2 = new Point(bs_point2_X, bs_point2_Y);
                             Segments.Add(GenerateSegment(bs_point1, bs_point2, bs_point3));
                         }
+
+                        if (i == point3Collection.Count - 2)
+                        {
+                            var Endpoint = point3Collection[i + 1];
+                            var StartPoint = point3Collection[0];
+                            Segments.Add(GenerateSegment(Endpoint.X, 0));
+                            Segments.Add(GenerateSegment(StartPoint.X, 0));
+                            Segments.Add(GenerateSegment(StartPoint.X, StartPoint.Y));
+                        }
                     }
                 }
             }
@@ -70,6 +81,11 @@ namespace WPFTemplate
         private PathSegment GenerateSegment(Point point1, Point point2, Point point3)
         {
             return new BezierSegment(point1, point2, point3, true);
+        }
+
+        private PathSegment GenerateSegment(double x, double y)
+        {
+            return new LineSegment(new Point(x, y), false);
         }
     }
 }

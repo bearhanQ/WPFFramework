@@ -22,6 +22,8 @@ namespace WPFTemplate
 
         public static readonly DependencyProperty StrokeProperty;
 
+        public static readonly DependencyProperty OpenShadowProperty;
+
         internal static readonly DependencyProperty VerticalNumbersProperty;
 
         internal static readonly DependencyProperty RatioProperty;
@@ -70,6 +72,12 @@ namespace WPFTemplate
             set { SetValue(StrokeProperty, value); }
         }
 
+        public bool OpenShadow
+        {
+            get { return (bool)GetValue(OpenShadowProperty); }
+            set { SetValue(OpenShadowProperty, value); }
+        }
+
         static Chart()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Chart), new FrameworkPropertyMetadata(typeof(Chart)));
@@ -84,6 +92,7 @@ namespace WPFTemplate
             IsBottomContentVisibleProperty = DependencyProperty.Register("IsBottomContentVisible", typeof(bool), typeof(Chart), new PropertyMetadata(true));
             StrokeProperty = DependencyProperty.Register("Stroke", typeof(Brush), typeof(Chart), 
                 new FrameworkPropertyMetadata((new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF206BC4")))));
+            OpenShadowProperty = DependencyProperty.Register("OpenShadow", typeof(bool), typeof(Chart), new PropertyMetadata(true));
         }
 
         public Chart()
@@ -168,6 +177,23 @@ namespace WPFTemplate
         {
             base.OnRenderSizeChanged(sizeInfo);
             GeneratePath();
+        }
+
+        public void GenerateShadow()
+        {
+            if (Segments.Count > 1)
+            {
+                var startPoint = (Segments[0] as LineSegment).Point;
+                var endPoint = (Segments[Segments.Count - 1] as LineSegment).Point;
+                Segments.Add(GenerateSegment(endPoint.X, 0, false));
+                Segments.Add(GenerateSegment(startPoint.X, 0, false));
+                Segments.Add(GenerateSegment(startPoint.X, startPoint.Y, false));
+            }
+        }
+
+        private PathSegment GenerateSegment(double x, double y, bool isStroked = true)
+        {
+            return new LineSegment(new Point(x, y), isStroked);
         }
     }
 }

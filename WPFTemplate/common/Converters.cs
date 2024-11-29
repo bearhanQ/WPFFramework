@@ -613,4 +613,26 @@ namespace WPFTemplate
             throw new NotImplementedException();
         }
     }
+
+    internal class ChartShadowConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value != null)
+            {
+                string hexColor = value.ToString();
+                ColorConverter colorConverter = new ColorConverter();
+                Color originalColor = (Color)colorConverter.ConvertFrom(hexColor);
+                var color = Color.FromArgb((int)(255 * 0.1), originalColor.R, originalColor.G, originalColor.B);
+                SolidColorBrush brush = new SolidColorBrush(color);
+                return brush;
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

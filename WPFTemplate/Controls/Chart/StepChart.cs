@@ -42,11 +42,13 @@ namespace WPFTemplate
                     }
                 }
             }
+
+            GenerateShadow();
         }
 
-        private PathSegment GenerateSegment(double x, double y)
+        private PathSegment GenerateSegment(double x, double y, bool isStroked = true)
         {
-            return new LineSegment(new Point(x, y), true);
+            return new LineSegment(new Point(x, y), isStroked);
         }
     }
 }

@@ -6,6 +6,7 @@
         <ResourceDictionary Source="/WPFTemplate;component/Resources/Converters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <local:ChartShadowConverter x:Key="ChartShadowConverter"/>
     <Style TargetType="{x:Type local:Chart}">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Template">
@@ -87,7 +88,9 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-                        <Path x:Name="PathMain" Stroke="{TemplateBinding Stroke}" StrokeThickness="2" Grid.Column="2" Panel.ZIndex="1" SnapsToDevicePixels="True">
+                        <Path x:Name="PathMain" Stroke="{TemplateBinding Stroke}" 
+                              Fill="{TemplateBinding Stroke,Converter={StaticResource ChartShadowConverter}}" IsHitTestVisible="False"
+                              StrokeThickness="2" Grid.Column="2" Panel.ZIndex="1" SnapsToDevicePixels="True">
                             <Path.Margin>
                                 <MultiBinding Converter="{StaticResource LineChartPathMarginConverter}">
                                     <MultiBinding.Bindings>
@@ -111,6 +114,11 @@
                         </Path>
                         <ItemsPresenter x:Name="itemPresenter" Grid.Column="2" Grid.RowSpan="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="OpenShadow" Value="False">
+                            <Setter Property="Fill" TargetName="PathMain" Value="{x:Null}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
