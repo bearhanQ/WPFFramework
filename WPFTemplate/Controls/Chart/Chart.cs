@@ -127,6 +127,7 @@ namespace WPFTemplate
                     }
                 }
 
+                // 24 -> 25  25->25   27->30
                 if (max % 5 != 0)
                 {
                     max = ((max / 5) + 1) * 5;
@@ -177,23 +178,6 @@ namespace WPFTemplate
         {
             base.OnRenderSizeChanged(sizeInfo);
             GeneratePath();
-        }
-
-        public void GenerateShadow()
-        {
-            if (Segments.Count > 1)
-            {
-                var startPoint = (Segments[0] as LineSegment).Point;
-                var endPoint = (Segments[Segments.Count - 1] as LineSegment).Point;
-                Segments.Add(GenerateSegment(endPoint.X, 0, false));
-                Segments.Add(GenerateSegment(startPoint.X, 0, false));
-                Segments.Add(GenerateSegment(startPoint.X, startPoint.Y, false));
-            }
-        }
-
-        private PathSegment GenerateSegment(double x, double y, bool isStroked = true)
-        {
-            return new LineSegment(new Point(x, y), isStroked);
         }
     }
 }
