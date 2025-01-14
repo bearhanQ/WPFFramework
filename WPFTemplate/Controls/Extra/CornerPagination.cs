@@ -22,87 +22,165 @@ namespace WPFTemplate
 {
     public class CornerPagination : UserControl
     {
-        public static readonly DependencyProperty ItemSourceProperty;
+        public static readonly RoutedEvent ClickEvent;
 
-        internal static readonly DependencyProperty PageNumClickCommandProperty;
+        public static readonly DependencyProperty PageSizesProperty;
 
-        public static readonly DependencyProperty TargetDataGridProperty;
+        public static readonly DependencyProperty CurrentPageProperty;
 
-        public static readonly DependencyProperty MaxCountProperty;
+        public static readonly DependencyProperty TotalCountProperty;
 
-        public static readonly DependencyProperty PageCountProperty;
+        public static readonly DependencyProperty PageButtonsCollectionProperty;
 
-        public static readonly DependencyProperty PageNumsCollectionProperty;
+        public static readonly DependencyProperty SizeProperty;
 
-        public static readonly DependencyProperty CurrentPageIndexProperty;
+        public static readonly DependencyProperty CommandProperty;
 
-        internal readonly int SkipNum = 5;
-
-        public DataTable ItemSource
+        public List<string> PageSizes
         {
-            get { return (DataTable)GetValue(ItemSourceProperty); }
-            set { SetValue(ItemSourceProperty, value); }
+            get { return (List<string>)GetValue(PageSizesProperty); }
+            set { SetValue(PageSizesProperty, value); }
         }
 
-        internal PageNumClickCommand PageNumClickCommand
+        public int CurrentPage
         {
-            get { return (PageNumClickCommand)GetValue(PageNumClickCommandProperty); }
-            set { SetValue(PageNumClickCommandProperty, value); }
+            get { return (int)GetValue(CurrentPageProperty); }
+            set { SetValue(CurrentPageProperty, value); }
         }
 
-        public DataGrid TargetDataGrid
+        public int TotalCount
         {
-            get { return (DataGrid)GetValue(TargetDataGridProperty); }
-            set { SetValue(TargetDataGridProperty, value); }
+            get { return (int)GetValue(TotalCountProperty); }
+            set { SetValue(TotalCountProperty, value); }
         }
 
-        public int MaxCount
+        public ObservableCollection<string> PageButtonsCollection
         {
-            get { return (int)GetValue(MaxCountProperty); }
-            set { SetValue(MaxCountProperty, value); }
+            get { return (ObservableCollection<string>)GetValue(PageButtonsCollectionProperty); }
+            set { SetValue(PageButtonsCollectionProperty, value); }
         }
 
-        public int PageSize
+        public int Size
         {
-            get { return (int)GetValue(PageCountProperty); }
-            set { SetValue(PageCountProperty, value); }
+            get { return (int)GetValue(SizeProperty); }
+            set { SetValue(SizeProperty, value); }
         }
 
-        public ObservableCollection<string> PageNumsCollection
+        public event RoutedEventHandler Click
         {
-            get { return (ObservableCollection<string>)GetValue(PageNumsCollectionProperty); }
-            set { SetValue(PageNumsCollectionProperty, value); }
+            add
+            {
+                AddHandler(ClickEvent, value);
+            }
+            remove
+            {
+                RemoveHandler(ClickEvent, value);
+            }
         }
 
-        public int CurrentPageIndex
+        private ICommand _localCommand { get; set; }
+
+        public ICommand LocalPageButtonCommand
         {
-            get { return (int)GetValue(CurrentPageIndexProperty); }
-            internal set { SetValue(CurrentPageIndexProperty, value); }
+            get
+            {
+                return _localCommand;
+            }
+            private set
+            {
+                _localCommand = value;
+            }
         }
+
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        private int SkipNum = 5;
 
         static CornerPagination()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerPagination), new FrameworkPropertyMetadata(typeof(CornerPagination)));
-
-            ItemSourceProperty =DependencyProperty.Register("ItemSource", typeof(DataTable), typeof(CornerPagination),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(ItemSourceChangedCallBack), new CoerceValueCallback(ItemSourceCoerceValueCallBack)));
-            PageNumClickCommandProperty = DependencyProperty.Register("PageNumClickCommand", typeof(PageNumClickCommand), typeof(CornerPagination));
-            TargetDataGridProperty = DependencyProperty.Register("TargetDataGrid", typeof(DataGrid), typeof(CornerPagination),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(TargetDataGridChangedCallBack)));
-            MaxCountProperty = DependencyProperty.Register("MaxCount", typeof(int), typeof(CornerPagination), new PropertyMetadata(0));
-            PageCountProperty = DependencyProperty.Register("PageSize", typeof(int), typeof(CornerPagination),
-                new FrameworkPropertyMetadata(20, new PropertyChangedCallback(PageCountChangedCallBack)));
-            PageNumsCollectionProperty = DependencyProperty.Register("PageNumsCollection", typeof(ObservableCollection<string>), typeof(CornerPagination));
-            CurrentPageIndexProperty = DependencyProperty.Register("CurrentPageIndex", typeof(int), typeof(CornerPagination),
-                new FrameworkPropertyMetadata(1, new PropertyChangedCallback(CurrentPageIndexChangedCallBack), new CoerceValueCallback(CurrentPageIndexCoerceValueCallBack)));
-
-            EventManager.RegisterClassHandler(typeof(CornerPagination), KeyDownEvent, new KeyEventHandler(CurrentPageTextBoxKeyDown));
+            ClickEvent = EventManager.RegisterRoutedEvent("Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CornerPagination));
+            PageSizesProperty = DependencyProperty.Register("PageSizes", typeof(List<string>), typeof(CornerPagination), new PropertyMetadata(new List<string> { "10", "20", "50", "100" }));
+            CurrentPageProperty = DependencyProperty.Register("CurrentPage", typeof(int), typeof(CornerPagination), new FrameworkPropertyMetadata(1,new PropertyChangedCallback(CurrentPageChangedCallback)));
+            TotalCountProperty = DependencyProperty.Register("TotalCount", typeof(int), typeof(CornerPagination), new FrameworkPropertyMetadata(10,new PropertyChangedCallback(TotalCountChangedCallback)));
+            PageButtonsCollectionProperty = DependencyProperty.Register("PageButtonsCollection", typeof(ObservableCollection<string>), typeof(CornerPagination), new PropertyMetadata(new ObservableCollection<string>()));
+            SizeProperty = DependencyProperty.Register("Size", typeof(int), typeof(CornerPagination), new PropertyMetadata(10));
+            CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(CornerPagination));
         }
 
         public CornerPagination()
         {
-            PageNumsCollection = new ObservableCollection<string>();
-            PageNumClickCommand = new PageNumClickCommand();
+            LocalPageButtonCommand = new CommandBase(PageButtonAc);
+        }
+
+        private static void TotalCountChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var pagination = (CornerPagination)d;
+            if (pagination != null)
+            {
+                pagination.SetPageButtonsCollection();
+            }
+        }
+
+        private static void CurrentPageChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var pagination = (CornerPagination)d;
+            if (pagination != null)
+            {
+                pagination.SetPageButtonsCollection();
+                pagination.RaiseEvent(new RoutedEventArgs(CornerPagination.ClickEvent, pagination));
+                //there is no need to set a commandparameter,command is just for searching...
+                pagination.Command?.Execute(e.NewValue);
+            }
+        }
+
+        private void PageButtonAc(object parameter)
+        {
+            if(parameter == null)
+            {
+                return;
+            }
+
+            var content = parameter.ToString();
+
+            if (int.TryParse(content, out int index))
+            {
+                this.SetValue(CornerPagination.CurrentPageProperty, index);
+            }
+            else
+            {
+                var arrow = Char.Parse(content);
+
+                switch (arrow)
+                {
+                    case '\ue713':
+                        this.CurrentPage += SkipNum;
+                        break;
+                    case '\ue714':
+                        this.CurrentPage -= SkipNum;
+                        break;
+                    case '\ue616':
+                        {
+                            if (CurrentPage < GetMaxPageSize())
+                            {
+                                CurrentPage += 1;
+                            }
+                            break;
+                        }
+                    case '\ue617':
+                        {
+                            if (CurrentPage > 1)
+                            {
+                                CurrentPage -= 1;
+                            }
+                            break;
+                        }
+                }
+            }
         }
 
         private static void CurrentPageTextBoxKeyDown(object sender, KeyEventArgs e)
@@ -112,126 +190,37 @@ namespace WPFTemplate
             {
                 if (int.TryParse(textbox.Text, out int page))
                 {
-                    var pagination=sender as CornerPagination;
+                    var pagination = sender as CornerPagination;
                     if (pagination != null)
                     {
-                        pagination.SetValue(CurrentPageIndexProperty, page);
+                        pagination.SetValue(CurrentPageProperty, page);
                     }
                 }
             }
         }
-        private static object ItemSourceCoerceValueCallBack(DependencyObject d, object basevalue)
+
+        private int GetMaxPageSize()
         {
-            var datatable = basevalue as DataTable;
-            if (datatable != null)
-            {
-                if (!datatable.Columns.Contains("ExtraRow_"))
-                {
-                    datatable.Columns.Add("ExtraRow_", typeof(int));
-                    int rownum = 1;
-                    foreach (DataRow row in datatable.Rows)
-                    {
-                        row["ExtraRow_"] = rownum;
-                        rownum++;
-                    }
-                }
-            }
-            return datatable;
+            var count = this.TotalCount;
+            var size = this.Size;
+            var maxindex = Math.Ceiling(((double)count / size));
+            return (int)maxindex;
         }
-        private static void ItemSourceChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs arg)
+
+        private void SetPageButtonsCollection()
         {
-            var pagination = d as CornerPagination;
-            pagination.Refresh();
-        }
-        private static void TargetDataGridChangedCallBack(DependencyObject d,DependencyPropertyChangedEventArgs arg)
-        {
-            var pagination = d as CornerPagination;
-            pagination.Refresh();
-        }
-        private static void PageCountChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs arg)
-        {
-            var pagination = d as CornerPagination;
-            pagination.Refresh();
-        }
-        private static void CurrentPageIndexChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs arg)
-        {
-            var pagination = d as CornerPagination;
-            pagination.Refresh();
-        }
-        private static object CurrentPageIndexCoerceValueCallBack(DependencyObject d, object basevalue)
-        {
-            var pagination = d as CornerPagination;
-            var minindex = 1;
-            var maxindex = pagination.GetMaxIndex();
-            var currentpageindex = (int)basevalue;
-            if (currentpageindex < 1)
-            {
-                return minindex;
-            }
-            if (currentpageindex > maxindex)
-            {
-                return (int)maxindex;
-            }
-            return basevalue;
-        }
-        private void SetMaxCount()
-        {
-            if (ItemSource != null)
-            {
-                this.SetValue(MaxCountProperty, ItemSource.Rows.Count);
-            }
-        }
-        private void CreateDataGridView()
-        {
-            if (ItemSource != null && TargetDataGrid != null)
-            {
-                DataView dataView = new DataView(ItemSource);
-                dataView.RowFilter = "ExtraRow_ > " + ((CurrentPageIndex - 1) * PageSize) + " AND ExtraRow_ <= " + CurrentPageIndex * PageSize;
-                TargetDataGrid.ItemsSource = dataView;
-            }
-        }
-        private void ItemSource_RowDeleted(object sender, DataRowChangeEventArgs e)
-        {
-            Refresh();
-        }
-        private void ItemSource_RowDeleting(object sender, DataRowChangeEventArgs e)
-        {
-            if (e.Action == DataRowAction.Delete)
-            {
-                var delindex = (int)e.Row["ExtraRow_"];
-                foreach(DataRow row in ItemSource.Rows)
-                {
-                    var rowIndex = (int)row["ExtraRow_"];
-                    if (rowIndex > delindex)
-                    {
-                        row["ExtraRow_"] = rowIndex -= 1;
-                    }
-                }
-            }
-        }
-        private void ItemSource_RowChanged(object sender, DataRowChangeEventArgs e)
-        {
-            if (e.Action == DataRowAction.Add)
-            {
-                var MaxIndex = ItemSource.Rows.Count;
-                e.Row["ExtraRow_"] = MaxIndex;
-                Refresh();
-            }
-        }
-        private void SetPageNumsCollection()
-        {
-            this.PageNumsCollection.Clear();
+            this.PageButtonsCollection.Clear();
 
             var minIndex = 1;
-            var maxIndex = this.GetMaxIndex();
-            var currentIndex = this.CurrentPageIndex;
+            var maxPageSize = this.GetMaxPageSize();
+            var currentIndex = this.CurrentPage;
 
-            //1 ... max
-            if (maxIndex <= SkipNum)
+            //1 2 3 4 5
+            if (maxPageSize <= SkipNum)
             {
-                for (int i = 1; i <= maxIndex; i++)
+                for (int i = 1; i <= maxPageSize; i++)
                 {
-                    this.PageNumsCollection.Add(i.ToString());
+                    this.PageButtonsCollection.Add(i.ToString());
                 }
                 return;
             }
@@ -240,129 +229,67 @@ namespace WPFTemplate
             var doubleleftarrow = '\ue714'.ToString();
             var rightarrow = '\ue616'.ToString();
             var lefttarrow = '\ue617'.ToString();
-            if (maxIndex > SkipNum)
-            {
-                // "1 2 3 4 5 ... max"
-                if (currentIndex - minIndex < SkipNum)
-                {
-                    this.PageNumsCollection.Add(lefttarrow);
-                    for (int i = 1; i <= SkipNum + 1; i++)
-                    {
-                        this.PageNumsCollection.Add(i.ToString());
-                    }
-                    this.PageNumsCollection.Add(doublerightarrow);
-                    this.PageNumsCollection.Add(maxIndex.ToString());
-                    this.PageNumsCollection.Add(rightarrow);
-                    return;
-                }
+        }
 
-                // "1 ... x y z max"
-                if (maxIndex - currentIndex < SkipNum)
-                {
-                    this.PageNumsCollection.Add(lefttarrow);
-                    this.PageNumsCollection.Add(minIndex.ToString());
-                    this.PageNumsCollection.Add(doubleleftarrow);
-                    for (int i = maxIndex - SkipNum; i <= maxIndex; i++)
-                    {
-                        this.PageNumsCollection.Add(i.ToString());
-                    }
-                    this.PageNumsCollection.Add(rightarrow);
-                    return;
-                }
-
-                //1...x y z .. max
-                if (currentIndex - minIndex >= SkipNum && maxIndex - currentIndex >= SkipNum)
-                {
-                    this.PageNumsCollection.Add(lefttarrow);
-                    this.PageNumsCollection.Add(minIndex.ToString());
-                    this.PageNumsCollection.Add(doubleleftarrow);
-                    for (int i = currentIndex - 2; i <= currentIndex + 2; i++)
-                    {
-                        this.PageNumsCollection.Add(i.ToString());
-                    }
-                    this.PageNumsCollection.Add(doublerightarrow);
-                    this.PageNumsCollection.Add(maxIndex.ToString());
-                    this.PageNumsCollection.Add(rightarrow);
-                }
-            }
-        }
-        internal int GetMaxIndex()
-        {
-            var count = this.MaxCount;
-            var size = this.PageSize;
-            var maxindex = Math.Ceiling(((double)count / size));
-            return (int)maxindex;
-        }
-        public void Refresh()
-        {
-            SetMaxCount();
-            CreateDataGridView();
-            SetPageNumsCollection();
-        }
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            if (ItemSource != null)
-            {
-                ItemSource.RowChanged += ItemSource_RowChanged;
-                ItemSource.RowDeleting += ItemSource_RowDeleting;
-                ItemSource.RowDeleted += ItemSource_RowDeleted;
-            }
+            SetPageButtonsCollection();
         }
     }
 
-    internal class PageNumClickCommand : ICommand
-    {
-        public event EventHandler CanExecuteChanged;
+    //internal class PageNumClickCommand : ICommand
+    //{
+    //    public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+    //    public bool CanExecute(object parameter)
+    //    {
+    //        return true;
+    //    }
 
-        public void Execute(object parameter)
-        {
-            if (parameter != null)
-            {
-                var dic = parameter as Dictionary<string, DependencyObject>;
-                var pagination = dic.First().Value as CornerPagination;
-                var content = dic.First().Key;
-                if (int.TryParse(content, out int index))
-                {
-                    pagination.SetValue(CornerPagination.CurrentPageIndexProperty, index);
-                }
-                else
-                {
-                    var arrow = Char.Parse(content);
+    //    public void Execute(object parameter)
+    //    {
+    //        if (parameter != null)
+    //        {
+    //            var dic = parameter as Dictionary<string, DependencyObject>;
+    //            var pagination = dic.First().Value as CornerPagination;
+    //            var content = dic.First().Key;
+    //            if (int.TryParse(content, out int index))
+    //            {
+    //                pagination.SetValue(CornerPagination.CurrentPageIndexProperty, index);
+    //            }
+    //            else
+    //            {
+    //                var arrow = Char.Parse(content);
 
-                    switch (arrow)
-                    {
-                        case '\ue713':
-                            pagination.CurrentPageIndex += pagination.SkipNum;
-                            break;
-                        case '\ue714':
-                            pagination.CurrentPageIndex -= pagination.SkipNum;
-                            break;
-                        case '\ue616':
-                            {
-                                if (pagination.CurrentPageIndex < pagination.GetMaxIndex())
-                                {
-                                    pagination.CurrentPageIndex += 1;
-                                }
-                                break;
-                            }
-                        case '\ue617':
-                            {
-                                if (pagination.CurrentPageIndex > 1)
-                                {
-                                    pagination.CurrentPageIndex -= 1;
-                                }
-                                break;
-                            }
-                    }
-                }
-            }
-        }
-    }
+    //                switch (arrow)
+    //                {
+    //                    case '\ue713':
+    //                        pagination.CurrentPageIndex += pagination.SkipNum;
+    //                        break;
+    //                    case '\ue714':
+    //                        pagination.CurrentPageIndex -= pagination.SkipNum;
+    //                        break;
+    //                    case '\ue616':
+    //                        {
+    //                            if (pagination.CurrentPageIndex < pagination.GetMaxIndex())
+    //                            {
+    //                                pagination.CurrentPageIndex += 1;
+    //                            }
+    //                            break;
+    //                        }
+    //                    case '\ue617':
+    //                        {
+    //                            if (pagination.CurrentPageIndex > 1)
+    //                            {
+    //                                pagination.CurrentPageIndex -= 1;
+    //                            }
+    //                            break;
+    //                        }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
 }

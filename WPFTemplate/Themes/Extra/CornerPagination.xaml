@@ -20,41 +20,21 @@
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Cursor" Value="Hand"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                <Border>
-                                    <Border x:Name="border1" Width="30" Height="30" BorderThickness="1" Background="White">
-                                        <local:CornerButton Content="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"
-                                                            ButtonType="OutLine" Width="29" Height="29" BorderThickness="0"
-                                                            PressShowShadow="False"
-                                                            VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource FatSheep}"
-                                                            Command="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageNumClickCommand}">
-                                            <local:CornerButton.CommandParameter>
-                                                <MultiBinding Converter="{StaticResource PaginationPageNumClickConverter}">
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ListBoxItem}"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=local:CornerPagination}"/>
-                                                </MultiBinding>
-                                            </local:CornerButton.CommandParameter>
-                                        </local:CornerButton>
-                                    </Border>
+                                <Border x:Name="border1" Width="30" Height="30" BorderThickness="1" Background="White">
+                                    <local:CornerButton Content="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"
+                                                        ButtonType="Normal" Width="29" Height="29" BorderThickness="0"
+                                                        PressShowShadow="False" FontFamily="{StaticResource FatSheep}"
+                                                        x:Name="btn_Page" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                        Command="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=LocalPageButtonCommand}"
+                                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Content}"/>
                                 </Border>
                                 <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="border1" Property="Background" Value="#FFEAF4FF"/>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FF50ABFF" TargetName="btn_Page"/>
                                     </Trigger>
-                                    <DataTrigger Value="True">
-                                        <DataTrigger.Binding>
-                                            <MultiBinding Converter="{StaticResource PaginationNumEqualCurrentIndexConverter}">
-                                                <Binding RelativeSource="{RelativeSource AncestorType=local:CornerPagination}"/>
-                                                <Binding RelativeSource="{RelativeSource Mode=Self}"/>
-                                            </MultiBinding>
-                                        </DataTrigger.Binding>
-                                        <DataTrigger.Setters>
-                                            <Setter TargetName="border1" Property="BorderBrush" Value="#FF84BCF9"/>
-                                        </DataTrigger.Setters>
-                                    </DataTrigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
@@ -70,24 +50,33 @@
                 <ControlTemplate TargetType="{x:Type local:CornerPagination}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="共" Margin="0,0,3,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=MaxCount, Mode=OneWay}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=TotalCount, Mode=OneWay}" VerticalAlignment="Center"/>
                         <TextBlock Text="条" Margin="3,0,20,0" VerticalAlignment="Center"/>
 
                         <ListBox x:Name="PART_ListBox" VerticalAlignment="Center" Style="{StaticResource PaginationListBoxStyle1}" BorderThickness="0"
-                                 ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageNumsCollection}"/>
+                                 ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageButtonsCollection}">
+                            <ListBox.SelectedItem>
+                                <MultiBinding Converter="{StaticResource PaginationSelectedItemConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:CornerPagination}" Path="CurrentPage"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:CornerPagination}" Path="PageButtonsCollection"/>
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </ListBox.SelectedItem>
+                        </ListBox>
 
                         <TextBlock Text="前往" Margin="20,0,3,0" VerticalAlignment="Center"/>
-                        <local:CornerTextBox Text="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=CurrentPageIndex, Mode=TwoWay}"
+                        <local:CornerTextBox Text="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=CurrentPage, Mode=TwoWay}"
                                              Width="30" VerticalAlignment="Center" HorizontalContentAlignment="Center" Height="30" VerticalContentAlignment="Center"
                                              ShowWaterText="False"/>
                         <TextBlock Text="页" Margin="3,0,0,0" VerticalAlignment="Center"/>
 
-                        <local:CornerComboBox SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=PageSize, Mode=TwoWay,Converter={StaticResource PageCountConverter}}"
+                        <local:CornerComboBox SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType=local:CornerPagination}, Path=Size, Mode=TwoWay,Converter={StaticResource PageCountConverter}}"
                                               VerticalAlignment="Center" Margin="20,0" Width="80" Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                            <ComboBoxItem Content="10条/页"/>
-                            <ComboBoxItem Content="20条/页"/>
-                            <ComboBoxItem Content="50条/页"/>
-                            <ComboBoxItem Content="100条/页"/>
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="20"/>
+                            <ComboBoxItem Content="50"/>
+                            <ComboBoxItem Content="100"/>
                         </local:CornerComboBox>
                         <!--<local:CornerButton Content="导出" VerticalAlignment="Center" ButtonType="OutLine" FontFamily="{StaticResource FatSheep}" Icon="&#xe7db;" Width="80" Height="30"/>-->
                     </StackPanel>

@@ -15,7 +15,7 @@
                     <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <cc:CornerPagination ItemSource="{Binding Human}" TargetDataGrid="{Binding ElementName=datagrid1}"/>
+            <cc:CornerPagination TotalCount="100"/>
         </StackPanel>
     </Grid>
 </UserControl>

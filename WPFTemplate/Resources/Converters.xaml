@@ -15,8 +15,7 @@
     <local:MenuItemContenAndArrowConverter x:Key="MenuItemContenAndArrowConverter"/>
     <local:MenuItemHeaderTypeIsFrameworkElementConverter x:Key="MenuItemHeaderTypeIsFrameworkElementConverter"/>
     <local:PageCountConverter x:Key="PageCountConverter"/>
-    <local:PaginationPageNumClickConverter x:Key="PaginationPageNumClickConverter"/>
-    <local:PaginationNumEqualCurrentIndexConverter x:Key="PaginationNumEqualCurrentIndexConverter"/>
+    <local:PaginationSelectedItemConverter x:Key="PaginationSelectedItemConverter"/>
     <local:NullableToBooleanConverter x:Key="NullableToBooleanConverter"/>
     <local:BarHeightConverter x:Key="BarHeightConverter"/>
     <local:BarRowHeightConverter x:Key="BarRowHeightConverter"/>

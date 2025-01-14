@@ -431,8 +431,7 @@
                 </DataGrid>
             </Grid>
 
-            <cc:CornerPagination Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right"
-                                 ItemSource="{Binding DataTableSource}" TargetDataGrid="{Binding ElementName=dg1}"/>
+            <cc:CornerPagination Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right"/>
         </Grid>
     </cc:CornerScrollViewer>
 </UserControl>

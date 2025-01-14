@@ -302,48 +302,24 @@ namespace WPFTemplate
         }
     }
 
-    public class PaginationPageNumClickConverter : IMultiValueConverter
+    public class PaginationSelectedItemConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            Dictionary<string, DependencyObject> result = new Dictionary<string, DependencyObject>();
-            var button = values[0] as ListBoxItem;
-            
-            if (button != null)
+            if (values != null && values.Count() > 1)
             {
-                var content = button.Content.ToString();
-                var pagination = values[1] as CornerPagination;
-                result.Add(content, pagination);
+                var currentPage = (int)values[0];
+                var itemsource = values[1] as ObservableCollection<string>;
+                var selectedItem = itemsource.FirstOrDefault(x => x.Equals(currentPage.ToString()));
+                return selectedItem;
             }
 
-            return result;
+            return 0;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class PaginationNumEqualCurrentIndexConverter : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            var pagination = values[0] as CornerPagination;
-            var btn = values[1] as ListBoxItem;
-            if (btn != null && pagination != null)
-            {
-                if (int.TryParse(btn.Content.ToString(), out int result))
-                {
-                    return pagination.CurrentPageIndex == result;
-                }
-            }
-            return false;
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
