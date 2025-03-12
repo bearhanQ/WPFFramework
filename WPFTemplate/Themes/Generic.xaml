@@ -17,7 +17,6 @@
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerMenuItem.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerContextMenu.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerSlider.xaml"/>
-        <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerScrollViewer.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerButton.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerTextBox.xaml"/>
         <ResourceDictionary Source="/WPFTemplate;component/Themes/Original/CornerCheckBox.xaml"/>

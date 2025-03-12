@@ -70,7 +70,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <cc:CornerScrollViewer VerticalScrollBarVisibility="Auto" Grid.RowSpan="8">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.RowSpan="8">
         <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="140"/>
@@ -249,10 +249,10 @@
                     <ColumnDefinition Width="400"/>
                     <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
-                <cc:CornerScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Visible">
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Visible">
                     <ItemsControl BorderThickness="0" ItemTemplate="{StaticResource ResourceKey=workstream1}" 
                                   ItemsSource="{Binding WorkScreamList}"/>
-                </cc:CornerScrollViewer>
+                </ScrollViewer>
                 <StackPanel Grid.Column="3">
                     <Grid Height="50">
                         <Grid.ColumnDefinitions>
@@ -433,5 +433,5 @@
 
             <cc:CornerPagination Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right"/>
         </Grid>
-    </cc:CornerScrollViewer>
+    </ScrollViewer>
 </UserControl>

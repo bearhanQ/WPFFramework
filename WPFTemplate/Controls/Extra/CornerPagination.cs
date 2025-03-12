@@ -100,21 +100,42 @@ namespace WPFTemplate
 
         private int SkipNum = 5;
 
+        private int maxPageSize
+        {
+            get
+            {
+                var count = this.TotalCount;
+                var size = this.Size;
+                var maxPageSize = Math.Ceiling((double)count / size);
+                return (int)maxPageSize;
+            }
+        }
+
         static CornerPagination()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CornerPagination), new FrameworkPropertyMetadata(typeof(CornerPagination)));
             ClickEvent = EventManager.RegisterRoutedEvent("Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CornerPagination));
             PageSizesProperty = DependencyProperty.Register("PageSizes", typeof(List<string>), typeof(CornerPagination), new PropertyMetadata(new List<string> { "10", "20", "50", "100" }));
-            CurrentPageProperty = DependencyProperty.Register("CurrentPage", typeof(int), typeof(CornerPagination), new FrameworkPropertyMetadata(1,new PropertyChangedCallback(CurrentPageChangedCallback)));
-            TotalCountProperty = DependencyProperty.Register("TotalCount", typeof(int), typeof(CornerPagination), new FrameworkPropertyMetadata(10,new PropertyChangedCallback(TotalCountChangedCallback)));
+            CurrentPageProperty = DependencyProperty.Register("CurrentPage", typeof(int), typeof(CornerPagination), new FrameworkPropertyMetadata(1, new PropertyChangedCallback(CurrentPageChangedCallback)));
+            TotalCountProperty = DependencyProperty.Register("TotalCount", typeof(int), typeof(CornerPagination), new FrameworkPropertyMetadata(10, new PropertyChangedCallback(TotalCountChangedCallback)));
             PageButtonsCollectionProperty = DependencyProperty.Register("PageButtonsCollection", typeof(ObservableCollection<string>), typeof(CornerPagination), new PropertyMetadata(new ObservableCollection<string>()));
-            SizeProperty = DependencyProperty.Register("Size", typeof(int), typeof(CornerPagination), new PropertyMetadata(10));
+            SizeProperty = DependencyProperty.Register("Size", typeof(int), typeof(CornerPagination), new FrameworkPropertyMetadata(10, new PropertyChangedCallback(SizeChangedCallback)));
             CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(CornerPagination));
         }
 
         public CornerPagination()
         {
             LocalPageButtonCommand = new CommandBase(PageButtonAc);
+        }
+
+        private static void SizeChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var pagination = (CornerPagination)d;
+            if (pagination != null)
+            {
+                // pagination.SetPageButtonsCollection();
+                pagination.CurrentPage = 1;
+            }
         }
 
         private static void TotalCountChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -158,14 +179,24 @@ namespace WPFTemplate
                 switch (arrow)
                 {
                     case '\ue713':
-                        this.CurrentPage += SkipNum;
+                        var sum = CurrentPage + SkipNum;
+                        if (sum > maxPageSize)
+                        {
+                            sum = maxPageSize;
+                        }
+                        this.CurrentPage = sum;
                         break;
                     case '\ue714':
-                        this.CurrentPage -= SkipNum;
+                        var sub = CurrentPage - SkipNum;
+                        if (sub < 1)
+                        {
+                            sub = 1;
+                        }
+                        this.CurrentPage = sub;
                         break;
                     case '\ue616':
                         {
-                            if (CurrentPage < GetMaxPageSize())
+                            if (CurrentPage < maxPageSize)
                             {
                                 CurrentPage += 1;
                             }
@@ -199,36 +230,83 @@ namespace WPFTemplate
             }
         }
 
-        private int GetMaxPageSize()
-        {
-            var count = this.TotalCount;
-            var size = this.Size;
-            var maxindex = Math.Ceiling(((double)count / size));
-            return (int)maxindex;
-        }
+        private string doubleRightArrow = '\ue713'.ToString();
+        private string doubleLeftArrow = '\ue714'.ToString();
+        private string singleRightArrow = '\ue616'.ToString();
+        private string singleLeftArrow = '\ue617'.ToString();
 
         private void SetPageButtonsCollection()
         {
             this.PageButtonsCollection.Clear();
 
-            var minIndex = 1;
-            var maxPageSize = this.GetMaxPageSize();
-            var currentIndex = this.CurrentPage;
-
             //1 2 3 4 5
+            //1 2 3 4 5...max
+            //1 2 < x x > max
+            //1 < x x x x max
+
             if (maxPageSize <= SkipNum)
             {
+                PageButtonsCollection.Add(singleLeftArrow);
                 for (int i = 1; i <= maxPageSize; i++)
                 {
-                    this.PageButtonsCollection.Add(i.ToString());
+                    PageButtonsCollection.Add(i.ToString());
                 }
-                return;
+                PageButtonsCollection.Add(singleRightArrow);
+            }
+            else if (CurrentPage <= SkipNum)
+            {
+                PageButtonsCollection.Add(singleLeftArrow);
+                for (int i = 1; i <= SkipNum; i++)
+                {
+                    PageButtonsCollection.Add(i.ToString());
+                }
+                if (SkipNum < maxPageSize)
+                {
+                    PageButtonsCollection.Add(doubleRightArrow);
+                    PageButtonsCollection.Add(maxPageSize.ToString());
+                }
+                PageButtonsCollection.Add(singleRightArrow);
+            }
+            else if (CurrentPage < maxPageSize - SkipNum)
+            {
+                PageButtonsCollection.Add(singleLeftArrow);
+                PageButtonsCollection.Add("1");
+                if (2 < CurrentPage - 1)
+                {
+                    PageButtonsCollection.Add("2");
+                    PageButtonsCollection.Add(doubleLeftArrow);
+                }
+                for (int i = CurrentPage - 1; i <= CurrentPage + 1; i++)
+                {
+                    PageButtonsCollection.Add(i.ToString());
+                }
+                if (CurrentPage + 1 < maxPageSize)
+                {
+                    PageButtonsCollection.Add(doubleRightArrow);
+                    PageButtonsCollection.Add(maxPageSize.ToString());
+                }
+                PageButtonsCollection.Add(singleRightArrow);
+            }
+            else
+            {
+                PageButtonsCollection.Add(singleLeftArrow);
+                PageButtonsCollection.Add("1");
+                if (1 < maxPageSize - SkipNum)
+                {
+                    PageButtonsCollection.Add(doubleLeftArrow);
+                }
+                for (int i = maxPageSize - SkipNum; i <= maxPageSize; i++)
+                {
+                    if (i == 1)
+                    {
+                        PageButtonsCollection.Add(doubleLeftArrow);
+                        continue;
+                    }
+                    PageButtonsCollection.Add(i.ToString());
+                }
+                PageButtonsCollection.Add(singleRightArrow);
             }
 
-            var doublerightarrow = '\ue713'.ToString();
-            var doubleleftarrow = '\ue714'.ToString();
-            var rightarrow = '\ue616'.ToString();
-            var lefttarrow = '\ue617'.ToString();
         }
 
         public override void OnApplyTemplate()
@@ -237,59 +315,4 @@ namespace WPFTemplate
             SetPageButtonsCollection();
         }
     }
-
-    //internal class PageNumClickCommand : ICommand
-    //{
-    //    public event EventHandler CanExecuteChanged;
-
-    //    public bool CanExecute(object parameter)
-    //    {
-    //        return true;
-    //    }
-
-    //    public void Execute(object parameter)
-    //    {
-    //        if (parameter != null)
-    //        {
-    //            var dic = parameter as Dictionary<string, DependencyObject>;
-    //            var pagination = dic.First().Value as CornerPagination;
-    //            var content = dic.First().Key;
-    //            if (int.TryParse(content, out int index))
-    //            {
-    //                pagination.SetValue(CornerPagination.CurrentPageIndexProperty, index);
-    //            }
-    //            else
-    //            {
-    //                var arrow = Char.Parse(content);
-
-    //                switch (arrow)
-    //                {
-    //                    case '\ue713':
-    //                        pagination.CurrentPageIndex += pagination.SkipNum;
-    //                        break;
-    //                    case '\ue714':
-    //                        pagination.CurrentPageIndex -= pagination.SkipNum;
-    //                        break;
-    //                    case '\ue616':
-    //                        {
-    //                            if (pagination.CurrentPageIndex < pagination.GetMaxIndex())
-    //                            {
-    //                                pagination.CurrentPageIndex += 1;
-    //                            }
-    //                            break;
-    //                        }
-    //                    case '\ue617':
-    //                        {
-    //                            if (pagination.CurrentPageIndex > 1)
-    //                            {
-    //                                pagination.CurrentPageIndex -= 1;
-    //                            }
-    //                            break;
-    //                        }
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
 }

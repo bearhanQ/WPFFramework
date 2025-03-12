@@ -82,6 +82,7 @@ namespace WpfBootstrap.ViewModel
                 new UnicodeModel{Name ="error",Code = "&#xe6f2;"},
                 new UnicodeModel{Name ="horn",Code = "&#xe6d5;"},
                 new UnicodeModel{Name ="lock",Code = "&#xe618;"},
+                new UnicodeModel{Name = "scan",Code = "&#xe63c;"}
             };
             CopyCommand = new CommandBase(ExecuteCopy);
         }

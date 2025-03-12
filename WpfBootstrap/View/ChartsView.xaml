@@ -43,7 +43,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <cc:CornerScrollViewer>
+    <ScrollViewer>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -64,5 +64,5 @@
             <cc:StepChart Grid.Row="2" ItemsSource="{StaticResource revenueInfo}" Stroke="#FF0CFF00"
                       DisplayMemberPath="Day" ValueMemberPath="Value"/>
         </Grid>
-    </cc:CornerScrollViewer>
+    </ScrollViewer>
 </UserControl>

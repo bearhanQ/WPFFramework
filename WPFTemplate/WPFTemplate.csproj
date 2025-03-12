@@ -89,7 +89,6 @@
     <Compile Include="Controls\Original\CornerExpander.cs" />
     <Compile Include="Controls\Original\CornerMenu.cs" />
     <Compile Include="Controls\Original\CornerMenuItem.cs" />
-    <Compile Include="Controls\Original\CornerScrollViewer.cs" />
     <Compile Include="Controls\Original\CornerSlider.cs" />
     <Compile Include="Controls\Original\CornerTabItem.cs" />
     <Compile Include="Controls\Original\CornerToolTip.cs" />
@@ -248,10 +247,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Original\CornerRadioButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Original\CornerScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
